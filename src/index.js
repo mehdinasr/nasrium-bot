@@ -1,4 +1,4 @@
-﻿import { Bot, InlineKeyboard } from "grammy";
+import { Bot, InlineKeyboard } from "grammy";
 import dotenv from "dotenv";
 
 // بارگذاری تنظیمات محیطی
@@ -25,10 +25,10 @@ bot.command("start", async (ctx) => {
         .url("📢 عضویت در کانال رسمی", "https://t.me/nasrium")
         .url("👥 گروه گفتگو", "https://t.me/nasrium_chat");
 
-    const welcomeMessage = 
+    const welcomeMessage = `
 🌟 **به اکوسیستم جهانی NASRIUM خوش آمدید!** 🌟
 
-سلام \ عزیز! به دنیای بازی‌های استراتژیک و نسل جدید ارزهای دیجیتال قدم گذاشتید.
+سلام ${username} عزیز! به دنیای بازی‌های استراتژیک و نسل جدید ارزهای دیجیتال قدم گذاشتید.
 
 **NASRIUM (NSM)** فقط یک توکن معمولی نیست؛ یک اکوسیستم و امپراتوری دیجیتال است که قدرت آن با بازی و فعالیت شما شکل می‌گیرد.
 
@@ -38,7 +38,7 @@ bot.command("start", async (ctx) => {
 🏆 رتبه‌بندی جهانی و ایردراپ بر اساس شایستگی
 
 برای شروع بازی و استخراج اولین توکن‌های خود، روی دکمه زیر کلیک کنید:
-;
+`;
 
     await ctx.reply(welcomeMessage, {
         parse_mode: "Markdown",
@@ -54,7 +54,7 @@ bot.on("message", async (ctx) => {
 // ثبت خطاها به صورت کاملاً حرفه‌ای و پایدار
 bot.catch((err) => {
     const ctx = err.ctx;
-    console.error(❌ خطا در حین پردازش آپدیت \:);
+    console.error("❌ خطا در حین پردازش آپدیت:");
     console.error(err.error);
 });
 
@@ -66,5 +66,4 @@ bot.start();
 app.get('/', (req, res) => {
     res.status(200).json({ status: 'ok', service: 'nasrium-bot' });
 });
-
 
