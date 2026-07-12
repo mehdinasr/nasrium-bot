@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_065",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:13:34"
+                 },
+    "ChatProfiles":  [
+                         {
+                             "Id":  "chat_profile_001",
+                             "Name":  "Global",
+                             "Channel":  "Global",
+                             "MaxMessageLength":  256,
+                             "CooldownSeconds":  3,
+                             "AllowLinks":  false,
+                             "AllowPrivateMessages":  true,
+                             "Moderated":  true
+                         },
+                         {
+                             "Id":  "chat_profile_002",
+                             "Name":  "Guild",
+                             "Channel":  "Guild",
+                             "MaxMessageLength":  512,
+                             "CooldownSeconds":  1,
+                             "AllowLinks":  true,
+                             "AllowPrivateMessages":  true,
+                             "Moderated":  true
+                         },
+                         {
+                             "Id":  "chat_profile_003",
+                             "Name":  "Party",
+                             "Channel":  "Party",
+                             "MaxMessageLength":  512,
+                             "CooldownSeconds":  0,
+                             "AllowLinks":  true,
+                             "AllowPrivateMessages":  true,
+                             "Moderated":  false
+                         },
+                         {
+                             "Id":  "chat_profile_004",
+                             "Name":  "Administrator",
+                             "Channel":  "Admin",
+                             "MaxMessageLength":  2048,
+                             "CooldownSeconds":  0,
+                             "AllowLinks":  true,
+                             "AllowPrivateMessages":  true,
+                             "Moderated":  false
+                         }
+                     ]
+}

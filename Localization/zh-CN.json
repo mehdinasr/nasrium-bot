@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "zh-CN",
+    "name":  "Chinese Simplified",
+    "native":  "简体中文",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "欢迎来到NASRIUM生态系统",
+                         "game.start":  "开始游戏",
+                         "menu.settings":  "设置",
+                         "menu.language":  "语言",
+                         "menu.profile":  "个人资料",
+                         "menu.village":  "村庄",
+                         "menu.resources":  "资源",
+                         "menu.buildings":  "建筑",
+                         "menu.upgrade":  "升级",
+                         "menu.battle":  "战斗",
+                         "menu.wallet":  "钱包",
+                         "menu.leaderboard":  "排行榜",
+                         "menu.missions":  "任务",
+                         "menu.shop":  "商店",
+                         "menu.help":  "帮助"
+                     }
+}

@@ -1,0 +1,144 @@
+﻿# ================================================================================
+# NASRIUM PROJECT
+# Command   : CMD_059
+# File ID   : CMD_059_001
+# Module    : Infrastructure | Dockerfile Final
+# Component : Clean Dockerfile with explicit Python path
+# Version   : 1.0.0
+# Status    : Production
+# NES       : v1.0
+# ================================================================================
+
+$ErrorActionPreference = "Stop"
+Set-StrictMode -Version Latest
+
+Write-Host "=========================================" -ForegroundColor Cyan
+Write-Host "NASRIUM CMD_059 - DOCKERFILE FINAL" -ForegroundColor Cyan
+Write-Host "Command   : CMD_059" -ForegroundColor Yellow
+Write-Host "File ID   : CMD_059_001" -ForegroundColor Yellow
+Write-Host "Module    : Infrastructure | Dockerfile Final" -ForegroundColor Yellow
+Write-Host "Component : Clean Dockerfile with Python" -ForegroundColor Yellow
+Write-Host "Version   : 1.0.0" -ForegroundColor Yellow
+Write-Host "Status    : Production" -ForegroundColor Green
+Write-Host "NES       : v1.0" -ForegroundColor Magenta
+Write-Host "=========================================" -ForegroundColor Cyan
+Write-Host ""
+
+Set-Location "D:\NASRIUM"
+
+# Step 1: Remove old configs
+Write-Host "[STEP 1] Removing old configs..." -ForegroundColor Cyan
+Remove-Item "nixpacks.toml" -Force -ErrorAction SilentlyContinue
+Remove-Item ".nixpacks" -Force -ErrorAction SilentlyContinue
+Remove-Item "railway.toml" -Force -ErrorAction SilentlyContinue
+Remove-Item "Procfile" -Force -ErrorAction SilentlyContinue
+Write-Host "[OK] Old configs removed" -ForegroundColor Green
+
+# Step 2: Create Dockerfile
+Write-Host ""
+Write-Host "[STEP 2] Creating Dockerfile..." -ForegroundColor Cyan
+$dockerfile = @"
+# NASRIUM Dockerfile - Python API + Bot
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements first (for caching)
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY main.py .
+COPY Config/ ./Config/
+COPY Modules/ ./Modules/
+COPY data/ ./data/
+
+# Create data directory
+RUN mkdir -p data
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8080/')\" || exit 1
+
+# Run application
+CMD [\"python\", \"main.py\"]
+"@
+$dockerfile | Set-Content "Dockerfile" -Encoding UTF8
+Write-Host "[OK] Dockerfile created at: D:\NASRIUM\Dockerfile" -ForegroundColor Green
+
+# Step 3: Create .dockerignore
+Write-Host ""
+Write-Host "[STEP 3] Creating .dockerignore..." -ForegroundColor Cyan
+$dockerignore = @"
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+
+# Node.js (old files)
+node_modules
+package.json
+package-lock.json
+src/
+mini-app/
+
+# Railway
+nixpacks.toml
+.railway-trigger
+
+# IDE
+.vscode
+.idea
+"@
+$dockerignore | Set-Content ".dockerignore" -Encoding UTF8
+Write-Host "[OK] .dockerignore created" -ForegroundColor Green
+
+# Step 4: Verify main.py exists
+Write-Host ""
+Write-Host "[STEP 4] Verifying main.py..." -ForegroundColor Cyan
+if (Test-Path "main.py") {
+    Write-Host "[OK] main.py exists" -ForegroundColor Green
+} else {
+    Write-Host "[ERROR] main.py missing!" -ForegroundColor Red
+    exit 1
+}
+
+# Step 5: Commit
+Write-Host ""
+Write-Host "[STEP 5] Committing..." -ForegroundColor Cyan
+git add .
+git commit -m "CMD_059: Add clean Dockerfile for manual deploy" --allow-empty
+git push origin master
+Write-Host "[OK] Pushed to GitHub" -ForegroundColor Green
+
+# Step 6: Show file path
+Write-Host ""
+Write-Host "[STEP 6] FILE LOCATION:" -ForegroundColor Green
+Write-Host "  Dockerfile: D:\NASRIUM\Dockerfile" -ForegroundColor Cyan
+Write-Host "  .dockerignore: D:\NASRIUM\.dockerignore" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "RAILWAY MANUAL STEPS:" -ForegroundColor Red
+Write-Host "  1. Go to Railway Dashboard" -ForegroundColor White
+Write-Host "  2. Open project" -ForegroundColor White
+Write-Host "  3. Click 'Settings'" -ForegroundColor White
+Write-Host "  4. Change Builder to: Dockerfile" -ForegroundColor Yellow
+Write-Host "  5. Path: /Dockerfile (or leave empty)" -ForegroundColor Yellow
+Write-Host "  6. Click 'Deploy'" -ForegroundColor White
+
+Write-Host ""
+Write-Host "=========================================" -ForegroundColor Cyan
+Write-Host "CMD_059_001 COMPLETE" -ForegroundColor Green
+Write-Host "=========================================" -ForegroundColor Cyan

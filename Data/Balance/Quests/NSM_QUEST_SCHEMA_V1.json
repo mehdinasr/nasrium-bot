@@ -1,0 +1,87 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_041",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:43:38"
+                 },
+    "Quests":  [
+                   {
+                       "Id":  "quest_001",
+                       "Name":  "First Victory",
+                       "Category":  "Main",
+                       "Description":  "Clear Stage 1.",
+                       "RequiredLevel":  1,
+                       "ObjectiveType":  "StageClear",
+                       "ObjectiveTarget":  "stage_001",
+                       "ObjectiveValue":  1,
+                       "Rewards":  {
+                                       "Gold":  100,
+                                       "Experience":  50,
+                                       "Gems":  5,
+                                       "Items":  [
+
+                                                 ]
+                                   }
+                   },
+                   {
+                       "Id":  "quest_002",
+                       "Name":  "Hero Training",
+                       "Category":  "Daily",
+                       "Description":  "Upgrade one hero.",
+                       "RequiredLevel":  2,
+                       "ObjectiveType":  "HeroUpgrade",
+                       "ObjectiveTarget":  "Any",
+                       "ObjectiveValue":  1,
+                       "Rewards":  {
+                                       "Gold":  300,
+                                       "Experience":  100,
+                                       "Gems":  2,
+                                       "Items":  [
+
+                                                 ]
+                                   }
+                   },
+                   {
+                       "Id":  "quest_003",
+                       "Name":  "Treasure Hunter",
+                       "Category":  "Weekly",
+                       "Description":  "Collect 1000 Gold.",
+                       "RequiredLevel":  5,
+                       "ObjectiveType":  "CollectGold",
+                       "ObjectiveTarget":  "Gold",
+                       "ObjectiveValue":  1000,
+                       "Rewards":  {
+                                       "Gold":  1000,
+                                       "Experience":  500,
+                                       "Gems":  20,
+                                       "Items":  [
+                                                     {
+                                                         "ItemId":  "item_003",
+                                                         "Quantity":  1
+                                                     }
+                                                 ]
+                                   }
+                   },
+                   {
+                       "Id":  "quest_004",
+                       "Name":  "Dragon Slayer",
+                       "Category":  "Main",
+                       "Description":  "Defeat the Ancient Dragon.",
+                       "RequiredLevel":  10,
+                       "ObjectiveType":  "BossKill",
+                       "ObjectiveTarget":  "enemy_004",
+                       "ObjectiveValue":  1,
+                       "Rewards":  {
+                                       "Gold":  5000,
+                                       "Experience":  3000,
+                                       "Gems":  100,
+                                       "Items":  [
+                                                     {
+                                                         "ItemId":  "item_004",
+                                                         "Quantity":  2
+                                                     }
+                                                 ]
+                                   }
+                   }
+               ]
+}

@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_085",
+    "Module":  "SEASON_SYSTEM",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 15:52:41",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Seasons\\NSM_SEASON_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_SEASON_SYSTEM_SCHEMA_20260708_155241.json",
+    "SHA256":  "B4BBCA698036517F81E948A372658962D472C034D234EA2A15239C1F75249D52"
+}

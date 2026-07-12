@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_084",
+    "Module":  "WEEKLY_MISSION_SYSTEM",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 15:51:21",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\WeeklyMissions\\NSM_WEEKLY_MISSION_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_WEEKLY_MISSION_SYSTEM_SCHEMA_20260708_155121.json",
+    "SHA256":  "E1BA4628F46E544C22A6407F80BB53CA38788C514F83F41F43922F8F1EB37A53"
+}

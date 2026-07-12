@@ -1,0 +1,61 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_032",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:12:52"
+                 },
+    "Buffs":  [
+                  {
+                      "Id":  "buff_001",
+                      "Name":  "Attack Boost",
+                      "Category":  "Buff",
+                      "Target":  "Self",
+                      "Duration":  30,
+                      "Stackable":  true,
+                      "MaxStacks":  5,
+                      "EffectType":  "AttackPercent",
+                      "EffectValue":  10,
+                      "Icon":  "buff_attack",
+                      "Description":  "Increase attack power by 10%."
+                  },
+                  {
+                      "Id":  "buff_002",
+                      "Name":  "Defense Aura",
+                      "Category":  "Buff",
+                      "Target":  "Ally",
+                      "Duration":  45,
+                      "Stackable":  false,
+                      "MaxStacks":  1,
+                      "EffectType":  "DefensePercent",
+                      "EffectValue":  15,
+                      "Icon":  "buff_defense",
+                      "Description":  "Increase defense by 15%."
+                  },
+                  {
+                      "Id":  "buff_003",
+                      "Name":  "Poison",
+                      "Category":  "Debuff",
+                      "Target":  "Enemy",
+                      "Duration":  20,
+                      "Stackable":  true,
+                      "MaxStacks":  3,
+                      "EffectType":  "DamageOverTime",
+                      "EffectValue":  25,
+                      "Icon":  "debuff_poison",
+                      "Description":  "Deals poison damage over time."
+                  },
+                  {
+                      "Id":  "buff_004",
+                      "Name":  "Stun",
+                      "Category":  "Debuff",
+                      "Target":  "Enemy",
+                      "Duration":  3,
+                      "Stackable":  false,
+                      "MaxStacks":  1,
+                      "EffectType":  "Disable",
+                      "EffectValue":  100,
+                      "Icon":  "debuff_stun",
+                      "Description":  "Disables target actions."
+                  }
+              ]
+}

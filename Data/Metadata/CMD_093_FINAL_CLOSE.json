@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_093",
+    "Module":  "NSM_ChatPipeline",
+    "Action":  "FINAL_CLOSE",
+    "CommandStatus":  "COMPLETED",
+    "Closed":  true,
+    "CloseTime":  "2026-07-08 22:21:23",
+    "NextReady":  "CMD_094"
+}

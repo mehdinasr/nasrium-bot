@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NASRIUM Send Game Button</title>
+    <style>body{font-family:Tahoma;background:#0d0d0d;color:#00ffcc;text-align:center;padding:50px;}button{padding:15px 30px;font-size:18px;background:#00ffcc;color:#0d0d0d;border:none;cursor:pointer;border-radius:5px;}</style>
+</head>
+<body>
+    <h2>ارسال دکمه بازی ناسریوم</h2>
+    <button onclick="sendButton()">ارسال دکمه بازی به تلگرام</button>
+    <p id="status" style="color:yellow;font-size:1.2em;"></p>
+    <script>
+        async function sendButton() {
+            const url = 'https://api.telegram.org/bot8897418933:AAGHmU_y38icd6QZj0x8Vzdm9S52gLo7BKQ/sendMessage';
+            const body = {
+                chat_id: '                  document.getElementById('status').style.color='#00ff00'; ',
+                text: '🚀 *به اکوسیستم ناسریوم خوش آمدید!*\n\nبرای ورود به پایگاه سایبرپانک خود، روی دکمه زیر کلیک کنید:',
+                parse_mode: 'Markdown',
+                reply_markup: {
+                    inline_keyboard: [
+                        [{ text: '🎮 Open NASRIUM Terminal', web_app: { url: 'https://forest-juvenile-compilation-tiles.trycloudflare.com/index.html' } }]
+                    ]
+                }
+            };
+            try {
+                const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+                const data = await res.json();
+                if(data.ok) { 
+                    document.getElementById('status').innerText = '✅ موفقیت! دکمه بازی در تلگرام ارسال شد.'; 
+                  }
+                else { 
+                    document.getElementById('status').innerText = '❌ خطای API: ' + data.description; 
+                    document.getElementById('status').style.color='red'; 
+                }
+            } catch(e) { 
+                document.getElementById('status').innerText = '❌ خطای شبکه: ' + e.message; 
+                document.getElementById('status').style.color='red'; 
+            }
+        }
+    </script>
+</body>
+</html>

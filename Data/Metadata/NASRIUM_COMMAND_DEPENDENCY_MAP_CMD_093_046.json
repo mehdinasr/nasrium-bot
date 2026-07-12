@@ -1,0 +1,16 @@
+﻿{
+    "FileID":  "CMD_093_046",
+    "Command":  "CMD_093",
+    "Component":  "COMMAND_DEPENDENCY_MAP",
+    "Version":  "1.0.0",
+    "Status":  "REGISTERED",
+    "CreatedAt":  "2026-07-09 02:05:52",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "Module":  "NSM_ChatPipeline",
+    "Dependencies":  [
+                         "CHAT_MESSAGE_PIPELINE",
+                         "VALIDATION_ENGINE",
+                         "STATE_CONTROL",
+                         "REGISTRY_SYSTEM"
+                     ]
+}

@@ -1,0 +1,23 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_027",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 02:59:45"
+                 },
+    "Skills":  [
+                   {
+                       "SkillId":  "SKL_001",
+                       "Name":  "Sword Slash",
+                       "Category":  "Attack",
+                       "Description":  "Basic melee attack.",
+                       "MaxLevel":  10,
+                       "Cooldown":  2,
+                       "ManaCost":  0,
+                       "Target":  "Enemy",
+                       "Formula":  {
+                                       "BaseDamage":  20,
+                                       "DamageMultiplier":  1.25
+                                   }
+                   }
+               ]
+}

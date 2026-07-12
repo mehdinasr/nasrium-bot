@@ -1,0 +1,274 @@
+﻿{
+    "schema":  "3.0",
+    "generated_at":  "2026-07-07 18:38:59",
+    "file_role":  "Master Project Brain - Single source of truth for continuing NASRIUM in any new chat/account.",
+    "project":  {
+                    "id":  "PRJ-000001",
+                    "name":  "NASRIUM",
+                    "symbol":  "NSM",
+                    "version":  "0.1.0-alpha",
+                    "status":  "Foundation",
+                    "type":  "GameFi Ecosystem",
+                    "owner_role":  "Founder / Project Owner",
+                    "ai_role":  "Solution Architect, Tech Lead, Docs Lead"
+                },
+    "vision":  {
+                   "goal":  "Build a global GameFi ecosystem starting from a Telegram Mini App, expanding to wallet, marketplace, DAO, and a dedicated blockchain.",
+                   "not_a":  "Not just a meme coin.",
+                   "short_term":  "Telegram bot + mini game + user base.",
+                   "mid_term":  "Game economy + NSM token utility.",
+                   "long_term":  "Ecosystem + blockchain + exchange listing."
+               },
+    "current_state":  {
+                          "phase":  "Foundation",
+                          "milestone":  "Infrastructure -\u003e Product transition",
+                          "foundation_progress":  90,
+                          "product_progress":  5,
+                          "overall_progress":  12,
+                          "health":  "Healthy",
+                          "last_command":  "CMD_022_V3",
+                          "next_command":  "CMD_023",
+                          "last_checkpoint":  "CP-000001",
+                          "updated":  "2026-07-07 18:38:59"
+                      },
+    "environment":  {
+                        "os":  "Windows",
+                        "shell":  "Windows PowerShell 5.1",
+                        "node":  "v24.18.0",
+                        "npm":  "v11.16.0",
+                        "git":  "v2.55.0",
+                        "python":  "v3.14.6",
+                        "project_root":  "D:\\\\NASRIUM"
+                    },
+    "architecture":  {
+                         "style":  "Enterprise Modular",
+                         "runtime":  "Node.js",
+                         "language":  "TypeScript",
+                         "telegram_framework":  "grammY",
+                         "storage":  "JSON driven",
+                         "principles":  [
+                                            "Quality over speed",
+                                            "Security first",
+                                            "Architecture before coding",
+                                            "Documentation with development",
+                                            "Every change must be reversible",
+                                            "One responsibility per file",
+                                            "No direct patch on core files (rebuild instead)"
+                                        ]
+                     },
+    "folder_structure":  {
+                             "root":  "D:\\\\NASRIUM",
+                             "core":  "D:\\\\NASRIUM\\\\Core",
+                             "knowledge":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge",
+                             "logs":  "D:\\\\NASRIUM\\\\Core\\\\Logs",
+                             "reports":  "D:\\\\NASRIUM\\\\Core\\\\Reports",
+                             "archive":  "D:\\\\NASRIUM\\\\Core\\\\Archive",
+                             "adr":  "D:\\\\NASRIUM\\\\Core\\\\ADR",
+                             "checkpoints":  "D:\\\\NASRIUM\\\\Core\\\\Checkpoints",
+                             "modules":  "D:\\\\NASRIUM\\\\Core\\\\Modules",
+                             "saves":  "D:\\\\NASRIUM\\\\Core\\\\Saves",
+                             "secrets":  "D:\\\\NASRIUM\\\\Core\\\\Secrets",
+                             "tools":  "D:\\\\NASRIUM\\\\Core\\\\Tools",
+                             "builder":  "D:\\\\NASRIUM\\\\Builder",
+                             "apps":  "D:\\\\NASRIUM\\\\Apps",
+                             "telegram_bot":  "D:\\\\NASRIUM\\\\Apps\\\\telegram-bot"
+                         },
+    "key_files":  {
+                      "master_v3":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\NASRIUM_PROJECT_V3.json",
+                      "master":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\NASRIUM_PROJECT.json",
+                      "ai_project_state":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\AI_PROJECT_STATE.json",
+                      "dashboard":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\PROJECT_DASHBOARD.json",
+                      "context":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\NASRIUM_CONTEXT.json",
+                      "book":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\PROJECT_BOOK.md",
+                      "handover":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\AI_HANDOVER.md",
+                      "nos":  "D:\\\\NASRIUM\\\\nos.ps1",
+                      "bot_token":  "D:\\\\NASRIUM\\\\Core\\\\Secrets\\\\telegram_bot_token.txt",
+                      "bot_env":  "D:\\\\NASRIUM\\\\Apps\\\\telegram-bot\\\\.env"
+                  },
+    "telegram":  {
+                     "bot_created":  true,
+                     "bot_running":  true,
+                     "start_command_working":  true,
+                     "token_saved_securely":  true,
+                     "run_method":  "node dist/index.js (background) + PID file",
+                     "pid_file":  "D:\\\\NASRIUM\\\\Core\\\\Logs\\\\telegram-bot.pid",
+                     "mini_app":  "Planned"
+                 },
+    "bot_app":  {
+                    "path":  "D:\\\\NASRIUM\\\\Apps\\\\telegram-bot",
+                    "language":  "TypeScript",
+                    "entry":  "src/index.ts",
+                    "build_output":  "dist/index.js",
+                    "scripts":  [
+                                    "dev",
+                                    "build",
+                                    "start",
+                                    "typecheck"
+                                ],
+                    "dependencies":  [
+                                         "grammy",
+                                         "dotenv"
+                                     ],
+                    "dev_dependencies":  [
+                                             "typescript",
+                                             "tsx",
+                                             "@types/node"
+                                         ]
+                },
+    "builder":  {
+                    "status":  "Ready",
+                    "version":  "1.0.0",
+                    "config":  "D:\\\\NASRIUM\\\\Builder\\\\Core\\\\BuilderConfig.json",
+                    "state":  "D:\\\\NASRIUM\\\\Builder\\\\Core\\\\BuilderState.json",
+                    "purpose":  "Future factory to generate all files/modules."
+                },
+    "nos":  {
+                "current_version":  "1.x",
+                "target_version":  "2.0",
+                "status":  "Rebuild Planned",
+                "working_commands":  [
+                                         "status",
+                                         "backup",
+                                         "export",
+                                         "help"
+                                     ],
+                "bot_commands_status":  "Not integrated yet (planned in NOS 2.0)",
+                "rebuild_reason":  "Multiple patches caused instability. Rebuild as Bootstrap + Modules."
+            },
+    "game":  {
+                 "status":  "Not Started",
+                 "engine_style":  "Game Engine (modular)",
+                 "planned_modules":  [
+                                         "Player",
+                                         "Village",
+                                         "Buildings",
+                                         "Resources",
+                                         "Inventory",
+                                         "Heroes",
+                                         "Battle",
+                                         "Economy",
+                                         "Events",
+                                         "Time"
+                                     ]
+             },
+    "database":  {
+                     "status":  "Planned",
+                     "candidate":  "PostgreSQL (or SQLite for MVP)"
+                 },
+    "blockchain":  {
+                       "status":  "Planned",
+                       "network":  "TON",
+                       "future":  "Dedicated blockchain",
+                       "smart_contracts":  "Later"
+                   },
+    "tokenomics":  {
+                       "status":  "Planned",
+                       "token":  "NSM",
+                       "utility":  "In-game economy, rewards, governance (future)"
+                   },
+    "security":  {
+                     "secrets_policy":  "No token/keys in git or reports",
+                     "token_location":  "Core\\\\Secrets + Apps\\\\telegram-bot\\\\.env",
+                     "gitignore":  "Configured in telegram-bot"
+                 },
+    "completed_commands":  [
+                               "CMD_010 - NOS core structure",
+                               "CMD_011 - NOS tool (status/backup/export)",
+                               "CMD_012 - TypeScript bot scaffold",
+                               "CMD_013 - Bot run + token via file",
+                               "CMD_015 - Saves/Templates/Schemas",
+                               "CMD_016 - AI_PROJECT_STATE.json",
+                               "CMD_017 - First checkpoint CP-000001",
+                               "CMD_018_RECOVERY - Restore stable nos.ps1",
+                               "CMD_019 - Builder structure",
+                               "CMD_020 - Builder state",
+                               "CMD_021 - PROJECT_DASHBOARD.json",
+                               "CMD_022A - SaveManager module (stub)",
+                               "CMD_022B - NASRIUM_PROJECT.json",
+                               "CMD_022C - Master project file",
+                               "CMD_022_V3 - Master project brain V3"
+                           ],
+    "decisions":  [
+                      {
+                          "id":  "ADR-0001",
+                          "title":  "Create NASRIUM Operating System (NOS)",
+                          "status":  "Accepted"
+                      },
+                      {
+                          "id":  "ADR-0002",
+                          "title":  "Modular architecture for NOS",
+                          "status":  "Accepted"
+                      },
+                      {
+                          "id":  "ADR-0003",
+                          "title":  "AI_PROJECT_STATE holds current state only",
+                          "status":  "Accepted"
+                      },
+                      {
+                          "id":  "ADR-0004",
+                          "title":  "One responsibility per file",
+                          "status":  "Accepted"
+                      },
+                      {
+                          "id":  "ADR-0005",
+                          "title":  "Rebuild NOS 2.0 instead of patching",
+                          "status":  "Accepted"
+                      }
+                  ],
+    "rules":  [
+                  "All files stored under D:\\\\NASRIUM",
+                  "Every step has a CMD id",
+                  "Checkpoint after important steps",
+                  "State stored in JSON",
+                  "No direct patch on core files",
+                  "All operations reversible",
+                  "No secrets in git/reports",
+                  "Each step must be tested",
+                  "Answers in clear Persian",
+                  "Every feature documented",
+                  "Product over tooling (except stability)",
+                  "No file/folder without a purpose"
+              ],
+    "known_issues":  [
+                         {
+                             "id":  "ISS-0001",
+                             "title":  "nos.ps1 patched multiple times; bot-* not integrated",
+                             "status":  "Open",
+                             "solution":  "Rebuild NOS 2.0 (Bootstrap + Modules)"
+                         }
+                     ],
+    "roadmap":  [
+                    "Rebuild NOS Engine 2.0",
+                    "Save/Load/Checkpoint engine",
+                    "Database design",
+                    "Player/User system",
+                    "Game core (village/resources/buildings)",
+                    "Telegram Mini App",
+                    "Game economy",
+                    "NSM tokenomics",
+                    "Blockchain integration (TON)"
+                ],
+    "ai_resume":  {
+                      "continue_from":  "CMD_023",
+                      "current_goal":  "Rebuild NOS Engine 2.0 (clean, modular, tested)",
+                      "next_goal":  "Design database + game core",
+                      "important_notes":  [
+                                              "Do NOT patch nos.ps1 line-by-line anymore. Rebuild it fully.",
+                                              "User pastes commands from chat, so do not read token from clipboard.",
+                                              "Token is stored in file: Core\\\\Secrets\\\\telegram_bot_token.txt",
+                                              "Bot runs via node dist/index.js with PID file in Core\\\\Logs.",
+                                              "Prefer small, single-purpose, testable CMD scripts.",
+                                              "Always end scripts with clear DONE/SUCCESS output."
+                                          ],
+                      "how_to_continue":  "Read this file, then continue from ai_resume.continue_from using roadmap order."
+                  },
+    "session_summary":  {
+                            "last_session_result":  "SUCCESS",
+                            "highlights":  [
+                                               "Bot is live and answers /start",
+                                               "Infrastructure (NOS/Builder/Knowledge/Checkpoint) established",
+                                               "Master brain V3 created"
+                                           ],
+                            "next_action":  "Start CMD_023: Rebuild NOS 2.0 OR begin Game Core (owner decides)"
+                        }
+}

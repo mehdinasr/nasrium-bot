@@ -1,0 +1,26 @@
+﻿
+==================================================
+NASRIUM BUILD REPORT
+==================================================
+
+COMMAND : CMD_033
+STATUS  : SUCCESS
+
+FILE
+----
+D:\NASRIUM\Data\Balance\Enemies\NSM_ENEMY_SCHEMA_V1.json
+
+BACKUP
+------
+D:\NASRIUM\Backups\NSM_ENEMY_SCHEMA_20260708_042207.json
+
+SHA256
+------
+9C913BEF7A3E05D5B5B14D9C794B6E34DD53A68945D5E9F2146E0CFF5BFAA362
+
+TIME
+----
+2026-07-08 04:22:07
+
+==================================================
+

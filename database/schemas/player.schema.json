@@ -1,0 +1,82 @@
+﻿{
+    "schema_version":  "1.0",
+    "entity":  "Player",
+    "created":  "2026-07-07 18:43:58",
+    "fields":  [
+                   {
+                       "description":  "شناسه یکتا",
+                       "name":  "player_id",
+                       "type":  "UUID",
+                       "required":  true
+                   },
+                   {
+                       "unique":  true,
+                       "description":  "شناسه تلگرام",
+                       "name":  "telegram_id",
+                       "type":  "Int64",
+                       "required":  true
+                   },
+                   {
+                       "name":  "username",
+                       "type":  "String",
+                       "required":  false
+                   },
+                   {
+                       "name":  "display_name",
+                       "type":  "String",
+                       "required":  true
+                   },
+                   {
+                       "default":  1,
+                       "name":  "level",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  0,
+                       "name":  "experience",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  1000,
+                       "name":  "gold",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  1000,
+                       "name":  "wood",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  1000,
+                       "name":  "stone",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  1000,
+                       "name":  "food",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  100,
+                       "name":  "gem",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  0,
+                       "name":  "nsm_balance",
+                       "type":  "Decimal"
+                   },
+                   {
+                       "name":  "village_id",
+                       "type":  "UUID"
+                   },
+                   {
+                       "name":  "created_at",
+                       "type":  "DateTime"
+                   },
+                   {
+                       "name":  "last_login",
+                       "type":  "DateTime"
+                   }
+               ]
+}

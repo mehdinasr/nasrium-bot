@@ -1,0 +1,14 @@
+{
+    "Username":  "NewNode",
+    "LastLogin":  "2026-07-10 01:35:55",
+    "Buildings":  {
+                      "AI_CORE":  {
+                                      "Level":  1
+                                  }
+                  },
+    "Id":  "=TestNode",
+    "Resources":  {
+                      "Bandwidth":  200,
+                      "Credits":  1000
+                  }
+}

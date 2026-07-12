@@ -1,0 +1,55 @@
+﻿================================================================================
+NASRIUM SDPA ARCHITECTURE LAWS
+Version: 1.0.0
+Date: 2026-07-09 16:45:22
+Status: RATIFIED
+Classification: Supreme Law of NASRIUM Project
+================================================================================
+
+PREAMBLE
+--------------------------------------------------------------------------------
+This document is the supreme law of the NASRIUM project architecture.
+All Commands, Modules, Scripts, AI Assistants, and human developers
+MUST comply with these laws without exception.
+
+================================================================================
+ARTICLE 1: CORE PRINCIPLES
+================================================================================
+1.1 GOVERNANCE FIRST PRINCIPLE
+    No permanent project information shall reside inside any AI Prompt,
+    Chat History, or Human Memory. ALL persistent knowledge MUST be stored 
+    in the AI Governance Package files on disk.
+
+1.2 AI REPLACEABILITY PRINCIPLE
+    If Model A (e.g. ChatGPT) is removed today, Model B (e.g. Gemini)
+    MUST be able to continue development tomorrow using ONLY the
+    Governance Files on disk. No model-specific dependencies are permitted.
+
+1.3 DISK IS TRUTH PRINCIPLE
+    Disk files (governance package) > Chat memory > AI assumptions.
+    If chat conflicts with disk, disk wins. Always.
+
+================================================================================
+ARTICLE 2: COMMAND STRUCTURE & SINGLE RESPONSIBILITY
+================================================================================
+2.1 NAMING CONVENTION
+    Format: CMD_XXX_YYY (XXX = Command Number, YYY = Step Number)
+2.2 SINGLE DOMAIN PER COMMAND
+    Each CMD_XXX owns EXACTLY ONE domain/responsibility.
+2.3 COMMAND LIFECYCLE
+    Definition -> Build -> Validation -> Artifact Creation -> Completion -> Handoff
+2.4 ONE FILE ONE PURPOSE
+    Each function/script has exactly one responsibility.
+
+================================================================================
+ARTICLE 3: POWERSHELL STANDARDS
+================================================================================
+3.1 MANDATORY HEADER
+    All .ps1 scripts MUST include a standard metadata comment block at the top.
+3.2 ERROR MANAGEMENT
+    Try/Catch is mandatory for all external and file system operations.
+    StrictMode -Version Latest and ErrorActionPreference = 'Stop' are enforced.
+
+================================================================================
+END OF LAWS
+================================================================================

@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_066",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 13:17:33",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Notifications\\NSM_NOTIFICATION_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_NOTIFICATION_SYSTEM_SCHEMA_20260708_131733.json",
+    "SHA256":  "6050793EE14E605104094CE2BE983BBEF76F79C456E977745B43BA8972B847D8"
+}

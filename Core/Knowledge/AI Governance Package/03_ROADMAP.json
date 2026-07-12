@@ -1,0 +1,20 @@
+﻿{
+  "file_id": "03_ROADMAP",
+  "version": "2.0.0",
+  "updated_at": "2026-07-09T16:45:22Z",
+  "vision": "Build a real Telegram strategy game with sustainable economy and TON integration.",
+  "phases": [
+    {
+      "id": "PHASE_1",
+      "name": "Architecture Bootstrap",
+      "status": "IN_PROGRESS",
+      "goals": ["Bootstrap structural dirs", "Core scripts", "AI governance package"]
+    },
+    {
+      "id": "PHASE_2",
+      "name": "Chat & Moderation Engine",
+      "status": "PLANNED",
+      "goals": ["Construct config schema", "PowerShell engine", "Integration testing"]
+    }
+  ]
+}

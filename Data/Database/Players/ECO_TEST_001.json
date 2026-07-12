@@ -1,0 +1,18 @@
+﻿{
+    "Id":  "ECO_TEST_001",
+    "Username":  "TG_ECO_TEST_001",
+    "Level":  1,
+    "Resources":  {
+                      "Gold":  200,
+                      "NSM":  0,
+                      "Energy":  100
+                  },
+    "Buildings":  [
+                      {
+                          "Type":  "GoldMine",
+                          "Level":  1,
+                          "Upgrading":  true
+                      }
+                  ],
+    "CreatedAt":  "2026-07-09 17:49:09"
+}

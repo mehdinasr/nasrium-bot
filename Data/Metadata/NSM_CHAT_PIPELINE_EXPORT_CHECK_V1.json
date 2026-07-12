@@ -1,0 +1,13 @@
+﻿{
+    "Command":  "CMD_093",
+    "FinalCheck":  "RUNTIME_EXPORT_VERIFICATION",
+    "ModuleExists":  true,
+    "Functions":  [
+                      "Invoke-NSMChatModeration",
+                      "Process-NSMChatMessage",
+                      "Route-NSMChatMessage",
+                      "Send-NSMChatPipeline",
+                      "Validate-NSMChatMessage"
+                  ],
+    "CheckTime":  "2026-07-08 21:59:20"
+}

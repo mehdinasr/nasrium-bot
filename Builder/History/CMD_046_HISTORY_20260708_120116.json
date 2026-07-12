@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_046",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 12:01:16",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Events\\NSM_EVENT_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_EVENT_SCHEMA_20260708_120116.json",
+    "SHA256":  "AB360CF13D8A975C01B9FB908CCC733025E7436B6307536F79D4768CE81300D3"
+}

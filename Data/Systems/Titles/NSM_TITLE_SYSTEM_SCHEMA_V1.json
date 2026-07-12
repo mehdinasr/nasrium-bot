@@ -1,0 +1,73 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_081",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 15:46:16"
+                 },
+    "Titles":  [
+                   {
+                       "Id":  "title_001",
+                       "Name":  "Village Chief",
+                       "Rank":  1,
+                       "UnlockLevel":  1,
+                       "Category":  "Leadership",
+                       "Permanent":  true,
+                       "Bonuses":  {
+                                       "GoldProductionPercent":  2,
+                                       "FoodProductionPercent":  2,
+                                       "TroopAttackPercent":  0,
+                                       "TroopDefensePercent":  0,
+                                       "BuilderSpeedPercent":  0
+                                   },
+                       "Description":  "Beginning leadership title."
+                   },
+                   {
+                       "Id":  "title_002",
+                       "Name":  "Baron",
+                       "Rank":  2,
+                       "UnlockLevel":  10,
+                       "Category":  "Leadership",
+                       "Permanent":  true,
+                       "Bonuses":  {
+                                       "GoldProductionPercent":  5,
+                                       "FoodProductionPercent":  5,
+                                       "TroopAttackPercent":  2,
+                                       "TroopDefensePercent":  2,
+                                       "BuilderSpeedPercent":  3
+                                   },
+                       "Description":  "Regional ruler."
+                   },
+                   {
+                       "Id":  "title_003",
+                       "Name":  "Duke",
+                       "Rank":  3,
+                       "UnlockLevel":  20,
+                       "Category":  "Military",
+                       "Permanent":  true,
+                       "Bonuses":  {
+                                       "GoldProductionPercent":  8,
+                                       "FoodProductionPercent":  8,
+                                       "TroopAttackPercent":  5,
+                                       "TroopDefensePercent":  5,
+                                       "BuilderSpeedPercent":  5
+                                   },
+                       "Description":  "Military commander."
+                   },
+                   {
+                       "Id":  "title_004",
+                       "Name":  "King",
+                       "Rank":  4,
+                       "UnlockLevel":  30,
+                       "Category":  "Royal",
+                       "Permanent":  true,
+                       "Bonuses":  {
+                                       "GoldProductionPercent":  12,
+                                       "FoodProductionPercent":  12,
+                                       "TroopAttackPercent":  10,
+                                       "TroopDefensePercent":  10,
+                                       "BuilderSpeedPercent":  8
+                                   },
+                       "Description":  "Supreme ruler."
+                   }
+               ]
+}

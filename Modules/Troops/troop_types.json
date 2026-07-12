@@ -1,0 +1,124 @@
+﻿{
+    "training":  {
+                     "batch_size":  10,
+                     "speedup_cost_per_minute":  10,
+                     "max_queue_size":  5
+                 },
+    "combat":  {
+                   "crit_multiplier":  2,
+                   "type_advantage":  {
+                                          "cavalry":  {
+                                                          "infantry":  1.5,
+                                                          "archer":  0.75,
+                                                          "elite":  0.75,
+                                                          "siege":  1.25
+                                                      },
+                                          "infantry":  {
+                                                           "cavalry":  0.75,
+                                                           "archer":  1.5,
+                                                           "elite":  0.5,
+                                                           "siege":  1.25
+                                                       },
+                                          "archer":  {
+                                                         "cavalry":  1.5,
+                                                         "infantry":  0.75,
+                                                         "elite":  0.5,
+                                                         "siege":  1
+                                                     },
+                                          "elite":  {
+                                                        "cavalry":  1.5,
+                                                        "infantry":  1.5,
+                                                        "archer":  1.5,
+                                                        "siege":  1
+                                                    },
+                                          "siege":  {
+                                                        "cavalry":  0.75,
+                                                        "infantry":  1,
+                                                        "archer":  1.25,
+                                                        "elite":  1.5
+                                                    }
+                                      },
+                   "damage_formula":  "attack * type_multiplier - defense * 0.5",
+                   "crit_chance":  0.1,
+                   "min_damage":  1
+               },
+    "troops":  {
+                   "cavalry":  {
+                                   "description_en":  "Fast mounted units",
+                                   "health":  150,
+                                   "training_cost":  150,
+                                   "tier":  2,
+                                   "speed":  15,
+                                   "carry_capacity":  80,
+                                   "name_fa":  "سواره‌نظام",
+                                   "defense":  20,
+                                   "name_en":  "Cavalry",
+                                   "upkeep":  3,
+                                   "description_fa":  "واحدهای سوار سریع",
+                                   "attack":  25,
+                                   "training_time":  90
+                               },
+                   "infantry":  {
+                                    "description_en":  "Basic foot soldiers",
+                                    "health":  100,
+                                    "training_cost":  50,
+                                    "tier":  1,
+                                    "speed":  5,
+                                    "carry_capacity":  50,
+                                    "name_fa":  "پیاده‌نظام",
+                                    "defense":  15,
+                                    "name_en":  "Infantry",
+                                    "upkeep":  1,
+                                    "description_fa":  "سربازان پیاده پایه",
+                                    "attack":  10,
+                                    "training_time":  30
+                                },
+                   "archer":  {
+                                  "description_en":  "Ranged attackers",
+                                  "health":  60,
+                                  "training_cost":  75,
+                                  "tier":  1,
+                                  "speed":  7,
+                                  "carry_capacity":  30,
+                                  "name_fa":  "کماندار",
+                                  "defense":  5,
+                                  "name_en":  "Archer",
+                                  "upkeep":  1,
+                                  "description_fa":  "مهاجمان دوربرد",
+                                  "attack":  20,
+                                  "training_time":  45
+                              },
+                   "elite":  {
+                                 "description_en":  "Elite warriors",
+                                 "health":  250,
+                                 "training_cost":  500,
+                                 "tier":  4,
+                                 "speed":  10,
+                                 "carry_capacity":  100,
+                                 "name_fa":  "گارد ویژه",
+                                 "defense":  40,
+                                 "name_en":  "Elite Guard",
+                                 "upkeep":  8,
+                                 "description_fa":  "جنگجویان نخبه",
+                                 "attack":  40,
+                                 "training_time":  300
+                             },
+                   "siege":  {
+                                 "description_en":  "Heavy weapons",
+                                 "health":  80,
+                                 "training_cost":  300,
+                                 "tier":  3,
+                                 "speed":  2,
+                                 "carry_capacity":  200,
+                                 "name_fa":  "محاصره‌ای",
+                                 "defense":  10,
+                                 "name_en":  "Siege",
+                                 "upkeep":  5,
+                                 "description_fa":  "سلاح‌های سنگین",
+                                 "attack":  50,
+                                 "training_time":  180
+                             }
+               },
+    "version":  "1.0.0",
+    "last_updated":  "2026-07-12 14:42:26"
+}

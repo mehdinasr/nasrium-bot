@@ -1,0 +1,27 @@
+﻿{
+    "Id":  "TG_INSTANT_TEST_001",
+    "Username":  "TG_TG_INSTANT_TEST_001",
+    "Level":  1,
+    "Resources":  {
+                      "Gold":  99700,
+                      "NSM_Soft":  0,
+                      "NSM_Withdraw":  90,
+                      "Energy":  990
+                  },
+    "Buildings":  [
+                      {
+                          "Type":  "GoldMine",
+                          "Level":  1,
+                          "Upgrading":  false
+                      }
+                  ],
+    "WalletAddress":  "",
+    "Shields":  0,
+    "Nfts":  [
+
+             ],
+    "ClanId":  "",
+    "VipTier":  "Free",
+    "VipExpiry":  "",
+    "CreatedAt":  "2026-07-09 19:12:28"
+}

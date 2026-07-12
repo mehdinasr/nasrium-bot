@@ -1,0 +1,45 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_047",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:03:43"
+                 },
+    "Rankings":  [
+                     {
+                         "Id":  "ranking_001",
+                         "Name":  "Player Level",
+                         "Category":  "Progress",
+                         "SortOrder":  "Descending",
+                         "ResetPeriod":  "Never",
+                         "MaxEntries":  100,
+                         "RewardEnabled":  false
+                     },
+                     {
+                         "Id":  "ranking_002",
+                         "Name":  "Arena",
+                         "Category":  "PvP",
+                         "SortOrder":  "Descending",
+                         "ResetPeriod":  "Weekly",
+                         "MaxEntries":  100,
+                         "RewardEnabled":  true
+                     },
+                     {
+                         "Id":  "ranking_003",
+                         "Name":  "Guild",
+                         "Category":  "Guild",
+                         "SortOrder":  "Descending",
+                         "ResetPeriod":  "Monthly",
+                         "MaxEntries":  100,
+                         "RewardEnabled":  true
+                     },
+                     {
+                         "Id":  "ranking_004",
+                         "Name":  "Tower",
+                         "Category":  "PvE",
+                         "SortOrder":  "Descending",
+                         "ResetPeriod":  "Season",
+                         "MaxEntries":  100,
+                         "RewardEnabled":  true
+                     }
+                 ]
+}

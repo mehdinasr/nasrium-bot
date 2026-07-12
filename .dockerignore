@@ -1,0 +1,26 @@
+﻿# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+
+# Node.js (old files)
+node_modules
+package.json
+package-lock.json
+src/
+mini-app/
+
+# Railway
+nixpacks.toml
+.railway-trigger
+
+# IDE
+.vscode
+.idea

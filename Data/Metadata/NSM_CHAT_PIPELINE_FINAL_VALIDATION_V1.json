@@ -1,0 +1,15 @@
+﻿{
+    "Command":  "CMD_093",
+    "Module":  "NSM_ChatPipeline",
+    "Status":  "FINAL_SUCCESS",
+    "ModuleExists":  true,
+    "SHA256":  "159FD8AF71C35C6EA6E949B72E677E8D0E7104FD191EE719C977522472178177",
+    "ExportedFunctions":  [
+                              "Process-NSMChatMessage",
+                              "Route-NSMChatMessage",
+                              "Validate-NSMChatMessage",
+                              "Invoke-NSMChatModeration",
+                              "Send-NSMChatPipeline"
+                          ],
+    "ValidatedAt":  "2026-07-08 21:57:59"
+}

@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_086",
+    "Module":  "MAIL_SYSTEM",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 15:54:21",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Mail\\NSM_MAIL_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_MAIL_SYSTEM_SCHEMA_20260708_155421.json",
+    "SHA256":  "9F7C8D7F401DF7DF48D4C8E32E022E44A5EBA3EAC11FE5D41DFDCCC59BB242B8"
+}

@@ -1,0 +1,61 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_088",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 15:58:27"
+                 },
+    "Events":  [
+                   {
+                       "Id":  "event_001",
+                       "Name":  "Kingdom Growth",
+                       "Category":  "Progression",
+                       "DurationDays":  7,
+                       "Repeatable":  true,
+                       "Rewards":  {
+                                       "Gold":  10000,
+                                       "Gems":  100,
+                                       "XP":  1000
+                                   },
+                       "Active":  false
+                   },
+                   {
+                       "Id":  "event_002",
+                       "Name":  "War of Kingdoms",
+                       "Category":  "Battle",
+                       "DurationDays":  14,
+                       "Repeatable":  true,
+                       "Rewards":  {
+                                       "Gold":  25000,
+                                       "Gems":  250,
+                                       "XP":  2500
+                                   },
+                       "Active":  false
+                   },
+                   {
+                       "Id":  "event_003",
+                       "Name":  "Resource Festival",
+                       "Category":  "Economy",
+                       "DurationDays":  5,
+                       "Repeatable":  true,
+                       "Rewards":  {
+                                       "Gold":  15000,
+                                       "Gems":  150,
+                                       "XP":  1500
+                                   },
+                       "Active":  false
+                   },
+                   {
+                       "Id":  "event_004",
+                       "Name":  "Alliance Challenge",
+                       "Category":  "Alliance",
+                       "DurationDays":  10,
+                       "Repeatable":  true,
+                       "Rewards":  {
+                                       "Gold":  30000,
+                                       "Gems":  300,
+                                       "XP":  3000
+                                   },
+                       "Active":  false
+                   }
+               ]
+}

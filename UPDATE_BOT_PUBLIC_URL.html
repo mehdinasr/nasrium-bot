@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NASRIUM Bot Activator</title>
+    <style>body{font-family:Tahoma;background:#0d0d0d;color:#00ffcc;text-align:center;padding:50px;}button{padding:15px 30px;font-size:18px;background:#00ffcc;color:#0d0d0d;border:none;cursor:pointer;border-radius:5px;}</style>
+</head>
+<body>
+    <h2>بروزرسانی آدرس دکمه ربات</h2>
+    <button onclick="activateBot()">تنظیم آدرس عمومی روی ربات تلگرام</button>
+    <p id="status" style="color:yellow;font-size:1.2em;"></p>
+    <script>
+        async function activateBot() {
+            const url = 'https://api.telegram.org/bot8897418933:AAGHmU_y38icd6QZj0x8Vzdm9S52gLo7BKQ/setChatMenuButton';
+            const body = { menu_button: { type: 'web_app', text: 'Open NASRIUM', web_app: { url: 'https://forest-juvenile-compilation-tiles.trycloudflare.com/index.html' } } };
+            try {
+                const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+                const data = await res.json();
+                if(data.ok) { document.getElementById('status').innerText = '✅ موفقیت‌آمیز! ربات تنظیم شد. به تلگرام بروید.'; document.getElementById('status').style.color='#00ff00'; }
+                else { document.getElementById('status').innerText = '❌ خطای API: ' + data.description; document.getElementById('status').style.color='red'; }
+            } catch(e) { document.getElementById('status').innerText = '❌ خطای شبکه: ' + e.message; document.getElementById('status').style.color='red'; }
+        }
+    </script>
+</body>
+</html>

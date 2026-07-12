@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_071",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 14:14:21",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\NPC\\NSM_NPC_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_NPC_SYSTEM_SCHEMA_20260708_141421.json",
+    "SHA256":  "EF8D554D3F98CE0B3E29905FFDDDFD800E8B0E2478102660431403B1C4749300"
+}

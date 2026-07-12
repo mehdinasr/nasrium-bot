@@ -1,0 +1,49 @@
+# ================================================================================
+# NASRIUM CHAT MODERATOR MODULE
+# Version: 1.0.0
+# ================================================================================
+
+function Initialize-NSMChatModerator {
+    [CmdletBinding()]
+    param ([Parameter(Mandatory=$true)][string]$SchemaPath)
+    process {
+        if (!(Test-Path $SchemaPath)) {
+            throw "Schema file not found: $SchemaPath"
+        }
+        $global:NSM_ChatSchema = Get-Content $SchemaPath -Raw | ConvertFrom-Json
+        Write-Verbose "NASRIUM Chat Moderator initialized successfully."
+    }
+}
+
+function Test-NSMChatMessage {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true)][string]$Message,
+        [Parameter(Mandatory=$true)][string]$UserId
+    )
+    process {
+        if (!$global:NSM_ChatSchema) {
+            throw "Moderator engine is not initialized. Run Initialize-NSMChatModerator first."
+        }
+        $Result = [ordered]@{
+            IsValid = $true
+            Reason  = "APPROVED"
+            Message = $Message
+        }
+        if ($Message.Length -gt $global:NSM_ChatSchema.MaxMessageLength) {
+            $Result.IsValid = $false
+            $Result.Reason = "MESSAGE_TOO_LONG"
+            return [PSCustomObject]$Result
+        }
+        foreach ($Word in $global:NSM_ChatSchema.BlockedWords) {
+            if ($Message -match "\b$([regex]::Escape($Word))\b" -or $Message -like "*$Word*") {
+                $Result.IsValid = $false
+                $Result.Reason = "CONTAIN_BLOCKED_WORDS"
+                return [PSCustomObject]$Result
+            }
+        }
+        return [PSCustomObject]$Result
+    }
+}
+
+Export-ModuleMember -Function Initialize-NSMChatModerator, Test-NSMChatMessage

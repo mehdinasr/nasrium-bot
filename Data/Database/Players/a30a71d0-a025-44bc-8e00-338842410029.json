@@ -1,0 +1,18 @@
+﻿{
+    "Id":  "a30a71d0-a025-44bc-8e00-338842410029",
+    "Username":  "PersistentUser",
+    "Level":  1,
+    "Resources":  {
+                      "Gold":  200,
+                      "NSM":  0,
+                      "Energy":  100
+                  },
+    "Buildings":  [
+                      {
+                          "Type":  "GoldMine",
+                          "Level":  1,
+                          "Upgrading":  true
+                      }
+                  ],
+    "CreatedAt":  "2026-07-09 17:32:21"
+}

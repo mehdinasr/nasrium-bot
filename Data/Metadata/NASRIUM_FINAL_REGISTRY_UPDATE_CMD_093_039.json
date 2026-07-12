@@ -1,0 +1,11 @@
+﻿{
+    "FileID":  "CMD_093_039",
+    "Command":  "CMD_093",
+    "Component":  "FINAL_REGISTRY_UPDATE",
+    "Version":  "1.0.0",
+    "Status":  "REGISTERED",
+    "CreatedAt":  "2026-07-09 02:01:47",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "RegisteredModule":  "NSM_ChatPipeline",
+    "RegistryAction":  "UPDATE"
+}

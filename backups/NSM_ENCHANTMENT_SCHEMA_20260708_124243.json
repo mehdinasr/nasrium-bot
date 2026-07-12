@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_059",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:42:43"
+                 },
+    "Enchantments":  [
+                         {
+                             "Id":  "enchant_001",
+                             "Name":  "Flame Weapon",
+                             "TargetType":  "Weapon",
+                             "Attribute":  "FireDamage",
+                             "BonusValue":  25,
+                             "BonusType":  "Flat",
+                             "MaxLevel":  10,
+                             "SuccessRate":  95
+                         },
+                         {
+                             "Id":  "enchant_002",
+                             "Name":  "Guardian Armor",
+                             "TargetType":  "Armor",
+                             "Attribute":  "Defense",
+                             "BonusValue":  15,
+                             "BonusType":  "Percent",
+                             "MaxLevel":  10,
+                             "SuccessRate":  90
+                         },
+                         {
+                             "Id":  "enchant_003",
+                             "Name":  "Swift Boots",
+                             "TargetType":  "Boots",
+                             "Attribute":  "MoveSpeed",
+                             "BonusValue":  8,
+                             "BonusType":  "Percent",
+                             "MaxLevel":  5,
+                             "SuccessRate":  92
+                         },
+                         {
+                             "Id":  "enchant_004",
+                             "Name":  "Mystic Ring",
+                             "TargetType":  "Accessory",
+                             "Attribute":  "Mana",
+                             "BonusValue":  120,
+                             "BonusType":  "Flat",
+                             "MaxLevel":  7,
+                             "SuccessRate":  88
+                         }
+                     ]
+}

@@ -1,0 +1,381 @@
+﻿{
+    "schema":  "FULL-1.0",
+    "generated_at":  "2026-07-07 23:14:45",
+    "file_role":  "Master Full Export - Contains everything to continue NASRIUM in any chat/account.",
+    "project":  {
+                    "id":  "PRJ-000001",
+                    "name":  "NASRIUM",
+                    "symbol":  "NSM",
+                    "version":  "0.1.0-alpha",
+                    "status":  "Foundation Completed / Product In Progress",
+                    "type":  "GameFi Ecosystem"
+                },
+    "vision":  {
+                   "short":  "Build a global GameFi ecosystem starting from Telegram.",
+                   "not_a":  "Not a meme coin, not a small project.",
+                   "goal":  "Create a scalable game engine + blockchain-ready platform."
+               },
+    "environment":  {
+                        "os":  "Windows",
+                        "shell":  "Windows PowerShell 5.1",
+                        "node":  "v24.18.0",
+                        "npm":  "v11.16.0",
+                        "git":  "v2.55.0",
+                        "python":  "v3.14.6",
+                        "project_root":  "D:\\\\NASRIUM"
+                    },
+    "project_structure":  {
+                              "root":  "D:\\\\NASRIUM",
+                              "core":  "D:\\\\NASRIUM\\\\Core",
+                              "apps":  "D:\\\\NASRIUM\\\\Apps",
+                              "telegram_bot":  "D:\\\\NASRIUM\\\\Apps\\\\telegram-bot",
+                              "builder":  "D:\\\\NASRIUM\\\\Builder",
+                              "database":  "D:\\\\NASRIUM\\\\Database",
+                              "localization":  "D:\\\\NASRIUM\\\\Localization",
+                              "docs":  "D:\\\\NASRIUM\\\\Docs",
+                              "game_docs":  "D:\\\\NASRIUM\\\\Docs\\\\Game"
+                          },
+    "key_files":  {
+                      "full_export":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\NASRIUM_FULL_EXPORT.json",
+                      "master_v3":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\NASRIUM_PROJECT_V3.json",
+                      "master":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\NASRIUM_PROJECT.json",
+                      "ai_project_state":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\AI_PROJECT_STATE.json",
+                      "dashboard":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\PROJECT_DASHBOARD.json",
+                      "context":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\NASRIUM_CONTEXT.json",
+                      "book":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\PROJECT_BOOK.md",
+                      "handover":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\AI_HANDOVER.md",
+                      "nos":  "D:\\\\NASRIUM\\\\nos.ps1",
+                      "bot_token":  "D:\\\\NASRIUM\\\\Core\\\\Secrets\\\\telegram_bot_token.txt",
+                      "bot_env":  "D:\\\\NASRIUM\\\\Apps\\\\telegram-bot\\\\.env",
+                      "builder_state":  "D:\\\\NASRIUM\\\\Builder\\\\Core\\\\BuilderState.json",
+                      "builder_config":  "D:\\\\NASRIUM\\\\Builder\\\\Core\\\\BuilderConfig.json",
+                      "gdd_game_core":  "D:\\\\NASRIUM\\\\Docs\\\\Game\\\\GDD_001_GameCore.json",
+                      "gedd_economy":  "D:\\\\NASRIUM\\\\Docs\\\\Game\\\\GEDD_001_GameEconomy.json",
+                      "schema_player":  "D:\\\\NASRIUM\\\\Database\\\\Schemas\\\\player.schema.json",
+                      "schema_village":  "D:\\\\NASRIUM\\\\Database\\\\Schemas\\\\village.schema.json",
+                      "schema_building_templates":  "D:\\\\NASRIUM\\\\Database\\\\Schemas\\\\building.templates.json",
+                      "schema_building_instance":  "D:\\\\NASRIUM\\\\Database\\\\Schemas\\\\building.instance.schema.json",
+                      "schema_formula":  "D:\\\\NASRIUM\\\\Database\\\\Schemas\\\\formula.engine.schema.json"
+                  },
+    "telegram":  {
+                     "bot_created":  true,
+                     "bot_running":  true,
+                     "start_command_working":  true,
+                     "token_saved_securely":  true,
+                     "run_method":  "node dist/index.js (background) + PID file",
+                     "pid_file":  "D:\\\\NASRIUM\\\\Core\\\\Logs\\\\telegram-bot.pid",
+                     "mini_app":  "Planned"
+                 },
+    "bot_app":  {
+                    "path":  "D:\\\\NASRIUM\\\\Apps\\\\telegram-bot",
+                    "language":  "TypeScript",
+                    "entry":  "src/index.ts",
+                    "build_output":  "dist/index.js",
+                    "scripts":  [
+                                    "dev",
+                                    "build",
+                                    "start",
+                                    "typecheck"
+                                ],
+                    "dependencies":  [
+                                         "grammy",
+                                         "dotenv"
+                                     ],
+                    "dev_dependencies":  [
+                                             "typescript",
+                                             "tsx",
+                                             "@types/node"
+                                         ]
+                },
+    "builder":  {
+                    "status":  "Ready",
+                    "version":  "1.0.0",
+                    "purpose":  "Central factory to generate files/modules in future."
+                },
+    "nos":  {
+                "current_version":  "1.x",
+                "target_version":  "2.0",
+                "status":  "Rebuild Planned",
+                "working_commands":  [
+                                         "status",
+                                         "backup",
+                                         "export",
+                                         "help"
+                                     ],
+                "bot_commands":  "Not integrated in v1 (planned in NOS 2.0)",
+                "rebuild_reason":  "Patching caused instability. Rebuild as Bootstrap + Modules."
+            },
+    "localization":  {
+                         "system":  "i18n",
+                         "total_languages_initial":  25,
+                         "unlimited":  true,
+                         "default_language":  "en",
+                         "fallback_language":  "en",
+                         "languages":  [
+                                           "fa",
+                                           "en",
+                                           "ar",
+                                           "tr",
+                                           "az",
+                                           "ru",
+                                           "uk",
+                                           "de",
+                                           "fr",
+                                           "it",
+                                           "es",
+                                           "pt",
+                                           "nl",
+                                           "pl",
+                                           "ro",
+                                           "el",
+                                           "zh-CN",
+                                           "zh-TW",
+                                           "ja",
+                                           "ko",
+                                           "hi",
+                                           "ur",
+                                           "id",
+                                           "vi",
+                                           "th"
+                                       ]
+                     },
+    "game_design":  {
+                        "philosophy":  [
+                                           "Enterprise Modular Architecture",
+                                           "Template + Instance + Formula + Config + Runtime",
+                                           "No hardcoded numbers",
+                                           "Data + Logic + Balance separated",
+                                           "Ready for MMORTS scale"
+                                       ],
+                        "game_loop":  [
+                                          "Login",
+                                          "Collect Resources",
+                                          "Upgrade Buildings",
+                                          "Train Troops",
+                                          "Research",
+                                          "Battle",
+                                          "Earn Rewards",
+                                          "Expand Village"
+                                      ],
+                        "core_entities":  [
+                                              "Player",
+                                              "Village",
+                                              "Resources",
+                                              "Buildings",
+                                              "Troops",
+                                              "Heroes",
+                                              "Research",
+                                              "Alliance",
+                                              "Battle",
+                                              "Missions",
+                                              "Events",
+                                              "Wallet",
+                                              "NFT"
+                                          ],
+                        "resources":  [
+                                          "Gold",
+                                          "Wood",
+                                          "Stone",
+                                          "Food",
+                                          "Crystal",
+                                          "Energy",
+                                          "NSM"
+                                      ],
+                        "buildings":  [
+                                          "TownHall",
+                                          "GoldMine",
+                                          "LumberMill",
+                                          "StoneQuarry",
+                                          "Farm",
+                                          "Warehouse",
+                                          "Barracks",
+                                          "Laboratory",
+                                          "DefenseTower",
+                                          "Wall"
+                                      ],
+                        "troops":  [
+                                       "Infantry",
+                                       "Archer",
+                                       "Knight",
+                                       "Mage"
+                                   ],
+                        "rules":  [
+                                      "No hardcoded numbers",
+                                      "All buildings via templates",
+                                      "All formulas configurable",
+                                      "Server / Event / Alliance / VIP modifiers supported",
+                                      "State machines for buildings and troops"
+                                  ]
+                    },
+    "formulas":  {
+                     "engine":  "FormulaEngine",
+                     "groups":  [
+                                    "building_upgrade_time",
+                                    "building_upgrade_cost",
+                                    "resource_production",
+                                    "resource_storage",
+                                    "troop_training_time",
+                                    "research_time",
+                                    "hero_upgrade",
+                                    "battle_power"
+                                ],
+                     "global_modifiers":  [
+                                              "ServerModifier",
+                                              "EventModifier",
+                                              "AllianceBonus",
+                                              "HeroBonus",
+                                              "VIPBonus",
+                                              "ResearchBonus",
+                                              "SeasonModifier"
+                                          ]
+                 },
+    "economy":  {
+                    "philosophy":  "Anti-inflation, formula-based, blockchain-ready",
+                    "source":  [
+                                   "Production",
+                                   "Missions",
+                                   "Events",
+                                   "Battles",
+                                   "Marketplace",
+                                   "Airdrop"
+                               ],
+                    "sink":  [
+                                 "Upgrades",
+                                 "Training",
+                                 "Research",
+                                 "Crafting",
+                                 "Marketplace Tax"
+                             ],
+                    "marketplace":  "Enabled (Future)",
+                    "token":  "NSM"
+                },
+    "blockchain":  {
+                       "status":  "Planned",
+                       "network":  "TON",
+                       "future":  "Dedicated blockchain",
+                       "assets":  [
+                                      "NSM",
+                                      "NFT"
+                                  ]
+                   },
+    "database":  {
+                     "status":  "Design In Progress",
+                     "candidate":  "PostgreSQL (or SQLite for MVP)",
+                     "design_style":  "Template + Instance + Formula + Config",
+                     "entities_defined":  [
+                                              "Player",
+                                              "Village",
+                                              "BuildingTemplate",
+                                              "BuildingInstance",
+                                              "FormulaEngine"
+                                          ],
+                     "planned_entities":  [
+                                              "Resources",
+                                              "Troops",
+                                              "Heroes",
+                                              "Research",
+                                              "Alliance",
+                                              "Battle",
+                                              "Missions",
+                                              "Events",
+                                              "Wallet",
+                                              "NFT"
+                                          ]
+                 },
+    "completed_commands":  [
+                               "CMD_010 - NOS core structure",
+                               "CMD_011 - NOS tool",
+                               "CMD_012 - TypeScript bot scaffold",
+                               "CMD_013 - Bot run + token via file",
+                               "CMD_015 - Saves/Templates/Schemas",
+                               "CMD_016 - AI_PROJECT_STATE.json",
+                               "CMD_017 - First checkpoint CP-000001",
+                               "CMD_018_RECOVERY - Restore stable nos.ps1",
+                               "CMD_019 - Builder structure",
+                               "CMD_020 - Builder state",
+                               "CMD_021 - PROJECT_DASHBOARD.json",
+                               "CMD_022A - SaveManager module (stub)",
+                               "CMD_022B - NASRIUM_PROJECT.json",
+                               "CMD_022C - Master project file",
+                               "CMD_022_V3 - Master project brain V3",
+                               "CMD_023A - Player Schema",
+                               "CMD_023B - Localization (25 languages)",
+                               "CMD_023C - Village Schema (Enterprise)",
+                               "GDD_001 - Game Core",
+                               "GEDD_001 - Game Economy Architecture",
+                               "CMD_024A - Building Templates",
+                               "CMD_024B - Building Instance Schema",
+                               "CMD_024C - Formula Engine Schema",
+                               "CMD_024_EXPORT - Full Project Export"
+                           ],
+    "decisions":  [
+                      "ADR-0001 Create NASRIUM Operating System",
+                      "ADR-0002 Modular architecture",
+                      "ADR-0003 AI_PROJECT_STATE holds current state only",
+                      "ADR-0004 One responsibility per file",
+                      "ADR-0005 Rebuild NOS instead of patching",
+                      "ADR-0006 Full i18n from day one",
+                      "ADR-0007 Data + Logic + Balance separation",
+                      "ADR-0008 Template + Instance + Formula pattern",
+                      "ADR-0009 Multi-layer Attack/Defense",
+                      "ADR-0010 Config-driven balance system"
+                  ],
+    "rules_active":  [
+                         "All files stored under D:\\\\NASRIUM",
+                         "Every step has CMD id",
+                         "Checkpoint after important steps",
+                         "State stored in JSON",
+                         "No direct patch on core files",
+                         "All operations reversible",
+                         "No secrets in git/reports",
+                         "Each step must be tested",
+                         "Answers in clear Persian",
+                         "Every feature documented",
+                         "Product over tooling except stability",
+                         "No file/folder without purpose",
+                         "No hardcoded numbers in game logic"
+                     ],
+    "known_issues":  [
+                         "NOS v1 has been patched; needs rebuild as NOS 2.0",
+                         "NOS bot commands (bot-status/start/stop) not fully integrated yet"
+                     ],
+    "roadmap":  [
+                    "CMD_024D - Game Balance files",
+                    "CMD_025 - Troop Templates",
+                    "CMD_026 - Hero Templates",
+                    "CMD_027 - Research Templates",
+                    "CMD_028 - Alliance System",
+                    "CMD_029 - Mission System",
+                    "CMD_030 - Battle Engine",
+                    "CMD_031 - Backend API",
+                    "CMD_032 - Telegram Mini App",
+                    "CMD_033 - Bot to Game integration",
+                    "CMD_034 - NSM Tokenomics",
+                    "CMD_035 - Blockchain Integration"
+                ],
+    "ai_resume":  {
+                      "continue_from":  "CMD_024D",
+                      "current_focus":  "Game Balance files (per building/resource/troop)",
+                      "next_focus":  "Troop Templates and Hero Templates",
+                      "important_notes":  [
+                                              "Do NOT patch nos.ps1 anymore. Rebuild it fully.",
+                                              "Token is stored in file: Core\\\\Secrets\\\\telegram_bot_token.txt",
+                                              "Bot runs via node dist/index.js with PID file in Core\\\\Logs.",
+                                              "Answers must be in clear Persian.",
+                                              "Every CMD must produce a real deliverable.",
+                                              "No hardcoded numbers - use Formula + Balance files."
+                                          ],
+                      "how_to_continue":  "Read this file, then continue from ai_resume.continue_from using roadmap order."
+                  },
+    "session_summary":  {
+                            "last_session_result":  "SUCCESS",
+                            "highlights":  [
+                                               "Full project export created",
+                                               "Game architecture (Player/Village/Buildings/Formula) designed",
+                                               "i18n with 25 languages",
+                                               "Economy architecture defined",
+                                               "Bot still live and working"
+                                           ],
+                            "next_action":  "CMD_024D - Create Balance Files"
+                        }
+}

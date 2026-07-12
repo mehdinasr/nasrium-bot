@@ -1,0 +1,61 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_060",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:56:17"
+                 },
+    "SocketTypes":  [
+                        {
+                            "Id":  "socket_001",
+                            "Name":  "Ruby Socket",
+                            "GemType":  "Ruby",
+                            "TargetEquipment":  [
+                                                    "Weapon",
+                                                    "Armor"
+                                                ],
+                            "BonusAttribute":  "Attack",
+                            "BonusValue":  15,
+                            "BonusType":  "Flat",
+                            "MaxGemLevel":  10
+                        },
+                        {
+                            "Id":  "socket_002",
+                            "Name":  "Sapphire Socket",
+                            "GemType":  "Sapphire",
+                            "TargetEquipment":  [
+                                                    "Helmet",
+                                                    "Armor"
+                                                ],
+                            "BonusAttribute":  "Mana",
+                            "BonusValue":  100,
+                            "BonusType":  "Flat",
+                            "MaxGemLevel":  10
+                        },
+                        {
+                            "Id":  "socket_003",
+                            "Name":  "Emerald Socket",
+                            "GemType":  "Emerald",
+                            "TargetEquipment":  [
+                                                    "Boots",
+                                                    "Gloves"
+                                                ],
+                            "BonusAttribute":  "MoveSpeed",
+                            "BonusValue":  5,
+                            "BonusType":  "Percent",
+                            "MaxGemLevel":  8
+                        },
+                        {
+                            "Id":  "socket_004",
+                            "Name":  "Diamond Socket",
+                            "GemType":  "Diamond",
+                            "TargetEquipment":  [
+                                                    "Accessory",
+                                                    "Weapon"
+                                                ],
+                            "BonusAttribute":  "CriticalChance",
+                            "BonusValue":  3,
+                            "BonusType":  "Percent",
+                            "MaxGemLevel":  12
+                        }
+                    ]
+}

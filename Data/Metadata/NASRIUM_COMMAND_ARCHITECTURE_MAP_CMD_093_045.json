@@ -1,0 +1,11 @@
+﻿{
+    "FileID":  "CMD_093_045",
+    "Command":  "CMD_093",
+    "Component":  "COMMAND_ARCHITECTURE_MAP",
+    "Version":  "1.0.0",
+    "Status":  "REGISTERED",
+    "CreatedAt":  "2026-07-09 02:05:22",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "Module":  "NSM_ChatPipeline",
+    "MapType":  "COMPONENT_RELATION"
+}

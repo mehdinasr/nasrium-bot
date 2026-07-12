@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_074",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:19:13"
+                 },
+    "WorldEvents":  [
+                        {
+                            "Id":  "world_event_001",
+                            "Name":  "Goblin Invasion",
+                            "Category":  "Combat",
+                            "TriggerType":  "Scheduled",
+                            "DurationMinutes":  30,
+                            "RepeatIntervalHours":  6,
+                            "GlobalAnnouncement":  true,
+                            "Enabled":  true
+                        },
+                        {
+                            "Id":  "world_event_002",
+                            "Name":  "Double Experience",
+                            "Category":  "Bonus",
+                            "TriggerType":  "Scheduled",
+                            "DurationMinutes":  1440,
+                            "RepeatIntervalHours":  168,
+                            "GlobalAnnouncement":  true,
+                            "Enabled":  true
+                        },
+                        {
+                            "Id":  "world_event_003",
+                            "Name":  "Treasure Hunt",
+                            "Category":  "Exploration",
+                            "TriggerType":  "Random",
+                            "DurationMinutes":  60,
+                            "RepeatIntervalHours":  24,
+                            "GlobalAnnouncement":  true,
+                            "Enabled":  true
+                        },
+                        {
+                            "Id":  "world_event_004",
+                            "Name":  "World Boss",
+                            "Category":  "Raid",
+                            "TriggerType":  "Scheduled",
+                            "DurationMinutes":  90,
+                            "RepeatIntervalHours":  12,
+                            "GlobalAnnouncement":  true,
+                            "Enabled":  true
+                        }
+                    ]
+}

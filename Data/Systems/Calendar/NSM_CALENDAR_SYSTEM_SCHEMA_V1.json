@@ -1,0 +1,102 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_077",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:24:21"
+                 },
+    "CalendarConfig":  {
+                           "DaysPerWeek":  7,
+                           "MonthsPerYear":  12,
+                           "HoursPerDay":  24,
+                           "MinutesPerHour":  60,
+                           "SecondsPerMinute":  60,
+                           "EpochYear":  1
+                       },
+    "Months":  [
+                   {
+                       "Id":  "month_01",
+                       "Name":  "January",
+                       "Days":  31
+                   },
+                   {
+                       "Id":  "month_02",
+                       "Name":  "February",
+                       "Days":  28
+                   },
+                   {
+                       "Id":  "month_03",
+                       "Name":  "March",
+                       "Days":  31
+                   },
+                   {
+                       "Id":  "month_04",
+                       "Name":  "April",
+                       "Days":  30
+                   },
+                   {
+                       "Id":  "month_05",
+                       "Name":  "May",
+                       "Days":  31
+                   },
+                   {
+                       "Id":  "month_06",
+                       "Name":  "June",
+                       "Days":  30
+                   },
+                   {
+                       "Id":  "month_07",
+                       "Name":  "July",
+                       "Days":  31
+                   },
+                   {
+                       "Id":  "month_08",
+                       "Name":  "August",
+                       "Days":  31
+                   },
+                   {
+                       "Id":  "month_09",
+                       "Name":  "September",
+                       "Days":  30
+                   },
+                   {
+                       "Id":  "month_10",
+                       "Name":  "October",
+                       "Days":  31
+                   },
+                   {
+                       "Id":  "month_11",
+                       "Name":  "November",
+                       "Days":  30
+                   },
+                   {
+                       "Id":  "month_12",
+                       "Name":  "December",
+                       "Days":  31
+                   }
+               ],
+    "WeekDays":  [
+                     "Monday",
+                     "Tuesday",
+                     "Wednesday",
+                     "Thursday",
+                     "Friday",
+                     "Saturday",
+                     "Sunday"
+                 ],
+    "Holidays":  [
+                     {
+                         "Id":  "holiday_001",
+                         "Name":  "Founders Day",
+                         "Month":  1,
+                         "Day":  1,
+                         "GlobalEvent":  true
+                     },
+                     {
+                         "Id":  "holiday_002",
+                         "Name":  "Harvest Festival",
+                         "Month":  9,
+                         "Day":  21,
+                         "GlobalEvent":  true
+                     }
+                 ]
+}

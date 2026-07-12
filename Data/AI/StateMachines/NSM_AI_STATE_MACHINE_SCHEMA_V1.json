@@ -1,0 +1,70 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_055",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:30:55"
+                 },
+    "States":  [
+                   {
+                       "Id":  "state_001",
+                       "Name":  "Idle",
+                       "CanMove":  false,
+                       "CanAttack":  false,
+                       "NextStates":  [
+                                          "Patrol",
+                                          "Alert"
+                                      ]
+                   },
+                   {
+                       "Id":  "state_002",
+                       "Name":  "Patrol",
+                       "CanMove":  true,
+                       "CanAttack":  false,
+                       "NextStates":  [
+                                          "Alert",
+                                          "Idle"
+                                      ]
+                   },
+                   {
+                       "Id":  "state_003",
+                       "Name":  "Alert",
+                       "CanMove":  true,
+                       "CanAttack":  false,
+                       "NextStates":  [
+                                          "Chase",
+                                          "Idle"
+                                      ]
+                   },
+                   {
+                       "Id":  "state_004",
+                       "Name":  "Chase",
+                       "CanMove":  true,
+                       "CanAttack":  true,
+                       "NextStates":  [
+                                          "Attack",
+                                          "Retreat",
+                                          "Idle"
+                                      ]
+                   },
+                   {
+                       "Id":  "state_005",
+                       "Name":  "Attack",
+                       "CanMove":  true,
+                       "CanAttack":  true,
+                       "NextStates":  [
+                                          "Chase",
+                                          "Retreat"
+                                      ]
+                   },
+                   {
+                       "Id":  "state_006",
+                       "Name":  "Retreat",
+                       "CanMove":  true,
+                       "CanAttack":  false,
+                       "NextStates":  [
+                                          "Idle",
+                                          "Patrol"
+                                      ]
+                   }
+               ]
+}

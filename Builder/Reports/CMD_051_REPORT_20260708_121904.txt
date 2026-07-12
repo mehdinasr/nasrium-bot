@@ -1,0 +1,26 @@
+﻿
+==================================================
+NASRIUM BUILD REPORT
+==================================================
+
+COMMAND : CMD_051
+STATUS  : SUCCESS
+
+FILE
+----
+D:\NASRIUM\Data\Balance\Buffs\NSM_BUFF_SCHEMA_V1.json
+
+BACKUP
+------
+D:\NASRIUM\Backups\NSM_BUFF_SCHEMA_20260708_121904.json
+
+SHA256
+------
+AA7F3FC59182A24756410AC61CA6BD61D59AF0BC02113FE88F63C72C94406FB9
+
+TIME
+----
+2026-07-08 12:19:04
+
+==================================================
+

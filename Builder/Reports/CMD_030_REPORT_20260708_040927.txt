@@ -1,0 +1,26 @@
+﻿
+==================================================
+NASRIUM BUILD REPORT
+==================================================
+
+COMMAND : CMD_030
+STATUS  : SUCCESS
+
+FILE
+----
+D:\NASRIUM\Data\Balance\Items\NSM_ITEM_SCHEMA_V1.json
+
+BACKUP
+------
+D:\NASRIUM\Backups\NSM_ITEM_SCHEMA_20260708_040927.json
+
+SHA256
+------
+129ACDE5DAACE7975320A947EA93FAB07F1B0C6EF4E706F729B9256AD343164D
+
+TIME
+----
+2026-07-08 04:09:27
+
+==================================================
+

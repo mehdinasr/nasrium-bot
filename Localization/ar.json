@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "ar",
+    "name":  "Arabic",
+    "native":  "العربية",
+    "rtl":  true,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "مرحباً بك في منظومة NASRIUM",
+                         "game.start":  "ابدأ اللعبة",
+                         "menu.settings":  "الإعدادات",
+                         "menu.language":  "اللغة",
+                         "menu.profile":  "الملف الشخصي",
+                         "menu.village":  "القرية",
+                         "menu.resources":  "الموارد",
+                         "menu.buildings":  "المباني",
+                         "menu.upgrade":  "ترقية",
+                         "menu.battle":  "معركة",
+                         "menu.wallet":  "المحفظة",
+                         "menu.leaderboard":  "لوحة المتصدرين",
+                         "menu.missions":  "المهام",
+                         "menu.shop":  "المتجر",
+                         "menu.help":  "المساعدة"
+                     }
+}

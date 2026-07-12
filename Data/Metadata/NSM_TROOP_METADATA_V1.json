@@ -1,0 +1,10 @@
+﻿{
+    "Module":  "CMD_025D",
+    "Version":  "1.0.0",
+    "BuilderVersion":  "4.0.0",
+    "SchemaVersion":  "1.0.0",
+    "Generated":  "2026-07-08 02:54:36",
+    "File":  "NSM_TROOP_BALANCE_V1.json",
+    "SHA256":  "E4F0A0EBCE668667482CEA18CB8019C84329E1DEB270CA8E4E3EBDC044607DBA",
+    "TroopCount":  3
+}

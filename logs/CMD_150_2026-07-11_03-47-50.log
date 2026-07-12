@@ -1,0 +1,18 @@
+﻿[2026-07-11 03:47:50] [HEADER] ========================================
+[2026-07-11 03:47:50] [HEADER] NASRIUM CMD_150 - AUTO REGISTER
+[2026-07-11 03:47:50] [HEADER] ========================================
+[2026-07-11 03:47:50] [STEP] --- Registering Player ---
+[2026-07-11 03:47:50] [SUCCESS] Player registered successfully
+[2026-07-11 03:47:50] [SUCCESS] Credits: 5690
+[2026-07-11 03:47:50] [SUCCESS] Bandwidth: 70
+[2026-07-11 03:47:50] [STEP] --- Opening Browser ---
+[2026-07-11 03:47:51] [SUCCESS] Browser opened
+[2026-07-11 03:47:51] [INFO] 
+[2026-07-11 03:47:51] [HEADER] ========================================
+[2026-07-11 03:47:51] [HEADER] CMD_150 COMPLETE
+[2026-07-11 03:47:51] [HEADER] ========================================
+[2026-07-11 03:47:51] [SUCCESS] ✅ Player: REGISTERED
+[2026-07-11 03:47:51] [SUCCESS] ✅ Browser: OPENED
+[2026-07-11 03:47:51] [INFO] 
+[2026-07-11 03:47:51] [INFO] Game URL: http://localhost:8080
+[2026-07-11 03:47:51] [INFO] Credits: 1000 | Bandwidth: 200

@@ -1,0 +1,51 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_082",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 15:47:30"
+                 },
+    "Achievements":  [
+                         {
+                             "Id":  "achievement_001",
+                             "Name":  "First Blood",
+                             "Category":  "Battle",
+                             "Tier":  "Bronze",
+                             "MaxLevel":  1,
+                             "Target":  1,
+                             "Reward":  {
+                                            "Gold":  100,
+                                            "XP":  25,
+                                            "Gems":  5
+                                        },
+                             "Hidden":  false
+                         },
+                         {
+                             "Id":  "achievement_002",
+                             "Name":  "Builder",
+                             "Category":  "Construction",
+                             "Tier":  "Silver",
+                             "MaxLevel":  5,
+                             "Target":  50,
+                             "Reward":  {
+                                            "Gold":  500,
+                                            "XP":  100,
+                                            "Gems":  20
+                                        },
+                             "Hidden":  false
+                         },
+                         {
+                             "Id":  "achievement_003",
+                             "Name":  "Conqueror",
+                             "Category":  "Battle",
+                             "Tier":  "Gold",
+                             "MaxLevel":  10,
+                             "Target":  500,
+                             "Reward":  {
+                                            "Gold":  2500,
+                                            "XP":  500,
+                                            "Gems":  100
+                                        },
+                             "Hidden":  false
+                         }
+                     ]
+}

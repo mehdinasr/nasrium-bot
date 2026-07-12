@@ -1,0 +1,38 @@
+﻿NASRIUM SDPA REFACTOR PLAN
+Generated: 07/09/2026 14:04:23
+=========================================
+
+Violation:  - Missing StrictMode in: CMD_027_STEP002.ps1
+Rule: 23 (StrictMode mandatory)
+Severity: HIGH
+Action: Add Set-StrictMode -Version Latest at script start.
+
+Violation:  - Missing StrictMode in: CMD_027_STEP003.ps1
+Rule: 23 (StrictMode mandatory)
+Severity: HIGH
+Action: Add Set-StrictMode -Version Latest at script start.
+
+Violation:  - Missing StrictMode in: CMD_027_STEP004.ps1
+Rule: 23 (StrictMode mandatory)
+Severity: HIGH
+Action: Add Set-StrictMode -Version Latest at script start.
+
+Violation:  - Missing StrictMode in: CMD_027_STEP005.ps1
+Rule: 23 (StrictMode mandatory)
+Severity: HIGH
+Action: Add Set-StrictMode -Version Latest at script start.
+
+Violation:  - Missing StrictMode in: CMD_027_STEP006.ps1
+Rule: 23 (StrictMode mandatory)
+Severity: HIGH
+Action: Add Set-StrictMode -Version Latest at script start.
+
+Violation:  - Missing StrictMode in: CMD_027_STEP007.ps1
+Rule: 23 (StrictMode mandatory)
+Severity: HIGH
+Action: Add Set-StrictMode -Version Latest at script start.
+
+Violation:  - Missing StrictMode in: CMD_027_STEP008.ps1
+Rule: 23 (StrictMode mandatory)
+Severity: HIGH
+Action: Add Set-StrictMode -Version Latest at script start.

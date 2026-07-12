@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "vi",
+    "name":  "Vietnamese",
+    "native":  "Tiếng Việt",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Chào mừng bạn đến với hệ sinh thái NASRIUM",
+                         "game.start":  "Bắt đầu trò chơi",
+                         "menu.settings":  "Cài đặt",
+                         "menu.language":  "Ngôn ngữ",
+                         "menu.profile":  "Hồ sơ",
+                         "menu.village":  "Làng",
+                         "menu.resources":  "Tài nguyên",
+                         "menu.buildings":  "Công trình",
+                         "menu.upgrade":  "Nâng cấp",
+                         "menu.battle":  "Trận chiến",
+                         "menu.wallet":  "Ví",
+                         "menu.leaderboard":  "Bảng xếp hạng",
+                         "menu.missions":  "Nhiệm vụ",
+                         "menu.shop":  "Cửa hàng",
+                         "menu.help":  "Trợ giúp"
+                     }
+}

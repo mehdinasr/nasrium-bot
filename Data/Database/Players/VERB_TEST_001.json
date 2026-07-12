@@ -1,0 +1,14 @@
+﻿{
+    "Id":  "VERB_TEST_001",
+    "Username":  "VerbTest",
+    "Level":  1,
+    "Resources":  {
+                      "Gold":  500,
+                      "NSM":  0,
+                      "Energy":  100
+                  },
+    "Buildings":  [
+
+                  ],
+    "CreatedAt":  "2026-07-09 17:53:28"
+}

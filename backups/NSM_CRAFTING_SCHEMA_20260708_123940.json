@@ -1,0 +1,63 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_058",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:39:40"
+                 },
+    "Recipes":  [
+                    {
+                        "Id":  "recipe_001",
+                        "Name":  "Health Potion",
+                        "ResultItemId":  "health_potion",
+                        "ResultQuantity":  1,
+                        "CraftTimeSeconds":  5,
+                        "RequiredLevel":  1,
+                        "Materials":  [
+                                          {
+                                              "ItemId":  "red_herb",
+                                              "Quantity":  3
+                                          },
+                                          {
+                                              "ItemId":  "clear_water",
+                                              "Quantity":  1
+                                          }
+                                      ]
+                    },
+                    {
+                        "Id":  "recipe_002",
+                        "Name":  "Iron Sword",
+                        "ResultItemId":  "iron_sword",
+                        "ResultQuantity":  1,
+                        "CraftTimeSeconds":  30,
+                        "RequiredLevel":  10,
+                        "Materials":  [
+                                          {
+                                              "ItemId":  "iron_ingot",
+                                              "Quantity":  10
+                                          },
+                                          {
+                                              "ItemId":  "wood_handle",
+                                              "Quantity":  1
+                                          }
+                                      ]
+                    },
+                    {
+                        "Id":  "recipe_003",
+                        "Name":  "Epic Armor",
+                        "ResultItemId":  "epic_armor",
+                        "ResultQuantity":  1,
+                        "CraftTimeSeconds":  120,
+                        "RequiredLevel":  40,
+                        "Materials":  [
+                                          {
+                                              "ItemId":  "epic_material",
+                                              "Quantity":  25
+                                          },
+                                          {
+                                              "ItemId":  "boss_token",
+                                              "Quantity":  10
+                                          }
+                                      ]
+                    }
+                ]
+}

@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_054",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:26:31"
+                 },
+    "Behaviors":  [
+                      {
+                          "Id":  "ai_001",
+                          "Name":  "Aggressive",
+                          "DetectionRange":  15,
+                          "AttackRange":  2,
+                          "ChaseRange":  25,
+                          "RetreatHealthPercent":  0,
+                          "PriorityTarget":  "NearestEnemy",
+                          "SkillUsage":  "Always"
+                      },
+                      {
+                          "Id":  "ai_002",
+                          "Name":  "Defensive",
+                          "DetectionRange":  12,
+                          "AttackRange":  2,
+                          "ChaseRange":  10,
+                          "RetreatHealthPercent":  25,
+                          "PriorityTarget":  "NearestEnemy",
+                          "SkillUsage":  "WhenAvailable"
+                      },
+                      {
+                          "Id":  "ai_003",
+                          "Name":  "Ranged",
+                          "DetectionRange":  20,
+                          "AttackRange":  10,
+                          "ChaseRange":  18,
+                          "RetreatHealthPercent":  15,
+                          "PriorityTarget":  "LowestHealthEnemy",
+                          "SkillUsage":  "KeepDistance"
+                      },
+                      {
+                          "Id":  "ai_004",
+                          "Name":  "Support",
+                          "DetectionRange":  18,
+                          "AttackRange":  8,
+                          "ChaseRange":  8,
+                          "RetreatHealthPercent":  40,
+                          "PriorityTarget":  "LowestHealthAlly",
+                          "SkillUsage":  "HealFirst"
+                      }
+                  ]
+}

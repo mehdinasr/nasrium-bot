@@ -1,0 +1,7 @@
+﻿{
+    "crash_recovery":  true,
+    "certified_at":  "2026-07-09T14:41:19Z",
+    "integrity_enforced":  true,
+    "orchestrator_sha256":  "8b600e9596acbf9e011456adb10cf62783f4f864046de9ebbfa295f02b5b6563",
+    "architecture_version":  "3.0.0"
+}

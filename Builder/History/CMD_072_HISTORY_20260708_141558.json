@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_072",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 14:15:58",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Dialogs\\NSM_DIALOG_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_DIALOG_SYSTEM_SCHEMA_20260708_141558.json",
+    "SHA256":  "B056A8C33170936AD19D9A54D587821CAF6B9647D73807F5E5F232193C26D872"
+}

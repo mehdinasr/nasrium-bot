@@ -1,0 +1,15 @@
+﻿{
+  "channels": [
+    "Global",
+    "Trade",
+    "Support"
+  ],
+  "max_message_length": 2000,
+  "moderation_strictness": "High",
+  "blacklist": [
+    "spam",
+    "scam",
+    "hack",
+    "malware"
+  ]
+}

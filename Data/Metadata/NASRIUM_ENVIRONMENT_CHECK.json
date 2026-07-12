@@ -1,0 +1,11 @@
+﻿{
+    "System":  "NASRIUM",
+    "Command":  "CMD_094",
+    "Stage":  "ENVIRONMENT_CHECK",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "Authorization":  "AUTHORIZED",
+    "PowerShellVersion":  "5.1.19041.7417",
+    "OS":  "Windows_NT",
+    "Status":  "READY",
+    "CheckedAt":  "2026-07-08 22:28:03"
+}

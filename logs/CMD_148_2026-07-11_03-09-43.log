@@ -1,0 +1,10 @@
+﻿[2026-07-11 03:09:43] [HEADER] ========================================
+[2026-07-11 03:09:43] [HEADER] NASRIUM CMD_148 - AUTO TUNNEL REFRESH
+[2026-07-11 03:09:43] [HEADER] ========================================
+[2026-07-11 03:09:43] [STEP] --- Checking Server ---
+[2026-07-11 03:14:52] [SUCCESS] Server RUNNING on localhost:8080
+[2026-07-11 03:14:52] [INFO] 
+[2026-07-11 03:14:52] [STEP] --- Tunnel URL Input ---
+[2026-07-11 03:14:52] [INFO] Make sure START_TUNNEL.bat is running
+[2026-07-11 03:14:52] [INFO] Copy the https:// URL from tunnel window
+[2026-07-11 03:14:52] [INFO] 

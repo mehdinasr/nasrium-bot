@@ -1,0 +1,31 @@
+﻿{
+    "Command":  "CMD_093",
+    "Step":  "FUNCTION_TEST",
+    "Process":  {
+                    "Status":  "RECEIVED",
+                    "Message":  "TEST MESSAGE",
+                    "Time":  "2026-07-08 21:59:54"
+                },
+    "Route":  {
+                  "Channel":  "Global",
+                  "Message":  "TEST MESSAGE",
+                  "Status":  "ACCEPTED",
+                  "Time":  "2026-07-08 21:59:54"
+              },
+    "Validation":  {
+                       "Valid":  true,
+                       "Length":  12,
+                       "Reason":  ""
+                   },
+    "Moderation":  {
+                       "Status":  "PASS",
+                       "Message":  "TEST MESSAGE"
+                   },
+    "Pipeline":  {
+                     "Channel":  "Global",
+                     "Message":  "TEST MESSAGE",
+                     "Status":  "ACCEPTED",
+                     "Time":  "2026-07-08 21:59:54"
+                 },
+    "TestTime":  "2026-07-08 21:59:54"
+}

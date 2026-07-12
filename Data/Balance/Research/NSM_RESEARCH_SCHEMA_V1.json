@@ -1,0 +1,61 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_038",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:32:50"
+                 },
+    "Research":  [
+                     {
+                         "Id":  "research_001",
+                         "Name":  "Weapon Mastery I",
+                         "Category":  "Military",
+                         "Level":  1,
+                         "ResearchTime":  300,
+                         "CostGold":  1000,
+                         "CostResource":  "resource_002",
+                         "CostAmount":  100,
+                         "Prerequisite":  "",
+                         "BonusType":  "AttackPercent",
+                         "BonusValue":  5
+                     },
+                     {
+                         "Id":  "research_002",
+                         "Name":  "Armor Engineering I",
+                         "Category":  "Military",
+                         "Level":  1,
+                         "ResearchTime":  450,
+                         "CostGold":  1200,
+                         "CostResource":  "resource_002",
+                         "CostAmount":  120,
+                         "Prerequisite":  "research_001",
+                         "BonusType":  "DefensePercent",
+                         "BonusValue":  5
+                     },
+                     {
+                         "Id":  "research_003",
+                         "Name":  "Resource Production I",
+                         "Category":  "Economy",
+                         "Level":  1,
+                         "ResearchTime":  600,
+                         "CostGold":  1500,
+                         "CostResource":  "resource_001",
+                         "CostAmount":  500,
+                         "Prerequisite":  "",
+                         "BonusType":  "ProductionPercent",
+                         "BonusValue":  10
+                     },
+                     {
+                         "Id":  "research_004",
+                         "Name":  "Advanced Logistics",
+                         "Category":  "Support",
+                         "Level":  1,
+                         "ResearchTime":  900,
+                         "CostGold":  2500,
+                         "CostResource":  "resource_003",
+                         "CostAmount":  50,
+                         "Prerequisite":  "research_003",
+                         "BonusType":  "CapacityPercent",
+                         "BonusValue":  15
+                     }
+                 ]
+}

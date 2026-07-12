@@ -1,0 +1,84 @@
+﻿{
+    "file_id":  "08_PROJECT_MANIFEST",
+    "version":  "4.0.0",
+    "package_name":  "NASRIUM AI Governance Package",
+    "package_version":  "4.0.0",
+    "generated_at":  "2026-07-09T19:14:36Z",
+    "package_path":  "D:\\NASRIUM\\Core\\Knowledge\\AI Governance Package",
+    "required_files":  [
+                           "00_README_FIRST.md",
+                           "01_NASRIUM_CONSTITUTION.md",
+                           "02_PROJECT_STATE.json",
+                           "03_ROADMAP.json",
+                           "04_PROJECT_HISTORY.json",
+                           "05_DEVELOPMENT_STANDARD.md",
+                           "06_AI_BOOTSTRAP_PROMPT.md",
+                           "07_SESSION_TEMPLATE.json",
+                           "08_PROJECT_MANIFEST.json"
+                       ],
+    "files":  [
+                  {
+                      "name":  "00_README_FIRST.md",
+                      "version":  "4.0.0",
+                      "sha256":  "a9d95eceb21761acc9b48a6e530d03ca68e85b766058c11cf4a3d77e1679c252",
+                      "bytes":  1164,
+                      "required":  true
+                  },
+                  {
+                      "name":  "01_NASRIUM_CONSTITUTION.md",
+                      "version":  "4.0.0",
+                      "sha256":  "044ed801780b61bf6e776003778912c53a7345ebcaa600804a748ef4296c4124",
+                      "bytes":  745,
+                      "required":  true
+                  },
+                  {
+                      "name":  "02_PROJECT_STATE.json",
+                      "version":  "4.0.0",
+                      "sha256":  "ecd2bc4aa33b3ab6d18621fa4f1c7dd73fffc238462a361fe202b03868b9a5a2",
+                      "bytes":  1200,
+                      "required":  true
+                  },
+                  {
+                      "name":  "03_ROADMAP.json",
+                      "version":  "4.0.0",
+                      "sha256":  "bd810e6398db8e1ed9fd37ba54cd74f4444bb10389c7a95a384cb07082f8eded",
+                      "bytes":  613,
+                      "required":  true
+                  },
+                  {
+                      "name":  "04_PROJECT_HISTORY.json",
+                      "version":  "4.0.0",
+                      "sha256":  "7a84eb63b540156f65eadd357be4622ad3851d4a521121be0fe7980cd01d7f02",
+                      "bytes":  340,
+                      "required":  true
+                  },
+                  {
+                      "name":  "05_DEVELOPMENT_STANDARD.md",
+                      "version":  "4.0.0",
+                      "sha256":  "882ce03deecd8ccbe5679ac30f611e7baab3e315cfbe88594c31296b5435e436",
+                      "bytes":  295,
+                      "required":  true
+                  },
+                  {
+                      "name":  "06_AI_BOOTSTRAP_PROMPT.md",
+                      "version":  "4.0.0",
+                      "sha256":  "54fc9d8d7d1afc8614ffdb43d1999cb10d216fd0bc0e9e91831a4640ea9fea65",
+                      "bytes":  364,
+                      "required":  true
+                  },
+                  {
+                      "name":  "07_SESSION_TEMPLATE.json",
+                      "version":  "4.0.0",
+                      "sha256":  "61afe282dc9f521aeeacc660dd221ad19b6d343c84bc6d2598ca198099887966",
+                      "bytes":  276,
+                      "required":  true
+                  },
+                  {
+                      "name":  "08_PROJECT_MANIFEST.json",
+                      "version":  "4.0.0",
+                      "sha256":  "ec8794a5b7dd73264d05804f621093443b3fae9d720ccabbf4290743583fa01c",
+                      "bytes":  3474,
+                      "required":  true
+                  }
+              ]
+}

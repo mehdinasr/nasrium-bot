@@ -1,0 +1,18 @@
+﻿{
+    "System":  "NASRIUM",
+    "Module":  "Chat",
+    "Component":  "NSM_ChatPipeline",
+    "Command":  "CMD_093",
+    "Version":  "1.0.0",
+    "Functions":  [
+                      "Process-NSMChatMessage",
+                      "Route-NSMChatMessage",
+                      "Validate-NSMChatMessage",
+                      "Invoke-NSMChatModeration",
+                      "Send-NSMChatPipeline"
+                  ],
+    "SavedAt":  "2026-07-08 22:02:00",
+    "Status":  "LOCKED",
+    "LockTime":  "2026-07-08 22:07:23",
+    "LockReason":  "CMD_093 FINALIZATION"
+}

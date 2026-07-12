@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "fa",
+    "name":  "Persian",
+    "native":  "فارسی",
+    "rtl":  true,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "به اکوسیستم NASRIUM خوش آمدید",
+                         "game.start":  "شروع بازی",
+                         "menu.settings":  "تنظیمات",
+                         "menu.language":  "زبان",
+                         "menu.profile":  "پروفایل",
+                         "menu.village":  "دهکده",
+                         "menu.resources":  "منابع",
+                         "menu.buildings":  "ساختمانها",
+                         "menu.upgrade":  "ارتقاء",
+                         "menu.battle":  "نبرد",
+                         "menu.wallet":  "کیف پول",
+                         "menu.leaderboard":  "رتبهبندی",
+                         "menu.missions":  "مأموریتها",
+                         "menu.shop":  "فروشگاه",
+                         "menu.help":  "راهنما"
+                     }
+}

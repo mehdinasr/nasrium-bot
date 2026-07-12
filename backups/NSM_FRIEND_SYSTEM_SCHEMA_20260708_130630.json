@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_063",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:06:30"
+                 },
+    "FriendProfiles":  [
+                           {
+                               "Id":  "friend_profile_001",
+                               "Name":  "Default",
+                               "MaxFriends":  100,
+                               "AllowFriendRequests":  true,
+                               "AllowPrivateMessages":  true,
+                               "ShowOnlineStatus":  true,
+                               "AllowPartyInvites":  true,
+                               "AllowGuildInvites":  true
+                           },
+                           {
+                               "Id":  "friend_profile_002",
+                               "Name":  "Private",
+                               "MaxFriends":  50,
+                               "AllowFriendRequests":  false,
+                               "AllowPrivateMessages":  false,
+                               "ShowOnlineStatus":  false,
+                               "AllowPartyInvites":  false,
+                               "AllowGuildInvites":  false
+                           },
+                           {
+                               "Id":  "friend_profile_003",
+                               "Name":  "Friends Only",
+                               "MaxFriends":  150,
+                               "AllowFriendRequests":  true,
+                               "AllowPrivateMessages":  true,
+                               "ShowOnlineStatus":  true,
+                               "AllowPartyInvites":  true,
+                               "AllowGuildInvites":  false
+                           },
+                           {
+                               "Id":  "friend_profile_004",
+                               "Name":  "Streamer",
+                               "MaxFriends":  500,
+                               "AllowFriendRequests":  false,
+                               "AllowPrivateMessages":  false,
+                               "ShowOnlineStatus":  true,
+                               "AllowPartyInvites":  false,
+                               "AllowGuildInvites":  false
+                           }
+                       ]
+}

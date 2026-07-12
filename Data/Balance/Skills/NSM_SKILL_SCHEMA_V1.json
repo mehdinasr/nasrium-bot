@@ -1,0 +1,53 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_050",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:17:03"
+                 },
+    "Skills":  [
+                   {
+                       "Id":  "skill_001",
+                       "Name":  "Power Strike",
+                       "Category":  "Active",
+                       "DamageType":  "Physical",
+                       "Power":  150,
+                       "Cooldown":  5,
+                       "ManaCost":  20,
+                       "TargetType":  "SingleEnemy",
+                       "UnlockLevel":  1
+                   },
+                   {
+                       "Id":  "skill_002",
+                       "Name":  "Fireball",
+                       "Category":  "Active",
+                       "DamageType":  "Magic",
+                       "Power":  220,
+                       "Cooldown":  8,
+                       "ManaCost":  35,
+                       "TargetType":  "AreaEnemy",
+                       "UnlockLevel":  5
+                   },
+                   {
+                       "Id":  "skill_003",
+                       "Name":  "Guardian Aura",
+                       "Category":  "Passive",
+                       "DamageType":  "None",
+                       "Power":  0,
+                       "Cooldown":  0,
+                       "ManaCost":  0,
+                       "TargetType":  "Self",
+                       "UnlockLevel":  10
+                   },
+                   {
+                       "Id":  "skill_004",
+                       "Name":  "Divine Heal",
+                       "Category":  "Support",
+                       "DamageType":  "Healing",
+                       "Power":  300,
+                       "Cooldown":  12,
+                       "ManaCost":  50,
+                       "TargetType":  "SingleAlly",
+                       "UnlockLevel":  15
+                   }
+               ]
+}

@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_066",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:17:33"
+                 },
+    "NotificationProfiles":  [
+                                 {
+                                     "Id":  "notification_profile_001",
+                                     "Name":  "Default",
+                                     "EnableSystemNotifications":  true,
+                                     "EnableQuestNotifications":  true,
+                                     "EnableCombatNotifications":  true,
+                                     "EnableGuildNotifications":  true,
+                                     "EnableFriendNotifications":  true,
+                                     "EnableMailNotifications":  true
+                                 },
+                                 {
+                                     "Id":  "notification_profile_002",
+                                     "Name":  "Minimal",
+                                     "EnableSystemNotifications":  true,
+                                     "EnableQuestNotifications":  false,
+                                     "EnableCombatNotifications":  false,
+                                     "EnableGuildNotifications":  false,
+                                     "EnableFriendNotifications":  false,
+                                     "EnableMailNotifications":  true
+                                 },
+                                 {
+                                     "Id":  "notification_profile_003",
+                                     "Name":  "Combat Focus",
+                                     "EnableSystemNotifications":  true,
+                                     "EnableQuestNotifications":  false,
+                                     "EnableCombatNotifications":  true,
+                                     "EnableGuildNotifications":  false,
+                                     "EnableFriendNotifications":  false,
+                                     "EnableMailNotifications":  false
+                                 },
+                                 {
+                                     "Id":  "notification_profile_004",
+                                     "Name":  "Social",
+                                     "EnableSystemNotifications":  true,
+                                     "EnableQuestNotifications":  false,
+                                     "EnableCombatNotifications":  false,
+                                     "EnableGuildNotifications":  true,
+                                     "EnableFriendNotifications":  true,
+                                     "EnableMailNotifications":  true
+                                 }
+                             ]
+}

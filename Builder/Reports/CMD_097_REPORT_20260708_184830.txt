@@ -1,0 +1,14 @@
+==================================================
+NASRIUM BUILD REPORT - INTEGRATION TESTS
+==================================================
+COMMAND : CMD_097
+STATUS  : FAILED
+DOMAIN  : Chat (Testing Pipeline)
+
+TEST SUMMARY:
+--------------------------------------------------
+Test Case: 1_APPROVED_MESSAGE -> Expected: SUCCESS | Actual: SUCCESS | Result: PASS
+Test Case: 2_MAX_LENGTH_VIOLATION -> Expected: REJECTED | Actual: REJECTED | Result: PASS
+Test Case: 3_BLOCKED_WORD_VIOLATION -> Expected: REJECTED | Actual: SUCCESS | Result: FAIL
+
+==================================================

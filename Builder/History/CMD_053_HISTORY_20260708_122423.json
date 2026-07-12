@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_053",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 12:24:23",
+    "Output":  "D:\\NASRIUM\\Data\\Balance\\StatusEffects\\NSM_STATUS_EFFECT_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_STATUS_EFFECT_SCHEMA_20260708_122423.json",
+    "SHA256":  "521ED43CDCFAA8D2613046CF72CBAA53C1FFCEE1B9ABE82559529BA5B5D3DA18"
+}

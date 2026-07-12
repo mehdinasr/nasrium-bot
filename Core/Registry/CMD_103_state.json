@@ -1,0 +1,6 @@
+﻿{
+    "failure_reason":  "Integration Test Failed: Test 1 Failed: Resource claim unsuccessful.",
+    "status":  "FAILED",
+    "cmd_id":  "CMD_103",
+    "failed_at":  "2026-07-09T17:24:29Z"
+}

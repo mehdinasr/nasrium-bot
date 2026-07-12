@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_093",
+    "Name":  "BUILD_CHAT_MESSAGE_PIPELINE",
+    "Status":  "ARCHIVED",
+    "Version":  "1.0.0",
+    "Module":  "NSM_ChatPipeline.psm1",
+    "SHA256":  "159FD8AF71C35C6EA6E949B72E677E8D0E7104FD191EE719C977522472178177",
+    "StepsCompleted":  9,
+    "ArchiveTime":  "2026-07-08 21:58:36"
+}

@@ -1,0 +1,26 @@
+﻿
+==================================================
+NASRIUM BUILD REPORT
+==================================================
+
+COMMAND : CMD_040
+STATUS  : SUCCESS
+
+FILE
+----
+D:\NASRIUM\Data\Config\NSM_GLOBAL_CONFIG_V1.json
+
+BACKUP
+------
+D:\NASRIUM\Backups\NSM_GLOBAL_CONFIG_20260708_044038.json
+
+SHA256
+------
+B569232D511E262EA00921214D1427789E6068E3B05D7A073295ACB35DFDC0F0
+
+TIME
+----
+2026-07-08 04:40:38
+
+==================================================
+

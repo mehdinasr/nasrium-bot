@@ -1,0 +1,61 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_085",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 15:53:06"
+                 },
+    "Seasons":  [
+                    {
+                        "Id":  "season_001",
+                        "Name":  "Spring",
+                        "Order":  1,
+                        "DurationDays":  90,
+                        "Theme":  "Growth",
+                        "Rewards":  {
+                                        "Gold":  50000,
+                                        "Gems":  500,
+                                        "XP":  5000
+                                    },
+                        "Active":  false
+                    },
+                    {
+                        "Id":  "season_002",
+                        "Name":  "Summer",
+                        "Order":  2,
+                        "DurationDays":  90,
+                        "Theme":  "War",
+                        "Rewards":  {
+                                        "Gold":  75000,
+                                        "Gems":  750,
+                                        "XP":  7500
+                                    },
+                        "Active":  false
+                    },
+                    {
+                        "Id":  "season_003",
+                        "Name":  "Autumn",
+                        "Order":  3,
+                        "DurationDays":  90,
+                        "Theme":  "Harvest",
+                        "Rewards":  {
+                                        "Gold":  100000,
+                                        "Gems":  1000,
+                                        "XP":  10000
+                                    },
+                        "Active":  false
+                    },
+                    {
+                        "Id":  "season_004",
+                        "Name":  "Winter",
+                        "Order":  4,
+                        "DurationDays":  90,
+                        "Theme":  "Survival",
+                        "Rewards":  {
+                                        "Gold":  125000,
+                                        "Gems":  1250,
+                                        "XP":  12500
+                                    },
+                        "Active":  false
+                    }
+                ]
+}

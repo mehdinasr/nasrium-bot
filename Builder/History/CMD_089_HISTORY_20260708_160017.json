@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_089",
+    "Module":  "LEADERBOARD_SYSTEM",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 16:00:17",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Leaderboards\\NSM_LEADERBOARD_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_LEADERBOARD_SYSTEM_SCHEMA_20260708_160017.json",
+    "SHA256":  "0230265E9687C009EA70934D211472C7ED4ADF25BA4E7509A8C132AC70662EBD"
+}

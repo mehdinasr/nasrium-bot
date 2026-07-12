@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "th",
+    "name":  "Thai",
+    "native":  "ไทย",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "ยินดีต้อนรับสู่ระบบนิเวศ NASRIUM",
+                         "game.start":  "เริ่มเกม",
+                         "menu.settings":  "ตั้งค่า",
+                         "menu.language":  "ภาษา",
+                         "menu.profile":  "โปรไฟล์",
+                         "menu.village":  "หมู่บ้าน",
+                         "menu.resources":  "ทรัพยากร",
+                         "menu.buildings":  "อาคาร",
+                         "menu.upgrade":  "อัพเกรด",
+                         "menu.battle":  "ต่อสู้",
+                         "menu.wallet":  "กระเป๋าเงิน",
+                         "menu.leaderboard":  "กระดานผู้นำ",
+                         "menu.missions":  "ภารกิจ",
+                         "menu.shop":  "ร้านค้า",
+                         "menu.help":  "ช่วยเหลือ"
+                     }
+}

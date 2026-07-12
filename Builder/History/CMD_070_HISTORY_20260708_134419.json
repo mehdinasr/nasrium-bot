@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_070",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 13:44:19",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Quests\\NSM_QUEST_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_QUEST_SYSTEM_SCHEMA_20260708_134419.json",
+    "SHA256":  "3549C04416DE7B25822E14B727E4C4128C7E9A3BAD3321255986EA5336DD0FF2"
+}

@@ -1,0 +1,138 @@
+﻿{
+    "meta":  {
+                 "created":  "2026-07-07 23:42:58",
+                 "project_id":  "PRJ-000001",
+                 "schema":  "4.0",
+                 "encoding":  "UTF-8",
+                 "export_version":  "4.0",
+                 "generated_by":  "NASRIUM Builder"
+             },
+    "validation":  {
+                       "status":  "VALID",
+                       "signature":  "",
+                       "checksum":  ""
+                   },
+    "project":  {
+
+                },
+    "company":  {
+
+                },
+    "vision":  {
+
+               },
+    "mission":  {
+
+                },
+    "values":  {
+
+               },
+    "architecture":  {
+
+                     },
+    "technology":  {
+
+                   },
+    "environment":  {
+
+                    },
+    "folder_structure":  {
+
+                         },
+    "files":  {
+
+              },
+    "modules":  {
+
+                },
+    "services":  {
+
+                 },
+    "builder":  {
+
+                },
+    "nos":  {
+
+            },
+    "telegram":  {
+
+                 },
+    "mini_app":  {
+
+                 },
+    "api":  {
+
+            },
+    "database":  {
+
+                 },
+    "game_engine":  {
+
+                    },
+    "economy":  {
+
+                },
+    "tokenomics":  {
+
+                   },
+    "blockchain":  {
+
+                   },
+    "localization":  {
+
+                     },
+    "security":  {
+
+                 },
+    "deployment":  {
+
+                   },
+    "monitoring":  {
+
+                   },
+    "metrics":  {
+
+                },
+    "health":  {
+
+               },
+    "roadmap":  {
+
+                },
+    "completed_commands":  [
+
+                           ],
+    "pending_commands":  [
+
+                         ],
+    "checkpoints":  [
+
+                    ],
+    "saves":  [
+
+              ],
+    "decisions":  [
+
+                  ],
+    "project_rules":  [
+
+                      ],
+    "dependencies":  [
+
+                     ],
+    "known_issues":  [
+
+                     ],
+    "session_history":  [
+
+                        ],
+    "ai_resume":  {
+
+                  },
+    "next_actions":  [
+
+                     ],
+    "notes":  [
+
+              ]
+}

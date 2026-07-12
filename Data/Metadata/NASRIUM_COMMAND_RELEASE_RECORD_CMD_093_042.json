@@ -1,0 +1,12 @@
+﻿{
+    "FileID":  "CMD_093_042",
+    "Command":  "CMD_093",
+    "Component":  "COMMAND_RELEASE_RECORD",
+    "Version":  "1.0.0",
+    "Status":  "RELEASED",
+    "CreatedAt":  "2026-07-09 02:03:56",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "ReleasedModule":  "NSM_ChatPipeline",
+    "ReleaseType":  "STABLE",
+    "NextCommand":  "CMD_094"
+}

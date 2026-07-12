@@ -1,0 +1,35 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260707150434
+Username: DESKTOP-TBP6NB0\nasr
+RunAs User: DESKTOP-TBP6NB0\nasr
+Configuration Name: 
+Machine: DESKTOP-TBP6NB0 (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\NASRIUM\Core\Tools\CMD_013_FIX.ps1
+Process ID: 1148
+PSVersion: 5.1.19041.7417
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.7417
+BuildVersion: 10.0.19041.7417
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+========================================
+NASRIUM - CMD_013_FIX (.env + webhook reset + run bot)
+========================================
+STEP 1/8 - Check bot app folder
+OK  - App folder exists
+STEP 2/8 - Stop previous bot process (if PID file exists)
+OK  - PID file existed but process not running (ignored)
+STEP 3/8 - Read BOT_TOKEN securely and write .env (token will not be printed)
+----------------------------------------
+DONE: CMD_013_FIX FAILED | Duration: 33.87s
+ERROR: BOT_TOKEN looks too short. Please paste the full token from BotFather.
+Transcript: D:\NASRIUM\Core\Logs\CMD_013_FIX_20260707_150434.transcript.txt
+----------------------------------------
+**********************
+Windows PowerShell transcript end
+End time: 20260707150508
+**********************

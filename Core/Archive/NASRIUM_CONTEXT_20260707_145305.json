@@ -1,0 +1,40 @@
+﻿{
+    "meta":  {
+                 "project_name":  "NASRIUM",
+                 "token_symbol":  "NSM",
+                 "version":  "0.1.0",
+                 "status":  "Foundation",
+                 "created_date":  "2026-07-07",
+                 "last_update":  "2026-07-07 14:41:22"
+             },
+    "rules":  [
+                  "تمام فایل‌ها در D:\\\\NASRIUM نگهداری می‌شود",
+                  "هر مرحله باید لاگ + گزارش داشته باشد",
+                  "اجرای مرحله‌ای: پس از تایید شما مرحله بعدی",
+                  "عدم ذخیره اسرار (Token/Key) داخل کد",
+                  "اسکریپت‌ها تا حد امکان تکرارپذیر (Idempotent)"
+              ],
+    "tech_stack":  {
+                       "runtime":  "Node.js",
+                       "language":  "TypeScript (planned)",
+                       "telegram_bot_framework":  "grammY",
+                       "database":  "PostgreSQL (planned)",
+                       "cache":  "Redis (planned)",
+                       "blockchain_target":  "TON -\u003e later multi-chain"
+                   },
+    "state":  {
+                  "last_stage_id":  "CMD_012_REPAIR",
+                  "last_stage_time":  "2026-07-07 14:41:22",
+                  "last_action":  "Repaired and created TypeScript Telegram bot scaffold",
+                  "next_action":  "CMD_013 - Create .env and run bot locally"
+              },
+    "pointers":  {
+                     "root":  "D:\\NASRIUM",
+                     "context_file":  "D:\\NASRIUM\\Core\\Knowledge\\NASRIUM_CONTEXT.json",
+                     "handover_file":  "D:\\NASRIUM\\Core\\Knowledge\\AI_HANDOVER.md",
+                     "project_book":  "D:\\NASRIUM\\Core\\Knowledge\\PROJECT_BOOK.md",
+                     "adr_folder":  "D:\\NASRIUM\\Core\\ADR",
+                     "logs_folder":  "D:\\NASRIUM\\Core\\Logs",
+                     "reports_folder":  "D:\\NASRIUM\\Core\\Reports"
+                 }
+}

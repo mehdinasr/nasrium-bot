@@ -1,0 +1,23 @@
+﻿{
+    "Id":  "b549ab20-ec25-4369-a526-5b5c0f11bc95",
+    "Username":  "TransactionTester",
+    "Level":  1,
+    "Resources":  {
+                      "Gold":  0,
+                      "NSM":  0,
+                      "Energy":  100
+                  },
+    "Buildings":  [
+                      {
+                          "Type":  "GoldMine",
+                          "Level":  1,
+                          "Upgrading":  true
+                      },
+                      {
+                          "Type":  "TownHall",
+                          "Level":  1,
+                          "Upgrading":  true
+                      }
+                  ],
+    "CreatedAt":  "2026-07-09 17:34:14"
+}

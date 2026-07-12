@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_093",
+    "Component":  "NSM_ChatPipeline",
+    "Verification":  "HASH_SIGNATURE",
+    "Status":  "VALID",
+    "SHA256":  "159FD8AF71C35C6EA6E949B72E677E8D0E7104FD191EE719C977522472178177",
+    "VerifiedFile":  "D:\\NASRIUM\\Core\\Modules\\Chat\\NSM_ChatPipeline.psm1",
+    "VerificationTime":  "2026-07-08 22:11:44"
+}

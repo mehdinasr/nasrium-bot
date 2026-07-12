@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_088",
+    "Module":  "EVENT_SYSTEM",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 15:57:52",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Events\\NSM_EVENT_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_EVENT_SYSTEM_SCHEMA_20260708_155752.json",
+    "SHA256":  "BFC31D9164309E01C6EF41C4439593B5CA858257234996A5C6F4FA2D5061C783"
+}

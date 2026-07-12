@@ -1,0 +1,33 @@
+﻿[2026-07-11 03:39:32] [HEADER] ========================================
+[2026-07-11 03:39:32] [HEADER] NASRIUM CMD_148_LOCAL - LOCALHOST TEST
+[2026-07-11 03:39:32] [HEADER] ========================================
+[2026-07-11 03:39:32] [STEP] --- Checking Server ---
+[2026-07-11 03:39:32] [SUCCESS] Server RUNNING on localhost:8080
+[2026-07-11 03:39:32] [SUCCESS] Using LOCALHOST: http://localhost:8080
+[2026-07-11 03:39:32] [STEP] --- Updating Bot Config ---
+[2026-07-11 03:39:32] [SUCCESS] Config updated
+[2026-07-11 03:39:32] [STEP] --- Updating Frontend ---
+[2026-07-11 03:39:32] [SUCCESS] Frontend updated
+[2026-07-11 03:39:32] [STEP] --- Creating Button Sender ---
+[2026-07-11 03:39:32] [SUCCESS] Button sender created
+[2026-07-11 03:39:32] [STEP] --- Opening Chrome ---
+[2026-07-11 03:39:32] [SUCCESS] Chrome opened
+[2026-07-11 03:39:32] [INFO] 
+[2026-07-11 03:39:32] [HEADER] ========================================
+[2026-07-11 03:39:32] [HEADER] CMD_148_LOCAL COMPLETE
+[2026-07-11 03:39:32] [HEADER] ========================================
+[2026-07-11 03:39:32] [SUCCESS] ✅ Server: RUNNING
+[2026-07-11 03:39:32] [SUCCESS] ✅ URL: http://localhost:8080
+[2026-07-11 03:39:32] [SUCCESS] ✅ Configs: UPDATED
+[2026-07-11 03:39:32] [SUCCESS] ✅ Chrome: OPENED
+[2026-07-11 03:39:32] [INFO] 
+[2026-07-11 03:39:33] [HEADER] IMPORTANT:
+[2026-07-11 03:39:33] [INFO] 1. Turn ON VPN in Chrome
+[2026-07-11 03:39:33] [INFO] 2. Click 📤 SEND LOCAL BUTTON
+[2026-07-11 03:39:33] [INFO] 3. In Telegram DESKTOP, click 🚀 OPEN NASRIUM
+[2026-07-11 03:39:33] [INFO] 
+[2026-07-11 03:39:33] [WARNING] ⚠️ Telegram Desktop ONLY:
+[2026-07-11 03:39:33] [WARNING]    Settings → Advanced → Experimental → Allow local http
+[2026-07-11 03:39:33] [INFO] 
+[2026-07-11 03:39:33] [WARNING] ⚠️ KEEP OPEN:
+[2026-07-11 03:39:33] [WARNING]    - START_NASRIUM_SERVER.ps1

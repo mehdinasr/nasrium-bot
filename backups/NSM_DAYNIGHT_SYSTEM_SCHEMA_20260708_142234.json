@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_076",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:22:34"
+                 },
+    "TimeCycles":  [
+                       {
+                           "Id":  "cycle_001",
+                           "Name":  "Dawn",
+                           "StartHour":  5,
+                           "EndHour":  7,
+                           "AmbientLight":  0.45,
+                           "NPCActivity":  "Wake",
+                           "SpawnModifier":  1,
+                           "PvPAllowed":  true
+                       },
+                       {
+                           "Id":  "cycle_002",
+                           "Name":  "Day",
+                           "StartHour":  7,
+                           "EndHour":  18,
+                           "AmbientLight":  1,
+                           "NPCActivity":  "Normal",
+                           "SpawnModifier":  1,
+                           "PvPAllowed":  true
+                       },
+                       {
+                           "Id":  "cycle_003",
+                           "Name":  "Dusk",
+                           "StartHour":  18,
+                           "EndHour":  20,
+                           "AmbientLight":  0.55,
+                           "NPCActivity":  "Return",
+                           "SpawnModifier":  1.1,
+                           "PvPAllowed":  true
+                       },
+                       {
+                           "Id":  "cycle_004",
+                           "Name":  "Night",
+                           "StartHour":  20,
+                           "EndHour":  5,
+                           "AmbientLight":  0.15,
+                           "NPCActivity":  "Sleep",
+                           "SpawnModifier":  1.35,
+                           "PvPAllowed":  true
+                       }
+                   ]
+}

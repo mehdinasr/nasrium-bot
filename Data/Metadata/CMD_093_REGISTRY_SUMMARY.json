@@ -1,0 +1,8 @@
+﻿{
+    "Command":  "CMD_093",
+    "Action":  "FINAL_REGISTRY_SUMMARY",
+    "Module":  "NSM_ChatPipeline",
+    "Status":  "COMPLETED",
+    "RegistryExists":  true,
+    "SummaryTime":  "2026-07-08 22:18:16"
+}

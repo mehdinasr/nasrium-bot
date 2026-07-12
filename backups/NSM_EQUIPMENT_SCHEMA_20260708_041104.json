@@ -1,0 +1,81 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_031",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:11:04"
+                 },
+    "Equipment":  [
+                      {
+                          "Id":  "equipment_001",
+                          "Name":  "Iron Sword",
+                          "Category":  "Weapon",
+                          "Slot":  "MainHand",
+                          "Rarity":  "Common",
+                          "Level":  1,
+                          "Attack":  15,
+                          "Defense":  0,
+                          "HP":  0,
+                          "CriticalRate":  0,
+                          "Durability":  100,
+                          "UpgradeLevel":  0,
+                          "MaxUpgradeLevel":  10,
+                          "SellPrice":  100,
+                          "Tradable":  true,
+                          "Description":  "Basic melee weapon."
+                      },
+                      {
+                          "Id":  "equipment_002",
+                          "Name":  "Steel Shield",
+                          "Category":  "Armor",
+                          "Slot":  "OffHand",
+                          "Rarity":  "Common",
+                          "Level":  1,
+                          "Attack":  0,
+                          "Defense":  18,
+                          "HP":  100,
+                          "CriticalRate":  0,
+                          "Durability":  120,
+                          "UpgradeLevel":  0,
+                          "MaxUpgradeLevel":  10,
+                          "SellPrice":  120,
+                          "Tradable":  true,
+                          "Description":  "Basic defensive shield."
+                      },
+                      {
+                          "Id":  "equipment_003",
+                          "Name":  "Hunter Bow",
+                          "Category":  "Weapon",
+                          "Slot":  "MainHand",
+                          "Rarity":  "Rare",
+                          "Level":  5,
+                          "Attack":  35,
+                          "Defense":  0,
+                          "HP":  0,
+                          "CriticalRate":  5,
+                          "Durability":  90,
+                          "UpgradeLevel":  0,
+                          "MaxUpgradeLevel":  15,
+                          "SellPrice":  450,
+                          "Tradable":  true,
+                          "Description":  "Long range weapon."
+                      },
+                      {
+                          "Id":  "equipment_004",
+                          "Name":  "Wizard Staff",
+                          "Category":  "Weapon",
+                          "Slot":  "MainHand",
+                          "Rarity":  "Epic",
+                          "Level":  10,
+                          "Attack":  60,
+                          "Defense":  5,
+                          "HP":  50,
+                          "CriticalRate":  8,
+                          "Durability":  80,
+                          "UpgradeLevel":  0,
+                          "MaxUpgradeLevel":  20,
+                          "SellPrice":  1200,
+                          "Tradable":  false,
+                          "Description":  "Magic staff."
+                      }
+                  ]
+}

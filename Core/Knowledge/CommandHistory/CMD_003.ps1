@@ -1,0 +1,20 @@
+﻿# NASRIUM COMMAND RECORD
+
+ID:
+CMD_003
+
+TITLE:
+Cloudflare
+
+DATE:
+2026-07-10 16:33:31
+
+
+COMMAND:
+
+cloudflared
+
+
+STATUS:
+EXECUTED
+

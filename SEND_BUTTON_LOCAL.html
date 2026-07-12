@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NASRIUM - Send Local Button</title>
+<style>
+body{font-family:Tahoma;background:#0d0d0d;color:#00ffcc;text-align:center;padding:50px;margin:0}
+h2{color:#00ffcc;text-shadow:0 0 10px #00ffcc}
+.container{max-width:500px;margin:0 auto;background:#1a1a2e;padding:30px;border-radius:15px;border:1px solid #00ffcc}
+input{padding:12px;font-size:16px;width:80%;text-align:center;background:#0d0d0d;color:#00ffcc;border:1px solid #00ffcc;border-radius:5px;margin:10px 0}
+button{padding:15px 30px;font-size:18px;background:#00ffcc;color:#0d0d0d;border:none;cursor:pointer;border-radius:8px;font-weight:bold;margin-top:20px}
+button:hover{background:#00ccaa;transform:scale(1.05)}
+#status{margin-top:20px;font-size:1.1em;min-height:30px}
+.success{color:#00ff00}.error{color:#ff4444}.info{color:#ffaa00}
+.url-box{background:#16213e;padding:10px;border-radius:5px;word-break:break-all;margin:15px 0;font-size:0.9em}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>🚀 NASRIUM Local Test</h2>
+<p>Local URL:</p>
+<div class="url-box">http://localhost:8080</div>
+<p>Enter your Telegram Chat ID:</p>
+<input type="text" id="chatId" value="6964392525">
+<br>
+<button onclick="sendButton()">📤 SEND LOCAL BUTTON</button>
+<p id="status"></p>
+</div>
+<script>
+async function sendButton(){
+const chatId=document.getElementById('chatId').value.trim();
+if(!chatId){showStatus('Enter Chat ID','error');return;}
+showStatus('Sending...','info');
+const url='https://api.telegram.org/bot8897418933:AAGHmU_y38icd6QZj0x8Vzdm9S52gLo7BKQ/sendMessage';
+const body={chat_id:chatId,text:'🎮 *NASRIUM Local Test*\\n\\nClick below (Telegram Desktop only):',parse_mode:'Markdown',reply_markup:{inline_keyboard:[[{text:'🚀 OPEN NASRIUM',web_app:{url:'http://localhost:8080/index.html'}}]]}};
+try{const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const data=await res.json();if(data.ok){showStatus('✅ SUCCESS! Check Telegram Desktop.','success')}else{showStatus('❌ Error: '+data.description,'error')}}catch(e){showStatus('❌ Network error. Turn ON VPN.','error')}}
+function showStatus(msg,type){const el=document.getElementById('status');el.textContent=msg;el.className=type;}
+</script>
+</body>
+</html>

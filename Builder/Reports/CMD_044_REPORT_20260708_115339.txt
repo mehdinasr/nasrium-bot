@@ -1,0 +1,26 @@
+﻿
+==================================================
+NASRIUM BUILD REPORT
+==================================================
+
+COMMAND : CMD_044
+STATUS  : SUCCESS
+
+FILE
+----
+D:\NASRIUM\Data\Balance\PvP\NSM_PVP_SCHEMA_V1.json
+
+BACKUP
+------
+D:\NASRIUM\Backups\NSM_PVP_SCHEMA_20260708_115339.json
+
+SHA256
+------
+BC2FD01F11852118FE165832ABB1A75F0680934B2E41A69A887290F3FE3E48DC
+
+TIME
+----
+2026-07-08 11:53:39
+
+==================================================
+

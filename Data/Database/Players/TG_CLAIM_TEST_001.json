@@ -1,0 +1,18 @@
+﻿{
+    "Id":  "TG_CLAIM_TEST_001",
+    "Username":  "TG_TG_CLAIM_TEST_001",
+    "Level":  1,
+    "Resources":  {
+                      "Gold":  250,
+                      "NSM":  0,
+                      "Energy":  90
+                  },
+    "Buildings":  [
+                      {
+                          "Type":  "GoldMine",
+                          "Level":  1,
+                          "Upgrading":  false
+                      }
+                  ],
+    "CreatedAt":  "2026-07-09 18:03:58"
+}

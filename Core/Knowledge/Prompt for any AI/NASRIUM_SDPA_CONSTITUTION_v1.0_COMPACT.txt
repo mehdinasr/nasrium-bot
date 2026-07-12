@@ -1,0 +1,48 @@
+﻿=========================================================
+NASRIUM SDPA CONSTITUTION v1.0 (COMPACT)
+=========================================================
+
+PROJECT : NASRIUM
+ARCHITECTURE : SDPA
+STATUS : OFFICIAL
+
+CORE RULES
+
+01. Architecture First.
+02. Modular Development.
+03. One Responsibility Per File.
+04. No Duplicate Code.
+05. No Duplicate Files.
+06. Documentation Before Expansion.
+07. State Driven Development.
+08. AI Independent Architecture.
+09. Continue From PROJECT_STATE.json.
+10. Read Constitution Before Coding.
+11. Never Guess Project State.
+12. Keep Commands Short.
+13. Every Important Operation Has CMD ID.
+14. Safe Refactoring Only.
+15. Preserve Backward Compatibility.
+16. Keep Folder Structure Stable.
+17. Never Break Existing Modules.
+18. Prefer Updating Existing Code.
+19. Record Major Decisions.
+20. Project Must Always Be Recoverable.
+
+REQUIRED FILES
+
+NASRIUM_CONSTITUTION.md
+PROJECT_STATE.json
+ROADMAP.json
+PROJECT_HISTORY.json
+AI_BOOTSTRAP_PROMPT.md
+
+AI STARTUP RULE
+
+If any required file is missing,
+STOP.
+Request the missing files.
+Do not continue development.
+
+END
+=========================================================

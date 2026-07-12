@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_061",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:00:08"
+                 },
+    "Guilds":  [
+                   {
+                       "Id":  "guild_001",
+                       "Name":  "Warriors",
+                       "MaxMembers":  100,
+                       "MaxLevel":  20,
+                       "StartingLevel":  1,
+                       "DailyContributionLimit":  1000,
+                       "StorageSlots":  100,
+                       "FriendlyFire":  false
+                   },
+                   {
+                       "Id":  "guild_002",
+                       "Name":  "Mages",
+                       "MaxMembers":  80,
+                       "MaxLevel":  20,
+                       "StartingLevel":  1,
+                       "DailyContributionLimit":  1000,
+                       "StorageSlots":  120,
+                       "FriendlyFire":  false
+                   },
+                   {
+                       "Id":  "guild_003",
+                       "Name":  "Hunters",
+                       "MaxMembers":  60,
+                       "MaxLevel":  20,
+                       "StartingLevel":  1,
+                       "DailyContributionLimit":  1000,
+                       "StorageSlots":  80,
+                       "FriendlyFire":  false
+                   },
+                   {
+                       "Id":  "guild_004",
+                       "Name":  "Merchants",
+                       "MaxMembers":  50,
+                       "MaxLevel":  20,
+                       "StartingLevel":  1,
+                       "DailyContributionLimit":  1500,
+                       "StorageSlots":  150,
+                       "FriendlyFire":  false
+                   }
+               ]
+}

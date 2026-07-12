@@ -1,0 +1,31 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260707143600
+Username: DESKTOP-TBP6NB0\nasr
+RunAs User: DESKTOP-TBP6NB0\nasr
+Configuration Name: 
+Machine: DESKTOP-TBP6NB0 (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\NASRIUM\Core\Tools\TEST_012_typecheck.ps1
+Process ID: 2396
+PSVersion: 5.1.19041.7417
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.7417
+BuildVersion: 10.0.19041.7417
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+========================================
+NASRIUM - TEST_012_TYPECHECK
+========================================
+==> Checking app folder exists: D:\NASRIUM\Apps\telegram-bot
+----------------------------------------
+DONE: TEST_012_TYPECHECK FAILED | Duration: 0.05s
+ERROR: App folder not found: D:\NASRIUM\Apps\telegram-bot
+Transcript: D:\NASRIUM\Core\Logs\TEST_012_TYPECHECK_20260707_143600.transcript.txt
+----------------------------------------
+**********************
+Windows PowerShell transcript end
+End time: 20260707143600
+**********************

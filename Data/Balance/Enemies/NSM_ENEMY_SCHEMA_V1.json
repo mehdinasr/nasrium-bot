@@ -1,0 +1,77 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_033",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:22:06"
+                 },
+    "Enemies":  [
+                    {
+                        "Id":  "enemy_001",
+                        "Name":  "Goblin",
+                        "Category":  "Normal",
+                        "Level":  1,
+                        "HP":  120,
+                        "Attack":  15,
+                        "Defense":  5,
+                        "Speed":  10,
+                        "CriticalRate":  2,
+                        "Experience":  20,
+                        "GoldReward":  15,
+                        "SkillSet":  [
+                                         "SKL_001"
+                                     ],
+                        "AIProfile":  "Aggressive"
+                    },
+                    {
+                        "Id":  "enemy_002",
+                        "Name":  "Orc Warrior",
+                        "Category":  "Elite",
+                        "Level":  5,
+                        "HP":  650,
+                        "Attack":  48,
+                        "Defense":  25,
+                        "Speed":  8,
+                        "CriticalRate":  5,
+                        "Experience":  120,
+                        "GoldReward":  80,
+                        "SkillSet":  [
+                                         "SKL_001"
+                                     ],
+                        "AIProfile":  "Balanced"
+                    },
+                    {
+                        "Id":  "enemy_003",
+                        "Name":  "Dark Mage",
+                        "Category":  "Elite",
+                        "Level":  8,
+                        "HP":  480,
+                        "Attack":  72,
+                        "Defense":  12,
+                        "Speed":  14,
+                        "CriticalRate":  10,
+                        "Experience":  220,
+                        "GoldReward":  140,
+                        "SkillSet":  [
+                                         "SKL_001"
+                                     ],
+                        "AIProfile":  "Caster"
+                    },
+                    {
+                        "Id":  "enemy_004",
+                        "Name":  "Ancient Dragon",
+                        "Category":  "Boss",
+                        "Level":  30,
+                        "HP":  25000,
+                        "Attack":  450,
+                        "Defense":  180,
+                        "Speed":  20,
+                        "CriticalRate":  15,
+                        "Experience":  5000,
+                        "GoldReward":  10000,
+                        "SkillSet":  [
+                                         "SKL_001"
+                                     ],
+                        "AIProfile":  "Boss"
+                    }
+                ]
+}

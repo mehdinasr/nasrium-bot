@@ -1,0 +1,9 @@
+﻿{
+    "System":  "NASRIUM",
+    "PreviousCommand":  "CMD_093",
+    "NextCommand":  "CMD_094",
+    "TransitionStatus":  "COMPLETED",
+    "Authorization":  "AUTHORIZED",
+    "Status":  "READY",
+    "CheckedAt":  "2026-07-08 22:23:32"
+}

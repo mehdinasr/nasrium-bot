@@ -1,0 +1,46 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_086",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 15:54:40"
+                 },
+    "MailTemplates":  [
+                          {
+                              "Id":  "mail_001",
+                              "Type":  "System",
+                              "Subject":  "Welcome",
+                              "Body":  "Welcome to NASRIUM.",
+                              "HasReward":  false,
+                              "ExpireDays":  30,
+                              "Priority":  1
+                          },
+                          {
+                              "Id":  "mail_002",
+                              "Type":  "Reward",
+                              "Subject":  "Daily Reward",
+                              "Body":  "Your daily reward is ready.",
+                              "HasReward":  true,
+                              "Reward":  {
+                                             "Gold":  1000,
+                                             "Gems":  10,
+                                             "XP":  100
+                                         },
+                              "ExpireDays":  7,
+                              "Priority":  2
+                          },
+                          {
+                              "Id":  "mail_003",
+                              "Type":  "Event",
+                              "Subject":  "Season Event",
+                              "Body":  "A new event has started.",
+                              "HasReward":  true,
+                              "Reward":  {
+                                             "Gold":  5000,
+                                             "Gems":  50,
+                                             "XP":  500
+                                         },
+                              "ExpireDays":  14,
+                              "Priority":  3
+                          }
+                      ]
+}

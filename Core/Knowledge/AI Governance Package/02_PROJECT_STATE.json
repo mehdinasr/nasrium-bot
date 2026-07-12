@@ -1,0 +1,29 @@
+﻿{
+    "file_id":  "02_PROJECT_STATE",
+    "version":  "2.0.0",
+    "updated_at":  "2026-07-09T16:45:22Z",
+    "project":  {
+                    "name":  "Nasrium",
+                    "symbol":  "NSM",
+                    "type":  "Telegram Play-to-Earn Strategy Game",
+                    "root_path":  "D:\\\\NASRIUM",
+                    "status":  "ACTIVE_DEVELOPMENT"
+                },
+    "current_phase":  {
+                          "id":  "PHASE_4",
+                          "name":  "Monetization \u0026 Web3 Integration",
+                          "status":  "COMPLETED"
+                      },
+    "completed_phases":  [
+                             "PHASE_0_INIT"
+                         ],
+    "technical_stack":  {
+                            "language":  "PowerShell",
+                            "shell_version":  "5.1",
+                            "governance":  "SDPA v2.0"
+                        },
+    "next_recommended_actions":  [
+                                     "Execute CMD_000_002 to build system utilities"
+                                 ],
+    "source_of_truth":  "D:\\\\NASRIUM\\\\Core\\\\Knowledge\\\\AI Governance Package"
+}

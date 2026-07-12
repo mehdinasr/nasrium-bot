@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "el",
+    "name":  "Greek",
+    "native":  "Ελληνικά",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Καλώς ήρθατε στο οικοσύστημα NASRIUM",
+                         "game.start":  "Έναρξη παιχνιδιού",
+                         "menu.settings":  "Ρυθμίσεις",
+                         "menu.language":  "Γλώσσα",
+                         "menu.profile":  "Προφίλ",
+                         "menu.village":  "Χωριό",
+                         "menu.resources":  "Πόροι",
+                         "menu.buildings":  "Κτίρια",
+                         "menu.upgrade":  "Αναβάθμιση",
+                         "menu.battle":  "Μάχη",
+                         "menu.wallet":  "Πορτοφόλι",
+                         "menu.leaderboard":  "Κατάταξη",
+                         "menu.missions":  "Αποστολές",
+                         "menu.shop":  "Κατάστημα",
+                         "menu.help":  "Βοήθεια"
+                     }
+}

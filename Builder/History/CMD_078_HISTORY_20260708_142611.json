@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_078",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 14:26:11",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Factions\\NSM_FACTION_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_FACTION_SYSTEM_SCHEMA_20260708_142611.json",
+    "SHA256":  "1FBB62B1E121782D89CAACA97F5D1B1C264B2D087C2B63ECDE7B18C0E9AE8872"
+}

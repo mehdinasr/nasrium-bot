@@ -1,0 +1,49 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260707154214
+Username: DESKTOP-TBP6NB0\nasr
+RunAs User: DESKTOP-TBP6NB0\nasr
+Configuration Name: 
+Machine: DESKTOP-TBP6NB0 (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\NASRIUM\Core\Tools\CMD_013_TOKENFILE.ps1
+Process ID: 4204
+PSVersion: 5.1.19041.7417
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.7417
+BuildVersion: 10.0.19041.7417
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+========================================
+NASRIUM - CMD_013_TOKENFILE (Token in File)
+========================================
+STEP 1/8 - Check app folder
+OK  - App folder exists
+STEP 2/8 - Stop previous bot process (if exists)
+OK  - No previous PID file
+STEP 3/8 - Ensure token file exists and open Notepad for paste
+
+اکنون Notepad باز میشود.
+توکن BotFather را داخل فایل Paste کنید سپس Ctrl+S بزنید و Notepad را ببندید.
+مسیر فایل توکن: D:\NASRIUM\Core\Secrets\telegram_bot_token.txt
+
+STEP 4/8 - Read token from file (token will not be printed)
+OK  - Token loaded. Length=46 (masked)
+STEP 5/8 - Write .env
+OK  - .env written
+STEP 6/8 - Disable webhook if active (allow long polling)
+OK  - Webhook not set
+STEP 7/8 - Install/build and start bot
+OK  - Bot started. PID=10340
+STEP 8/8 - Finish
+----------------------------------------
+DONE: CMD_013_TOKENFILE SUCCESS | Duration: 44.88s
+PID: 10340
+حالا در تلگرام /start را بزنید.
+----------------------------------------
+**********************
+Windows PowerShell transcript end
+End time: 20260707154259
+**********************

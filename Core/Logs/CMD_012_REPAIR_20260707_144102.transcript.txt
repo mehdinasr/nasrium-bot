@@ -1,0 +1,55 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260707144102
+Username: DESKTOP-TBP6NB0\nasr
+RunAs User: DESKTOP-TBP6NB0\nasr
+Configuration Name: 
+Machine: DESKTOP-TBP6NB0 (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\NASRIUM\Core\Tools\CMD_012_REPAIR.ps1
+Process ID: 2020
+PSVersion: 5.1.19041.7417
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.7417
+BuildVersion: 10.0.19041.7417
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+========================================
+NASRIUM - CMD_012_REPAIR
+========================================
+==> Creating project folders
+OK  - Folders created
+==> Writing package.json
+OK  - package.json written
+==> Writing tsconfig.json
+OK  - tsconfig.json written
+==> Writing .gitignore and .env.example
+OK  - .gitignore and .env.example written
+==> Writing TypeScript source files
+OK  - Source files written
+==> Installing dependencies
+
+added 17 packages in 16s
+npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn allow-scripts   esbuild@0.28.1 (postinstall: node install.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `np
+m approve-scripts <pkg>` to allow.
+OK  - npm install finished
+==> Running typecheck
+
+> nasrium-telegram-bot@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+OK  - typecheck passed
+==> Updating context and history
+----------------------------------------
+DONE: CMD_012_REPAIR SUCCESS | Duration: 20.18s
+App: D:\NASRIUM\Apps\telegram-bot
+Transcript: D:\NASRIUM\Core\Logs\CMD_012_REPAIR_20260707_144102.transcript.txt
+----------------------------------------
+**********************
+Windows PowerShell transcript end
+End time: 20260707144122
+**********************

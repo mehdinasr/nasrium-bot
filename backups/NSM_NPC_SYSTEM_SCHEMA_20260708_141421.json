@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_071",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:14:21"
+                 },
+    "NPCProfiles":  [
+                        {
+                            "Id":  "npc_001",
+                            "Name":  "Village Merchant",
+                            "Category":  "Merchant",
+                            "Level":  1,
+                            "IsQuestGiver":  false,
+                            "IsVendor":  true,
+                            "IsTrainer":  false,
+                            "RespawnTimeSeconds":  0
+                        },
+                        {
+                            "Id":  "npc_002",
+                            "Name":  "Captain Roland",
+                            "Category":  "Quest",
+                            "Level":  10,
+                            "IsQuestGiver":  true,
+                            "IsVendor":  false,
+                            "IsTrainer":  false,
+                            "RespawnTimeSeconds":  0
+                        },
+                        {
+                            "Id":  "npc_003",
+                            "Name":  "Master Blacksmith",
+                            "Category":  "Trainer",
+                            "Level":  25,
+                            "IsQuestGiver":  false,
+                            "IsVendor":  true,
+                            "IsTrainer":  true,
+                            "RespawnTimeSeconds":  0
+                        },
+                        {
+                            "Id":  "npc_004",
+                            "Name":  "Ancient Guardian",
+                            "Category":  "Boss",
+                            "Level":  80,
+                            "IsQuestGiver":  false,
+                            "IsVendor":  false,
+                            "IsTrainer":  false,
+                            "RespawnTimeSeconds":  7200
+                        }
+                    ]
+}

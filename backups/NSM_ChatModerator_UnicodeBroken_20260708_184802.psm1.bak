@@ -1,0 +1,75 @@
+# ================================================================================
+# NASRIUM CHAT MODERATOR MODULE (PATCHED v1.1)
+# ================================================================================
+function Initialize-NSMChatModerator {
+    [CmdletBinding()]
+    param ([Parameter(Mandatory=$true)][string]$SchemaPath)
+    process {
+        if (!(Test-Path $SchemaPath)) {
+            throw "Schema file not found: $SchemaPath"
+        }
+        $global:NSM_ChatSchema = Get-Content $SchemaPath -Raw | ConvertFrom-Json
+        Write-Verbose "NASRIUM Chat Moderator initialized successfully with patch v1.1."
+    }
+}
+
+function Test-NSMChatMessage {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true)][string]$Message,
+        [Parameter(Mandatory=$true)][string]$UserId
+    )
+    process {
+        if (!$global:NSM_ChatSchema) {
+            throw "Moderator engine is not initialized. Run Initialize-NSMChatModerator first."
+        }
+
+        # تحلیل پویا و حل مشکل عدم تطابق بزرگ‌کوچکی حروف فیلد طول پیام
+        $MaxLen = 100
+        if ($null -ne $global:NSM_ChatSchema.PSObject.Properties["MaxMessageLength"]) {
+            $MaxLen = $global:NSM_ChatSchema.MaxMessageLength
+        } elseif ($null -ne $global:NSM_ChatSchema.PSObject.Properties["max_message_length"]) {
+            $MaxLen = $global:NSM_ChatSchema.max_message_length
+        } elseif ($null -ne $global:NSM_ChatSchema.PSObject.Properties["maxMessageLength"]) {
+            $MaxLen = $global:NSM_ChatSchema.maxMessageLength
+        }
+
+        # تحلیل پویا و حل مشکل فیلد کلمات ممنوعه
+        $Words = @()
+        if ($null -ne $global:NSM_ChatSchema.PSObject.Properties["BlockedWords"]) {
+            $Words = $global:NSM_ChatSchema.BlockedWords
+        } elseif ($null -ne $global:NSM_ChatSchema.PSObject.Properties["blocked_words"]) {
+            $Words = $global:NSM_ChatSchema.blocked_words
+        } elseif ($null -ne $global:NSM_ChatSchema.PSObject.Properties["blockedWords"]) {
+            $Words = $global:NSM_ChatSchema.blockedWords
+        }
+
+        $Result = [ordered]@{
+            IsValid = $true
+            Reason  = "APPROVED"
+            Message = $Message
+        }
+
+        # بررسی طول پیام با مقدار عددی معتبر
+        if ($Message.Length -gt $MaxLen) {
+            $Result.IsValid = $false
+            $Result.Reason = "MESSAGE_TOO_LONG"
+            return [PSCustomObject]$Result
+        }
+
+        # بررسی کلمات ممنوعه
+        foreach ($Word in $Words) {
+            if ($null -ne $Word -and $Word -ne "") {
+                if ($Message -match "\b$([regex]::Escape($Word))\b" -or $Message -like "*$Word*") {
+                    $Result.IsValid = $false
+                    $Result.Reason = "CONTAIN_BLOCKED_WORDS"
+                    return [PSCustomObject]$Result
+                }
+            }
+        }
+
+        return [PSCustomObject]$Result
+    }
+}
+
+Export-ModuleMember -Function Initialize-NSMChatModerator, Test-NSMChatMessage

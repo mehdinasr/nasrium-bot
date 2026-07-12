@@ -1,0 +1,37 @@
+[
+  {
+    "MessageId": "3deee74d-dc4c-4b33-9c9c-ffadec86d153",
+    "ChannelId": "CH_20260708_GLOBALTEST",
+    "UserId": "USER_01",
+    "Message": "This is a clean and safe message for NASRIUM system.",
+    "Timestamp": "2026-07-08 18:45:21"
+  },
+  {
+    "MessageId": "c43940b3-e50d-4bff-9de3-f3f01720786d",
+    "ChannelId": "CH_20260708_GLOBALTEST",
+    "UserId": "USER_01",
+    "Message": "Attention! This message contains test_spam which is forbidden.",
+    "Timestamp": "2026-07-08 18:45:21"
+  },
+  {
+    "MessageId": "48ca9816-1748-49f5-b68d-62b9f1f89f9e",
+    "ChannelId": "CH_20260708_GLOBALTEST",
+    "UserId": "USER_01",
+    "Message": "This is a clean and safe message for NASRIUM system.",
+    "Timestamp": "2026-07-08 18:48:30"
+  },
+  {
+    "MessageId": "220b8fbd-926e-4f8b-8b4f-06ef4f15106c",
+    "ChannelId": "CH_20260708_GLOBALTEST",
+    "UserId": "USER_01",
+    "Message": "Attention! This message contains test_spam which is forbidden.",
+    "Timestamp": "2026-07-08 18:48:30"
+  },
+  {
+    "MessageId": "d363f428-8544-4f40-9d3b-fde377972f8f",
+    "ChannelId": "CH_20260708_GLOBALTEST",
+    "UserId": "USER_01",
+    "Message": "This is a clean and safe message for NASRIUM system.",
+    "Timestamp": "2026-07-08 18:53:23"
+  }
+]

@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_064",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:10:05"
+                 },
+    "MailProfiles":  [
+                         {
+                             "Id":  "mail_profile_001",
+                             "Name":  "Standard",
+                             "MaxInboxMessages":  100,
+                             "MaxAttachments":  5,
+                             "AttachmentSizeLimitMB":  25,
+                             "MailRetentionDays":  30,
+                             "AllowPlayerMail":  true,
+                             "AllowSystemMail":  true
+                         },
+                         {
+                             "Id":  "mail_profile_002",
+                             "Name":  "Premium",
+                             "MaxInboxMessages":  500,
+                             "MaxAttachments":  10,
+                             "AttachmentSizeLimitMB":  50,
+                             "MailRetentionDays":  90,
+                             "AllowPlayerMail":  true,
+                             "AllowSystemMail":  true
+                         },
+                         {
+                             "Id":  "mail_profile_003",
+                             "Name":  "Restricted",
+                             "MaxInboxMessages":  50,
+                             "MaxAttachments":  2,
+                             "AttachmentSizeLimitMB":  10,
+                             "MailRetentionDays":  15,
+                             "AllowPlayerMail":  false,
+                             "AllowSystemMail":  true
+                         },
+                         {
+                             "Id":  "mail_profile_004",
+                             "Name":  "Administrator",
+                             "MaxInboxMessages":  1000,
+                             "MaxAttachments":  20,
+                             "AttachmentSizeLimitMB":  100,
+                             "MailRetentionDays":  365,
+                             "AllowPlayerMail":  true,
+                             "AllowSystemMail":  true
+                         }
+                     ]
+}

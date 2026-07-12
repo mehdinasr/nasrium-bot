@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "ur",
+    "name":  "Urdu",
+    "native":  "اردو",
+    "rtl":  true,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "NASRIUM ایکو سسٹم میں خوش آمدید",
+                         "game.start":  "گیم شروع کریں",
+                         "menu.settings":  "ترتیبات",
+                         "menu.language":  "زبان",
+                         "menu.profile":  "پروفائل",
+                         "menu.village":  "گاؤں",
+                         "menu.resources":  "وسائل",
+                         "menu.buildings":  "عمارتیں",
+                         "menu.upgrade":  "اپ گریڈ",
+                         "menu.battle":  "جنگ",
+                         "menu.wallet":  "والیٹ",
+                         "menu.leaderboard":  "لیڈر بورڈ",
+                         "menu.missions":  "مشن",
+                         "menu.shop":  "دکان",
+                         "menu.help":  "مدد"
+                     }
+}

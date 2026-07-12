@@ -1,0 +1,18 @@
+{
+    "Username":  "Player1",
+    "LastLogin":  "2026-07-10 12:02:29",
+    "Buildings":  {
+                      "AI_CORE":  {
+                                      "Level":  1
+                                  },
+                      "DATA_MINER":  {
+                                         "IsUpgrading":  false,
+                                         "Level":  3
+                                     }
+                  },
+    "Id":  "TEST_USER_001",
+    "Resources":  {
+                      "Bandwidth":  70,
+                      "Credits":  5690
+                  }
+}

@@ -1,0 +1,32 @@
+﻿{
+  "Project":"NASRIUM",
+  "Version":"1.0",
+  "Roadmap":[
+    {
+      "ID":"P001",
+      "Title":"Core Infrastructure",
+      "Status":"InProgress"
+    },
+    {
+      "ID":"P002",
+      "Title":"Telegram Game Platform",
+      "Status":"InProgress"
+    },
+    {
+      "ID":"P003",
+      "Title":"Blockchain Integration",
+      "Status":"Planned"
+    },
+    {
+      "ID":"P004",
+      "Title":"AI Services",
+      "Status":"Planned"
+    },
+    {
+      "ID":"P005",
+      "Title":"Production Release",
+      "Status":"Planned"
+    }
+  ],
+  "Description":"High level roadmap for NASRIUM."
+}

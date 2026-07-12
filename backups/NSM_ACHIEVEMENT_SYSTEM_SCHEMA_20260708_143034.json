@@ -1,0 +1,45 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_080",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:30:34"
+                 },
+    "Achievements":  [
+                         {
+                             "Id":  "achievement_001",
+                             "Name":  "First Steps",
+                             "Category":  "Progress",
+                             "Description":  "Complete the tutorial.",
+                             "Points":  10,
+                             "Hidden":  false,
+                             "Repeatable":  false
+                         },
+                         {
+                             "Id":  "achievement_002",
+                             "Name":  "Monster Hunter",
+                             "Category":  "Combat",
+                             "Description":  "Defeat 100 enemies.",
+                             "Points":  50,
+                             "Hidden":  false,
+                             "Repeatable":  false
+                         },
+                         {
+                             "Id":  "achievement_003",
+                             "Name":  "Master Explorer",
+                             "Category":  "Exploration",
+                             "Description":  "Discover all regions.",
+                             "Points":  100,
+                             "Hidden":  false,
+                             "Repeatable":  false
+                         },
+                         {
+                             "Id":  "achievement_004",
+                             "Name":  "Secret Legend",
+                             "Category":  "Hidden",
+                             "Description":  "Unlock the hidden ending.",
+                             "Points":  250,
+                             "Hidden":  true,
+                             "Repeatable":  false
+                         }
+                     ]
+}

@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "id",
+    "name":  "Indonesian",
+    "native":  "Bahasa Indonesia",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Selamat datang di ekosistem NASRIUM",
+                         "game.start":  "Mulai Permainan",
+                         "menu.settings":  "Pengaturan",
+                         "menu.language":  "Bahasa",
+                         "menu.profile":  "Profil",
+                         "menu.village":  "Desa",
+                         "menu.resources":  "Sumber Daya",
+                         "menu.buildings":  "Bangunan",
+                         "menu.upgrade":  "Tingkatkan",
+                         "menu.battle":  "Pertempuran",
+                         "menu.wallet":  "Dompet",
+                         "menu.leaderboard":  "Papan Peringkat",
+                         "menu.missions":  "Misi",
+                         "menu.shop":  "Toko",
+                         "menu.help":  "Bantuan"
+                     }
+}

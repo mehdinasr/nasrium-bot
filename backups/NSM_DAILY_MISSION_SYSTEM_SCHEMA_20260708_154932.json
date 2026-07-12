@@ -1,0 +1,48 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_083",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 15:49:32"
+                 },
+    "DailyMissions":  [
+                          {
+                              "Id":  "daily_001",
+                              "Name":  "Train Troops",
+                              "Category":  "Military",
+                              "Target":  100,
+                              "Reset":  "Daily",
+                              "Reward":  {
+                                             "Gold":  500,
+                                             "XP":  100,
+                                             "Gems":  5
+                                         },
+                              "Active":  true
+                          },
+                          {
+                              "Id":  "daily_002",
+                              "Name":  "Collect Resources",
+                              "Category":  "Economy",
+                              "Target":  5000,
+                              "Reset":  "Daily",
+                              "Reward":  {
+                                             "Gold":  1000,
+                                             "XP":  150,
+                                             "Gems":  10
+                                         },
+                              "Active":  true
+                          },
+                          {
+                              "Id":  "daily_003",
+                              "Name":  "Win Battles",
+                              "Category":  "Battle",
+                              "Target":  5,
+                              "Reset":  "Daily",
+                              "Reward":  {
+                                             "Gold":  1500,
+                                             "XP":  250,
+                                             "Gems":  15
+                                         },
+                              "Active":  true
+                          }
+                      ]
+}

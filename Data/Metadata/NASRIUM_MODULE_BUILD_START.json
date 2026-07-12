@@ -1,0 +1,9 @@
+﻿{
+    "System":  "NASRIUM",
+    "Command":  "CMD_094",
+    "Previous":  "CMD_093",
+    "ActivationState":  "ACTIVATED",
+    "Authorization":  "AUTHORIZED",
+    "ModuleStatus":  "READY_TO_BUILD",
+    "StartTime":  "2026-07-08 22:26:01"
+}

@@ -1,0 +1,106 @@
+﻿{
+    "schema":  "2.0",
+    "created":  "2026-07-07 22:51:31",
+    "document":  "Game Economy Design",
+    "philosophy":  {
+                       "hardcoded_values":  false,
+                       "formula_based":  true,
+                       "blockchain_ready":  true,
+                       "goal":  "اقتصاد پایدار ضد تورم و قابل توسعه"
+                   },
+    "currencies":  [
+                       {
+                           "blockchain":  false,
+                           "tradable":  false,
+                           "category":  "Game",
+                           "id":  "gold"
+                       },
+                       {
+                           "blockchain":  false,
+                           "tradable":  false,
+                           "category":  "Game",
+                           "id":  "wood"
+                       },
+                       {
+                           "blockchain":  false,
+                           "tradable":  false,
+                           "category":  "Game",
+                           "id":  "stone"
+                       },
+                       {
+                           "blockchain":  false,
+                           "tradable":  false,
+                           "category":  "Game",
+                           "id":  "food"
+                       },
+                       {
+                           "blockchain":  false,
+                           "tradable":  true,
+                           "category":  "Premium",
+                           "id":  "crystal"
+                       },
+                       {
+                           "blockchain":  false,
+                           "tradable":  false,
+                           "category":  "Gameplay",
+                           "id":  "energy"
+                       },
+                       {
+                           "blockchain":  true,
+                           "tradable":  true,
+                           "category":  "Blockchain",
+                           "id":  "nsm"
+                       }
+                   ],
+    "production_engine":  {
+                              "formula":  "Base  BuildingLevel  Research  Hero  Alliance  Event  ServerModifier  VIP",
+                              "calculated":  true
+                          },
+    "consumption_engine":  {
+                               "training":  true,
+                               "trading":  true,
+                               "upgrade":  true,
+                               "research":  true,
+                               "crafting":  true,
+                               "healing":  true
+                           },
+    "economy_sink":  {
+                         "marketplace_tax":  true,
+                         "hero_upgrade":  true,
+                         "troop_training":  true,
+                         "building_upgrade":  true,
+                         "crafting":  true,
+                         "research":  true
+                     },
+    "economy_source":  {
+                           "production":  true,
+                           "events":  true,
+                           "airdrop":  true,
+                           "missions":  true,
+                           "battles":  true,
+                           "marketplace":  true
+                       },
+    "storage":  {
+                    "depends_on":  "Warehouse",
+                    "dynamic":  true
+                },
+    "marketplace":  {
+                        "tax":  "Configurable",
+                        "auction":  "Future",
+                        "enabled":  true
+                    },
+    "balancing":  {
+                      "configurable":  true,
+                      "inflation_control":  true,
+                      "event_modifier":  true,
+                      "server_modifier":  true
+                  },
+    "future_modules":  [
+                           "NFT",
+                           "DAO",
+                           "Staking",
+                           "Guild Treasury",
+                           "Cross Server Trade"
+                       ],
+    "next":  "GDD_003"
+}

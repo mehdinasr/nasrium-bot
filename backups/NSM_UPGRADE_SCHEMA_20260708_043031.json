@@ -1,0 +1,57 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_037",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:30:31"
+                 },
+    "Upgrades":  [
+                     {
+                         "Id":  "upgrade_001",
+                         "Category":  "Hero",
+                         "Level":  1,
+                         "CostGold":  100,
+                         "CostGem":  0,
+                         "RequiredItem":  "",
+                         "SuccessRate":  100,
+                         "AttackBonus":  5,
+                         "DefenseBonus":  2,
+                         "HPBonus":  20
+                     },
+                     {
+                         "Id":  "upgrade_002",
+                         "Category":  "Hero",
+                         "Level":  2,
+                         "CostGold":  250,
+                         "CostGem":  0,
+                         "RequiredItem":  "item_004",
+                         "SuccessRate":  100,
+                         "AttackBonus":  10,
+                         "DefenseBonus":  5,
+                         "HPBonus":  40
+                     },
+                     {
+                         "Id":  "upgrade_003",
+                         "Category":  "Equipment",
+                         "Level":  1,
+                         "CostGold":  500,
+                         "CostGem":  0,
+                         "RequiredItem":  "item_004",
+                         "SuccessRate":  95,
+                         "AttackBonus":  15,
+                         "DefenseBonus":  10,
+                         "HPBonus":  50
+                     },
+                     {
+                         "Id":  "upgrade_004",
+                         "Category":  "Equipment",
+                         "Level":  2,
+                         "CostGold":  1200,
+                         "CostGem":  5,
+                         "RequiredItem":  "item_004",
+                         "SuccessRate":  85,
+                         "AttackBonus":  30,
+                         "DefenseBonus":  20,
+                         "HPBonus":  100
+                     }
+                 ]
+}
