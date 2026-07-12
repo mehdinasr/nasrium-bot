@@ -61,3 +61,8 @@ bot.catch((err) => {
 // راه‌اندازی ربات
 console.log("🚀 [NASRIUM] ربات با موفقیت فعال شد و در حال گوش دادن به پیام‌ها است...");
 bot.start();
+
+// Railway Health Check
+app.get('/', (req, res) => {
+    res.status(200).json({ status: 'ok', service: 'nasrium-bot' });
+});
