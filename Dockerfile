@@ -1,7 +1,16 @@
 ﻿FROM node:18-alpine
 WORKDIR /app
-COPY bot/package*.json ./
+
+# Copy package files from root
+COPY package*.json ./
 RUN npm install
-COPY bot/ ./
+
+# Copy source files
+COPY bot/src ./src
+COPY bot/.env ./.env
+
+# Expose port
 EXPOSE 8080
-CMD ["npm", "start"]
+
+# Start command
+CMD ["node", "src/index.js"]
