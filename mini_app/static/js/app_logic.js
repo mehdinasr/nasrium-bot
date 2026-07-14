@@ -3719,3 +3719,69 @@ function injectAdvancedBanking() {
     }
 }
 setInterval(injectAdvancedBanking, 2000);
+// --- CMD_976: Quantum Node Deployment UI ---
+async function deployQuantumNode() {
+    const confirm = window.confirm("Deploying a Quantum Node costs 50,000,000 IXP. This node will earn you network fees. Proceed?");
+    if(!confirm) return;
+
+    const res = await fetch('/api/empire/nodes/deploy', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) location.reload();
+}
+
+// --- CMD_977: DAO Governance UI ---
+function openDAOPanel() {
+    const daoOverlay = document.createElement('div');
+    daoOverlay.id = 'dao-ui';
+    daoOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); z-index:10026; padding:20px; box-sizing:border-box; color:white; font-family:serif; text-align:center;";
+    
+    daoOverlay.innerHTML = `
+        <h1 style="color:gold; text-shadow:0 0 10px gold;">NASRIUM DAO</h1>
+        <p style="font-size:0.7em; color:#aaa;">Sovereign Decisions shaping the Pure Ecosystem</p>
+        <div style="margin-top:40px; border:2px solid gold; padding:20px; background:rgba(255,215,0,0.05);">
+            <p>Proposal #977-A: Decrease System Inflation by 2%?</p>
+            <div style="display:flex; gap:10px; margin-top:20px;">
+                <button onclick="castDaoVote('PROP_977_A', 'YES')" style="flex:1; padding:15px; background:gold; color:black; font-weight:bold;">VOTE YES</button>
+                <button onclick="castDaoVote('PROP_977_A', 'NO')" style="flex:1; padding:15px; background:transparent; border:1px solid gold; color:gold;">VOTE NO</button>
+            </div>
+        </div>
+        <button onclick="document.getElementById('dao-ui').remove()" style="margin-top:40px; background:none; border:none; color:#555; cursor:pointer;">EXIT DAO</button>
+    `;
+    document.body.appendChild(daoOverlay);
+}
+
+async function castDaoVote(propId, vote) {
+    const res = await fetch('/api/empire/dao/vote', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, prop_id: propId, vote: vote })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+function injectSovButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('dao-btn')) {
+        const dBtn = document.createElement('button');
+        dBtn.id = 'dao-btn';
+        dBtn.innerHTML = '⚖️ SOVEREIGN DAO';
+        dBtn.onclick = openDAOPanel;
+        dBtn.style = "margin-top:10px; width:100%; background:#111; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        
+        const nBtn = document.createElement('button');
+        nBtn.id = 'node-btn';
+        nBtn.innerHTML = '⚛️ DEPLOY QUANTUM NODE';
+        nBtn.onclick = deployQuantumNode;
+        nBtn.style = "margin-top:10px; width:100%; background:gold; color:black; border:none; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        
+        zone.appendChild(dBtn);
+        zone.appendChild(nBtn);
+    }
+}
+setInterval(injectSovButtons, 2000);
