@@ -179,3 +179,46 @@ initGame = async () => {
     await oldInit496();
     updateProsperity();
 };
+async function loadGridAlerts() {
+    try {
+        const res = await fetch('/api/military/rebellion/alerts');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('rebellion-zone');
+            const alerts = Object.keys(data.alerts).map(id => {
+                const a = data.alerts[id];
+                const pct = (a.hp / a.max_hp) * 100;
+                return `
+                    <div class="zone-card" style="border: 2px solid #ff4d4d; background: rgba(255,0,0,0.1); margin-top:10px; animation: blink-red 2s infinite;">
+                        <div class="zone-title" style="color: #ff4d4d;">⚠️ GRID ALERT: ${a.name}</div>
+                        <div style="padding:10px; text-align:center;">
+                            <p style="font-size:0.5em; color:#fff;">Targeting ${id}. Threat Level: ${a.threat_lvl}</p>
+                            <div style="width:100%; height:5px; background:#222; border-radius:3px; margin:5px 0;">
+                                <div style="width:${pct}%; height:100%; background:#ff4d4d;"></div>
+                            </div>
+                            <button onclick="fightRebel('${id}')" style="width:100%; background:#ff4d4d; color:#fff; border:none; padding:5px; font-weight:bold; font-size:0.6em; border-radius:3px;">SUPPRESS INCURSION</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            container.innerHTML = alerts || "";
+        }
+    } catch(e) {}
+}
+
+async function fightRebel(sid) {
+    const res = await fetch('/api/military/rebellion/suppress', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, sector_id: sid })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { initGame(); loadGridAlerts(); }
+}
+
+const oldInit497 = initGame;
+initGame = async () => {
+    await oldInit497();
+    loadGridAlerts();
+};
