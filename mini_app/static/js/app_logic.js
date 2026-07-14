@@ -2799,3 +2799,54 @@ function injectReferralUI() {
     }
 }
 setInterval(injectReferralUI, 2000);
+async function openCommanderDashboard() {
+    // این تابع فقط برای یوزر آیدی مهدی فراخوانی می‌شود
+    const res = await fetch(`/api/admin/overview?user_id=COMMANDER_MEHDI`);
+    const data = await res.json();
+    
+    if(!data.success) { alert(data.error); return; }
+    
+    const stats = data.stats;
+    const adminOverlay = document.createElement('div');
+    adminOverlay.id = 'admin-ui';
+    adminOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:99999; padding:20px; box-sizing:border-box; color:red; font-family:monospace; border:5px solid red;";
+    
+    adminOverlay.innerHTML = `
+        <h1 style="text-align:center; text-shadow:0 0 10px red;">SOVEREIGN COMMAND CENTER</h1>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:30px;">
+            <div style="border:1px solid red; padding:15px;">
+                <p>TOTAL CITIZENS</p>
+                <h2 style="color:white;">${stats.total_citizens}</h2>
+            </div>
+            <div style="border:1px solid red; padding:15px;">
+                <p>IXP IN CIRCULATION</p>
+                <h2 style="color:white;">${stats.total_ixp_circulation.toLocaleString()}</h2>
+            </div>
+            <div style="border:1px solid red; padding:15px;">
+                <p>ACTIVE MINERS</p>
+                <h2 style="color:white;">${stats.active_miners}</h2>
+            </div>
+            <div style="border:1px solid red; padding:15px;">
+                <p>SYSTEM LOAD</p>
+                <h2 style="color:#0f0;">${stats.system_load}</h2>
+            </div>
+        </div>
+        <div style="margin-top:30px; text-align:center;">
+            <p>BROADCAST EMERGENCY SIGNAL</p>
+            <input type="text" id="admin-msg" style="width:100%; background:#111; border:1px solid red; color:white; padding:10px;">
+            <button onclick="sendGlobalAlert()" style="margin-top:10px; width:100%; padding:15px; background:red; color:white; font-weight:bold; cursor:pointer;">ACTIVATE BROADCAST</button>
+        </div>
+        <button onclick="document.getElementById('admin-ui').remove()" style="margin-top:40px; color:white; background:none; border:none; cursor:pointer; width:100%;">[CLOSE COMMAND CENTER]</button>
+    `;
+    document.body.appendChild(adminOverlay);
+}
+
+async function sendGlobalAlert() {
+    const msg = document.getElementById('admin-msg').value;
+    await fetch('/api/empire/broadcast/send', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: 'COMMANDER_MEHDI', content: msg, type: 'EMERGENCY' })
+    });
+    alert("Emergency signal broadcasted to all sectors.");
+}
