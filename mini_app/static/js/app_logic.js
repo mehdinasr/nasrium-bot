@@ -3058,3 +3058,49 @@ function injectEvolutionButtons() {
     }
 }
 injectEvolutionButtons();
+// --- CMD_935: World Event Banner ---
+async function updateWorldEvent() {
+    const res = await fetch('/api/world/status');
+    const data = await res.json();
+    const event = data.current_event;
+
+    let banner = document.getElementById('world-event-banner');
+    if(!banner) {
+        banner = document.createElement('div');
+        banner.id = 'world-event-banner';
+        banner.style = "position:fixed; top:0; left:0; width:100%; background:linear-gradient(to right, #6a11cb, #2575fc); color:white; font-size:0.6em; text-align:center; padding:5px; z-index:200002; font-weight:bold; letter-spacing:1px;";
+        document.body.appendChild(banner);
+    }
+    banner.innerHTML = `🌍 WORLD EVENT: ${event.name} (${event.effect})`;
+}
+
+// --- CMD_937: Artifact Discovery ---
+async function scanForArtifacts() {
+    const res = await fetch('/api/player/find_artifact', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    if(data.success) {
+        showEpicNotification("ARTIFACT FOUND!", `You discovered a ${data.artifact.name}: ${data.artifact.buff}`, "magenta");
+    }
+}
+
+// اجرای دوره‌ای
+setInterval(updateWorldEvent, 60000);
+updateWorldEvent();
+
+// اضافه کردن اسکنر به بخش استخراج
+function injectScanner() {
+    const mineZone = document.getElementById('mining-ui');
+    if(mineZone && !document.getElementById('scan-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'scan-btn';
+        btn.innerHTML = '🔍 SCAN FOR ARTIFACTS';
+        btn.onclick = scanForArtifacts;
+        btn.style = "margin-top:10px; width:100%; background:transparent; border:1px solid magenta; color:magenta; padding:10px; font-size:0.7em; cursor:pointer;";
+        mineZone.appendChild(btn);
+    }
+}
+setInterval(injectScanner, 2000);

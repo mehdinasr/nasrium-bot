@@ -1,3 +1,4 @@
+from Core.App.DynamicsEngines import WorldEvents, CyberShield, ArtifactEngine
 from Core.App.EvolutionEngines import ExchangeEngine, AIAwakening, GovernanceEngine
 from Core.App.CloudBridge import CloudBridge
 from Core.App.VisualEngine import VisualEngine
