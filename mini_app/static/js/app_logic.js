@@ -1686,3 +1686,47 @@ function injectVaultButton() {
     }
 }
 injectVaultButton();
+async function openGlobalEmbassy() {
+    const res = await fetch(`/api/embassy/passport?user_id=${userId}`);
+    const res2 = await fetch(`/api/embassy/alliances`);
+    const data = await res.json();
+    const alliances = await res2.json();
+
+    const embassyDiv = document.createElement('div');
+    embassyDiv.id = 'embassy-ui';
+    embassyDiv.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg, #001f3f 0%, #000 100%); z-index:10000; color:#00d4ff; padding:20px; font-family:sans-serif; overflow-y:auto;";
+    
+    let allianceList = alliances.alliances.map(a => `<li style="list-style:none; color:#aaa; margin:5px 0;">💠 ${a}</li>`).join('');
+
+    embassyDiv.innerHTML = `
+        <div style="text-align:center; border-bottom:1px solid #00d4ff; padding-bottom:15px;">
+            <h1 style="letter-spacing:3px;">GLOBAL EMBASSY</h1>
+            <p style="font-size:0.8em;">INTERNATIONAL DIPLOMACY GATEWAY</p>
+        </div>
+        <div style="margin-top:20px; background:rgba(255,255,255,0.05); padding:15px; border-radius:10px;">
+            <h3>DIPLOMATIC PASSPORT</h3>
+            <p style="font-size:1.2em; font-weight:bold; color:#fff;">CODE: ${data.passport}</p>
+            <button onclick="navigator.clipboard.writeText('${data.passport}'); alert('Passport Copied!')" style="background:#00d4ff; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; font-weight:bold;">COPY CODE</button>
+        </div>
+        <div style="margin-top:20px;">
+            <h3>ACTIVE ALLIANCES</h3>
+            <ul>${allianceList}</ul>
+        </div>
+        <button onclick="document.getElementById('embassy-ui').remove()" style="width:100%; margin-top:30px; padding:15px; background:transparent; border:1px solid #00d4ff; color:#00d4ff; font-weight:bold; cursor:pointer;">EXIT EMBASSY</button>
+    `;
+    document.body.appendChild(embassyDiv);
+}
+
+// اضافه کردن دکمه سفارت به هاب اصلی
+function injectEmbassyLink() {
+    const hub = document.getElementById('neural-hub-zone');
+    if(hub && !document.getElementById('embassy-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'embassy-btn';
+        btn.innerHTML = '🌐 GLOBAL EMBASSY';
+        btn.onclick = openGlobalEmbassy;
+        btn.style = "margin-top:10px; width:100%; background:#001f3f; color:#00d4ff; border:1px solid #00d4ff; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        hub.appendChild(btn);
+    }
+}
+injectEmbassyLink();
