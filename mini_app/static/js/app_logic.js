@@ -494,3 +494,19 @@ initGame = async () => {
         header.appendChild(controls);
     }
 };
+async function applyUnificationSeal() {
+    console.log("APPLYING THE UNIFICATION SEAL...");
+    const brandElements = document.querySelectorAll('.brand-text');
+    brandElements.forEach(el => {
+        // اگر زبان سیستم فارسی باشد، نام را تغییر بده (ساده‌سازی شده)
+        el.innerText = "نصریوم"; 
+    });
+}
+
+// انیمیشن مهر نهایی در لود اولیه
+const originalInit506 = initGame;
+initGame = async () => {
+    await originalInit506();
+    applyUnificationSeal();
+    console.log("نصریوم IS READY FOR THE WORLD.");
+};

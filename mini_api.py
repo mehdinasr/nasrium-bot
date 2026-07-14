@@ -1,3 +1,4 @@
+from Core.App.UnificationEngine import UnificationEngine
 from Core.App.AREngine import AREngine
 from Core.App.TranslationEngine import TranslationEngine
 from Core.App.DevPortalEngine import DevPortalEngine
@@ -336,7 +337,7 @@ def player_init():
 
         player = EnergyEngine.sync_energy(player)
         if not player:
-            # ایجاد شهروند جدید در ناصریوم
+            # ایجاد شهروند جدید در نصریوم
             player = {
                 "user_id": user_id,
                 "username": data.get('username', 'Unknown'),
