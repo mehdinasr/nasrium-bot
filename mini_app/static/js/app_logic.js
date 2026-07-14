@@ -3292,3 +3292,62 @@ async function showAIEvolution() {
 
 setInterval(updateEnergyUI, 30000);
 updateEnergyUI();
+// --- CMD_951: Big Bang Ticker ---
+async function startBigBangTicker() {
+    const res = await fetch('/api/empire/event/bigbang');
+    const data = await res.json();
+    const event = data.event;
+
+    if(event.is_active) {
+        let ticker = document.getElementById('big-bang-ticker');
+        if(!ticker) {
+            ticker = document.createElement('div');
+            ticker.id = 'big-bang-ticker';
+            ticker.style = "position:fixed; top:30px; right:10px; background:red; color:white; padding:5px 10px; font-size:10px; font-weight:bold; z-index:200003; border-radius:5px; animation: pulse 1s infinite;";
+            document.body.appendChild(ticker);
+        }
+        ticker.innerHTML = `⚠️ BIG BANG IN: ${Math.floor(event.seconds_left / 3600)}h ${Math.floor((event.seconds_left % 3600) / 60)}m`;
+    }
+}
+
+// --- CMD_952: Virtual Command Post (Cockpit) ---
+async function openCommandPost() {
+    const res = await fetch(`/api/player/cockpit?user_id=${userId}`);
+    const data = await res.json();
+    const v = data.view;
+
+    const cockpitOverlay = document.createElement('div');
+    cockpitOverlay.id = 'cockpit-ui';
+    cockpitOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10019; padding:20px; box-sizing:border-box; color:#00ff00; font-family:monospace; border: 2px solid #333;";
+    
+    cockpitOverlay.innerHTML = `
+        <div style="border-bottom:1px solid #00ff00; padding-bottom:10px; margin-bottom:20px; display:flex; justify-content:space-between;">
+            <span>VIRTUAL COMMAND POST v1.0</span>
+            <span style="color:red;">SYNC: ${v.ai_sync}</span>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+            <div style="background:#111; padding:15px; border-radius:5px;">SYSTEM INTEGRITY: ${v.integrity}</div>
+            <div style="background:#111; padding:15px; border-radius:5px;">SHIELD: ${v.shield_level}%</div>
+            <div style="background:#111; padding:15px; border-radius:5px;">STATUS: ${v.system_status}</div>
+            <div style="background:#111; padding:15px; border-radius:5px;">HEIR STATUS: NOMINATED</div>
+        </div>
+        <button onclick="document.getElementById('cockpit-ui').remove()" style="width:100%; margin-top:40px; padding:15px; background:#00ff00; color:black; border:none; font-weight:bold; cursor:pointer;">EXIT COCKPIT</button>
+    `;
+    document.body.appendChild(cockpitOverlay);
+}
+
+function injectLegacyButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('cockpit-btn')) {
+        const cBtn = document.createElement('button');
+        cBtn.id = 'cockpit-btn';
+        cBtn.innerHTML = '🎛️ COMMAND POST';
+        cBtn.onclick = openCommandPost;
+        cBtn.style = "margin-top:10px; width:100%; background:#111; color:#00ff00; border:1px solid #00ff00; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(cBtn);
+    }
+}
+
+setInterval(startBigBangTicker, 60000);
+startBigBangTicker();
+setInterval(injectLegacyButtons, 2000);
