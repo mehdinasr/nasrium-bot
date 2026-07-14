@@ -3522,3 +3522,67 @@ function injectPowerButtons() {
     }
 }
 setInterval(injectPowerButtons, 2000);
+// --- CMD_963: Imperial CCTV Feed ---
+async function refreshCCTV() {
+    const res = await fetch('/api/empire/cctv');
+    const data = await res.json();
+    const feed = document.getElementById('cctv-feed');
+    if(feed) {
+        feed.innerHTML = data.logs.map(l => `
+            <div style="font-size:0.6em; border-bottom:1px solid #222; margin-bottom:2px;">
+                <span style="color:cyan;">[${l.time}]</span> <span style="color:white;">${l.type}:</span> ${l.desc}
+            </div>
+        `).join('');
+    }
+}
+
+// --- CMD_964: Virus Purge Minigame ---
+function startVirusPurge() {
+    let clicks = 0;
+    const purgeOverlay = document.createElement('div');
+    purgeOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,50,0,0.95); z-index:10030; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#0f0; font-family:monospace;";
+    purgeOverlay.innerHTML = `
+        <h2>SYSTEM CONTAMINATION DETECTED</h2>
+        <p>CLICK TO PURGE VIRUSES!</p>
+        <div id="virus-target" onclick="this.style.transform='scale(1.2)'; setTimeout(()=>this.style.transform='scale(1)',100); clicks++" style="width:100px; height:100px; background:red; border-radius:50%; box-shadow:0 0 20px red; cursor:pointer; transition:0.1s;"></div>
+        <p id="purge-timer">Time: 10s</p>
+    `;
+    document.body.appendChild(purgeOverlay);
+
+    let timeLeft = 10;
+    const interval = setInterval(() => {
+        timeLeft--;
+        document.getElementById('purge-timer').innerText = `Time: ${timeLeft}s`;
+        if(timeLeft <= 0) {
+            clearInterval(interval);
+            fetch('/api/empire/purge', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ user_id: userId, clicks: clicks })
+            }).then(r => r.json()).then(d => {
+                alert(`Purge Complete! Reward: ${d.reward} IXP`);
+                purgeOverlay.remove();
+                if(typeof initGame === 'function') initGame();
+            });
+        }
+    }, 1000);
+}
+
+function injectIntelUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('cctv-feed')) {
+        const feed = document.createElement('div');
+        feed.id = 'cctv-feed';
+        feed.style = "margin-top:10px; height:60px; overflow-y:auto; background:#111; padding:5px; border:1px solid #333; border-radius:5px;";
+        
+        const pBtn = document.createElement('button');
+        pBtn.innerHTML = '🛡️ SYSTEM PURGE';
+        pBtn.onclick = startVirusPurge;
+        pBtn.style = "margin-top:5px; width:100%; background:#002200; color:#0f0; border:1px solid #0f0; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        
+        zone.appendChild(feed);
+        zone.appendChild(pBtn);
+        setInterval(refreshCCTV, 10000);
+    }
+}
+setInterval(injectIntelUI, 2000);

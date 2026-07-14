@@ -1,3 +1,5 @@
+from Core.App.IntelligenceEngines import ImperialCCTV, VirusPurge, EncryptedComms
+from Core.App.CommsBridge import CommsBridge
 from Core.App.PowerEngines import SovereignCouncil, LegionFinanceV2, ZenithMarket
 from Core.App.SovereignEngines import SoulBoundTokens, TheOracle, ImperialMintV2
 from Core.App.DominanceEngines import NeuralImplants, DiplomacyManager, WorldBoss
@@ -849,7 +851,8 @@ def syn_donate():
         data = request.json
         player = PlayerRepository.get_player(data.get('user_id'))
         success, msg = SyndicateEngine.donate(PlayerRepository.get_db(), player, int(data.get('amount', 0)))
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 
@@ -864,6 +867,7 @@ def market_list():
 def market_buy():
     data = request.json
     success, msg = TradeEngine.buy_item(PlayerRepository.get_db(), data.get('user_id'), data.get('listing_id'))
+    if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
     return jsonify({'success': success, 'message': msg})
 
 
@@ -1020,7 +1024,8 @@ def syn_declare_war():
         if success:
             PlayerRepository.broadcast_to_all(f"⚔️ WAR ALERT: Syndicate [{my_syn}] has declared war on [{target_syn}]!")
             
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 @app.route('/api/world/war_pool', methods=['GET'])
@@ -1050,7 +1055,8 @@ def gov_vote():
         if success:
             PlayerRepository.add_log(u_id, f"Voted {v_type.upper()} on Proposal {p_id}. {msg}")
             
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 
@@ -1090,7 +1096,8 @@ def chat_send():
         u_id = data.get('user_id')
         user = PlayerRepository.get_player(u_id)
         success, msg = ChatEngine.post_message(PlayerRepository.get_db(), u_id, user.get('username', 'Citizen'), data.get('text'))
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 @app.route('/api/chat/history', methods=['GET'])
@@ -1118,7 +1125,8 @@ def web3_withdraw():
         if success:
             PlayerRepository.add_log(u_id, f"Withdrawal Requested: {amount} NSM. Status: Pending.")
             
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 
@@ -1184,6 +1192,7 @@ def list_resource():
     data = request.json
     db = PlayerRepository.get_db()
     success, msg = MarketEngine.list_gold_bundle(db, data['user_id'], int(data['amount']), int(data['price']))
+    if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
     return jsonify({'success': success, 'message': msg})
 
 
@@ -1381,7 +1390,8 @@ def syn_resolve_war():
         if success:
             PlayerRepository.broadcast_to_all(f"📢 WAR REPORT: {msg}")
             
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 
@@ -1430,7 +1440,8 @@ def syn_vault_deposit():
         if success:
             PlayerRepository.add_log(u_id, f"SYNDICATE DEPOSIT: {amount} NSM.")
             
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 
@@ -1449,7 +1460,8 @@ def claim_territory():
         player = PlayerRepository.get_player(u_id)
         
         success, msg = TerritoryEngine.claim_sector(db, player, s_id)
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 
@@ -1547,7 +1559,8 @@ def syn_tech_contribute():
         player = PlayerRepository.get_player(data.get('user_id'))
         db = PlayerRepository.get_db()
         success, msg = SyndicateTechEngine.contribute_to_tech(db, player, data.get('tech_id'), int(data.get('amount')))
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 
@@ -1764,7 +1777,8 @@ def claim_airdrop_quest():
             PlayerRepository.create_or_update_player(player)
             PlayerRepository.add_log(u_id, f"AIRDROP MISSION: {msg}")
             
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 
@@ -1866,7 +1880,8 @@ def place_bounty():
         data = request.json
         u_id = data.get('user_id'); t_id = data.get('target_id'); amt = int(data.get('amount'))
         success, msg = BountyEngine.place_bounty(None, u_id, t_id, amt)
-        return jsonify({'success': success, 'message': msg})
+        if success: CommsBridge.bridge_to_telegram(u_id, player.get('rank'), text)
+    return jsonify({'success': success, 'message': msg})
     except Exception as e: return jsonify({'error': str(e)}), 500
 
 @app.route('/api/combat/bounty/list', methods=['GET'])
