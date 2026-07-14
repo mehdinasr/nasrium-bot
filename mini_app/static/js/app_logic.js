@@ -2917,3 +2917,37 @@ function startImperialTour() {
 // اجرای اولیه
 initTurboLoad();
 setTimeout(startImperialTour, 3000);
+async function launchEmpire() {
+    // CMD_930: غیرفعال کردن تمام برچسب‌های TEST و فعال‌سازی محیط LIVE
+    document.body.classList.add('nasrium-live');
+    
+    const openingOverlay = document.createElement('div');
+    openingOverlay.id = 'grand-opening';
+    openingOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:300000; display:flex; flex-direction:column; align-items:center; justify-content:center; color:gold; text-align:center;";
+    
+    openingOverlay.innerHTML = `
+        <video autoplay muted loop style="position:absolute; width:100%; height:100%; object-fit:cover; opacity:0.3;">
+            <source src="static/assets/nebula.mp4" type="video/mp4">
+        </video>
+        <div style="position:relative; z-index:1;">
+            <h1 style="font-size:4em; margin:0; text-shadow:0 0 30px gold;">نصریوم</h1>
+            <h2 style="letter-spacing:10px; color:white;">THE EMPIRE IS BORN</h2>
+            <p style="margin-top:20px; font-family:monospace; color:#aaa;">NASRIUM PROTOCOL v1.0.0 | SOVEREIGN LAUNCH</p>
+            <button onclick="enterNasriumLive()" style="margin-top:50px; padding:20px 60px; background:gold; color:black; border:none; font-weight:bold; font-size:1.5em; cursor:pointer; box-shadow:0 0 50px gold;">CLAIM YOUR DESTINY</button>
+        </div>
+    `;
+    document.body.appendChild(openingOverlay);
+}
+
+function enterNasriumLive() {
+    document.getElementById('grand-opening').style.opacity = '0';
+    setTimeout(() => {
+        document.getElementById('grand-opening').remove();
+        console.log("Welcome to Nasrium, Commander.");
+    }, 2000);
+}
+
+// فرمان نهایی انتشار
+if(window.location.hash === '#launch') {
+    launchEmpire();
+}
