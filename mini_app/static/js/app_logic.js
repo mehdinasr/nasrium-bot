@@ -1528,3 +1528,43 @@ initGame = async () => {
     await oldInit528();
     loadGamesHub();
 };
+async function loadHallOfFame() {
+    try {
+        const res = await fetch('/api/sovereignty/fame/list');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('app-container');
+            const legendsHtml = data.legends.map(l => `
+                <div style="background:rgba(255,255,255,0.05); padding:10px; border:1px solid #e5e4e2; border-radius:10px; margin-bottom:8px; text-align:center;">
+                    <div style="font-size:1.2em; color:#e5e4e2;">⭐</div>
+                    <b style="color:#fff; font-size:0.7em;">${l.username}</b><br>
+                    <small style="color:#e5e4e2; font-size:0.45em;">${l.achievement}</small><br>
+                    <span style="color:#888; font-size:0.4em;">RANK: ${l.rank}</span>
+                </div>
+            `).join('');
+
+            const hallHtml = `
+                <div id="hall-fame-zone" class="zone-card" style="border: 2px solid #e5e4e2; background: linear-gradient(180deg, #000, #1a1a1a); margin-top:10px;">
+                    <div class="zone-title" style="color: #e5e4e2; text-shadow: 0 0 10px #fff;">🏛️ ETERNAL HALL OF FAME</div>
+                    <div style="padding:15px;">
+                        <div id="legends-list">${legendsHtml}</div>
+                    </div>
+                </div>
+            `;
+            
+            if(!document.getElementById('hall-fame-zone')) {
+                const div = document.createElement('div');
+                div.id = 'hall-anchor';
+                div.innerHTML = hallHtml;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+// توسعه اینیت
+const oldInit529 = initGame;
+initGame = async () => {
+    await oldInit529();
+    loadHallOfFame();
+};
