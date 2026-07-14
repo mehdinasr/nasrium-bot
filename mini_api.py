@@ -1,3 +1,4 @@
+from Core.App.ChronosEngine import ChronosEngine
 from Core.App.HallOfFameEngine import HallOfFameEngine
 from Core.App.GamesEngine import GamesEngine
 from Core.App.QualificationEngine import GamesEngine

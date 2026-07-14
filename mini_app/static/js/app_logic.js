@@ -1568,3 +1568,35 @@ initGame = async () => {
     await oldInit529();
     loadHallOfFame();
 };
+async function loadChronosTime() {
+    try {
+        const res = await fetch('/api/system/chronos/now');
+        const data = await res.json();
+        if(data.success) {
+            const header = document.querySelector('.flex.justify-between.items-center');
+            if(!header) return;
+
+            const timeHtml = `
+                <div id="chronos-widget" style="background:#000; border:1px solid #f1c40f; padding:2px 8px; border-radius:5px; text-align:right; line-height:1;">
+                    <div style="font-size:0.4em; color:#888;">IMPERIAL YEAR</div>
+                    <div style="font-size:0.7em; color:#f1c40f; font-weight:bold;">IY ${data.date.year}</div>
+                    <div style="font-size:0.35em; color:#fff; text-transform:uppercase;">${data.date.era}</div>
+                </div>
+            `;
+            
+            if(!document.getElementById('chronos-widget')) {
+                const div = document.createElement('div');
+                div.id = 'chronos-anchor';
+                div.innerHTML = timeHtml;
+                header.insertBefore(div, header.firstChild);
+            }
+        }
+    } catch(e) {}
+}
+
+// توسعه اینیت
+const oldInit530 = initGame;
+initGame = async () => {
+    await oldInit530();
+    loadChronosTime();
+};
