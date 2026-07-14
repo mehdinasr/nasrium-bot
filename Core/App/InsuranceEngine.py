@@ -1,34 +1,32 @@
 ﻿import time
 
 class InsuranceEngine:
-    # تعریف پلن های بیمه
+    # طرح‌های بیمه نصریوم {id: {name, cost, coverage_pct}}
     PLANS = {
-        "basic": {"name": "Basic Coverage", "cost_nsm": 500, "coverage": 0.50, "duration": 259200}, # 3 days
-        "premium": {"name": "Citadel Premium", "cost_nsm": 1500, "coverage": 0.80, "duration": 604800} # 7 days
+        "silver": {"name": "Silver Shield", "cost": 1000, "coverage": 0.20},
+        "gold": {"name": "Gold Aegis", "cost": 5000, "coverage": 0.50},
+        "imperial": {"name": "Imperial Guard", "cost": 15000, "coverage": 0.80}
     }
 
     @staticmethod
-    def is_insured(player_data):
-        return time.time() < player_data.get("insurance_until", 0)
-
-    @staticmethod
-    def get_coverage_rate(player_data):
-        if not InsuranceEngine.is_insured(player_data):
-            return 0.0
-        return player_data.get("insurance_rate", 0.0)
-
-    @staticmethod
-    def buy_policy(player_data, plan_id):
+    def subscribe(player_data, plan_id):
         plan = InsuranceEngine.PLANS.get(plan_id)
-        if not plan: return False, "Invalid Plan ID."
+        if not plan: return False, "Invalid Insurance Plan."
 
-        if player_data.get("nsm_soft", 0) < plan["cost_nsm"]:
-            return False, "Insufficient NSM Soft for this policy."
+        if player_data.get("nsm_soft", 0) < plan["cost"]:
+            return False, "Insufficient NSM Soft for insurance premium."
 
-        # کسر هزینه و فعال‌سازی
-        player_data["nsm_soft"] -= plan["cost_nsm"]
-        current_expiry = max(time.time(), player_data.get("insurance_until", 0))
-        player_data["insurance_until"] = current_expiry + plan["duration"]
-        player_data["insurance_rate"] = plan["coverage"]
+        player_data["nsm_soft"] -= plan["cost"]
+        player_data["active_insurance"] = plan_id
+        player_data["insurance_expiry"] = time.time() + 2592000 # ۳۰ روز
         
-        return True, f"Policy {plan['name']} activated!"
+        return True, f"Imperial Protection Active: {plan['name']} is now covering your assets."
+
+    @staticmethod
+    def calculate_payout(player_data, lost_amount):
+        plan_id = player_data.get("active_insurance")
+        if not plan_id or time.time() > player_data.get("insurance_expiry", 0):
+            return 0
+        
+        coverage = InsuranceEngine.PLANS[plan_id]["coverage"]
+        return int(lost_amount * coverage)

@@ -510,3 +510,51 @@ initGame = async () => {
     applyUnificationSeal();
     console.log("نصریوم IS READY FOR THE WORLD.");
 };
+async function loadInsurance() {
+    try {
+        const res = await fetch(`/api/economy/insurance/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('economy-hub');
+            const insuranceCard = `
+                <div class="zone-card" style="border: 2px solid #3498db; background: rgba(52, 152, 219, 0.05); margin-top:10px;">
+                    <div class="zone-title" style="color: #3498db;">🛡️ SOVEREIGN INSURANCE</div>
+                    <div style="padding:10px;">
+                        <p style="font-size:0.5em; color:#aaa; text-align:center;">Protect your wealth from raids.</p>
+                        <div id="ins-plan-list" style="display:grid; grid-template-columns: 1fr 1fr; gap:5px; margin-top:10px;">
+                            ${Object.keys(data.plans).map(id => `
+                                <button onclick="buyInsurance('${id}')" style="background:#222; border:1px solid #3498db; color:#fff; font-size:0.5em; padding:5px; border-radius:3px;">
+                                    ${data.plans[id].name}<br><small style="color:#0f0">${data.plans[id].coverage*100}% COVER</small>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            if(!document.getElementById('insurance-zone')) {
+                const div = document.createElement('div');
+                div.id = 'insurance-zone';
+                div.innerHTML = insuranceCard;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function buyInsurance(pid) {
+    const res = await fetch('/api/economy/insurance/subscribe', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, plan_id: pid })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// انتهای اینیت
+const oldInit507 = initGame;
+initGame = async () => {
+    await oldInit507();
+    loadInsurance();
+};
