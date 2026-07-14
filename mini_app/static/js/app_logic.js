@@ -3263,3 +3263,32 @@ function injectStabilityButtons() {
     }
 }
 setInterval(injectStabilityButtons, 2000);
+// --- CMD_947: Quantum Energy Visuals ---
+async function updateEnergyUI() {
+    const res = await fetch(`/api/player/energy?user_id=${userId}`);
+    const data = await res.json();
+    
+    let energyBar = document.getElementById('energy-bar-fill');
+    if(!energyBar) {
+        const container = document.createElement('div');
+        container.id = 'energy-container';
+        container.style = "position:fixed; bottom:70px; left:50%; transform:translateX(-50%); width:200px; height:15px; background:#222; border:1px solid #e056fd; border-radius:10px; overflow:hidden; z-index:1000;";
+        container.innerHTML = `<div id="energy-bar-fill" style="width:0%; height:100%; background:linear-gradient(90deg, #e056fd, #9b59b6); transition: width 0.5s;"></div>
+                               <span id="energy-text" style="position:absolute; width:100%; text-align:center; font-size:10px; color:white; top:0;">0/100</span>`;
+        document.body.appendChild(container);
+        energyBar = document.getElementById('energy-bar-fill');
+    }
+    
+    energyBar.style.width = `${data.energy}%`;
+    document.getElementById('energy-text').innerText = `${data.energy}/100`;
+}
+
+// --- CMD_949: AI Personality Display ---
+async function showAIEvolution() {
+    const res = await fetch(`/api/ai/evolution?user_id=${userId}`);
+    const data = await res.json();
+    showEpicNotification("AI STATUS: " + data.personality, "Your assistant has evolved based on your actions.", "magenta");
+}
+
+setInterval(updateEnergyUI, 30000);
+updateEnergyUI();

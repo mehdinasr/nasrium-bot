@@ -1,3 +1,4 @@
+from Core.App.NeuralEvolutionEngines import EnergySystem, EvolutionaryAI
 from Core.App.StabilityEngines import ImperialBank, CoopFarming, HighCourt
 from Core.App.GalacticEngines import OrbitalEngine, TokenMintingEngine, DefenseMinigame
 from Core.App.LegacyMediaEngines import RebirthEngine, AmbassadorHall, NasriumRadio
