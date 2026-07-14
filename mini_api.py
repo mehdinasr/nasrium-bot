@@ -1,3 +1,4 @@
+from Core.App.WelfareEngine import WelfareEngine
 from Core.App.BurnEngine import BurnEngine
 from Core.App.DerivativesEngine import DerivativesEngine
 from Core.App.BondEngine import BondEngine

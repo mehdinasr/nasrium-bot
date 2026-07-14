@@ -747,3 +747,52 @@ initGame = async () => {
     loadBurnTracker();
 };
 setInterval(loadBurnTracker, 30000); // به‌روزرسانی هر ۳۰ ثانیه
+async function loadWelfare() {
+    try {
+        const res = await fetch(`/api/social/welfare/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('id-card-zone');
+            if(!container) return;
+
+            const statusColor = data.is_eligible ? '#0f0' : '#888';
+            const btnText = data.claimed ? "CLAIMED" : (data.is_eligible ? "CLAIM WELFARE" : "NOT ELIGIBLE");
+
+            const welfareHtml = `
+                <div id="welfare-subzone" style="margin-top:10px; border-top:1px solid #333; padding-top:10px;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.5em; color:#aaa;">
+                        <span>Activity Score: <b style="color:${statusColor}">${data.activity_score}</b></span>
+                        <span>Potential: <b style="color:#0f0">${data.potential_payout} NSM</b></span>
+                    </div>
+                    <button onclick="claimWelfare()" ${data.claimed || !data.is_eligible ? 'disabled' : ''} style="width:100%; margin-top:5px; background:${data.is_eligible && !data.claimed ? '#1abc9c' : '#333'}; color:#fff; border:none; padding:5px; font-weight:bold; font-size:0.55em; border-radius:3px;">
+                        ${btnText}
+                    </button>
+                </div>
+            `;
+            if(!document.getElementById('welfare-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'welfare-anchor';
+                div.innerHTML = welfareHtml;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function claimWelfare() {
+    const res = await fetch('/api/social/welfare/claim', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit512 = initGame;
+initGame = async () => {
+    await oldInit512();
+    loadWelfare();
+};
