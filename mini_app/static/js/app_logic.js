@@ -709,3 +709,41 @@ initGame = async () => {
     await oldInit510();
     loadDerivatives();
 };
+async function loadBurnTracker() {
+    try {
+        const res = await fetch('/api/economy/burn/stats');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('economy-hub');
+            const burnHtml = `
+                <div class="zone-card" style="border: 2px solid #ff4d4d; background: rgba(255, 0, 0, 0.05); margin-top:10px;">
+                    <div class="zone-title" style="color: #ff4d4d;">🔥 ATOMIC INCINERATOR</div>
+                    <div style="padding:15px; text-align:center;">
+                        <p style="font-size:0.5em; color:#aaa;">NSM permanently removed from supply:</p>
+                        <div id="burned-count" style="font-size:1.2em; color:#ff4d4d; font-weight:bold; text-shadow: 0 0 10px #ff4d4d;">
+                            ${data.stats.total_burned.toLocaleString()} NSM
+                        </div>
+                        <p style="font-size:0.45em; color:#888; margin-top:5px;">Status: <b style="color:#0f0">${data.stats.supply_status}</b></p>
+                    </div>
+                </div>
+            `;
+            
+            if(!document.getElementById('burn-zone')) {
+                const div = document.createElement('div');
+                div.id = 'burn-zone';
+                div.innerHTML = burnHtml;
+                container.prepend(div); // نمایش در ابتدای بخش اقتصاد
+            } else {
+                document.getElementById('burned-count').innerText = data.stats.total_burned.toLocaleString() + " NSM";
+            }
+        }
+    } catch(e) {}
+}
+
+// توسعه اینیت
+const oldInit511 = initGame;
+initGame = async () => {
+    await oldInit511();
+    loadBurnTracker();
+};
+setInterval(loadBurnTracker, 30000); // به‌روزرسانی هر ۳۰ ثانیه
