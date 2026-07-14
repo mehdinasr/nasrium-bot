@@ -3213,3 +3213,53 @@ function injectGalacticButtons() {
     }
 }
 setInterval(injectGalacticButtons, 2000);
+// --- CMD_944: Imperial Bank UI ---
+async function openImperialBank() {
+    const amt = prompt("Amount of IXP to stake for 5% daily return:");
+    if(!amt) return;
+
+    const res = await fetch('/api/bank/stake', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, amount: parseInt(amt) })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) if(typeof initGame === 'function') initGame();
+}
+
+// --- CMD_946: High Court UI ---
+async function openHighCourt() {
+    const targetId = prompt("Enter Target Citizen ID to report:");
+    const reason = prompt("Describe the violation of the Pure Ecosystem:");
+    if(!targetId || !reason) return;
+
+    const res = await fetch('/api/court/report', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, target_id: targetId, reason: reason })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+function injectStabilityButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('bank-btn')) {
+        const bBtn = document.createElement('button');
+        bBtn.id = 'bank-btn';
+        bBtn.innerHTML = '🏦 IMPERIAL BANK';
+        bBtn.onclick = openImperialBank;
+        bBtn.style = "margin-top:10px; width:100%; background:#1a3300; color:#00ff00; border:1px solid #00ff00; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        
+        const cBtn = document.createElement('button');
+        cBtn.id = 'court-btn';
+        cBtn.innerHTML = '⚖️ HIGH COURT';
+        cBtn.onclick = openHighCourt;
+        cBtn.style = "margin-top:10px; width:100%; background:#330000; color:#ff4444; border:1px solid #ff4444; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        
+        zone.appendChild(bBtn);
+        zone.appendChild(cBtn);
+    }
+}
+setInterval(injectStabilityButtons, 2000);
