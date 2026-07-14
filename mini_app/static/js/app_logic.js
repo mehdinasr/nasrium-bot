@@ -1852,3 +1852,36 @@ async function checkPublicStatus() {
     }
 }
 checkPublicStatus();
+async function enterArena() {
+    const bet = prompt("Enter IXP bet amount for AI Duel:");
+    if(!bet || isNaN(bet)) return;
+
+    const res = await fetch('/api/arena/duel', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, bet: parseInt(bet) })
+    });
+    const data = await res.json();
+
+    if(data.success) {
+        const result = data.result;
+        alert(result.battle_log);
+        if(typeof initGame === 'function') initGame(); // رفرش استات‌ها
+    } else {
+        alert("Duel Failed: " + data.message);
+    }
+}
+
+// اضافه کردن دکمه آرنا به منوی اصلی
+function injectArenaButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('arena-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'arena-btn';
+        btn.innerHTML = '⚔️ BATTLE ARENA';
+        btn.onclick = enterArena;
+        btn.style = "margin-top:10px; width:100%; background:linear-gradient(to right, #800, #300); color:white; border:1px solid red; padding:12px; font-weight:bold; cursor:pointer; text-shadow: 0 0 5px red;";
+        zone.appendChild(btn);
+    }
+}
+injectArenaButton();
