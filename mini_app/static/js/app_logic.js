@@ -3000,3 +3000,61 @@ function injectWarButton() {
     }
 }
 injectWarButton();
+// --- CMD_933: AI Interaction ---
+async function refreshAIInteraction() {
+    const res = await fetch('/api/empire/ai/personality');
+    const data = await res.json();
+    const aiBox = document.getElementById('ai-chat-bubble');
+    if(aiBox) aiBox.innerHTML = `🤖: "${data.message}"`;
+}
+
+// --- CMD_934: Sovereign Governance ---
+async function openGovernance() {
+    const govOverlay = document.createElement('div');
+    govOverlay.id = 'gov-ui';
+    govOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,10,20,0.98); z-index:10016; padding:20px; box-sizing:border-box; color:white; font-family:serif; text-align:center;";
+    
+    govOverlay.innerHTML = `
+        <h1 style="color:#00d4ff; text-shadow:0 0 10px #00d4ff;">CLEAN GOVERNANCE</h1>
+        <p style="font-size:0.7em; color:#aaa;">Sovereign Rank Only - Decision Matrix</p>
+        <div style="margin-top:40px; border:1px solid #00d4ff; padding:20px; background:rgba(0,212,255,0.05);">
+            <p>Proposal #1: Increase Global Mining Rate by 5%?</p>
+            <div style="display:flex; gap:10px; margin-top:20px;">
+                <button onclick="castVote(1, 'YES')" style="flex:1; padding:15px; background:#00ff00; color:black; font-weight:bold;">YES</button>
+                <button onclick="castVote(1, 'NO')" style="flex:1; padding:15px; background:#ff0000; color:white; font-weight:bold;">NO</button>
+            </div>
+        </div>
+        <button onclick="document.getElementById('gov-ui').remove()" style="margin-top:40px; background:none; border:none; color:#555; cursor:pointer;">EXIT HALL</button>
+    `;
+    document.body.appendChild(govOverlay);
+}
+
+async function castVote(propId, vote) {
+    const res = await fetch('/api/empire/gov/vote', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, prop_id: propId, vote: vote })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+function injectEvolutionButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('gov-btn')) {
+        const govBtn = document.createElement('button');
+        govBtn.id = 'gov-btn';
+        govBtn.innerHTML = '🏛️ GOVERNANCE';
+        govBtn.onclick = openGovernance;
+        govBtn.style = "margin-top:10px; width:100%; background:#001f3f; color:#00d4ff; border:1px solid #00d4ff; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        
+        const aiBubble = document.createElement('div');
+        aiBubble.id = 'ai-chat-bubble';
+        aiBubble.style = "margin-top:10px; padding:10px; background:#111; border-radius:10px; font-size:0.6em; color:#aaa; font-style:italic;";
+        
+        zone.appendChild(govBtn);
+        zone.appendChild(aiBubble);
+        refreshAIInteraction();
+    }
+}
+injectEvolutionButtons();

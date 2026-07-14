@@ -1,3 +1,4 @@
+from Core.App.EvolutionEngines import ExchangeEngine, AIAwakening, GovernanceEngine
 from Core.App.CloudBridge import CloudBridge
 from Core.App.VisualEngine import VisualEngine
 from Core.App.SecurityCore import SovereignAdmin, ImperialShield
