@@ -431,3 +431,36 @@ initGame = async () => {
     await originalInit503();
     loadDevPortal();
 };
+async function translateMsg(msgId, text) {
+    const userLang = "EN"; // در سیستم واقعی از پروفایل لود می‌شود
+    const res = await fetch('/api/social/comms/translate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ text: text, lang: userLang })
+    });
+    const data = await res.json();
+    if(data.success) {
+        alert("TRANSLATED: " + data.translated_text);
+    }
+}
+
+// بروزرسانی رندرینگ چت برای اضافه کردن دکمه ترجمه
+const oldFetchComms = fetchComms;
+fetchComms = async () => {
+    try {
+        const res = await fetch('/api/social/comms/fetch');
+        const data = await res.json();
+        if(data.success) {
+            const feed = document.getElementById('comms-feed');
+            feed.innerHTML = data.feed.map(m => `
+                <div style="margin-bottom:5px; border-bottom:1px solid #111; padding-bottom:2px;">
+                    <div style="display:flex; justify-content:space-between;">
+                        <b style="color:#fff; font-size:0.9em;">${m.user}:</b>
+                        <button onclick="translateMsg('${m.time}', '${m.text}')" style="background:none; border:1px solid #0f0; color:#0f0; font-size:0.5em; padding:1px 3px; border-radius:2px; cursor:pointer;">TR</button>
+                    </div>
+                    <span style="color:#0f0; font-size:0.85em;">${m.text}</span>
+                </div>
+            `).reverse().join('');
+        }
+    } catch(e) {}
+};
