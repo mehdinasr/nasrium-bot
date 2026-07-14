@@ -389,3 +389,45 @@ initGame = async () => {
     await originalInit502();
     checkShardHealth();
 };
+async function loadDevPortal() {
+    try {
+        const res = await fetch('/api/platform/dev/apps');
+        const data = await res.json();
+        if(data.success) {
+            const apps = Object.keys(data.apps).map(id => {
+                const app = data.apps[id];
+                return `<div style="background:#111; padding:5px; border-bottom:1px solid #333; font-size:0.55em; display:flex; justify-content:space-between;">
+                            <span>${app.name} <small style="color:#666">by ${app.dev}</small></span>
+                            <span style="color:#0f0">${app.status}</span>
+                        </div>`;
+            }).join('');
+
+            document.getElementById('dev-zone').innerHTML = `
+                <div class="zone-card" style="border: 2px solid #f1c40f; background: rgba(241, 196, 15, 0.02); margin-top:10px;">
+                    <div class="zone-title" style="color: #f1c40f;">🛠️ DEVELOPER HUB</div>
+                    <div style="padding:10px;">
+                        <div id="dev-app-list" style="margin-bottom:10px;">${apps}</div>
+                        <button onclick="registerAsDev()" style="width:100%; background:none; border:1px solid #f1c40f; color:#f1c40f; padding:5px; font-weight:bold; font-size:0.6em; border-radius:3px;">APPLY FOR DEV LICENSE</button>
+                    </div>
+                </div>
+            `;
+        }
+    } catch(e) {}
+}
+
+async function registerAsDev() {
+    const res = await fetch('/api/platform/dev/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+const originalInit503 = initGame;
+initGame = async () => {
+    await originalInit503();
+    loadDevPortal();
+};
