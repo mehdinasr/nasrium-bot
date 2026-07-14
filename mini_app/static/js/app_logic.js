@@ -2494,3 +2494,59 @@ function injectSupportButton() {
     }
 }
 injectSupportButton();
+async function openUnionAltar() {
+    const unionOverlay = document.createElement('div');
+    unionOverlay.id = 'union-ui';
+    unionOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:radial-gradient(circle, #4b0082, #000); z-index:10011; padding:20px; box-sizing:border-box; color:white; font-family:serif; text-align:center; display:flex; flex-direction:column; justify-content:center;";
+    
+    unionOverlay.innerHTML = `
+        <h1 style="color:#ff00ff; text-shadow:0 0 15px #ff00ff;">NEURAL LINK ALTAR</h1>
+        <p style="font-size:0.8em; margin-bottom:30px;">Synchronize your AI core with a partner for mutual evolution.</p>
+        
+        <div style="background:rgba(255,255,255,0.05); padding:20px; border:1px solid #ff00ff; border-radius:15px;">
+            <input type="text" id="partner-id-input" placeholder="Enter Partner ID..." style="width:100%; padding:10px; background:#111; border:1px solid #444; color:white; margin-bottom:10px;">
+            <button onclick="proposeUnion()" style="width:100%; padding:15px; background:#ff00ff; color:white; font-weight:bold; border:none; cursor:pointer; box-shadow:0 0 10px #ff00ff;">SEND PROPOSAL</button>
+            <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
+            <button onclick="acceptUnion()" style="width:100%; padding:15px; background:transparent; border:1px solid #00f3ff; color:#00f3ff; font-weight:bold; cursor:pointer;">ACCEPT PENDING LINK</button>
+        </div>
+        
+        <button onclick="document.getElementById('union-ui').remove()" style="margin-top:30px; background:none; border:none; color:#888; cursor:pointer;">STAY INDEPENDENT</button>
+    `;
+    document.body.appendChild(unionOverlay);
+}
+
+async function proposeUnion() {
+    const pId = document.getElementById('partner-id-input').value;
+    if(!pId) return;
+    const res = await fetch('/api/empire/union/propose', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, partner_id: pId })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+async function acceptUnion() {
+    const res = await fetch('/api/empire/union/accept', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('union-ui').remove(); if(typeof initGame === 'function') initGame(); }
+}
+
+function injectUnionButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('union-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'union-btn';
+        btn.innerHTML = '💞 NEURAL LINK';
+        btn.onclick = openUnionAltar;
+        btn.style = "margin-top:10px; width:100%; background:#200020; color:#ff00ff; border:1px solid #ff00ff; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+injectUnionButton();
