@@ -252,3 +252,34 @@ initGame = async () => {
     await oldInit498();
     loadSanctum();
 };
+async function loadLegacy() {
+    try {
+        const res = await fetch(`/api/history/legacy/ledger?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            const list = data.ledger.map(entry => `
+                <div style="border-left: 2px solid #e67e22; padding-left:10px; margin-bottom:10px;">
+                    <small style="color:#888;">${new Date(entry.timestamp * 1000).toLocaleDateString()}</small><br>
+                    <b style="color:#fff; font-size:0.7em;">${entry.event}</b><br>
+                    <small style="color:#aaa;">${entry.desc}</small>
+                </div>
+            `).join('') || "No records in the Imperial Archive.";
+
+            document.getElementById('legacy-zone').innerHTML = `
+                <div class="zone-card" style="border: 1px solid #e67e22; background: rgba(230, 126, 34, 0.05); margin-top:10px;">
+                    <div class="zone-title" style="color: #e67e22;">📜 IMPERIAL CHRONICLES</div>
+                    <div style="padding:15px; max-height:200px; overflow-y:auto;">
+                        <div style="font-size:0.5em; color:#fff; margin-bottom:10px;">Legacy Score: <b style="color:#f1c40f">${data.score}</b></div>
+                        ${list}
+                    </div>
+                </div>
+            `;
+        }
+    } catch(e) {}
+}
+
+const oldInit499 = initGame;
+initGame = async () => {
+    await oldInit499();
+    loadLegacy();
+};
