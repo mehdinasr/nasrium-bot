@@ -1378,3 +1378,49 @@ initGame = async () => {
     loadRadio();
 };
 setInterval(loadRadio, 60000); // به‌روزرسانی اخبار هر ۱ دقیقه
+async function loadNFTGallery() {
+    try {
+        const res = await fetch('/api/visual/nft/gallery');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('gallery-zone');
+            const collectionHtml = data.collection.map(art => `
+                <div style="background:rgba(255,255,255,0.02); padding:10px; border:1px solid #f1c40f; border-radius:10px; text-align:center;">
+                    <div style="width:100%; height:60px; background:linear-gradient(45deg, #111, #333); display:flex; justify-content:center; align-items:center; font-size:1.5em; border-radius:5px;">🖼️</div>
+                    <b style="font-size:0.6em; color:#fff; display:block; margin-top:5px;">${art.name}</b>
+                    <small style="font-size:0.45em; color:#f1c40f;">${art.rarity} | by ${art.creator}</small>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="zone-card" style="border: 2px solid #f1c40f; background: rgba(0,0,0,0.9); margin-top:10px;">
+                    <div class="zone-title" style="color: #f1c40f;">🏛️ IMPERIAL NFT GALLERY</div>
+                    <div style="padding:15px;">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">${collectionHtml}</div>
+                        <button onclick="mintArt()" style="width:100%; margin-top:10px; background:#f1c40f; color:#000; border:none; padding:8px; font-weight:bold; font-size:0.6em; border-radius:3px;">MINT NEW AI ART (50 💎)</button>
+                    </div>
+                </div>
+            `;
+        }
+    } catch(e) {}
+}
+
+async function mintArt() {
+    const name = prompt("Enter the name for your Neural Artwork:");
+    if(!name) return;
+    const res = await fetch('/api/visual/nft/mint', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, art_name: name })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { initGame(); loadNFTGallery(); }
+}
+
+// توسعه اینیت
+const oldInit526 = initGame;
+initGame = async () => {
+    await oldInit526();
+    loadNFTGallery();
+};
