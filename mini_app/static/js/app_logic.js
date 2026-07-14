@@ -1131,3 +1131,47 @@ initGame = async () => {
     await oldInit519();
     loadLunarCommand();
 };
+async function loadSpaceElevator() {
+    try {
+        const res = await fetch(`/api/infrastructure/elevator/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('lunar-subzone');
+            if(!container) return;
+
+            const elevatorHtml = `
+                <div id="elevator-info" style="margin-top:10px; border-top:1px solid #f1c40f; padding-top:10px;">
+                    ${data.is_active ? 
+                        `<div style="font-size:0.55em; color:#0f0;">🚀 SPACE ELEVATOR: ACTIVE</div>
+                         <div style="font-size:0.45em; color:#aaa;">Logistics Speed: ${data.speed}</div>` :
+                        `<button onclick="buildElevator()" style="width:100%; background:none; border:1px solid #f1c40f; color:#f1c40f; padding:5px; font-weight:bold; font-size:0.55em; border-radius:3px;">CONSTRUCT SPACE ELEVATOR (1M 💰)</button>`
+                    }
+                </div>
+            `;
+            if(!document.getElementById('elevator-info')) {
+                const div = document.createElement('div');
+                div.id = 'elevator-anchor';
+                div.innerHTML = elevatorHtml;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function buildElevator() {
+    const res = await fetch('/api/infrastructure/elevator/build', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit520 = initGame;
+initGame = async () => {
+    await oldInit520();
+    loadSpaceElevator();
+};
