@@ -845,3 +845,60 @@ initGame = async () => {
     await oldInit513();
     loadAIConsciousness();
 };
+async function loadNeuralExchange() {
+    try {
+        const res = await fetch('/api/ai/exchange/catalog');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('ai-awake-anchor');
+            if(!container) return;
+
+            const skillsHtml = Object.keys(data.catalog).map(id => {
+                const s = data.catalog[id];
+                return `
+                    <div style="background:#000; padding:8px; border:1px solid #1abc9c; border-radius:5px; margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
+                        <div style="font-size:0.5em; color:#fff;">
+                            <b>${s.name}</b><br>
+                            <small style="color:#1abc9c">${s.desc}</small>
+                        </div>
+                        <button onclick="rentSkill('${id}')" style="background:#1abc9c; color:#000; border:none; padding:5px 8px; font-weight:bold; font-size:0.6em; border-radius:3px;">
+                            ${s.price}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            const exchangeHtml = `
+                <div id="neural-exchange-subzone" style="margin-top:10px; border-top:2px dashed #1abc9c; padding-top:10px;">
+                    <div style="font-size:0.6em; color:#1abc9c; font-weight:bold; letter-spacing:1px;">📡 NEURAL EXCHANGE</div>
+                    ${skillsHtml}
+                </div>
+            `;
+            
+            if(!document.getElementById('neural-exchange-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'neural-exchange-anchor';
+                div.innerHTML = exchangeHtml;
+                container.parentNode.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function rentSkill(sid) {
+    const res = await fetch('/api/ai/exchange/rent', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, skill_id: sid })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit514 = initGame;
+initGame = async () => {
+    await oldInit514();
+    loadNeuralExchange();
+};
