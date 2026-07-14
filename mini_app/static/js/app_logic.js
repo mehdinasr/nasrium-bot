@@ -1175,3 +1175,56 @@ initGame = async () => {
     await oldInit520();
     loadSpaceElevator();
 };
+async function scanAsteroids() {
+    try {
+        const res = await fetch('/api/space/asteroid/scan');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('lunar-anchor');
+            if(!container) return;
+
+            const asteroids = Object.keys(data.belt).map(id => {
+                const a = data.belt[id];
+                let color = a.type === 'gold' ? '#f1c40f' : (a.type === 'diamond' ? '#00f3ff' : '#7f8c8d');
+                return `
+                    <div style="background:#000; padding:5px; border-left:3px solid ${color}; margin-bottom:3px; display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:0.5em; color:${color};">☄️ ${a.type.toUpperCase()} Asteroid</span>
+                        <button onclick="mineAsteroid('${id}')" style="background:${color}; color:#000; border:none; font-size:0.5em; padding:2px 8px; font-weight:bold;">MINE</button>
+                    </div>
+                `;
+            }).join('');
+
+            const beltHtml = `
+                <div id="asteroid-subzone" class="zone-card" style="border: 2px solid #7f8c8d; background: #000; margin-top:10px;">
+                    <div class="zone-title" style="color: #7f8c8d;">☄️ ASTEROID BELT</div>
+                    <div style="padding:10px;">${asteroids || "<small style='color:#555;'>No asteroids in scanner range.</small>"}</div>
+                </div>
+            `;
+            
+            if(!document.getElementById('asteroid-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'asteroid-anchor';
+                div.innerHTML = beltHtml;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function mineAsteroid(aid) {
+    const res = await fetch('/api/space/asteroid/mine', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, ast_id: aid })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { initGame(); scanAsteroids(); }
+}
+
+// توسعه اینیت
+const oldInit521 = initGame;
+initGame = async () => {
+    await oldInit521();
+    scanAsteroids();
+};
