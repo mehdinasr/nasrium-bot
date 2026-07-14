@@ -3401,3 +3401,63 @@ function injectDomButtons() {
     }
 }
 setInterval(injectDomButtons, 2000);
+// --- CMD_958: Oracle Vision Console ---
+async function openOracleTerminal() {
+    const res = await fetch('/api/empire/oracle/vision');
+    const data = await res.json();
+    
+    const oracleOverlay = document.createElement('div');
+    oracleOverlay.id = 'oracle-ui';
+    oracleOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,10,0.95); z-index:10021; padding:20px; box-sizing:border-box; color:#00d4ff; font-family:monospace; text-align:center; display:flex; flex-direction:column; justify-content:center;";
+    
+    oracleOverlay.innerHTML = `
+        <h1 style="text-shadow:0 0 15px #00d4ff;">THE ORACLE TERMINAL</h1>
+        <div style="border:1px solid #00d4ff; padding:30px; background:rgba(0,212,255,0.05);">
+            <p style="font-size:0.8em; color:#aaa;">DECRYPTING FUTURE DATA...</p>
+            <h2 id="vision-text" style="color:#fff;">"${data.vision}"</h2>
+        </div>
+        <button onclick="document.getElementById('oracle-ui').remove()" style="margin-top:40px; background:none; border:none; color:#555; cursor:pointer;">DISCONNECT</button>
+    `;
+    document.body.appendChild(oracleOverlay);
+}
+
+// --- CMD_957: Hall of Souls (SBTs) ---
+async function openHallOfSouls() {
+    const res = await fetch(`/api/player/sbt?user_id=${userId}`);
+    const data = await res.json();
+    
+    const sbtOverlay = document.createElement('div');
+    sbtOverlay.id = 'sbt-ui';
+    sbtOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:black; z-index:10022; padding:20px; box-sizing:border-box; color:gold; font-family:serif; text-align:center;";
+    
+    const tokens = data.tokens.map(t => `<div style="border:1px solid gold; padding:10px; margin:5px; display:inline-block; font-size:0.7em;">✨ ${t}</div>`).join('');
+
+    sbtOverlay.innerHTML = `
+        <h1>THE HALL OF SOULS</h1>
+        <p style="color:#aaa; font-size:0.8em;">Your Eternal Accomplishments</p>
+        <div style="margin-top:30px;">${tokens || 'Your soul is still unwritten.'}</div>
+        <button onclick="document.getElementById('sbt-ui').remove()" style="margin-top:40px; background:gold; color:black; border:none; padding:10px 20px; font-weight:bold; cursor:pointer;">BACK</button>
+    `;
+    document.body.appendChild(sbtOverlay);
+}
+
+function injectSovereignButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('oracle-btn')) {
+        const oBtn = document.createElement('button');
+        oBtn.id = 'oracle-btn';
+        oBtn.innerHTML = '🔮 THE ORACLE';
+        oBtn.onclick = openOracleTerminal;
+        oBtn.style = "margin-top:10px; width:100%; background:#000; color:#00d4ff; border:1px solid #00d4ff; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        
+        const sBtn = document.createElement('button');
+        sBtn.id = 'sbt-btn';
+        sBtn.innerHTML = '✨ HALL OF SOULS';
+        sBtn.onclick = openHallOfSouls;
+        sBtn.style = "margin-top:10px; width:100%; background:#111; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        
+        zone.appendChild(oBtn);
+        zone.appendChild(sBtn);
+    }
+}
+setInterval(injectSovereignButtons, 2000);
