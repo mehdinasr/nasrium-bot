@@ -2105,3 +2105,55 @@ function injectMiningButton() {
     }
 }
 injectMiningButton();
+async function openBountyBoard() {
+    const res = await fetch(`/api/empire/bounties?user_id=${userId}`);
+    const data = await res.json();
+    
+    let taskList = '';
+    data.tasks.forEach(t => {
+        taskList += `
+            <div style="background:#1a1a1a; border:1px solid ${t.is_done ? '#444' : '#00ff00'}; margin-bottom:10px; padding:15px; border-radius:5px; opacity: ${t.is_done ? '0.6' : '1'};">
+                <div style="font-weight:bold; color:${t.is_done ? '#888' : '#00ff00'};">${t.desc}</div>
+                <div style="font-size:0.6em; color:#aaa; margin-top:5px;">Reward: ${t.reward_ixp} IXP | ${t.reward_honor} Honor</div>
+                <button onclick="claimTask('${t.id}')" ${t.is_done ? 'disabled' : ''} style="margin-top:10px; background:${t.is_done ? '#333' : '#00ff00'}; color:#000; border:none; padding:5px 10px; font-weight:bold; cursor:pointer; width:100%; border-radius:3px;">
+                    ${t.is_done ? 'COMPLETED' : 'CLAIM BOUNTY'}
+                </button>
+            </div>
+        `;
+    });
+
+    const bountyOverlay = document.createElement('div');
+    bountyOverlay.id = 'bounty-ui';
+    bountyOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10005; padding:20px; box-sizing:border-box; color:white; font-family:monospace; overflow-y:auto;";
+    bountyOverlay.innerHTML = `
+        <h2 style="text-align:center; color:#00ff00; text-shadow:0 0 10px #00ff00;">IMPERIAL BOUNTIES</h2>
+        <div style="margin-top:20px;">${taskList}</div>
+        <button onclick="document.getElementById('bounty-ui').remove()" style="width:100%; margin-top:30px; padding:15px; background:transparent; border:1px solid #00ff00; color:#00ff00; font-weight:bold; cursor:pointer;">RETURN TO HUB</button>
+    `;
+    document.body.appendChild(bountyOverlay);
+}
+
+async function claimTask(taskId) {
+    const res = await fetch('/api/empire/bounties/claim', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, task_id: taskId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('bounty-ui').remove(); openBountyBoard(); if(typeof initGame === 'function') initGame(); }
+}
+
+function injectBountyButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('bounty-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'bounty-btn';
+        btn.innerHTML = '📜 DAILY BOUNTIES';
+        btn.onclick = openBountyBoard;
+        btn.style = "margin-top:10px; width:100%; background:#0a1a0a; color:#00ff00; border:1px solid #00ff00; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        hub_zone = document.getElementById('neural-hub-zone');
+        hub_zone.appendChild(btn);
+    }
+}
+injectBountyButton();
