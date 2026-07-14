@@ -327,3 +327,49 @@ initGame = async () => {
         localStorage.setItem('m500_seen', 'true');
     }
 };
+async function loadBridge() {
+    try {
+        const res = await fetch('/api/economy/bridge/status');
+        const data = await res.json();
+        if(data.success) {
+            document.getElementById('bridge-zone').innerHTML = `
+                <div class="zone-card" style="border: 2px solid #a8e6cf; background: linear-gradient(135deg, #1a1a1a, #000); margin-top:10px;">
+                    <div class="zone-title" style="color: #a8e6cf;">🌌 MULTIVERSE BRIDGE</div>
+                    <div style="padding:15px;">
+                        <p style="font-size:0.5em; color:#aaa; text-align:center;">Transfer NSM to parallel blockchains.</p>
+                        <select id="bridge-net" style="width:100%; background:#000; color:#a8e6cf; border:1px solid #a8e6cf; font-size:0.6em; padding:5px; margin-bottom:5px;">
+                            ${Object.keys(data.networks).map(n => `<option value="${n}">${data.networks[n].name}</option>`).join('')}
+                        </select>
+                        <input id="bridge-addr" type="text" placeholder="Recipient Address" style="width:100%; background:#000; color:#fff; border:1px solid #444; font-size:0.6em; padding:5px; margin-bottom:5px;">
+                        <input id="bridge-amt" type="number" placeholder="Amount NSM Hard" style="width:100%; background:#000; color:#fff; border:1px solid #444; font-size:0.6em; padding:5px; margin-bottom:10px;">
+                        <button onclick="executeBridge()" style="width:100%; background:#a8e6cf; color:#000; border:none; padding:8px; font-weight:bold; font-size:0.6em; border-radius:3px;">ENGAGE WARP JUMP</button>
+                    </div>
+                </div>
+            `;
+        }
+    } catch(e) {}
+}
+
+async function executeBridge() {
+    const net = document.getElementById('bridge-net').value;
+    const addr = document.getElementById('bridge-addr').value;
+    const amt = document.getElementById('bridge-amt').value;
+    
+    if(!addr || !amt) return alert("All navigational coordinates required.");
+
+    const res = await fetch('/api/economy/bridge/transfer', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, network: net, amount: amt, address: addr })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت برای لود پل
+const originalInit501 = initGame;
+initGame = async () => {
+    await originalInit501();
+    loadBridge();
+};
