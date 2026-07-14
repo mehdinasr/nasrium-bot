@@ -1,3 +1,4 @@
+from Core.App.DossierEngine import DossierEngine
 from Core.App.UnionEngine import UnionEngine
 from Core.App.SupportEngine import SupportEngine
 from Core.App.BroadcastEngine import BroadcastEngine

@@ -2550,3 +2550,61 @@ function injectUnionButton() {
     }
 }
 injectUnionButton();
+async function openCitizenDossier() {
+    const res = await fetch(`/api/player/dossier?user_id=${userId}`);
+    const data = await res.json();
+    const d = data.dossier;
+
+    const dossierOverlay = document.createElement('div');
+    dossierOverlay.id = 'dossier-ui';
+    dossierOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10012; padding:20px; box-sizing:border-box; color:white; font-family:monospace; display:flex; flex-direction:column; align-items:center;";
+    
+    dossierOverlay.innerHTML = `
+        <div style="width:100%; border:2px solid #00ff00; background:rgba(0,255,0,0.05); padding:20px; border-radius:15px; position:relative;">
+            <div style="position:absolute; top:10px; right:10px; color:#00ff00; font-size:0.5em;">ID: ${d.uid}</div>
+            <h2 style="color:#00ff00; margin:0;">${d.rank_title}</h2>
+            <p style="font-size:0.7em; margin-bottom:20px;">Nasrium Empire Registry</p>
+            
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; text-align:left;">
+                <div style="border:1px solid #333; padding:10px;">
+                    <span style="font-size:0.5em; color:#aaa;">LEVEL</span><br>
+                    <span style="font-size:1.2em; color:gold;">${d.level}</span>
+                </div>
+                <div style="border:1px solid #333; padding:10px;">
+                    <span style="font-size:0.5em; color:#aaa;">HONOR</span><br>
+                    <span style="font-size:1.2em; color:#00d4ff;">${d.honor}</span>
+                </div>
+                <div style="border:1px solid #333; padding:10px;">
+                    <span style="font-size:0.5em; color:#aaa;">WEALTH (IXP)</span><br>
+                    <span style="font-size:1em; color:#00ff00;">${d.ixp.toLocaleString()}</span>
+                </div>
+                <div style="border:1px solid #333; padding:10px;">
+                    <span style="font-size:0.5em; color:#aaa;">INVENTORY</span><br>
+                    <span style="font-size:1em;">${d.items_count} Items</span>
+                </div>
+            </div>
+            
+            <div style="margin-top:20px; text-align:left; font-size:0.7em; color:#aaa;">
+                <div>🔘 LEGION: <span style="color:white;">${d.legion}</span></div>
+                <div>🔘 PARTNER: <span style="color:white;">${d.partner}</span></div>
+                <div>🔘 STATUS: <span style="color:#00ff00;">${d.pioneer_status ? 'GENESIS PIONEER' : 'CITIZEN'}</span></div>
+            </div>
+        </div>
+        
+        <button onclick="document.getElementById('dossier-ui').remove()" style="margin-top:30px; width:100%; padding:15px; background:#00ff00; color:#000; border:none; font-weight:bold; cursor:pointer;">RETURN TO OPERATIONS</button>
+    `;
+    document.body.appendChild(dossierOverlay);
+}
+
+function injectProfileButton() {
+    const header = document.querySelector('header');
+    if(header && !document.getElementById('profile-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'profile-btn';
+        btn.innerHTML = '🪪 PROFILE';
+        btn.onclick = openCitizenDossier;
+        btn.style = "background:#333; color:#00ff00; border:1px solid #00ff00; padding:5px 10px; font-size:0.6em; cursor:pointer; border-radius:3px; float:left;";
+        header.appendChild(btn);
+    }
+}
+injectProfileButton();
