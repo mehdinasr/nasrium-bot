@@ -1730,3 +1730,38 @@ function injectEmbassyLink() {
     }
 }
 injectEmbassyLink();
+async function peekIntoFuture() {
+    const res = await fetch('/api/ai/observatory/vision');
+    const data = await res.json();
+    
+    if(data.success) {
+        const vision = data.vision;
+        const container = document.getElementById('neural-hub-zone');
+        
+        const visionHtml = `
+            <div id="quantum-radar" style="margin-top:20px; border:1px solid #00f3ff; background:rgba(0, 243, 255, 0.05); border-radius:10px; padding:15px; position:relative; overflow:hidden;">
+                <div style="position:absolute; top:0; left:0; width:100%; height:2px; background:#00f3ff; animation: scan-line 2s infinite linear;"></div>
+                <h4 style="color:#00f3ff; margin:0; font-size:0.8em;">🔭 QUANTUM VISION: ${vision.vision_title}</h4>
+                <p style="font-size:0.65em; color:#fff; margin:10px 0;">${vision.description}</p>
+                <div style="display:flex; justify-content:space-between; font-size:0.55em; color:#00f3ff; font-weight:bold;">
+                    <span>PROBABILITY: ${vision.probability}</span>
+                    <span>ETA: ${vision.estimated_time}</span>
+                </div>
+            </div>
+            <style>
+                @keyframes scan-line { 0% { top: 0; } 100% { top: 100%; } }
+            </style>
+        `;
+        
+        const oldRadar = document.getElementById('quantum-radar');
+        if(oldRadar) oldRadar.remove();
+        
+        const div = document.createElement('div');
+        div.innerHTML = visionHtml;
+        container.appendChild(div);
+    }
+}
+
+// اجرای دوره‌ای رصدخانه
+setInterval(peekIntoFuture, 600000); // هر ۱۰ دقیقه آپدیت شود
+peekIntoFuture();
