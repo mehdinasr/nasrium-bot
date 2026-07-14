@@ -1,21 +1,25 @@
 ﻿import time
 
 class TournamentEngine:
-    # پاداش کل تورنمنت (توسط امپراتوری تامین می‌شود)
-    PRIZE_POOL_NSM = 50000 
+    """
+    مدیریت مسابقات دوره‌ای و نبردهای گروهی لژیون‌ها.
+    """
+    ACTIVE_TOURNAMENT = {
+        "id": "GENESIS_WAR_01",
+        "name": "The Great Awakening Tournament",
+        "prize_pool": 5000000, # ۵ میلیون IXP
+        "end_time": time.time() + 604800, # ۷ روز مدت تورنمنت
+        "participants": []
+    }
 
     @staticmethod
-    def calculate_weekly_score(player_data):
-        # این داده‌ها باید در فیلد‌های 'weekly_stats' ذخیره شوند
-        weekly = player_data.get("weekly_stats", {"loot": 0, "wins": 0, "energy_spent": 0})
-        
-        score = (weekly["loot"] / 1000) + (weekly["wins"] * 50) + (weekly["energy_spent"] * 5)
-        return int(score)
+    def get_info():
+        return TournamentEngine.ACTIVE_TOURNAMENT
 
     @staticmethod
-    def get_time_remaining():
-        # شبیه‌سازی پایان هفته (هر یکشنبه)
-        now = time.time()
-        one_week = 604800
-        remaining = one_week - (now % one_week)
-        return int(remaining)
+    def register_legion(legion_name, leader_id):
+        # بررسی صلاحیت لژیون برای شرکت در جنگ
+        if legion_name not in TournamentEngine.ACTIVE_TOURNAMENT["participants"]:
+            TournamentEngine.ACTIVE_TOURNAMENT["participants"].append(legion_name)
+            return True, f"Legion {legion_name} has entered the War Room."
+        return False, "Already registered."

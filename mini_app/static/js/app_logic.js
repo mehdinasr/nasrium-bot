@@ -2951,3 +2951,52 @@ function enterNasriumLive() {
 if(window.location.hash === '#launch') {
     launchEmpire();
 }
+async function openWarRoom() {
+    const res = await fetch('/api/empire/war/status');
+    const data = await res.json();
+    const war = data.war;
+
+    const warOverlay = document.createElement('div');
+    warOverlay.id = 'war-ui';
+    warOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(to bottom, #200, #000); z-index:10015; padding:20px; box-sizing:border-box; color:white; font-family:monospace; text-align:center;";
+    
+    warOverlay.innerHTML = `
+        <h1 style="color:red; text-shadow:0 0 15px red;">IMPERIAL WAR ROOM</h1>
+        <div style="border:1px solid red; padding:20px; background:rgba(255,0,0,0.1);">
+            <h3>${war.name}</h3>
+            <p style="font-size:0.6em; color:#aaa;">The first global conflict of the Pure Ecosystem.</p>
+            <div style="margin:20px 0;">
+                <div style="font-size:0.5em; color:red;">GRAND PRIZE POOL</div>
+                <div style="font-size:1.8em; font-weight:bold; color:gold;">${war.prize_pool.toLocaleString()} IXP</div>
+            </div>
+            <p style="font-size:0.7em;">Registered Legions: ${war.participants.length}</p>
+            <button onclick="registerForWar()" style="width:100%; padding:15px; background:red; color:white; font-weight:bold; border:none; cursor:pointer; box-shadow:0 0 10px red;">REGISTER LEGION</button>
+        </div>
+        <button onclick="document.getElementById('war-ui').remove()" style="margin-top:30px; background:none; border:none; color:#555; cursor:pointer;">RETURN TO PEACE</button>
+    `;
+    document.body.appendChild(warOverlay);
+}
+
+async function registerForWar() {
+    // فرض بر این است که یوزر عضو لژیون است
+    const res = await fetch('/api/empire/war/join', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, legion_name: 'Alpha_Legion' }) // تستی
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+function injectWarButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('war-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'war-btn';
+        btn.innerHTML = '⚔️ WAR ROOM';
+        btn.onclick = openWarRoom;
+        btn.style = "margin-top:10px; width:100%; background:#400; color:white; border:1px solid red; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+injectWarButton();
