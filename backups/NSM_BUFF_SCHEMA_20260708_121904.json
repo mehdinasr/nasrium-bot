@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_051",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:19:04"
+                 },
+    "Buffs":  [
+                  {
+                      "Id":  "buff_001",
+                      "Name":  "Attack Boost",
+                      "Category":  "Positive",
+                      "TargetStat":  "Attack",
+                      "ModifierType":  "Percent",
+                      "Value":  20,
+                      "DurationSeconds":  30,
+                      "Stackable":  false
+                  },
+                  {
+                      "Id":  "buff_002",
+                      "Name":  "Defense Aura",
+                      "Category":  "Positive",
+                      "TargetStat":  "Defense",
+                      "ModifierType":  "Percent",
+                      "Value":  15,
+                      "DurationSeconds":  60,
+                      "Stackable":  true
+                  },
+                  {
+                      "Id":  "buff_003",
+                      "Name":  "Poison",
+                      "Category":  "Negative",
+                      "TargetStat":  "Health",
+                      "ModifierType":  "DamageOverTime",
+                      "Value":  50,
+                      "DurationSeconds":  15,
+                      "Stackable":  true
+                  },
+                  {
+                      "Id":  "buff_004",
+                      "Name":  "Freeze",
+                      "Category":  "CrowdControl",
+                      "TargetStat":  "Movement",
+                      "ModifierType":  "Disable",
+                      "Value":  100,
+                      "DurationSeconds":  5,
+                      "Stackable":  false
+                  }
+              ]
+}

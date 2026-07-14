@@ -1,0 +1,41 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_090",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 16:15:13"
+                 },
+    "Channels":  [
+                     {
+                         "Id":  "chat_001",
+                         "Name":  "Global",
+                         "Scope":  "World",
+                         "Moderated":  true,
+                         "MaxMessageLength":  500,
+                         "Enabled":  true
+                     },
+                     {
+                         "Id":  "chat_002",
+                         "Name":  "Alliance",
+                         "Scope":  "Alliance",
+                         "Moderated":  true,
+                         "MaxMessageLength":  1000,
+                         "Enabled":  true
+                     },
+                     {
+                         "Id":  "chat_003",
+                         "Name":  "Private",
+                         "Scope":  "Player",
+                         "Moderated":  false,
+                         "MaxMessageLength":  1000,
+                         "Enabled":  true
+                     },
+                     {
+                         "Id":  "chat_004",
+                         "Name":  "Support",
+                         "Scope":  "System",
+                         "Moderated":  true,
+                         "MaxMessageLength":  2000,
+                         "Enabled":  true
+                     }
+                 ]
+}

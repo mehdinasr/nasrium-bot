@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_072",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:15:58"
+                 },
+    "DialogProfiles":  [
+                           {
+                               "Id":  "dialog_001",
+                               "Name":  "Greeting",
+                               "Category":  "General",
+                               "AllowChoices":  false,
+                               "MaxResponses":  1,
+                               "Skippable":  true,
+                               "VoiceEnabled":  false,
+                               "AutoAdvance":  true
+                           },
+                           {
+                               "Id":  "dialog_002",
+                               "Name":  "Quest",
+                               "Category":  "Quest",
+                               "AllowChoices":  true,
+                               "MaxResponses":  4,
+                               "Skippable":  true,
+                               "VoiceEnabled":  true,
+                               "AutoAdvance":  false
+                           },
+                           {
+                               "Id":  "dialog_003",
+                               "Name":  "Merchant",
+                               "Category":  "Shop",
+                               "AllowChoices":  true,
+                               "MaxResponses":  8,
+                               "Skippable":  true,
+                               "VoiceEnabled":  false,
+                               "AutoAdvance":  false
+                           },
+                           {
+                               "Id":  "dialog_004",
+                               "Name":  "Cinematic",
+                               "Category":  "Story",
+                               "AllowChoices":  false,
+                               "MaxResponses":  1,
+                               "Skippable":  false,
+                               "VoiceEnabled":  true,
+                               "AutoAdvance":  true
+                           }
+                       ]
+}

@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_093",
+    "Check":  "REGISTRY_CONFIRMATION",
+    "RegisteredCommands":  [
+                               "CMD_093"
+                           ],
+    "CMD093Found":  true,
+    "Status":  "SUCCESS",
+    "CheckedAt":  "2026-07-08 22:17:58"
+}

@@ -1,0 +1,41 @@
+{
+    "theme_version":  "2.0-cyberpunk",
+    "buildings":  {
+                      "AI_CORE":  {
+                                      "levels":  {
+                                                     "2":  {
+                                                               "energy_cost_to_build":  150,
+                                                               "cost_gold":  3000
+                                                           },
+                                                     "1":  {
+                                                               "energy_cost_to_build":  50,
+                                                               "cost_gold":  1000
+                                                           }
+                                                 }
+                                  },
+                      "DATA_MINER":  {
+                                         "levels":  {
+                                                        "2":  {
+                                                                  "energy_cost_to_build":  30,
+                                                                  "cost_gold":  1500
+                                                              },
+                                                        "1":  {
+                                                                  "energy_cost_to_build":  10,
+                                                                  "cost_gold":  500
+                                                              },
+                                                        "3":  {
+                                                                  "energy_cost_to_build":  90,
+                                                                  "cost_gold":  4500
+                                                              }
+                                                    }
+                                     },
+                      "SERVER_FARM":  {
+                                          "levels":  {
+                                                         "1":  {
+                                                                   "energy_cost_to_build":  20,
+                                                                   "cost_gold":  800
+                                                               }
+                                                     }
+                                      }
+                  }
+}

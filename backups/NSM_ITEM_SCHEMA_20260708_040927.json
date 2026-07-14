@@ -1,0 +1,53 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_030",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:09:27"
+                 },
+    "Items":  [
+                  {
+                      "Id":  "item_001",
+                      "Name":  "Health Potion",
+                      "Category":  "Consumable",
+                      "Rarity":  "Common",
+                      "StackLimit":  99,
+                      "BuyPrice":  50,
+                      "SellPrice":  25,
+                      "Tradable":  true,
+                      "Description":  "Restore Health."
+                  },
+                  {
+                      "Id":  "item_002",
+                      "Name":  "Mana Potion",
+                      "Category":  "Consumable",
+                      "Rarity":  "Common",
+                      "StackLimit":  99,
+                      "BuyPrice":  60,
+                      "SellPrice":  30,
+                      "Tradable":  true,
+                      "Description":  "Restore Mana."
+                  },
+                  {
+                      "Id":  "item_003",
+                      "Name":  "Revive Scroll",
+                      "Category":  "Support",
+                      "Rarity":  "Epic",
+                      "StackLimit":  10,
+                      "BuyPrice":  500,
+                      "SellPrice":  250,
+                      "Tradable":  false,
+                      "Description":  "Revives one hero."
+                  },
+                  {
+                      "Id":  "item_004",
+                      "Name":  "Enhancement Stone",
+                      "Category":  "Upgrade",
+                      "Rarity":  "Rare",
+                      "StackLimit":  999,
+                      "BuyPrice":  200,
+                      "SellPrice":  100,
+                      "Tradable":  true,
+                      "Description":  "Used for equipment upgrades."
+                  }
+              ]
+}

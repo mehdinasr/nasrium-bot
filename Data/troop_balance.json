@@ -1,0 +1,178 @@
+﻿{
+    "Metadata":  {
+                     "FormulaType":  "Multiplicative scaling based on tier roles",
+                     "LastUpdated":  "2026-07-08 01:19:15",
+                     "Version":  "1.0.0"
+                 },
+    "Troops":  {
+                   "Archer":  {
+                                  "MaxLevel":  8,
+                                  "Levels":  [
+                                                 {
+                                                     "TrainingTimeSec":  25,
+                                                     "HitPoints":  30,
+                                                     "DamagePerSecond":  11,
+                                                     "Level":  1,
+                                                     "TrainingCostGold":  60
+                                                 },
+                                                 {
+                                                     "TrainingTimeSec":  28,
+                                                     "HitPoints":  38,
+                                                     "DamagePerSecond":  14,
+                                                     "Level":  2,
+                                                     "TrainingCostGold":  102
+                                                 },
+                                                 {
+                                                     "TrainingTimeSec":  30,
+                                                     "HitPoints":  49,
+                                                     "DamagePerSecond":  17,
+                                                     "Level":  3,
+                                                     "TrainingCostGold":  173
+                                                 },
+                                                 {
+                                                     "TrainingTimeSec":  33,
+                                                     "HitPoints":  63,
+                                                     "DamagePerSecond":  21,
+                                                     "Level":  4,
+                                                     "TrainingCostGold":  295
+                                                 },
+                                                 {
+                                                     "TrainingTimeSec":  37,
+                                                     "HitPoints":  81,
+                                                     "DamagePerSecond":  27,
+                                                     "Level":  5,
+                                                     "TrainingCostGold":  501
+                                                 },
+                                                 {
+                                                     "TrainingTimeSec":  40,
+                                                     "HitPoints":  103,
+                                                     "DamagePerSecond":  34,
+                                                     "Level":  6,
+                                                     "TrainingCostGold":  852
+                                                 },
+                                                 {
+                                                     "TrainingTimeSec":  44,
+                                                     "HitPoints":  132,
+                                                     "DamagePerSecond":  42,
+                                                     "Level":  7,
+                                                     "TrainingCostGold":  1448
+                                                 },
+                                                 {
+                                                     "TrainingTimeSec":  49,
+                                                     "HitPoints":  169,
+                                                     "DamagePerSecond":  52,
+                                                     "Level":  8,
+                                                     "TrainingCostGold":  2462
+                                                 }
+                                             ]
+                              },
+                   "Warrior":  {
+                                   "MaxLevel":  8,
+                                   "Levels":  [
+                                                  {
+                                                      "TrainingTimeSec":  20,
+                                                      "HitPoints":  45,
+                                                      "DamagePerSecond":  8,
+                                                      "Level":  1,
+                                                      "TrainingCostGold":  50
+                                                  },
+                                                  {
+                                                      "TrainingTimeSec":  22,
+                                                      "HitPoints":  61,
+                                                      "DamagePerSecond":  10,
+                                                      "Level":  2,
+                                                      "TrainingCostGold":  80
+                                                  },
+                                                  {
+                                                      "TrainingTimeSec":  24,
+                                                      "HitPoints":  82,
+                                                      "DamagePerSecond":  14,
+                                                      "Level":  3,
+                                                      "TrainingCostGold":  128
+                                                  },
+                                                  {
+                                                      "TrainingTimeSec":  27,
+                                                      "HitPoints":  111,
+                                                      "DamagePerSecond":  18,
+                                                      "Level":  4,
+                                                      "TrainingCostGold":  205
+                                                  },
+                                                  {
+                                                      "TrainingTimeSec":  29,
+                                                      "HitPoints":  149,
+                                                      "DamagePerSecond":  23,
+                                                      "Level":  5,
+                                                      "TrainingCostGold":  328
+                                                  },
+                                                  {
+                                                      "TrainingTimeSec":  32,
+                                                      "HitPoints":  202,
+                                                      "DamagePerSecond":  30,
+                                                      "Level":  6,
+                                                      "TrainingCostGold":  524
+                                                  },
+                                                  {
+                                                      "TrainingTimeSec":  35,
+                                                      "HitPoints":  272,
+                                                      "DamagePerSecond":  39,
+                                                      "Level":  7,
+                                                      "TrainingCostGold":  839
+                                                  },
+                                                  {
+                                                      "TrainingTimeSec":  39,
+                                                      "HitPoints":  368,
+                                                      "DamagePerSecond":  50,
+                                                      "Level":  8,
+                                                      "TrainingCostGold":  1342
+                                                  }
+                                              ]
+                               },
+                   "Giant":  {
+                                 "MaxLevel":  6,
+                                 "Levels":  [
+                                                {
+                                                    "TrainingTimeSec":  120,
+                                                    "HitPoints":  300,
+                                                    "DamagePerSecond":  15,
+                                                    "Level":  1,
+                                                    "TrainingCostGold":  250
+                                                },
+                                                {
+                                                    "TrainingTimeSec":  138,
+                                                    "HitPoints":  420,
+                                                    "DamagePerSecond":  18,
+                                                    "Level":  2,
+                                                    "TrainingCostGold":  475
+                                                },
+                                                {
+                                                    "TrainingTimeSec":  159,
+                                                    "HitPoints":  588,
+                                                    "DamagePerSecond":  22,
+                                                    "Level":  3,
+                                                    "TrainingCostGold":  902
+                                                },
+                                                {
+                                                    "TrainingTimeSec":  183,
+                                                    "HitPoints":  823,
+                                                    "DamagePerSecond":  26,
+                                                    "Level":  4,
+                                                    "TrainingCostGold":  1715
+                                                },
+                                                {
+                                                    "TrainingTimeSec":  210,
+                                                    "HitPoints":  1152,
+                                                    "DamagePerSecond":  31,
+                                                    "Level":  5,
+                                                    "TrainingCostGold":  3258
+                                                },
+                                                {
+                                                    "TrainingTimeSec":  241,
+                                                    "HitPoints":  1613,
+                                                    "DamagePerSecond":  37,
+                                                    "Level":  6,
+                                                    "TrainingCostGold":  6190
+                                                }
+                                            ]
+                             }
+               }
+}

@@ -1,0 +1,20 @@
+﻿{
+    "Id":  "TG_AI_TEST_001",
+    "Username":  "TG_TG_AI_TEST_001",
+    "Level":  1,
+    "Resources":  {
+                      "Gold":  500,
+                      "NSM_Soft":  95,
+                      "NSM_Withdraw":  0,
+                      "Energy":  100
+                  },
+    "Buildings":  [
+
+                  ],
+    "WalletAddress":  "",
+    "Shields":  0,
+    "Nfts":  [
+
+             ],
+    "CreatedAt":  "2026-07-09 18:52:57"
+}

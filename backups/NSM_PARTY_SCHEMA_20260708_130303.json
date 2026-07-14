@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_062",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:03:03"
+                 },
+    "Parties":  [
+                    {
+                        "Id":  "party_001",
+                        "Name":  "Standard Party",
+                        "MaxMembers":  5,
+                        "LeaderRequired":  true,
+                        "SharedExperience":  true,
+                        "SharedLoot":  false,
+                        "FriendlyFire":  false,
+                        "AutoDisbandOnEmpty":  true
+                    },
+                    {
+                        "Id":  "party_002",
+                        "Name":  "Raid Group",
+                        "MaxMembers":  20,
+                        "LeaderRequired":  true,
+                        "SharedExperience":  true,
+                        "SharedLoot":  true,
+                        "FriendlyFire":  false,
+                        "AutoDisbandOnEmpty":  true
+                    },
+                    {
+                        "Id":  "party_003",
+                        "Name":  "Arena Team",
+                        "MaxMembers":  3,
+                        "LeaderRequired":  true,
+                        "SharedExperience":  false,
+                        "SharedLoot":  false,
+                        "FriendlyFire":  false,
+                        "AutoDisbandOnEmpty":  true
+                    },
+                    {
+                        "Id":  "party_004",
+                        "Name":  "Expedition",
+                        "MaxMembers":  10,
+                        "LeaderRequired":  true,
+                        "SharedExperience":  true,
+                        "SharedLoot":  true,
+                        "FriendlyFire":  false,
+                        "AutoDisbandOnEmpty":  true
+                    }
+                ]
+}

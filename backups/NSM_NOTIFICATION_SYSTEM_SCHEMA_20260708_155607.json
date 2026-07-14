@@ -1,0 +1,59 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_087",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 15:56:06"
+                 },
+    "Notifications":  [
+                          {
+                              "Id":  "notification_001",
+                              "Type":  "System",
+                              "Title":  "Welcome",
+                              "Message":  "Welcome to NASRIUM.",
+                              "Priority":  "Low",
+                              "AutoExpireHours":  168,
+                              "Icon":  "system",
+                              "Active":  true
+                          },
+                          {
+                              "Id":  "notification_002",
+                              "Type":  "Construction",
+                              "Title":  "Building Completed",
+                              "Message":  "One of your buildings has been completed.",
+                              "Priority":  "Normal",
+                              "AutoExpireHours":  72,
+                              "Icon":  "building",
+                              "Active":  true
+                          },
+                          {
+                              "Id":  "notification_003",
+                              "Type":  "Research",
+                              "Title":  "Research Completed",
+                              "Message":  "Research has finished successfully.",
+                              "Priority":  "Normal",
+                              "AutoExpireHours":  72,
+                              "Icon":  "research",
+                              "Active":  true
+                          },
+                          {
+                              "Id":  "notification_004",
+                              "Type":  "Battle",
+                              "Title":  "Battle Report",
+                              "Message":  "A new battle report is available.",
+                              "Priority":  "High",
+                              "AutoExpireHours":  240,
+                              "Icon":  "battle",
+                              "Active":  true
+                          },
+                          {
+                              "Id":  "notification_005",
+                              "Type":  "Alliance",
+                              "Title":  "Alliance Message",
+                              "Message":  "Your alliance has a new announcement.",
+                              "Priority":  "High",
+                              "AutoExpireHours":  168,
+                              "Icon":  "alliance",
+                              "Active":  true
+                          }
+                      ]
+}

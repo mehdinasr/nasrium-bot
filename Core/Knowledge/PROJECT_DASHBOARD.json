@@ -1,0 +1,31 @@
+﻿{
+    "checkpoint":  {
+                       "last":  "CP_000001"
+                   },
+    "services":  {
+                     "blockchain":  "Pending",
+                     "database":  "Pending",
+                     "telegram_bot":  "Running",
+                     "builder":  "Running"
+                 },
+    "commands":  {
+                     "next":  "CMD_022",
+                     "last":  "CMD_021"
+                 },
+    "schema":  "1.0",
+    "session":  {
+                    "updated":  "2026-07-07 17:23:17"
+                },
+    "status":  {
+                   "phase":  "Foundation",
+                   "health":  "Healthy",
+                   "progress":  75,
+                   "milestone":  "Builder"
+               },
+    "project":  {
+                    "version":  "0.1.0-alpha",
+                    "name":  "NASRIUM",
+                    "id":  "NSM-CORE-2026-0001",
+                    "symbol":  "NSM"
+                }
+}

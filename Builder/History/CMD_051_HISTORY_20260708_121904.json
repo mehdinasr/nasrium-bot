@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_051",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 12:19:04",
+    "Output":  "D:\\NASRIUM\\Data\\Balance\\Buffs\\NSM_BUFF_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_BUFF_SCHEMA_20260708_121904.json",
+    "SHA256":  "AA7F3FC59182A24756410AC61CA6BD61D59AF0BC02113FE88F63C72C94406FB9"
+}

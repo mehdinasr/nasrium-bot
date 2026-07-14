@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_056",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 12:33:58",
+    "Output":  "D:\\NASRIUM\\Data\\Balance\\LootTables\\NSM_LOOT_TABLE_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_LOOT_TABLE_SCHEMA_20260708_123358.json",
+    "SHA256":  "43B63F47EDAA2DED8A31216A7991A89AD5194913A76CEDCAD9DB4F87D9282C3C"
+}

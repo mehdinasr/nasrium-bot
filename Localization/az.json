@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "az",
+    "name":  "Azerbaijani",
+    "native":  "Azərbaycan",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "NASRIUM Ekosisteminə Xoş Gəldiniz",
+                         "game.start":  "Oyuna Başla",
+                         "menu.settings":  "Parametrlər",
+                         "menu.language":  "Dil",
+                         "menu.profile":  "Profil",
+                         "menu.village":  "Kənd",
+                         "menu.resources":  "Resurslar",
+                         "menu.buildings":  "Binalar",
+                         "menu.upgrade":  "Yüksəlt",
+                         "menu.battle":  "Döyüş",
+                         "menu.wallet":  "Cüzdan",
+                         "menu.leaderboard":  "Lider Cədvəli",
+                         "menu.missions":  "Tapşırıqlar",
+                         "menu.shop":  "Mağaza",
+                         "menu.help":  "Kömək"
+                     }
+}

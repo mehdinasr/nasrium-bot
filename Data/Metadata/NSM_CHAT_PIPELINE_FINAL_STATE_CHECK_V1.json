@@ -1,0 +1,15 @@
+﻿{
+    "Command":  "CMD_093",
+    "Module":  "NSM_ChatPipeline",
+    "Status":  "READY",
+    "ModuleExists":  true,
+    "ImportTest":  true,
+    "Functions":  [
+                      "Invoke-NSMChatModeration",
+                      "Process-NSMChatMessage",
+                      "Route-NSMChatMessage",
+                      "Send-NSMChatPipeline",
+                      "Validate-NSMChatMessage"
+                  ],
+    "Time":  "2026-07-08 22:02:33"
+}

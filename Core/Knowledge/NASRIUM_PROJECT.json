@@ -1,0 +1,86 @@
+﻿{
+    "schema":  "2.0",
+    "project":  {
+                    "id":  "PRJ-000001",
+                    "name":  "NASRIUM",
+                    "symbol":  "NSM",
+                    "version":  "0.1.0-alpha",
+                    "status":  "Foundation"
+                },
+    "current_state":  {
+                          "phase":  "Foundation",
+                          "progress":  90,
+                          "health":  "Healthy",
+                          "last_command":  "CMD_022C",
+                          "next_command":  "CMD_023",
+                          "last_checkpoint":  "CP-000001",
+                          "updated":  "2026-07-07 18:31:17"
+                      },
+    "architecture":  {
+                         "style":  "Enterprise Modular",
+                         "runtime":  "Node.js",
+                         "language":  "TypeScript",
+                         "telegram_framework":  "grammY",
+                         "storage":  "JSON"
+                     },
+    "project_structure":  {
+                              "root":  "D:\\NASRIUM",
+                              "builder":  "Ready",
+                              "nos":  "Rebuild Planned",
+                              "telegram_bot":  "Running"
+                          },
+    "roadmap":  [
+                    "NOS Engine 2.0",
+                    "Database",
+                    "Player System",
+                    "Game Core",
+                    "Mini App",
+                    "Economy",
+                    "Tokenomics",
+                    "Blockchain"
+                ],
+    "completed_commands":  [
+                               "CMD_010",
+                               "CMD_011",
+                               "CMD_012",
+                               "CMD_013",
+                               "CMD_015",
+                               "CMD_016",
+                               "CMD_017",
+                               "CMD_019",
+                               "CMD_020",
+                               "CMD_021",
+                               "CMD_022A",
+                               "CMD_022B",
+                               "CMD_022C"
+                           ],
+    "rules":  [
+                  "همه فایل ها در D:\\NASRIUM",
+                  "همه مراحل دارای CMD",
+                  "Checkpoint بعد از مراحل مهم",
+                  "عدم ذخیره اطلاعات محرمانه در Git",
+                  "پاسخ ها به زبان فارسی",
+                  "توسعه مرحله ای"
+              ],
+    "decisions":  [
+                      "معماری ماولار",
+                      "Bootstrap NOS",
+                      "Builder محور",
+                      "Checkpoint محور",
+                      "JSON محور"
+                  ],
+    "ai_resume":  {
+                      "continue_from":  "CMD_023",
+                      "current_goal":  "Rebuild NOS Engine 2.0",
+                      "product_stage":  "Foundation Completed",
+                      "note":  "Continue with NOS Engine then Game Core."
+                  },
+    "files":  {
+                  "ai_project_state":  "Core\\Knowledge\\AI_PROJECT_STATE.json",
+                  "dashboard":  "Core\\Knowledge\\PROJECT_DASHBOARD.json",
+                  "context":  "Core\\Knowledge\\NASRIUM_CONTEXT.json",
+                  "book":  "Core\\Knowledge\\PROJECT_BOOK.md",
+                  "handover":  "Core\\Knowledge\\AI_HANDOVER.md",
+                  "master":  "Core\\Knowledge\\NASRIUM_PROJECT.json"
+              }
+}

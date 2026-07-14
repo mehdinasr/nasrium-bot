@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_034",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 04:24:13",
+    "Output":  "D:\\NASRIUM\\Data\\Balance\\Stages\\NSM_STAGE_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_STAGE_SCHEMA_20260708_042413.json",
+    "SHA256":  "8AB3414DB8C2C195FA3A57DC4CC6D1E18EB6F4B6F0C01D2EDF2DA9B02E9C531A"
+}

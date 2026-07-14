@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_065",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 13:13:34",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Chat\\NSM_CHAT_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_CHAT_SYSTEM_SCHEMA_20260708_131334.json",
+    "SHA256":  "D623B083FE2F584DC1B4C8660A68D964011834D0E4563FFF6559424F52AD556C"
+}

@@ -1,0 +1,10 @@
+﻿{
+    "Module":  "CMD_092",
+    "Status":  "SUCCESS",
+    "Imported":  true,
+    "Functions":  [
+                      "Verify-NSMChatMessage",
+                      "Get-NSMChatReport"
+                  ],
+    "TestTime":  "2026-07-09 16:08:08"
+}

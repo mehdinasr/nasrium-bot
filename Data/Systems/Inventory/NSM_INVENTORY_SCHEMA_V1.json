@@ -1,0 +1,45 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_049",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:13:58"
+                 },
+    "InventoryRules":  [
+                           {
+                               "Id":  "inventory_001",
+                               "Category":  "Equipment",
+                               "MaxStack":  1,
+                               "MaxSlots":  500,
+                               "Tradable":  true,
+                               "Sellable":  true,
+                               "Destroyable":  true
+                           },
+                           {
+                               "Id":  "inventory_002",
+                               "Category":  "Consumable",
+                               "MaxStack":  999,
+                               "MaxSlots":  500,
+                               "Tradable":  true,
+                               "Sellable":  true,
+                               "Destroyable":  true
+                           },
+                           {
+                               "Id":  "inventory_003",
+                               "Category":  "Material",
+                               "MaxStack":  9999,
+                               "MaxSlots":  500,
+                               "Tradable":  true,
+                               "Sellable":  true,
+                               "Destroyable":  true
+                           },
+                           {
+                               "Id":  "inventory_004",
+                               "Category":  "Quest",
+                               "MaxStack":  999,
+                               "MaxSlots":  500,
+                               "Tradable":  false,
+                               "Sellable":  false,
+                               "Destroyable":  false
+                           }
+                       ]
+}

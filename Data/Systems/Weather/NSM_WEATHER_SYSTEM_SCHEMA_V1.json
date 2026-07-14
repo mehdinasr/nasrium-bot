@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_075",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:20:54"
+                 },
+    "WeatherProfiles":  [
+                            {
+                                "Id":  "weather_001",
+                                "Name":  "Clear",
+                                "Category":  "Normal",
+                                "Probability":  40,
+                                "DurationMinutes":  120,
+                                "VisibilityPercent":  100,
+                                "MovementModifier":  1,
+                                "CombatModifier":  1
+                            },
+                            {
+                                "Id":  "weather_002",
+                                "Name":  "Rain",
+                                "Category":  "Wet",
+                                "Probability":  30,
+                                "DurationMinutes":  90,
+                                "VisibilityPercent":  85,
+                                "MovementModifier":  0.98,
+                                "CombatModifier":  0.97
+                            },
+                            {
+                                "Id":  "weather_003",
+                                "Name":  "Snow",
+                                "Category":  "Cold",
+                                "Probability":  15,
+                                "DurationMinutes":  150,
+                                "VisibilityPercent":  75,
+                                "MovementModifier":  0.92,
+                                "CombatModifier":  0.95
+                            },
+                            {
+                                "Id":  "weather_004",
+                                "Name":  "Storm",
+                                "Category":  "Extreme",
+                                "Probability":  15,
+                                "DurationMinutes":  45,
+                                "VisibilityPercent":  50,
+                                "MovementModifier":  0.85,
+                                "CombatModifier":  0.9
+                            }
+                        ]
+}

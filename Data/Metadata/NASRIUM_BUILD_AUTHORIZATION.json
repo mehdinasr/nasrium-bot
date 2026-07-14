@@ -1,0 +1,9 @@
+﻿{
+    "System":  "NASRIUM",
+    "Command":  "CMD_094",
+    "Stage":  "BUILD_AUTHORIZATION",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "Status":  "AUTHORIZED",
+    "ReadyState":  "READY",
+    "AuthorizedAt":  "2026-07-08 22:27:38"
+}

@@ -1,0 +1,9 @@
+﻿{
+    "module":  "Game",
+    "architecture":  "Layered Modular",
+    "created_at":  "2026-07-09T14:48:34Z",
+    "version":  "1.0.0",
+    "dependencies":  [
+
+                     ]
+}

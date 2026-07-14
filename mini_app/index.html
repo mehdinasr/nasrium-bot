@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nasrium Sovereign App</title>
+    <link rel="stylesheet" href="static/css/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-black text-white font-sans overflow-x-hidden">
+    <div id="ignition-overlay">
+        <h1 class="brand-text">Nasrium</h1>
+        <div id="ignition-bar"><div id="ignition-fill"></div></div>
+    </div>
+
+    <div id="app-container" class="p-4">
+        <!-- HEADER -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="brand-text text-xl">Nasrium</h1>
+            <div id="weather-indicator"></div>
+        </div>
+
+        <!-- ZONES -->
+        <div id="commander-dashboard"></div>
+        <div id="resource-hub"></div>
+        <div id="war-room">
+            <div id="warzone-zone"></div>
+            <div id="boss-zone"></div>
+            <div id="wormhole-zone"></div>
+        </div>
+        <div id="economy-hub">
+            <div id="bank-zone"></div>
+            <div id="shop-zone"></div>
+            <div id="market-zone"></div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div id="tribute-modal"></div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="static/js/app_logic.js"></script>
+</body>
+</html>

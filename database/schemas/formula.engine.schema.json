@@ -1,0 +1,70 @@
+﻿{
+    "schema_version":  "1.0",
+    "entity":  "FormulaEngine",
+    "created":  "2026-07-07 23:05:07",
+    "formula_groups":  [
+                           {
+                               "configurable":  true,
+                               "category":  "Building",
+                               "description":  "زمان ارتقاء ساختمان",
+                               "id":  "building_upgrade_time"
+                           },
+                           {
+                               "configurable":  true,
+                               "category":  "Building",
+                               "description":  "هزینه ارتقاء ساختمان",
+                               "id":  "building_upgrade_cost"
+                           },
+                           {
+                               "configurable":  true,
+                               "category":  "Resources",
+                               "description":  "تولید منابع",
+                               "id":  "resource_production"
+                           },
+                           {
+                               "configurable":  true,
+                               "category":  "Resources",
+                               "description":  "ظرفیت انبار",
+                               "id":  "resource_storage"
+                           },
+                           {
+                               "configurable":  true,
+                               "category":  "Army",
+                               "description":  "زمان آموزش نیرو",
+                               "id":  "troop_training_time"
+                           },
+                           {
+                               "configurable":  true,
+                               "category":  "Research",
+                               "description":  "زمان تحقیقات",
+                               "id":  "research_time"
+                           },
+                           {
+                               "configurable":  true,
+                               "category":  "Hero",
+                               "description":  "ارتقاء هیرو",
+                               "id":  "hero_upgrade"
+                           },
+                           {
+                               "configurable":  true,
+                               "category":  "Battle",
+                               "description":  "قدرت نهایی نبرد",
+                               "id":  "battle_power"
+                           }
+                       ],
+    "global_modifiers":  [
+                             "ServerModifier",
+                             "EventModifier",
+                             "AllianceBonus",
+                             "HeroBonus",
+                             "VIPBonus",
+                             "ResearchBonus",
+                             "SeasonModifier"
+                         ],
+    "engine_rules":  [
+                         "هیچ عدد ثابتی داخل کد قرار نگیرد.",
+                         "تمام فرمولها از فایلهای تنظیمات خوانده شوند.",
+                         "تمام Modifierها به صورت پویا اعمال شوند.",
+                         "امکان تغییر بالانس بدون تغییر کد وجود داشته باشد."
+                     ]
+}

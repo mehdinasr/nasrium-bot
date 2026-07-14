@@ -1,0 +1,21 @@
+﻿{
+    "Command":  "CMD_093",
+    "Check":  "FINAL_FUNCTION_REGISTRY",
+    "Status":  "SUCCESS",
+    "Module":  "NSM_ChatPipeline",
+    "RegisteredFunctions":  [
+                                "Process-NSMChatMessage",
+                                "Route-NSMChatMessage",
+                                "Validate-NSMChatMessage",
+                                "Invoke-NSMChatModeration",
+                                "Send-NSMChatPipeline"
+                            ],
+    "LoadedFunctions":  [
+                            "Invoke-NSMChatModeration",
+                            "Process-NSMChatMessage",
+                            "Route-NSMChatMessage",
+                            "Send-NSMChatPipeline",
+                            "Validate-NSMChatMessage"
+                        ],
+    "CheckTime":  "2026-07-08 22:12:10"
+}

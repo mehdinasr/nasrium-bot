@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_029",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 04:07:09",
+    "Output":  "D:\\NASRIUM\\Data\\Balance\\Resources\\NSM_RESOURCE_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_RESOURCE_SCHEMA_20260708_040709.json",
+    "SHA256":  "D84FF4053697E590B5A2AA1995134465F717A891E2D6A6D5CF89546E30E843DC"
+}

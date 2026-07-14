@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "ja",
+    "name":  "Japanese",
+    "native":  "日本語",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "NASRIUMエコシステムへようこそ",
+                         "game.start":  "ゲーム開始",
+                         "menu.settings":  "設定",
+                         "menu.language":  "言語",
+                         "menu.profile":  "プロフィール",
+                         "menu.village":  "村",
+                         "menu.resources":  "資源",
+                         "menu.buildings":  "建物",
+                         "menu.upgrade":  "アップグレード",
+                         "menu.battle":  "戦闘",
+                         "menu.wallet":  "ウォレット",
+                         "menu.leaderboard":  "ランキング",
+                         "menu.missions":  "ミッション",
+                         "menu.shop":  "ショップ",
+                         "menu.help":  "ヘルプ"
+                     }
+}

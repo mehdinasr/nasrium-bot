@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "ru",
+    "name":  "Russian",
+    "native":  "Русский",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Добро пожаловать в экосистему NASRIUM",
+                         "game.start":  "Начать игру",
+                         "menu.settings":  "Настройки",
+                         "menu.language":  "Язык",
+                         "menu.profile":  "Профиль",
+                         "menu.village":  "Деревня",
+                         "menu.resources":  "Ресурсы",
+                         "menu.buildings":  "Здания",
+                         "menu.upgrade":  "Улучшить",
+                         "menu.battle":  "Битва",
+                         "menu.wallet":  "Кошелёк",
+                         "menu.leaderboard":  "Рейтинг",
+                         "menu.missions":  "Миссии",
+                         "menu.shop":  "Магазин",
+                         "menu.help":  "Помощь"
+                     }
+}

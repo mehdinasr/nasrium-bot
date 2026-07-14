@@ -1,0 +1,11 @@
+﻿{
+  "network": "testnet",
+  "api_key": "YOUR_TONCENTER_API_KEY_HERE",
+  "api_base_url": "https://testnet.toncenter.com/api/v2/",
+  "project_treasury_wallet": "UQD...YOUR_PROJECT_WALLET_ADDRESS",
+  "pricing_ton": {
+    "silver_vip": 0.5,
+    "gold_vip": 1.0,
+    "premium_vip": 2.5
+  }
+}

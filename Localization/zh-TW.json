@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "zh-TW",
+    "name":  "Chinese Traditional",
+    "native":  "繁體中文",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "歡迎來到NASRIUM生態系統",
+                         "game.start":  "開始遊戲",
+                         "menu.settings":  "設定",
+                         "menu.language":  "語言",
+                         "menu.profile":  "個人資料",
+                         "menu.village":  "村莊",
+                         "menu.resources":  "資源",
+                         "menu.buildings":  "建築",
+                         "menu.upgrade":  "升級",
+                         "menu.battle":  "戰鬥",
+                         "menu.wallet":  "錢包",
+                         "menu.leaderboard":  "排行榜",
+                         "menu.missions":  "任務",
+                         "menu.shop":  "商店",
+                         "menu.help":  "幫助"
+                     }
+}

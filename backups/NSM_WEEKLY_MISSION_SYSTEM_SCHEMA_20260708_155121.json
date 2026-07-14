@@ -1,0 +1,61 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_084",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 15:51:21"
+                 },
+    "WeeklyMissions":  [
+                           {
+                               "Id":  "weekly_001",
+                               "Name":  "Master Builder",
+                               "Category":  "Construction",
+                               "Target":  50,
+                               "Reset":  "Weekly",
+                               "Reward":  {
+                                              "Gold":  10000,
+                                              "XP":  1000,
+                                              "Gems":  100
+                                          },
+                               "Active":  true
+                           },
+                           {
+                               "Id":  "weekly_002",
+                               "Name":  "Elite Commander",
+                               "Category":  "Military",
+                               "Target":  1000,
+                               "Reset":  "Weekly",
+                               "Reward":  {
+                                              "Gold":  15000,
+                                              "XP":  1500,
+                                              "Gems":  150
+                                          },
+                               "Active":  true
+                           },
+                           {
+                               "Id":  "weekly_003",
+                               "Name":  "Resource Tycoon",
+                               "Category":  "Economy",
+                               "Target":  500000,
+                               "Reset":  "Weekly",
+                               "Reward":  {
+                                              "Gold":  20000,
+                                              "XP":  2000,
+                                              "Gems":  200
+                                          },
+                               "Active":  true
+                           },
+                           {
+                               "Id":  "weekly_004",
+                               "Name":  "Arena Champion",
+                               "Category":  "Battle",
+                               "Target":  50,
+                               "Reset":  "Weekly",
+                               "Reward":  {
+                                              "Gold":  25000,
+                                              "XP":  2500,
+                                              "Gems":  250
+                                          },
+                               "Active":  true
+                           }
+                       ]
+}

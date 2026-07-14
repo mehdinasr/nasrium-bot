@@ -1,0 +1,65 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_042",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 11:50:42"
+                 },
+    "Achievements":  [
+                         {
+                             "Id":  "achievement_001",
+                             "Name":  "First Blood",
+                             "Category":  "Battle",
+                             "Description":  "Defeat your first enemy.",
+                             "TargetType":  "EnemyKill",
+                             "TargetValue":  1,
+                             "Hidden":  false,
+                             "Rewards":  {
+                                             "Gold":  100,
+                                             "Gems":  5,
+                                             "Title":  "Beginner"
+                                         }
+                         },
+                         {
+                             "Id":  "achievement_002",
+                             "Name":  "Hero Collector",
+                             "Category":  "Collection",
+                             "Description":  "Recruit 10 heroes.",
+                             "TargetType":  "HeroOwned",
+                             "TargetValue":  10,
+                             "Hidden":  false,
+                             "Rewards":  {
+                                             "Gold":  1000,
+                                             "Gems":  25,
+                                             "Title":  "Collector"
+                                         }
+                         },
+                         {
+                             "Id":  "achievement_003",
+                             "Name":  "Dragon Slayer",
+                             "Category":  "Boss",
+                             "Description":  "Defeat the Ancient Dragon.",
+                             "TargetType":  "BossKill",
+                             "TargetValue":  1,
+                             "Hidden":  false,
+                             "Rewards":  {
+                                             "Gold":  5000,
+                                             "Gems":  100,
+                                             "Title":  "Dragon Slayer"
+                                         }
+                         },
+                         {
+                             "Id":  "achievement_004",
+                             "Name":  "Legend",
+                             "Category":  "Progress",
+                             "Description":  "Reach player level 100.",
+                             "TargetType":  "PlayerLevel",
+                             "TargetValue":  100,
+                             "Hidden":  true,
+                             "Rewards":  {
+                                             "Gold":  100000,
+                                             "Gems":  1000,
+                                             "Title":  "Legend"
+                                         }
+                         }
+                     ]
+}

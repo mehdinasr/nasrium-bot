@@ -1,0 +1,45 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_028",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:00:41"
+                 },
+    "Buildings":  [
+                      {
+                          "Id":  "building_001",
+                          "Name":  "Town Hall",
+                          "Category":  "Core",
+                          "MaxLevel":  20,
+                          "BaseHP":  5000,
+                          "HpMultiplier":  1.25,
+                          "BuildCost":  0,
+                          "CostMultiplier":  1,
+                          "BuildTime":  0,
+                          "UnlockLevel":  1
+                      },
+                      {
+                          "Id":  "building_002",
+                          "Name":  "Gold Mine",
+                          "Category":  "Resource",
+                          "MaxLevel":  20,
+                          "BaseHP":  900,
+                          "HpMultiplier":  1.18,
+                          "BuildCost":  150,
+                          "CostMultiplier":  1.55,
+                          "BuildTime":  60,
+                          "UnlockLevel":  1
+                      },
+                      {
+                          "Id":  "building_003",
+                          "Name":  "Elixir Collector",
+                          "Category":  "Resource",
+                          "MaxLevel":  20,
+                          "BaseHP":  900,
+                          "HpMultiplier":  1.18,
+                          "BuildCost":  150,
+                          "CostMultiplier":  1.55,
+                          "BuildTime":  60,
+                          "UnlockLevel":  1
+                      }
+                  ]
+}

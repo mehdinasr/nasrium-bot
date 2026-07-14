@@ -1,0 +1,45 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_067",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:21:54"
+                 },
+    "Achievements":  [
+                         {
+                             "Id":  "achievement_001",
+                             "Name":  "First Blood",
+                             "Category":  "Combat",
+                             "Description":  "Defeat your first enemy.",
+                             "TargetValue":  1,
+                             "Reward":  "100 Gold",
+                             "Repeatable":  false
+                         },
+                         {
+                             "Id":  "achievement_002",
+                             "Name":  "Monster Hunter",
+                             "Category":  "Combat",
+                             "Description":  "Defeat 100 monsters.",
+                             "TargetValue":  100,
+                             "Reward":  "Rare Chest",
+                             "Repeatable":  false
+                         },
+                         {
+                             "Id":  "achievement_003",
+                             "Name":  "Master Crafter",
+                             "Category":  "Crafting",
+                             "Description":  "Craft 500 items.",
+                             "TargetValue":  500,
+                             "Reward":  "Epic Material",
+                             "Repeatable":  false
+                         },
+                         {
+                             "Id":  "achievement_004",
+                             "Name":  "Explorer",
+                             "Category":  "Exploration",
+                             "Description":  "Discover all world regions.",
+                             "TargetValue":  100,
+                             "Reward":  "Explorer Title",
+                             "Repeatable":  false
+                         }
+                     ]
+}

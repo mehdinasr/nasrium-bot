@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_070",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:44:19"
+                 },
+    "Quests":  [
+                   {
+                       "Id":  "quest_001",
+                       "Name":  "First Steps",
+                       "Category":  "Tutorial",
+                       "Description":  "Complete the beginner tutorial.",
+                       "RequiredLevel":  1,
+                       "Repeatable":  false,
+                       "RewardXP":  100,
+                       "RewardGold":  50
+                   },
+                   {
+                       "Id":  "quest_002",
+                       "Name":  "Goblin Hunt",
+                       "Category":  "Combat",
+                       "Description":  "Defeat 20 Goblins.",
+                       "RequiredLevel":  5,
+                       "Repeatable":  true,
+                       "RewardXP":  500,
+                       "RewardGold":  250
+                   },
+                   {
+                       "Id":  "quest_003",
+                       "Name":  "Gathering Supplies",
+                       "Category":  "Collection",
+                       "Description":  "Collect 30 Herbs.",
+                       "RequiredLevel":  3,
+                       "Repeatable":  true,
+                       "RewardXP":  300,
+                       "RewardGold":  150
+                   },
+                   {
+                       "Id":  "quest_004",
+                       "Name":  "Dragon Slayer",
+                       "Category":  "Epic",
+                       "Description":  "Defeat the Ancient Dragon.",
+                       "RequiredLevel":  50,
+                       "Repeatable":  false,
+                       "RewardXP":  50000,
+                       "RewardGold":  10000
+                   }
+               ]
+}

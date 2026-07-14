@@ -1,0 +1,6 @@
+﻿{
+    "failure_reason":  "Validation Test Failed: Invalid object passed in, \u0027:\u0027 or \u0027}\u0027 expected. (305): {\r\n  \"buildings\": {\r\n    \"TownHall\": {\r\n      \"levels\": {\r\n        \"1\": { \"cost_gold\": 0, \"build_time_seconds\": 0 },\r\n        \"2\": { \"cost_gold\": 1000, \"build_time_seconds\": 60 }\r\n      }\r\n    },\r\n    \"GoldMine\": {\r\n      \"levels\": {\r\n        \"1\": { \"cost_gold\": 300, \"build_time_seconds\": 10 }\r\n        \"2\": { \"cost_gold\": 800, \"build_time_seconds\": 30 }\r\n      }\r\n    }\r\n  },\r\n  \"economy\": {\r\n    \"initial_gold\": 500,\r\n    \"initial_nsm\": 0,\r\n    \"initial_energy\": 100\r\n  }\r\n}",
+    "status":  "FAILED",
+    "cmd_id":  "CMD_101",
+    "failed_at":  "2026-07-09T17:19:12Z"
+}

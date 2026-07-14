@@ -1,0 +1,50 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_035",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:26:12"
+                 },
+    "Economy":  [
+                    {
+                        "Id":  "economy_001",
+                        "Name":  "Gold",
+                        "Category":  "SoftCurrency",
+                        "StartingValue":  1000,
+                        "MaxValue":  999999999,
+                        "DailyLimit":  100000,
+                        "Tradable":  true,
+                        "Description":  "Primary game currency."
+                    },
+                    {
+                        "Id":  "economy_002",
+                        "Name":  "Gem",
+                        "Category":  "PremiumCurrency",
+                        "StartingValue":  100,
+                        "MaxValue":  999999,
+                        "DailyLimit":  999999,
+                        "Tradable":  false,
+                        "Description":  "Premium currency."
+                    },
+                    {
+                        "Id":  "economy_003",
+                        "Name":  "Energy",
+                        "Category":  "Gameplay",
+                        "StartingValue":  100,
+                        "MaxValue":  100,
+                        "DailyLimit":  9999,
+                        "RegenerationPerMinute":  1,
+                        "Tradable":  false,
+                        "Description":  "Required to enter stages."
+                    },
+                    {
+                        "Id":  "economy_004",
+                        "Name":  "ArenaToken",
+                        "Category":  "PvP",
+                        "StartingValue":  10,
+                        "MaxValue":  9999,
+                        "DailyLimit":  500,
+                        "Tradable":  false,
+                        "Description":  "Arena participation currency."
+                    }
+                ]
+}

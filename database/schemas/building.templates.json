@@ -1,0 +1,107 @@
+﻿{
+    "schema_version":  "1.0",
+    "entity":  "BuildingTemplates",
+    "created":  "2026-07-07 22:55:50",
+    "templates":  [
+                      {
+                          "id":  "town_hall",
+                          "hitpoints_formula":  "Config",
+                          "size":  "4x4",
+                          "category":  "Core",
+                          "unlock_level":  1,
+                          "max_level":  30,
+                          "name":  "Town Hall",
+                          "upgrade_cost_formula":  "Config",
+                          "build_time_formula":  "Config"
+                      },
+                      {
+                          "id":  "gold_mine",
+                          "size":  "3x3",
+                          "storage_formula":  "Config",
+                          "category":  "Production",
+                          "unlock_level":  1,
+                          "max_level":  30,
+                          "name":  "Gold Mine",
+                          "resource":  "Gold",
+                          "production_formula":  "Config"
+                      },
+                      {
+                          "id":  "lumber_mill",
+                          "size":  "3x3",
+                          "storage_formula":  "Config",
+                          "category":  "Production",
+                          "unlock_level":  1,
+                          "max_level":  30,
+                          "name":  "Lumber Mill",
+                          "resource":  "Wood",
+                          "production_formula":  "Config"
+                      },
+                      {
+                          "id":  "stone_quarry",
+                          "size":  "3x3",
+                          "storage_formula":  "Config",
+                          "category":  "Production",
+                          "unlock_level":  2,
+                          "max_level":  30,
+                          "name":  "Stone Quarry",
+                          "resource":  "Stone",
+                          "production_formula":  "Config"
+                      },
+                      {
+                          "id":  "farm",
+                          "size":  "3x3",
+                          "storage_formula":  "Config",
+                          "category":  "Production",
+                          "unlock_level":  1,
+                          "max_level":  30,
+                          "name":  "Farm",
+                          "resource":  "Food",
+                          "production_formula":  "Config"
+                      },
+                      {
+                          "id":  "warehouse",
+                          "name":  "Warehouse",
+                          "capacity_formula":  "Config",
+                          "unlock_level":  1,
+                          "max_level":  30,
+                          "category":  "Storage",
+                          "size":  "4x4"
+                      },
+                      {
+                          "id":  "barracks",
+                          "name":  "Barracks",
+                          "unlock_level":  2,
+                          "max_level":  30,
+                          "train_formula":  "Config",
+                          "category":  "Military",
+                          "size":  "4x4"
+                      },
+                      {
+                          "id":  "laboratory",
+                          "name":  "Laboratory",
+                          "research_formula":  "Config",
+                          "unlock_level":  5,
+                          "max_level":  30,
+                          "category":  "Research",
+                          "size":  "4x4"
+                      },
+                      {
+                          "id":  "defense_tower",
+                          "name":  "Defense Tower",
+                          "damage_formula":  "Config",
+                          "unlock_level":  3,
+                          "max_level":  30,
+                          "category":  "Defense",
+                          "size":  "2x2"
+                      },
+                      {
+                          "id":  "wall",
+                          "name":  "Wall",
+                          "unlock_level":  2,
+                          "max_level":  30,
+                          "hitpoints_formula":  "Config",
+                          "category":  "Defense",
+                          "size":  "1x1"
+                      }
+                  ]
+}

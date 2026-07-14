@@ -1,0 +1,41 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_079",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:28:11"
+                 },
+    "ReputationLevels":  [
+                             {
+                                 "Id":  "rep_001",
+                                 "Name":  "Hated",
+                                 "MinimumPoints":  -10000,
+                                 "MaximumPoints":  -5001,
+                                 "TradeAllowed":  false,
+                                 "QuestAccess":  false
+                             },
+                             {
+                                 "Id":  "rep_002",
+                                 "Name":  "Neutral",
+                                 "MinimumPoints":  -5000,
+                                 "MaximumPoints":  4999,
+                                 "TradeAllowed":  true,
+                                 "QuestAccess":  true
+                             },
+                             {
+                                 "Id":  "rep_003",
+                                 "Name":  "Friendly",
+                                 "MinimumPoints":  5000,
+                                 "MaximumPoints":  8999,
+                                 "TradeAllowed":  true,
+                                 "QuestAccess":  true
+                             },
+                             {
+                                 "Id":  "rep_004",
+                                 "Name":  "Exalted",
+                                 "MinimumPoints":  9000,
+                                 "MaximumPoints":  10000,
+                                 "TradeAllowed":  true,
+                                 "QuestAccess":  true
+                             }
+                         ]
+}

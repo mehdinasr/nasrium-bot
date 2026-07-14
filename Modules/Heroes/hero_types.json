@@ -1,0 +1,350 @@
+﻿{
+    "skills":  {
+                   "tank":  [
+                                {
+                                    "id":  "t_001",
+                                    "type":  "active",
+                                    "description_fa":  "۸۰٪ آسیب + استان",
+                                    "name_en":  "Shield Bash",
+                                    "damage_multiplier":  0.8,
+                                    "unlock_level":  1,
+                                    "cooldown":  4,
+                                    "target":  "single_enemy",
+                                    "description_en":  "80% damage + stun",
+                                    "name_fa":  "ضربه سپر",
+                                    "stun_duration":  1
+                                },
+                                {
+                                    "buff_defense_percent":  50,
+                                    "id":  "t_002",
+                                    "type":  "active",
+                                    "description_fa":  "۵۰٪ دفاع",
+                                    "name_en":  "Iron Will",
+                                    "unlock_level":  5,
+                                    "target":  "self",
+                                    "duration":  3,
+                                    "description_en":  "50% defense boost",
+                                    "name_fa":  "اراده آهنین",
+                                    "cooldown":  5
+                                },
+                                {
+                                    "id":  "t_003",
+                                    "type":  "active",
+                                    "description_fa":  "همه دشمنان به تو حمله",
+                                    "name_en":  "Taunt",
+                                    "unlock_level":  10,
+                                    "target":  "all_enemies",
+                                    "taunt_duration":  2,
+                                    "description_en":  "Force enemies attack you",
+                                    "name_fa":  "تحریک",
+                                    "cooldown":  6
+                                }
+                            ],
+                   "healer":  [
+                                  {
+                                      "heal_percent":  30,
+                                      "id":  "h_001",
+                                      "type":  "active",
+                                      "description_fa":  "۳۰٪ HP بازگردان",
+                                      "name_en":  "Heal",
+                                      "unlock_level":  1,
+                                      "target":  "single_ally",
+                                      "description_en":  "Restore 30% HP",
+                                      "name_fa":  "شفا",
+                                      "cooldown":  3
+                                  },
+                                  {
+                                      "heal_percent":  15,
+                                      "id":  "h_002",
+                                      "type":  "active",
+                                      "description_fa":  "۱۵٪ HP همه",
+                                      "name_en":  "Group Heal",
+                                      "unlock_level":  5,
+                                      "target":  "all_allies",
+                                      "description_en":  "Restore 15% HP all",
+                                      "name_fa":  "شفای گروهی",
+                                      "cooldown":  5
+                                  },
+                                  {
+                                      "id":  "h_003",
+                                      "type":  "active",
+                                      "description_fa":  "احیا با ۲۵٪ HP",
+                                      "name_en":  "Revive",
+                                      "revive_hp_percent":  25,
+                                      "unlock_level":  10,
+                                      "target":  "single_ally",
+                                      "description_en":  "Revive with 25% HP",
+                                      "name_fa":  "احیا",
+                                      "cooldown":  8
+                                  }
+                              ],
+                   "assassin":  [
+                                    {
+                                        "id":  "a_001",
+                                        "type":  "active",
+                                        "description_fa":  "۲۰۰٪ آسیب از پشت",
+                                        "name_en":  "Backstab",
+                                        "damage_multiplier":  2,
+                                        "unlock_level":  1,
+                                        "target":  "single_enemy",
+                                        "description_en":  "200% damage from behind",
+                                        "name_fa":  "ضربه پشت",
+                                        "cooldown":  3
+                                    },
+                                    {
+                                        "id":  "a_002",
+                                        "type":  "active",
+                                        "description_fa":  "دوج حمله بعدی",
+                                        "name_en":  "Shadow Step",
+                                        "unlock_level":  5,
+                                        "buff_speed_percent":  30,
+                                        "cooldown":  4,
+                                        "target":  "self",
+                                        "duration":  2,
+                                        "description_en":  "Dodge next attack",
+                                        "name_fa":  "گام سایه",
+                                        "dodge_next":  true
+                                    },
+                                    {
+                                        "id":  "a_003",
+                                        "type":  "active",
+                                        "description_fa":  "کشتن اگر HP \u003c ۳۰٪",
+                                        "name_en":  "Assassinate",
+                                        "unlock_level":  10,
+                                        "target":  "single_enemy",
+                                        "execute_threshold":  30,
+                                        "description_en":  "Kill if HP \u003c 30%",
+                                        "name_fa":  "ترور",
+                                        "cooldown":  5
+                                    }
+                                ],
+                   "warrior":  [
+                                   {
+                                       "id":  "w_001",
+                                       "type":  "active",
+                                       "description_fa":  "۱۵۰٪ آسیب",
+                                       "name_en":  "Power Strike",
+                                       "damage_multiplier":  1.5,
+                                       "unlock_level":  1,
+                                       "target":  "single_enemy",
+                                       "description_en":  "Deal 150% damage",
+                                       "name_fa":  "ضربه قدرتمند",
+                                       "cooldown":  3
+                                   },
+                                   {
+                                       "id":  "w_002",
+                                       "type":  "active",
+                                       "description_fa":  "۲۰٪ افزایش حمله",
+                                       "name_en":  "Battle Cry",
+                                       "buff_attack_percent":  20,
+                                       "unlock_level":  5,
+                                       "target":  "all_allies",
+                                       "duration":  2,
+                                       "description_en":  "Boost allies attack 20%",
+                                       "name_fa":  "فریاد نبرد",
+                                       "cooldown":  5
+                                   },
+                                   {
+                                       "id":  "w_003",
+                                       "type":  "active",
+                                       "description_fa":  "۲۰٪ HP کم، ۵۰٪ حمله",
+                                       "name_en":  "Berserker Rage",
+                                       "buff_attack_percent":  50,
+                                       "unlock_level":  10,
+                                       "cooldown":  6,
+                                       "target":  "self",
+                                       "duration":  3,
+                                       "description_en":  "Lose 20% HP, gain 50% attack",
+                                       "name_fa":  "خشم برسرک",
+                                       "hp_cost_percent":  20
+                                   }
+                               ],
+                   "mage":  [
+                                {
+                                    "id":  "m_001",
+                                    "type":  "active",
+                                    "description_fa":  "۱۲۰٪ آسیب به همه",
+                                    "name_en":  "Fireball",
+                                    "damage_multiplier":  1.2,
+                                    "unlock_level":  1,
+                                    "target":  "all_enemies",
+                                    "description_en":  "120% damage to all",
+                                    "name_fa":  "گلوله آتشین",
+                                    "cooldown":  4
+                                },
+                                {
+                                    "damage_reduction_percent":  30,
+                                    "id":  "m_002",
+                                    "type":  "active",
+                                    "description_fa":  "۳۰٪ کاهش آسیب",
+                                    "name_en":  "Frost Shield",
+                                    "unlock_level":  5,
+                                    "target":  "self",
+                                    "duration":  2,
+                                    "description_en":  "Reduce damage 30%",
+                                    "name_fa":  "سپر یخی",
+                                    "cooldown":  5
+                                },
+                                {
+                                    "id":  "m_003",
+                                    "type":  "active",
+                                    "description_fa":  "۲۵۰٪ آسیب",
+                                    "name_en":  "Meteor",
+                                    "damage_multiplier":  2.5,
+                                    "unlock_level":  10,
+                                    "target":  "single_enemy",
+                                    "description_en":  "250% damage single target",
+                                    "name_fa":  "شهاب‌سنگ",
+                                    "cooldown":  3
+                                }
+                            ]
+               },
+    "version":  "1.0.0",
+    "equipment":  {
+                      "slots":  [
+                                    "weapon",
+                                    "armor",
+                                    "accessory",
+                                    "boots"
+                                ],
+                      "rarities":  {
+                                       "common":  {
+                                                      "multiplier":  1,
+                                                      "color":  "#FFFFFF"
+                                                  },
+                                       "legendary":  {
+                                                         "multiplier":  2,
+                                                         "color":  "#FFAA00"
+                                                     },
+                                       "rare":  {
+                                                    "multiplier":  1.2,
+                                                    "color":  "#0088FF"
+                                                },
+                                       "epic":  {
+                                                    "multiplier":  1.5,
+                                                    "color":  "#AA00FF"
+                                                }
+                                   }
+                  },
+    "leveling":  {
+                     "xp_sources":  {
+                                        "quest_complete":  100,
+                                        "battle_win":  50,
+                                        "daily_login":  25,
+                                        "battle_loss":  10
+                                    },
+                     "max_level":  50,
+                     "base_xp_per_level":  100,
+                     "xp_formula":  "base * (level ^ 1.5)",
+                     "stat_growth_per_level":  {
+                                                   "tank":  {
+                                                                "attack":  1,
+                                                                "health":  25,
+                                                                "speed":  0,
+                                                                "defense":  4
+                                                            },
+                                                   "healer":  {
+                                                                  "attack":  1,
+                                                                  "health":  12,
+                                                                  "speed":  1,
+                                                                  "defense":  2
+                                                              },
+                                                   "assassin":  {
+                                                                    "attack":  4,
+                                                                    "health":  10,
+                                                                    "speed":  2,
+                                                                    "defense":  1
+                                                                },
+                                                   "warrior":  {
+                                                                   "attack":  3,
+                                                                   "health":  15,
+                                                                   "speed":  1,
+                                                                   "defense":  2
+                                                               },
+                                                   "mage":  {
+                                                                "attack":  5,
+                                                                "health":  8,
+                                                                "speed":  0,
+                                                                "defense":  1
+                                                            }
+                                               }
+                 },
+    "hero_classes":  {
+                         "tank":  {
+                                      "growth_attack":  1,
+                                      "description_en":  "High defense, slow",
+                                      "growth_speed":  0,
+                                      "base_defense":  35,
+                                      "base_speed":  4,
+                                      "description_fa":  "دفاع بالا، کند",
+                                      "name_fa":  "سنگربند",
+                                      "growth_health":  25,
+                                      "name_en":  "Tank",
+                                      "growth_defense":  4,
+                                      "icon":  "🛡️",
+                                      "base_attack":  12,
+                                      "base_health":  350
+                                  },
+                         "healer":  {
+                                        "growth_attack":  1,
+                                        "description_en":  "Supports allies, heals",
+                                        "growth_speed":  1,
+                                        "base_defense":  15,
+                                        "base_speed":  7,
+                                        "description_fa":  "پشتیبانی متحدان، شفا",
+                                        "name_fa":  "شفادهنده",
+                                        "growth_health":  12,
+                                        "name_en":  "Healer",
+                                        "growth_defense":  2,
+                                        "icon":  "💚",
+                                        "base_attack":  10,
+                                        "base_health":  160
+                                    },
+                         "assassin":  {
+                                          "growth_attack":  4,
+                                          "description_en":  "Fast, high crit chance",
+                                          "growth_speed":  2,
+                                          "base_defense":  10,
+                                          "base_speed":  15,
+                                          "description_fa":  "سریع، شانس کریت بالا",
+                                          "name_fa":  "ترورگر",
+                                          "growth_health":  10,
+                                          "name_en":  "Assassin",
+                                          "growth_defense":  1,
+                                          "icon":  "🗡️",
+                                          "base_attack":  30,
+                                          "base_health":  140
+                                      },
+                         "warrior":  {
+                                         "growth_attack":  3,
+                                         "description_en":  "Balanced melee fighter",
+                                         "growth_speed":  1,
+                                         "base_defense":  20,
+                                         "base_speed":  8,
+                                         "description_fa":  "مبارز نزدیک متعادل",
+                                         "name_fa":  "جنگجو",
+                                         "growth_health":  15,
+                                         "name_en":  "Warrior",
+                                         "growth_defense":  2,
+                                         "icon":  "⚔️",
+                                         "base_attack":  25,
+                                         "base_health":  200
+                                     },
+                         "mage":  {
+                                      "growth_attack":  5,
+                                      "description_en":  "High damage, fragile",
+                                      "growth_speed":  0,
+                                      "base_defense":  8,
+                                      "base_speed":  6,
+                                      "description_fa":  "آسیب بالا، شکننده",
+                                      "name_fa":  "جادوگر",
+                                      "growth_health":  8,
+                                      "name_en":  "Mage",
+                                      "growth_defense":  1,
+                                      "icon":  "🔮",
+                                      "base_attack":  35,
+                                      "base_health":  120
+                                  }
+                     },
+    "last_updated":  "2026-07-12 14:42:26"
+}

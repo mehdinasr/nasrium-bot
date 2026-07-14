@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_073",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:17:25"
+                 },
+    "Cutscenes":  [
+                      {
+                          "Id":  "cutscene_001",
+                          "Name":  "Game Introduction",
+                          "Category":  "Intro",
+                          "Trigger":  "FirstLogin",
+                          "Skippable":  true,
+                          "DurationSeconds":  90,
+                          "VoiceOver":  true,
+                          "CinematicMode":  true
+                      },
+                      {
+                          "Id":  "cutscene_002",
+                          "Name":  "Quest Arrival",
+                          "Category":  "Quest",
+                          "Trigger":  "QuestAccepted",
+                          "Skippable":  true,
+                          "DurationSeconds":  45,
+                          "VoiceOver":  false,
+                          "CinematicMode":  true
+                      },
+                      {
+                          "Id":  "cutscene_003",
+                          "Name":  "Boss Encounter",
+                          "Category":  "Boss",
+                          "Trigger":  "BossSpawn",
+                          "Skippable":  false,
+                          "DurationSeconds":  60,
+                          "VoiceOver":  true,
+                          "CinematicMode":  true
+                      },
+                      {
+                          "Id":  "cutscene_004",
+                          "Name":  "Ending",
+                          "Category":  "Story",
+                          "Trigger":  "FinalQuestCompleted",
+                          "Skippable":  false,
+                          "DurationSeconds":  180,
+                          "VoiceOver":  true,
+                          "CinematicMode":  true
+                      }
+                  ]
+}

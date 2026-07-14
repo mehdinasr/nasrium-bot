@@ -1,0 +1,32 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_040",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:40:38"
+                 },
+    "GlobalConfig":  {
+                         "GameName":  "NASRIUM",
+                         "Version":  "1.0.0",
+                         "Build":  "ALPHA",
+                         "Language":  "en-US",
+                         "TimeZone":  "UTC",
+                         "MaxPlayerLevel":  100,
+                         "MaxHeroLevel":  100,
+                         "MaxEquipmentLevel":  20,
+                         "MaxInventorySlots":  500,
+                         "AutoSaveInterval":  300,
+                         "EnableLogs":  true,
+                         "EnableBackups":  true,
+                         "EnableAnalytics":  false,
+                         "SaveCompression":  "GZip",
+                         "Encryption":  "AES256",
+                         "HashAlgorithm":  "SHA256",
+                         "BackupRetentionDays":  30,
+                         "MaxSaveSlots":  10,
+                         "ServerTickRate":  30,
+                         "AutoSaveEnabled":  true,
+                         "CloudSyncEnabled":  false,
+                         "DebugMode":  false,
+                         "ReleaseChannel":  "Alpha"
+                     }
+}

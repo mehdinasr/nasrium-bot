@@ -1,0 +1,52 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260707145305
+Username: DESKTOP-TBP6NB0\nasr
+RunAs User: DESKTOP-TBP6NB0\nasr
+Configuration Name: 
+Machine: DESKTOP-TBP6NB0 (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\NASRIUM\Core\Tools\CMD_013.ps1
+Process ID: 8100
+PSVersion: 5.1.19041.7417
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.7417
+BuildVersion: 10.0.19041.7417
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+========================================
+NASRIUM - CMD_013 (Configure .env + Run bot)
+========================================
+STEP 1/7 - Checking bot app folder exists
+OK  - App folder exists
+STEP 2/7 - Stopping previous bot process if running (safe check)
+OK  - No previous bot PID file
+STEP 3/7 - Reading BOT_TOKEN securely and writing .env
+OK  - .env written
+STEP 4/7 - Typecheck (tsc)
+
+> nasrium-telegram-bot@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+OK  - typecheck passed
+STEP 5/7 - Build (tsc -> dist/)
+
+> nasrium-telegram-bot@0.1.0 build
+> tsc -p tsconfig.json
+OK  - build completed
+STEP 6/7 - Starting bot in background (node dist/index.js) + writing PID + logs
+OK  - Bot started. PID=8308
+OK  - STDOUT log: D:\NASRIUM\Core\Logs\telegram-bot_stdout.log
+OK  - STDERR log: D:\NASRIUM\Core\Logs\telegram-bot_stderr.log
+STEP 7/7 - Updating context + history
+----------------------------------------
+DONE: CMD_013 SUCCESS | Duration: 145.58s
+Bot PID: 8308
+Stop with: Stop-Process -Id 8308
+Or use PID file: D:\NASRIUM\Core\Logs\telegram-bot.pid
+----------------------------------------
+**********************
+Windows PowerShell transcript end
+End time: 20260707145531
+**********************

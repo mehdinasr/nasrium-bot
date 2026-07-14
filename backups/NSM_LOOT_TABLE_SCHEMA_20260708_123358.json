@@ -1,0 +1,75 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_056",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:33:58"
+                 },
+    "LootTables":  [
+                       {
+                           "Id":  "loot_001",
+                           "Name":  "Common Monster",
+                           "Drops":  [
+                                         {
+                                             "ItemId":  "gold_coin",
+                                             "Chance":  75,
+                                             "MinQuantity":  10,
+                                             "MaxQuantity":  50
+                                         },
+                                         {
+                                             "ItemId":  "health_potion",
+                                             "Chance":  15,
+                                             "MinQuantity":  1,
+                                             "MaxQuantity":  2
+                                         }
+                                     ]
+                       },
+                       {
+                           "Id":  "loot_002",
+                           "Name":  "Elite Monster",
+                           "Drops":  [
+                                         {
+                                             "ItemId":  "gold_coin",
+                                             "Chance":  100,
+                                             "MinQuantity":  100,
+                                             "MaxQuantity":  250
+                                         },
+                                         {
+                                             "ItemId":  "rare_equipment",
+                                             "Chance":  12.5,
+                                             "MinQuantity":  1,
+                                             "MaxQuantity":  1
+                                         },
+                                         {
+                                             "ItemId":  "epic_material",
+                                             "Chance":  5,
+                                             "MinQuantity":  1,
+                                             "MaxQuantity":  3
+                                         }
+                                     ]
+                       },
+                       {
+                           "Id":  "loot_003",
+                           "Name":  "World Boss",
+                           "Drops":  [
+                                         {
+                                             "ItemId":  "legendary_weapon",
+                                             "Chance":  2,
+                                             "MinQuantity":  1,
+                                             "MaxQuantity":  1
+                                         },
+                                         {
+                                             "ItemId":  "boss_token",
+                                             "Chance":  100,
+                                             "MinQuantity":  10,
+                                             "MaxQuantity":  20
+                                         },
+                                         {
+                                             "ItemId":  "gold_coin",
+                                             "Chance":  100,
+                                             "MinQuantity":  5000,
+                                             "MaxQuantity":  10000
+                                         }
+                                     ]
+                       }
+                   ]
+}

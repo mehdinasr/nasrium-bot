@@ -1,0 +1,26 @@
+{
+  "Command": "CMD_097",
+  "Version": "1.0.0",
+  "Status": "FAILED",
+  "ExecutionTime": "2026-07-08 18:42:46",
+  "Results": [
+    {
+      "TestCase": "1_APPROVED_MESSAGE",
+      "Expected": "SUCCESS",
+      "Actual": "REJECTED",
+      "Pass": false
+    },
+    {
+      "TestCase": "2_MAX_LENGTH_VIOLATION",
+      "Expected": "REJECTED",
+      "Actual": "REJECTED",
+      "Pass": true
+    },
+    {
+      "TestCase": "3_BLOCKED_WORD_VIOLATION",
+      "Expected": "REJECTED",
+      "Actual": "REJECTED",
+      "Pass": false
+    }
+  ]
+}

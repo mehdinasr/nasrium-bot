@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "tr",
+    "name":  "Turkish",
+    "native":  "Türkçe",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "NASRIUM Ekosistemine Hoş Geldiniz",
+                         "game.start":  "Oyuna Başla",
+                         "menu.settings":  "Ayarlar",
+                         "menu.language":  "Dil",
+                         "menu.profile":  "Profil",
+                         "menu.village":  "Köy",
+                         "menu.resources":  "Kaynaklar",
+                         "menu.buildings":  "Binalar",
+                         "menu.upgrade":  "Yükselt",
+                         "menu.battle":  "Savaş",
+                         "menu.wallet":  "Cüzdan",
+                         "menu.leaderboard":  "Liderlik Tablosu",
+                         "menu.missions":  "Görevler",
+                         "menu.shop":  "Mağaza",
+                         "menu.help":  "Yardım"
+                     }
+}

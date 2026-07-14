@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_045",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 11:55:50",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Mail\\NSM_MAIL_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_MAIL_SCHEMA_20260708_115550.json",
+    "SHA256":  "CCD7EC5C1D40E1EEE2ECBF9055BFCBF3A4E62FC074225F8440AACB9319CB48F1"
+}

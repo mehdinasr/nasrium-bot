@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_092",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 21:41:15",
+    "Output":  "D:\\NASRIUM\\Core\\Modules\\Chat\\NSM_ChatModerator.psm1",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_CHAT_MODERATOR_20260708_214115.psm1",
+    "SHA256":  "09F52B97A89E028EE218962C640FE130FCB57DF0498875EEC3917E451B4682D3"
+}

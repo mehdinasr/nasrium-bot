@@ -1,0 +1,73 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_034",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:24:13"
+                 },
+    "Stages":  [
+                   {
+                       "Id":  "stage_001",
+                       "Name":  "Green Plains",
+                       "World":  1,
+                       "Chapter":  1,
+                       "StageNumber":  1,
+                       "Difficulty":  "Normal",
+                       "RecommendedLevel":  1,
+                       "EnergyCost":  5,
+                       "TimeLimit":  300,
+                       "EnemyGroups":  [
+                                           "enemy_001",
+                                           "enemy_001",
+                                           "enemy_002"
+                                       ],
+                       "Boss":  "",
+                       "Rewards":  {
+                                       "Gold":  100,
+                                       "Experience":  50,
+                                       "DropTable":  "DROP_STAGE_001"
+                                   }
+                   },
+                   {
+                       "Id":  "stage_002",
+                       "Name":  "Dark Forest",
+                       "World":  1,
+                       "Chapter":  1,
+                       "StageNumber":  2,
+                       "Difficulty":  "Normal",
+                       "RecommendedLevel":  3,
+                       "EnergyCost":  6,
+                       "TimeLimit":  300,
+                       "EnemyGroups":  [
+                                           "enemy_001",
+                                           "enemy_002",
+                                           "enemy_003"
+                                       ],
+                       "Boss":  "",
+                       "Rewards":  {
+                                       "Gold":  180,
+                                       "Experience":  90,
+                                       "DropTable":  "DROP_STAGE_002"
+                                   }
+                   },
+                   {
+                       "Id":  "stage_003",
+                       "Name":  "Dragon Cave",
+                       "World":  1,
+                       "Chapter":  1,
+                       "StageNumber":  3,
+                       "Difficulty":  "Boss",
+                       "RecommendedLevel":  10,
+                       "EnergyCost":  10,
+                       "TimeLimit":  600,
+                       "EnemyGroups":  [
+                                           "enemy_003"
+                                       ],
+                       "Boss":  "enemy_004",
+                       "Rewards":  {
+                                       "Gold":  1000,
+                                       "Experience":  500,
+                                       "DropTable":  "DROP_BOSS_001"
+                                   }
+                   }
+               ]
+}

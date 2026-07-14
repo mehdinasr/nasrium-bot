@@ -1,0 +1,11 @@
+﻿{
+    "FileID":  "CMD_093_044",
+    "Command":  "CMD_093",
+    "Component":  "COMMAND_FINAL_INDEX",
+    "Version":  "1.0.0",
+    "Status":  "INDEXED",
+    "CreatedAt":  "2026-07-09 02:04:48",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "IndexedModule":  "NSM_ChatPipeline",
+    "IndexType":  "FINAL"
+}

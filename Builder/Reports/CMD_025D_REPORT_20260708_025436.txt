@@ -1,0 +1,24 @@
+﻿
+==========================================================
+NASRIUM BUILD REPORT
+==========================================================
+
+Command       : CMD_025D
+Version       : 1.0.0
+Status        : SUCCESS
+ExecutionTime : 2026-07-08 02:54:36
+
+Balance File
+------------
+D:\NASRIUM\Data\Balance\Troops\NSM_TROOP_BALANCE_V1.json
+
+Backup File
+-----------
+D:\NASRIUM\Backups\NSM_TROOP_BALANCE_20260708_025436.json
+
+SHA256
+------
+E4F0A0EBCE668667482CEA18CB8019C84329E1DEB270CA8E4E3EBDC044607DBA
+
+==========================================================
+

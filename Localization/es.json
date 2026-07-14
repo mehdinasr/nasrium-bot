@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "es",
+    "name":  "Spanish",
+    "native":  "Español",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Bienvenido al ecosistema NASRIUM",
+                         "game.start":  "Iniciar juego",
+                         "menu.settings":  "Configuración",
+                         "menu.language":  "Idioma",
+                         "menu.profile":  "Perfil",
+                         "menu.village":  "Aldea",
+                         "menu.resources":  "Recursos",
+                         "menu.buildings":  "Edificios",
+                         "menu.upgrade":  "Mejorar",
+                         "menu.battle":  "Batalla",
+                         "menu.wallet":  "Billetera",
+                         "menu.leaderboard":  "Clasificación",
+                         "menu.missions":  "Misiones",
+                         "menu.shop":  "Tienda",
+                         "menu.help":  "Ayuda"
+                     }
+}

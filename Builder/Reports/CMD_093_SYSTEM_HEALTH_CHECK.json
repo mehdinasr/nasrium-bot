@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_093",
+    "Check":  "SYSTEM_HEALTH",
+    "Module":  "NSM_ChatPipeline",
+    "Status":  "LOCKED",
+    "Version":  "1.0.0",
+    "HealthStatus":  "PASS",
+    "CheckedAt":  "2026-07-08 22:11:18"
+}

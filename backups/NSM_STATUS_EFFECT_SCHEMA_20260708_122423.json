@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_053",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:24:23"
+                 },
+    "StatusEffects":  [
+                          {
+                              "Id":  "status_001",
+                              "Name":  "Stun",
+                              "Category":  "CrowdControl",
+                              "BlocksMovement":  true,
+                              "BlocksAttack":  true,
+                              "BlocksSkill":  true,
+                              "DurationSeconds":  3,
+                              "Stackable":  false
+                          },
+                          {
+                              "Id":  "status_002",
+                              "Name":  "Knockback",
+                              "Category":  "Movement",
+                              "BlocksMovement":  false,
+                              "BlocksAttack":  false,
+                              "BlocksSkill":  false,
+                              "DurationSeconds":  1,
+                              "Stackable":  false
+                          },
+                          {
+                              "Id":  "status_003",
+                              "Name":  "Invincible",
+                              "Category":  "Protection",
+                              "BlocksMovement":  false,
+                              "BlocksAttack":  false,
+                              "BlocksSkill":  false,
+                              "DurationSeconds":  5,
+                              "Stackable":  false
+                          },
+                          {
+                              "Id":  "status_004",
+                              "Name":  "Invisible",
+                              "Category":  "Stealth",
+                              "BlocksMovement":  false,
+                              "BlocksAttack":  false,
+                              "BlocksSkill":  false,
+                              "DurationSeconds":  10,
+                              "Stackable":  false
+                          }
+                      ]
+}

@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_073",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 14:17:25",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Cutscenes\\NSM_CUTSCENE_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_CUTSCENE_SYSTEM_SCHEMA_20260708_141725.json",
+    "SHA256":  "C2FF7AF8A2588CFE409A033F2F32C4A12BB6937EC30C7CB7D1D2573A40DC47B4"
+}

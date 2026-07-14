@@ -1,0 +1,7 @@
+﻿{
+    "status":  "FAILED",
+    "cmd_id":  "CMD_002",
+    "started_at":  "2026-07-09T13:51:33Z",
+    "failed_at":  "2026-07-09T14:36:30Z",
+    "failure_reason":  "Crash Recovery: IN_PROGRESS converted to FAILED"
+}

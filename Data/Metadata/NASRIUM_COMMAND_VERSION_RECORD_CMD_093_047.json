@@ -1,0 +1,11 @@
+﻿{
+    "FileID":  "CMD_093_047",
+    "Command":  "CMD_093",
+    "Component":  "COMMAND_VERSION_RECORD",
+    "Version":  "1.0.0",
+    "Status":  "VERSION_LOCKED",
+    "CreatedAt":  "2026-07-09 02:06:23",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "Module":  "NSM_ChatPipeline",
+    "VersionPolicy":  "SEMANTIC"
+}

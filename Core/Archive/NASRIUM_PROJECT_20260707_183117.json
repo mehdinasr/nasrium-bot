@@ -1,0 +1,42 @@
+﻿{
+    "schema":  "1.0",
+    "project":  {
+                    "id":  "PRJ-000001",
+                    "name":  "NASRIUM",
+                    "symbol":  "NSM",
+                    "version":  "0.1.0-alpha"
+                },
+    "current_state":  {
+                          "phase":  "Foundation",
+                          "milestone":  "Builder",
+                          "health":  "Healthy",
+                          "last_command":  "CMD_022B",
+                          "next_command":  "CMD_023",
+                          "progress":  90,
+                          "updated":  "2026-07-07 18:26:49"
+                      },
+    "telegram":  {
+                     "bot":  "Running",
+                     "mini_app":  "Planned"
+                 },
+    "builder":  {
+                    "status":  "Ready"
+                },
+    "nos":  {
+                "status":  "Rebuild Planned"
+            },
+    "game":  {
+                 "status":  "Not Started"
+             },
+    "blockchain":  {
+                       "status":  "Planned"
+                   },
+    "checkpoint":  {
+                       "last":  "CP-000001"
+                   },
+    "ai_resume":  {
+                      "continue_from":  "CMD_023",
+                      "current_goal":  "Build Game Core",
+                      "note":  "NOS rebuild is planned. Continue with product development."
+                  }
+}

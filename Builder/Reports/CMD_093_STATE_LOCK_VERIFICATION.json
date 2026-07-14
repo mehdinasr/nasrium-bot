@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_093",
+    "Check":  "STATE_LOCK_VERIFICATION",
+    "Status":  "SUCCESS",
+    "StateFile":  true,
+    "CurrentStatus":  "LOCKED",
+    "LockTime":  "2026-07-08 22:07:23",
+    "LockReason":  "CMD_093 FINALIZATION",
+    "VerifiedAt":  "2026-07-08 22:10:04"
+}

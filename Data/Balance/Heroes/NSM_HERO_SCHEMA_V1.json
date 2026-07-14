@@ -1,0 +1,37 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_026",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 02:58:46"
+                 },
+    "Heroes":  [
+                   {
+                       "Id":  "hero_001",
+                       "Name":  "Commander",
+                       "Class":  "Warrior",
+                       "Rarity":  "Legendary",
+                       "MaxLevel":  100,
+                       "BaseHP":  1000,
+                       "HpMultiplier":  1.12,
+                       "BaseDamage":  120,
+                       "DamageMultiplier":  1.1,
+                       "AttackSpeed":  1.2,
+                       "MoveSpeed":  18,
+                       "Ability":  "Leadership"
+                   },
+                   {
+                       "Id":  "hero_002",
+                       "Name":  "Ranger",
+                       "Class":  "Archer",
+                       "Rarity":  "Epic",
+                       "MaxLevel":  100,
+                       "BaseHP":  750,
+                       "HpMultiplier":  1.1,
+                       "BaseDamage":  145,
+                       "DamageMultiplier":  1.12,
+                       "AttackSpeed":  1.35,
+                       "MoveSpeed":  20,
+                       "Ability":  "Precision Shot"
+                   }
+               ]
+}

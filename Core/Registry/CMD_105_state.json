@@ -1,0 +1,6 @@
+﻿{
+    "failure_reason":  "Integration Test Failed: Test 2 Failed: Should rollback.",
+    "status":  "FAILED",
+    "cmd_id":  "CMD_105",
+    "failed_at":  "2026-07-09T17:34:14Z"
+}

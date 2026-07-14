@@ -1,0 +1,26 @@
+﻿
+==================================================
+NASRIUM BUILD REPORT
+==================================================
+
+COMMAND : CMD_062
+STATUS  : SUCCESS
+
+FILE
+----
+D:\NASRIUM\Data\Systems\Party\NSM_PARTY_SCHEMA_V1.json
+
+BACKUP
+------
+D:\NASRIUM\Backups\NSM_PARTY_SCHEMA_20260708_130303.json
+
+SHA256
+------
+697AA8B4ED5F7F949D47E015186F2DE65BC39D68730DB4A56CE54C30712D3D9A
+
+TIME
+----
+2026-07-08 13:03:03
+
+==================================================
+

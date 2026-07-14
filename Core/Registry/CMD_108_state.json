@@ -1,0 +1,6 @@
+﻿{
+    "failure_reason":  "Integration Test Failed: Test 2 Failed: /build command failed.",
+    "status":  "FAILED",
+    "cmd_id":  "CMD_108",
+    "failed_at":  "2026-07-09T17:41:36Z"
+}

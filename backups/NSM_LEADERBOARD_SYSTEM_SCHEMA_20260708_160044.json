@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_089",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 16:00:44"
+                 },
+    "Leaderboards":  [
+                         {
+                             "Id":  "leaderboard_001",
+                             "Name":  "Player Power",
+                             "Category":  "Player",
+                             "Reset":  "Never",
+                             "RewardEnabled":  false,
+                             "Active":  true
+                         },
+                         {
+                             "Id":  "leaderboard_002",
+                             "Name":  "Alliance Power",
+                             "Category":  "Alliance",
+                             "Reset":  "Weekly",
+                             "RewardEnabled":  true,
+                             "Active":  true
+                         },
+                         {
+                             "Id":  "leaderboard_003",
+                             "Name":  "Battle Ranking",
+                             "Category":  "Battle",
+                             "Reset":  "Daily",
+                             "RewardEnabled":  true,
+                             "Active":  true
+                         },
+                         {
+                             "Id":  "leaderboard_004",
+                             "Name":  "Resource Ranking",
+                             "Category":  "Economy",
+                             "Reset":  "Weekly",
+                             "RewardEnabled":  true,
+                             "Active":  true
+                         },
+                         {
+                             "Id":  "leaderboard_005",
+                             "Name":  "Season Ranking",
+                             "Category":  "Season",
+                             "Reset":  "Season",
+                             "RewardEnabled":  true,
+                             "Active":  true
+                         }
+                     ]
+}

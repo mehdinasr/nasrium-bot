@@ -1,0 +1,18 @@
+﻿{
+    "Latest_Command":  293,
+    "Commander":  "Mehdi",
+    "Active_Modules":  [
+                           "AI_Intelligence (NAXUS Brain)",
+                           "Database_Memory (MongoDB)",
+                           "Economy_Engine (Mining/Minting)",
+                           "Military_Force (PvP/Raid/Matchmaking)",
+                           "Social_Layer (Syndicates/Co-op)",
+                           "Financial_Registry (Ledger/Vault/Market)",
+                           "Security_Sentinel (Shield/Suspension)",
+                           "Identity_Management (Birthright/Referral)",
+                           "User_Experience (Cyberpunk UI/Haptics)"
+                       ],
+    "Web3_State":  "TON Ready - Manifest Deployed",
+    "Status":  "Active Development - Break Phase",
+    "Project":  "NASRIUM"
+}

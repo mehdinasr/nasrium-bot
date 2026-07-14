@@ -1,0 +1,11 @@
+﻿NASRIUM SDPA CONSTITUTION AUDIT REPORT
+Generated: 07/09/2026 14:00:24
+=========================================
+Violations detected:
+ - Missing StrictMode in: CMD_027_STEP002.ps1
+ - Missing StrictMode in: CMD_027_STEP003.ps1
+ - Missing StrictMode in: CMD_027_STEP004.ps1
+ - Missing StrictMode in: CMD_027_STEP005.ps1
+ - Missing StrictMode in: CMD_027_STEP006.ps1
+ - Missing StrictMode in: CMD_027_STEP007.ps1
+ - Missing StrictMode in: CMD_027_STEP008.ps1

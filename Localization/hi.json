@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "hi",
+    "name":  "Hindi",
+    "native":  "हिन्दी",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "NASRIUM इकोसिस्टम में आपका स्वागत है",
+                         "game.start":  "खेल शुरू करें",
+                         "menu.settings":  "सेटिंग्स",
+                         "menu.language":  "भाषा",
+                         "menu.profile":  "प्रोफ़ाइल",
+                         "menu.village":  "गाँव",
+                         "menu.resources":  "संसाधन",
+                         "menu.buildings":  "इमारतें",
+                         "menu.upgrade":  "अपग्रेड",
+                         "menu.battle":  "युद्ध",
+                         "menu.wallet":  "वॉलेट",
+                         "menu.leaderboard":  "लीडरबोर्ड",
+                         "menu.missions":  "मिशन",
+                         "menu.shop":  "दुकान",
+                         "menu.help":  "मदद"
+                     }
+}

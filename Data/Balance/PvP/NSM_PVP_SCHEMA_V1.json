@@ -1,0 +1,57 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_044",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 11:53:39"
+                 },
+    "PvP":  [
+                {
+                    "Id":  "pvp_001",
+                    "League":  "Bronze",
+                    "MinRating":  0,
+                    "MaxRating":  999,
+                    "DailyEntries":  5,
+                    "SeasonReward":  {
+                                         "Gold":  500,
+                                         "Gems":  10,
+                                         "ArenaToken":  50
+                                     }
+                },
+                {
+                    "Id":  "pvp_002",
+                    "League":  "Silver",
+                    "MinRating":  1000,
+                    "MaxRating":  1999,
+                    "DailyEntries":  5,
+                    "SeasonReward":  {
+                                         "Gold":  2000,
+                                         "Gems":  30,
+                                         "ArenaToken":  150
+                                     }
+                },
+                {
+                    "Id":  "pvp_003",
+                    "League":  "Gold",
+                    "MinRating":  2000,
+                    "MaxRating":  2999,
+                    "DailyEntries":  5,
+                    "SeasonReward":  {
+                                         "Gold":  5000,
+                                         "Gems":  75,
+                                         "ArenaToken":  300
+                                     }
+                },
+                {
+                    "Id":  "pvp_004",
+                    "League":  "Legend",
+                    "MinRating":  3000,
+                    "MaxRating":  999999,
+                    "DailyEntries":  5,
+                    "SeasonReward":  {
+                                         "Gold":  20000,
+                                         "Gems":  250,
+                                         "ArenaToken":  1000
+                                     }
+                }
+            ]
+}

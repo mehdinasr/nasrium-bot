@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "it",
+    "name":  "Italian",
+    "native":  "Italiano",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Benvenuto nell\u0027ecosistema NASRIUM",
+                         "game.start":  "Inizia il gioco",
+                         "menu.settings":  "Impostazioni",
+                         "menu.language":  "Lingua",
+                         "menu.profile":  "Profilo",
+                         "menu.village":  "Villaggio",
+                         "menu.resources":  "Risorse",
+                         "menu.buildings":  "Edifici",
+                         "menu.upgrade":  "Migliora",
+                         "menu.battle":  "Battaglia",
+                         "menu.wallet":  "Portafoglio",
+                         "menu.leaderboard":  "Classifica",
+                         "menu.missions":  "Missioni",
+                         "menu.shop":  "Negozio",
+                         "menu.help":  "Aiuto"
+                     }
+}

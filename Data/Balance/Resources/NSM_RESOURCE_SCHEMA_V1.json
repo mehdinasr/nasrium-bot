@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_029",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:07:09"
+                 },
+    "Resources":  [
+                      {
+                          "Id":  "resource_001",
+                          "Name":  "Gold",
+                          "Category":  "Currency",
+                          "MaxStorage":  999999999,
+                          "DefaultValue":  0,
+                          "Premium":  false,
+                          "Tradable":  true,
+                          "Description":  "Primary economic resource."
+                      },
+                      {
+                          "Id":  "resource_002",
+                          "Name":  "Elixir",
+                          "Category":  "Currency",
+                          "MaxStorage":  999999999,
+                          "DefaultValue":  0,
+                          "Premium":  false,
+                          "Tradable":  true,
+                          "Description":  "Research and upgrade resource."
+                      },
+                      {
+                          "Id":  "resource_003",
+                          "Name":  "Dark Crystal",
+                          "Category":  "Rare",
+                          "MaxStorage":  99999999,
+                          "DefaultValue":  0,
+                          "Premium":  false,
+                          "Tradable":  false,
+                          "Description":  "Rare strategic resource."
+                      },
+                      {
+                          "Id":  "resource_004",
+                          "Name":  "Gem",
+                          "Category":  "Premium",
+                          "MaxStorage":  999999,
+                          "DefaultValue":  0,
+                          "Premium":  true,
+                          "Tradable":  false,
+                          "Description":  "Premium currency."
+                      }
+                  ]
+}

@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_043",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 11:52:07"
+                 },
+    "Guilds":  [
+                   {
+                       "Id":  "guild_001",
+                       "Name":  "Novice Guild",
+                       "Level":  1,
+                       "MaxMembers":  20,
+                       "CreateCost":  1000,
+                       "DailyDonationLimit":  1000,
+                       "MaxGuildLevel":  10,
+                       "GuildBuff":  "Attack +2%"
+                   },
+                   {
+                       "Id":  "guild_002",
+                       "Name":  "Elite Guild",
+                       "Level":  5,
+                       "MaxMembers":  30,
+                       "CreateCost":  5000,
+                       "DailyDonationLimit":  5000,
+                       "MaxGuildLevel":  20,
+                       "GuildBuff":  "Attack +5%, Defense +5%"
+                   },
+                   {
+                       "Id":  "guild_003",
+                       "Name":  "Legend Guild",
+                       "Level":  10,
+                       "MaxMembers":  50,
+                       "CreateCost":  25000,
+                       "DailyDonationLimit":  10000,
+                       "MaxGuildLevel":  50,
+                       "GuildBuff":  "All Stats +10%"
+                   },
+                   {
+                       "Id":  "guild_004",
+                       "Name":  "Mythic Guild",
+                       "Level":  20,
+                       "MaxMembers":  100,
+                       "CreateCost":  100000,
+                       "DailyDonationLimit":  50000,
+                       "MaxGuildLevel":  100,
+                       "GuildBuff":  "All Stats +20%"
+                   }
+               ]
+}

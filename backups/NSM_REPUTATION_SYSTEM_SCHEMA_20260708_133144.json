@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_069",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:31:44"
+                 },
+    "ReputationFactions":  [
+                               {
+                                   "Id":  "reputation_001",
+                                   "Name":  "Kingdom Alliance",
+                                   "MaxReputation":  10000,
+                                   "StartingReputation":  0,
+                                   "FriendlyThreshold":  2500,
+                                   "HonoredThreshold":  5000,
+                                   "ExaltedThreshold":  10000,
+                                   "AllowNegativeReputation":  false
+                               },
+                               {
+                                   "Id":  "reputation_002",
+                                   "Name":  "Mage Council",
+                                   "MaxReputation":  8000,
+                                   "StartingReputation":  0,
+                                   "FriendlyThreshold":  2000,
+                                   "HonoredThreshold":  4000,
+                                   "ExaltedThreshold":  8000,
+                                   "AllowNegativeReputation":  false
+                               },
+                               {
+                                   "Id":  "reputation_003",
+                                   "Name":  "Merchant Guild",
+                                   "MaxReputation":  6000,
+                                   "StartingReputation":  0,
+                                   "FriendlyThreshold":  1500,
+                                   "HonoredThreshold":  3000,
+                                   "ExaltedThreshold":  6000,
+                                   "AllowNegativeReputation":  true
+                               },
+                               {
+                                   "Id":  "reputation_004",
+                                   "Name":  "Shadow Brotherhood",
+                                   "MaxReputation":  5000,
+                                   "StartingReputation":  -1000,
+                                   "FriendlyThreshold":  1000,
+                                   "HonoredThreshold":  3000,
+                                   "ExaltedThreshold":  5000,
+                                   "AllowNegativeReputation":  true
+                               }
+                           ]
+}

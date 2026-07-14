@@ -1,0 +1,22 @@
+﻿{
+    "counters":  {
+                     "last_event":  1,
+                     "last_cmd":  20,
+                     "last_adr":  4,
+                     "last_checkpoint":  1
+                 },
+    "project":  {
+                    "name":  "NASRIUM",
+                    "symbol":  "NSM",
+                    "version":  "0.1.0-alpha"
+                },
+    "schema":  "1.0",
+    "session":  {
+                    "next_command":  "CMD_021",
+                    "last_update":  "2026-07-07 17:20:56"
+                },
+    "builder":  {
+                    "version":  "1.0.0",
+                    "status":  "Ready"
+                }
+}

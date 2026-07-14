@@ -1,0 +1,13 @@
+﻿{
+  "file_id": "07_SESSION_TEMPLATE",
+  "version": "1.0.0",
+  "session_template": {
+    "session_id": "SESSION_YYYYMMDD_HHMM",
+    "ai_model": "",
+    "operator": "",
+    "started_at": "",
+    "files_read": [],
+    "actions_completed": [],
+    "risks": []
+  }
+}

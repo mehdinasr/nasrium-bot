@@ -1,0 +1,116 @@
+﻿================================================================================
+NASRIUM PROJECT - PHYSICAL PROGRESS REPORT (PPR)
+================================================================================
+Version: 1.1
+Date: 2026-07-06
+Status: PHASE 1 COMPLETE - Bot Core Running
+================================================================================
+
+PROJECT OVERVIEW
+--------------------------------------------------------------------------------
+Name: Nasrium (NSM)
+Type: Play-to-Earn Strategy Game on Telegram
+Blockchain: TON (The Open Network)
+Platform: Telegram Bot + Future Mini App
+Slogan: "Play Free. Earn Real. Build Your Empire."
+
+PHYSICAL FILES LOCATION
+--------------------------------------------------------------------------------
+Root Directory: D:\Nasrium\
+Files:
+  1. main.py                 - Bot core (Python)
+  2. languages.json          - 15-language translations
+  3. create_main.py          - Builder script (backup)
+  4. nasrium_players.json    - Player data (auto-created)
+  5. Nasrium_PPR_v1.1.txt    - This progress file
+
+COMPLETED PHASES
+--------------------------------------------------------------------------------
+[✓] Phase 0: Project initialization
+[✓] Phase 1: Telegram bot core with:
+    - Town Hall system (9 levels, Village to Nasrium)
+    - Wallet lock/unlock based on TH level
+    - Withdrawal percentage (0% to 100%)
+    - NSM token economy (Total/Withdrawable/Locked)
+    - Player migration system (auto-upgrade old data)
+    - 12 commands: /start, /profile, /townhall, /collect, /build, /recruit, /attack, /wallet, /claim, /referral, /missions, /leaderboard, /language
+    - Inline keyboards for build/recruit
+    - Language system (15 languages framework)
+    - Daily missions system
+    - Referral system
+    - Leaderboard
+
+PENDING PHASES
+--------------------------------------------------------------------------------
+[ ] Phase 2: Complete language testing + add missing translations
+[ ] Phase 3: TON Smart Contract (Jetton token deployment)
+[ ] Phase 4: Real wallet integration (TON Connect)
+[ ] Phase 5: Mini App frontend (React/Telegram WebApp)
+[ ] Phase 6: Database migration (JSON to MongoDB/PostgreSQL)
+[ ] Phase 7: Admin panel
+[ ] Phase 8: Anti-cheat system
+[ ] Phase 9: Mainnet launch
+[ ] Phase 10: Mobile app
+
+BOT CONFIGURATION (SECURED)
+--------------------------------------------------------------------------------
+Token: [STORED IN RAILWAY ENV VARIABLES - DO NOT EXPOSE]
+Bot Username: @NasriumGameBot
+Testnet Contract: EQB0_DPeIgw-RWCNaJ_r0WUaFbKJ5X7L6J_ECQwxKFFo8T9F
+
+TOWN HALL LEVELS
+--------------------------------------------------------------------------------
+TH 1: Village    - Wallet: OFF - Withdraw: 0%
+TH 2: Hamlet     - Wallet: OFF - Withdraw: 0%
+TH 3: Town       - Wallet: ON  - Withdraw: 15%
+TH 4: City       - Wallet: ON  - Withdraw: 25%
+TH 5: Kingdom    - Wallet: ON  - Withdraw: 40%
+TH 6: Empire     - Wallet: ON  - Withdraw: 55%
+TH 7: Dominion   - Wallet: ON  - Withdraw: 70%
+TH 8: Realm      - Wallet: ON  - Withdraw: 85%
+TH 9: Nasrium    - Wallet: ON  - Withdraw: 100%
+
+COMMANDS REFERENCE
+--------------------------------------------------------------------------------
+/start      - Welcome + register new player
+/profile    - Player stats, resources, NSM balance
+/townhall   - TH info + upgrade cost
+/collect    - Gather gold, gems, NSM
+/build      - Upgrade buildings (inline keyboard)
+/recruit    - Hire army units (inline keyboard)
+/attack     - Battle enemies for rewards
+/wallet     - Set TON wallet address
+/claim      - Claim withdrawable NSM
+/referral   - Get referral code
+/missions   - Daily missions status
+/leaderboard- Top 10 players
+/language   - Change language (15 options)
+
+TECHNICAL DETAILS & DEPLOYMENT
+--------------------------------------------------------------------------------
+Python Version: 3.11
+Libraries: python-telegram-bot, asyncio, json, random, datetime
+Data Storage: JSON files (temporary, will migrate to DB)
+Encoding: UTF-8
+Deployment: Dockerfile on Railway (CMD_059 Standard)
+Important: Node.js files are completely removed. Builder is strictly Dockerfile.
+
+HOW TO RESUME IN NEW CHAT
+--------------------------------------------------------------------------------
+1. Share this file content with AI assistant
+2. AI will understand project state from "COMPLETED PHASES"
+3. Continue from "PENDING PHASES" - next is Phase 2
+4. All source code is in main.py and languages.json
+5. No manual file editing needed - all automated
+
+QUICK START PROMPT FOR NEW CHAT
+--------------------------------------------------------------------------------
+"I have Nasrium game project. Here's my progress report:
+
+[INSERT CONTENT OF THIS FILE HERE]
+
+Please read this context, confirm you understand the current state, and continue developing Phase 2. All files are in D:\Nasrium\"
+
+================================================================================
+END OF REPORT
+================================================================================

@@ -1,0 +1,59 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_045",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 11:55:50"
+                 },
+    "Mail":  [
+                 {
+                     "Id":  "mail_001",
+                     "Category":  "System",
+                     "Subject":  "Welcome to NASRIUM",
+                     "ExpireDays":  30,
+                     "HasAttachment":  true,
+                     "Attachment":  {
+                                        "Gold":  1000,
+                                        "Gems":  50,
+                                        "Items":  [
+
+                                                  ]
+                                    }
+                 },
+                 {
+                     "Id":  "mail_002",
+                     "Category":  "DailyReward",
+                     "Subject":  "Daily Login Reward",
+                     "ExpireDays":  7,
+                     "HasAttachment":  true,
+                     "Attachment":  {
+                                        "Gold":  500,
+                                        "Gems":  5,
+                                        "Items":  [
+
+                                                  ]
+                                    }
+                 },
+                 {
+                     "Id":  "mail_003",
+                     "Category":  "Compensation",
+                     "Subject":  "Maintenance Compensation",
+                     "ExpireDays":  14,
+                     "HasAttachment":  true,
+                     "Attachment":  {
+                                        "Gold":  5000,
+                                        "Gems":  100,
+                                        "Items":  [
+
+                                                  ]
+                                    }
+                 },
+                 {
+                     "Id":  "mail_004",
+                     "Category":  "Notification",
+                     "Subject":  "Guild Invitation",
+                     "ExpireDays":  15,
+                     "HasAttachment":  false,
+                     "Attachment":  null
+                 }
+             ]
+}

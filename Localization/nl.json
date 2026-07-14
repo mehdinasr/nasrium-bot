@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "nl",
+    "name":  "Dutch",
+    "native":  "Nederlands",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Welkom bij het NASRIUM ecosysteem",
+                         "game.start":  "Start spel",
+                         "menu.settings":  "Instellingen",
+                         "menu.language":  "Taal",
+                         "menu.profile":  "Profiel",
+                         "menu.village":  "Dorp",
+                         "menu.resources":  "Grondstoffen",
+                         "menu.buildings":  "Gebouwen",
+                         "menu.upgrade":  "Upgraden",
+                         "menu.battle":  "Gevecht",
+                         "menu.wallet":  "Portemonnee",
+                         "menu.leaderboard":  "Ranglijst",
+                         "menu.missions":  "Missies",
+                         "menu.shop":  "Winkel",
+                         "menu.help":  "Help"
+                     }
+}

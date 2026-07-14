@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_078",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 14:26:11"
+                 },
+    "Factions":  [
+                     {
+                         "Id":  "faction_001",
+                         "Name":  "Kingdom Alliance",
+                         "Category":  "Kingdom",
+                         "Alignment":  "Good",
+                         "DefaultReputation":  0,
+                         "MaxReputation":  10000,
+                         "CanJoin":  true,
+                         "IsHostile":  false
+                     },
+                     {
+                         "Id":  "faction_002",
+                         "Name":  "Shadow Syndicate",
+                         "Category":  "Guild",
+                         "Alignment":  "Neutral",
+                         "DefaultReputation":  0,
+                         "MaxReputation":  10000,
+                         "CanJoin":  true,
+                         "IsHostile":  false
+                     },
+                     {
+                         "Id":  "faction_003",
+                         "Name":  "Crimson Legion",
+                         "Category":  "Military",
+                         "Alignment":  "Evil",
+                         "DefaultReputation":  -500,
+                         "MaxReputation":  10000,
+                         "CanJoin":  false,
+                         "IsHostile":  true
+                     },
+                     {
+                         "Id":  "faction_004",
+                         "Name":  "Ancient Guardians",
+                         "Category":  "Ancient",
+                         "Alignment":  "Neutral",
+                         "DefaultReputation":  100,
+                         "MaxReputation":  10000,
+                         "CanJoin":  false,
+                         "IsHostile":  false
+                     }
+                 ]
+}

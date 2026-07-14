@@ -1,0 +1,678 @@
+**********************
+PowerShell transcript start
+Start time: 20260707142017
+Username: DESKTOP-TBP6NB0\nasr
+RunAs User: DESKTOP-TBP6NB0\nasr
+Configuration Name: 
+Machine: DESKTOP-TBP6NB0 (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll
+Process ID: 9416
+PSVersion: 7.4.1
+PSEdition: Core
+GitCommitId: 7.4.1
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+PS C:\Windows\System32> try {
+    Step 1 6 "Ensuring folders (Tools/Backups)"
+    New-Item -ItemType Directory -Path $tools -Force | Out-Null
+    New-Item -ItemType Directory -Path $backups -Force | Out-Null
+    OK "Folders ready"
+
+    Step 2 6 "Writing NOS tool script: D:\NASRIUM\nos.ps1"
+    $nosScriptPath = Join-Path $root "nos.ps1"
+
+$nosContent = @'
+param(
+  [Parameter(Position=0)]
+  [ValidateSet("status","backup","export","help")]
+  [string]$Command = "help"
+)
+
+$ErrorActionPreference = "Stop"
+$root = "D:\NASRIUM"
+$core = Join-Path $root "Core"
+$knowledge = Join-Path $core "Knowledge"
+$logs = Join-Path $core "Logs"
+$reports = Join-Path $core "Reports"
+$adr = Join-Path $core "ADR"
+$backups = Join-Path $core "Backups"
+$archive = Join-Path $core "Archive"
+
+$contextPath = Join-Path $knowledge "NASRIUM_CONTEXT.json"
+$handoverPath = Join-Path $knowledge "AI_HANDOVER.md"
+$bookPath = Join-Path $knowledge "PROJECT_BOOK.md"
+$historyPath = Join-Path $reports "command_history.ndjson"
+
+function Ensure-Folder($p){ if(!(Test-Path $p)){ New-Item -ItemType Directory -Path $p -Force | Out-Null } }
+function NowTs(){ Get-Date -Format "yyyyMMdd_HHmmss" }
+function NowDT(){ Get-Date -Format "yyyy-MM-dd HH:mm:ss" }
+
+function Read-Context(){
+  if(!(Test-Path $contextPath)){ throw "Context not found: $contextPath" }
+  return (Get-Content $contextPath -Raw -Encoding UTF8 | ConvertFrom-Json)
+}
+
+function Archive-Context(){
+  Ensure-Folder $archive
+  if(Test-Path $contextPath){
+    $arch = Join-Path $archive ("NASRIUM_CONTEXT_{0}.json" -f (NowTs))
+    Copy-Item $contextPath $arch -Force
+    return $arch
+  }
+  return $null
+}
+
+function Write-Context($ctx){
+  $ctx.meta.last_update = (NowDT)
+  ($ctx | ConvertTo-Json -Depth 50) | Out-File -FilePath $contextPath -Encoding UTF8 -Force
+}
+
+function Append-History($stageId,$result,$extra){
+  Ensure-Folder $reports
+  if(!(Test-Path $historyPath)){ New-Item -ItemType File -Path $historyPath -Force | Out-Null }
+  $obj = [ordered]@{
+    stage_id = $stageId
+    time = (NowDT)
+    machine = $env:COMPUTERNAME
+    user = $env:USERNAME
+    ps_version = $PSVersionTable.PSVersion.ToString()
+    result = $result
+    extra = $extra
+  }
+  ($obj | ConvertTo-Json -Depth 10 -Compress) | Out-File -FilePath $historyPath -Append -Encoding UTF8
+}
+
+function Cmd-Status(){
+  $ctx = Read-Context
+  Write-Host "NASRIUM STATUS" -ForegroundColor Cyan
+  Write-Host ("Project : {0} ({1})" -f $ctx.meta.project_name, $ctx.meta.token_symbol)
+  Write-Host ("Version : {0}" -f $ctx.meta.version)
+  Write-Host ("Status  : {0}" -f $ctx.meta.status)
+  Write-Host ("Last    : {0} @ {1}" -f $ctx.state.last_stage_id, $ctx.state.last_stage_time)
+  Write-Host ("Next    : {0}" -f $ctx.state.next_action) -ForegroundColor Yellow
+  Write-Host ("Context : {0}" -f $contextPath)
+  Write-Host ("Handover: {0}" -f $handoverPath)
+  Write-Host ("Book    : {0}" -f $bookPath)
+  Append-History "NOS_status" "SUCCESS" @{ next_action = $ctx.state.next_action }
+}
+
+function Cmd-Backup(){
+  Ensure-Folder $backups
+  $ts = NowTs
+  $zipPath = Join-Path $backups ("NASRIUM_CORE_BACKUP_{0}.zip" -f $ts)
+
+  # فایل‌هایی که حتماً باید داخل بکاپ باشند
+  $include = @(
+    (Join-Path $core "Knowledge"),
+    (Join-Path $core "ADR"),
+    (Join-Path $core "Reports")
+  ) | Where-Object { Test-Path $_ }
+
+  if($include.Count -eq 0){ throw "Nothing to backup. Core folders not found." }
+
+  if(Test-Path $zipPath){ Remove-Item $zipPath -Force }
+
+  Compress-Archive -Path $include -DestinationPath $zipPath -Force
+  Write-Host ("BACKUP CREATED: {0}" -f $zipPath) -ForegroundColor Green
+
+  $ctx = Read-Context
+  $ctx.state.last_stage_id = "NOS_backup"
+  $ctx.state.last_stage_time = (NowDT)
+  $ctx.state.last_action = "Created Core backup zip"
+  Write-Context $ctx
+
+  Append-History "NOS_backup" "SUCCESS" @{ zip = $zipPath }
+}
+
+function Cmd-Export(){
+  Ensure-Folder $backups
+  $ts = NowTs
+  $exportZip = Join-Path $backups ("NASRIUM_EXPORT_{0}.zip" -f $ts)
+  $continueTxt = Join-Path $backups ("CONTINUE_IN_NEW_CHAT_{0}.txt" -f $ts)
+
+  $ctxRaw = Get-Content $contextPath -Raw -Encoding UTF8
+
+  $exportText = @"
+NASRIUM - CONTINUE PACKAGE
+
+1) Attach/Provide these files from your disk:
+- $contextPath
+- $handoverPath
+- $bookPath
+- Latest transcript in: $logs
+
+2) Paste this JSON first in the new chat:
+$ctxRaw
+
+3) Then say:
+"Read the context JSON and continue from state.next_action"
+"@
+
+  $exportText | Out-File -FilePath $continueTxt -Encoding UTF8 -Force
+
+  $include = @(
+    (Join-Path $core "Knowledge"),
+    (Join-Path $core "ADR"),
+    (Join-Path $core "Reports"),
+    $continueTxt
+  ) | Where-Object { Test-Path $_ }
+
+  if(Test-Path $exportZip){ Remove-Item $exportZip -Force }
+  Compress-Archive -Path $include -DestinationPath $exportZip -Force
+
+  Write-Host ("EXPORT CREATED: {0}" -f $exportZip) -ForegroundColor Green
+  Write-Host ("CONTINUE FILE : {0}" -f $continueTxt) -ForegroundColor Yellow
+
+  $ctx = Read-Context
+  $ctx.state.last_stage_id = "NOS_export"
+  $ctx.state.last_stage_time = (NowDT)
+  $ctx.state.last_action = "Created export zip + continue instructions"
+  Write-Context $ctx
+
+  Append-History "NOS_export" "SUCCESS" @{ export_zip = $exportZip; continue_file = $continueTxt }
+}
+
+function Cmd-Help(){
+  Write-Host "NASRIUM NOS TOOL" -ForegroundColor Cyan
+  Write-Host "Usage:"
+  Write-Host "  powershell -ExecutionPolicy Bypass -File D:\NASRIUM\nos.ps1 status"
+  Write-Host "  powershell -ExecutionPolicy Bypass -File D:\NASRIUM\nos.ps1 backup"
+  Write-Host "  powershell -ExecutionPolicy Bypass -File D:\NASRIUM\nos.ps1 export"
+}
+
+Ensure-Folder $logs
+Ensure-Folder $reports
+
+try {
+  switch ($Command) {
+    "status" { Cmd-Status }
+    "backup" { Cmd-Backup }
+    "export" { Cmd-Export }
+    default  { Cmd-Help }
+  }
+}
+catch {
+  Write-Host ("ERROR: {0}" -f $_.Exception.Message) -ForegroundColor Red
+  Append-History ("NOS_" + $Command) "FAILED" @{ error = $_.Exception.Message }
+  throw
+}
+'@
+
+    $nosContent | Out-File -FilePath $nosScriptPath -Encoding UTF8 -Force
+    OK "nos.ps1 created"
+
+    Step 3 6 "Updating context state (archive + set next_action)"
+    # Archive old context first
+    $arch = Join-Path $archive "NASRIUM_CONTEXT_$ts.json"
+    Copy-Item $contextPath $arch -Force
+
+    $ctx = Get-Content $contextPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $ctx.meta.last_update = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+    $ctx.state.last_stage_id = $stageId
+    $ctx.state.last_stage_time = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+    $ctx.state.last_action = "Created NOS tooling script (nos.ps1) with status/backup/export"
+    $ctx.state.next_action = "CMD_012 - Create TypeScript bot scaffold (Clean Architecture)"
+    ($ctx | ConvertTo-Json -Depth 50) | Out-File -FilePath $contextPath -Encoding UTF8 -Force
+    OK "Context updated + archived"
+
+    Step 4 6 "Appending command history"
+    if (!(Test-Path $historyPath)) { New-Item -ItemType File -Path $historyPath -Force | Out-Null }
+
+    $histObj = [ordered]@{
+        stage_id = $stageId
+        time = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+        machine = $env:COMPUTERNAME
+        user = $env:USERNAME
+        result = "SUCCESS"
+        outputs = [ordered]@{
+            nos_script = "D:\NASRIUM\nos.ps1"
+            context = $contextPath
+            transcript = $transcriptPath
+        }
+    }
+    ($histObj | ConvertTo-Json -Depth 10 -Compress) | Out-File -FilePath $historyPath -Append -Encoding UTF8
+    OK "History appended"
+
+    Step 5 6 "Optional: Git init (safe/idempotent)"
+    Push-Location $root
+    if (!(Test-Path (Join-Path $root ".git"))) {
+        git init | Out-Null
+        OK "Git repository initialized"
+    } else {
+        OK "Git already initialized"
+    }
+    Pop-Location
+
+    Step 6 6 "Finalizing"
+    "SUCCESS $stageId $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" | Out-File -FilePath $cmdLogPath -Encoding UTF8 -Force
+
+    Write-Host ""
+    Write-Host "===============================" -ForegroundColor Green
+    Write-Host "DONE: CMD_011 completed SUCCESS" -ForegroundColor Green
+    Write-Host "Tool   : D:\NASRIUM\nos.ps1" -ForegroundColor Gray
+    Write-Host "Try    : powershell -ExecutionPolicy Bypass -File D:\NASRIUM\nos.ps1 status" -ForegroundColor Yellow
+    Write-Host "===============================" -ForegroundColor Green
+}
+catch {
+    FAIL $_
+    "FAILED $stageId $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') $($_.Exception.Message)" | Out-File -FilePath $cmdLogPath -Encoding UTF8 -Force
+    throw
+}
+STEP 1/6 - Ensuring folders (Tools/Backups)
+OK  - Folders ready
+STEP 2/6 - Writing NOS tool script: D:\NASRIUM\nos.ps1
+OK  - nos.ps1 created
+STEP 3/6 - Updating context state (archive + set next_action)
+OK  - Context updated + archived
+STEP 4/6 - Appending command history
+OK  - History appended
+STEP 5/6 - Optional: Git init (safe/idempotent)
+OK  - Git repository initialized
+STEP 6/6 - Finalizing
+
+===============================
+DONE: CMD_011 completed SUCCESS
+Tool   : D:\NASRIUM\nos.ps1
+Try    : powershell -ExecutionPolicy Bypass -File D:\NASRIUM\nos.ps1 status
+===============================
+PS C:\Windows\System32> finally {
+    Stop-Transcript | Out-Null
+}
+>> TerminatingError(): "The term 'finally' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again."
+The term 'finally' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+finally: The term 'finally' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+PS C:\Windows\System32> powershell -ExecutionPolicy Bypass -File D:\NASRIUM\nos.ps1 status
+NASRIUM STATUS
+Project : NASRIUM (NSM)
+Version : 0.1.0
+Status  : Foundation
+Last    : CMD_011 @ 2026-07-07 14:20:18
+Next    : CMD_012 - Create TypeScript bot scaffold (Clean Architecture)
+Context : D:\NASRIUM\Core\Knowledge\NASRIUM_CONTEXT.json
+Handover: D:\NASRIUM\Core\Knowledge\AI_HANDOVER.md
+Book    : D:\NASRIUM\Core\Knowledge\PROJECT_BOOK.md
+PS C:\Windows\System32> # =========================
+PS C:\Windows\System32> # NASRIUM - Create & Run CMD_012 script
+PS C:\Windows\System32> # =========================
+PS C:\Windows\System32> $cmdPath = "D:\NASRIUM\Core\Tools\CMD_012.ps1"
+PS C:\Windows\System32> New-Item -ItemType Directory -Path "D:\NASRIUM\Core\Tools" -Force | Out-Null
+PS C:\Windows\System32> @'
+$ErrorActionPreference = "Stop"
+$stageId = "CMD_012"
+$root = "D:\NASRIUM"
+
+$ts = Get-Date -Format "yyyyMMdd_HHmmss"
+$core = Join-Path $root "Core"
+$knowledge = Join-Path $core "Knowledge"
+$logs = Join-Path $core "Logs"
+$reports = Join-Path $core "Reports"
+$archive = Join-Path $core "Archive"
+
+$apps = Join-Path $root "Apps"
+$appDir = Join-Path $apps "telegram-bot"
+
+$contextPath = Join-Path $knowledge "NASRIUM_CONTEXT.json"
+$historyPath = Join-Path $reports "command_history.ndjson"
+
+$transcriptPath = Join-Path $logs "$stageId`_$ts.transcript.txt"
+$cmdLogPath = Join-Path $logs "$stageId`_$ts.log.txt"
+
+function Step($i,$n,$msg){ Write-Host ("STEP {0}/{1} - {2}" -f $i,$n,$msg) -ForegroundColor Cyan }
+function OK($msg){ Write-Host ("OK  - {0}" -f $msg) -ForegroundColor Green }
+
+if(!(Test-Path $root)){ throw "Root not found: $root" }
+if(!(Test-Path $contextPath)){ throw "Context not found: $contextPath" }
+
+New-Item -ItemType Directory -Path $logs -Force | Out-Null
+Start-Transcript -Path $transcriptPath -Force | Out-Null
+
+try {
+  Step 1 7 "Ensuring Apps folder"
+  New-Item -ItemType Directory -Path $apps -Force | Out-Null
+  OK "Apps folder ready"
+
+  Step 2 7 "Archiving previous telegram-bot app (if exists)"
+  if(Test-Path $appDir){
+    New-Item -ItemType Directory -Path $archive -Force | Out-Null
+    $zip = Join-Path $archive ("telegram-bot_OLD_{0}.zip" -f $ts)
+    if(Test-Path $zip){ Remove-Item $zip -Force }
+    Compress-Archive -Path $appDir -DestinationPath $zip -Force
+    OK "Archived old app to: $zip"
+  } else {
+    OK "No previous app found"
+  }
+
+  Step 3 7 "Creating project structure"
+  $folders = @(
+    $appDir,
+    (Join-Path $appDir "src"),
+    (Join-Path $appDir "src\config"),
+    (Join-Path $appDir "src\handlers"),
+    (Join-Path $appDir "src\utils")
+  )
+  foreach($f in $folders){ New-Item -ItemType Directory -Path $f -Force | Out-Null }
+  OK "Folders created"
+
+  Step 4 7 "Writing package.json / tsconfig.json / .gitignore / env example"
+  @'
+{
+  "name": "nasrium-telegram-bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "grammy": "^1.35.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.6.3"
+  }
+}
+'@ | Out-File -FilePath (Join-Path $appDir "package.json") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+  81 |  '@ | Out-File -FilePath (Join-Path $appDir "package.json") -Encoding  …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   @'
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "src",
+    "outDir": "dist",
+    "strict": true,
+    "skipLibCheck": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*.ts"]
+}
+'@ | Out-File -FilePath (Join-Path $appDir "tsconfig.json") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+  19 |  '@ | Out-File -FilePath (Join-Path $appDir "tsconfig.json") -Encoding …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   @'
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+'@ | Out-File -FilePath (Join-Path $appDir ".gitignore") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+   8 |  '@ | Out-File -FilePath (Join-Path $appDir ".gitignore") -Encoding UT …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   @'
+# Telegram Bot Token
+BOT_TOKEN=PASTE_YOUR_TOKEN_HERE
+
+# Runtime env
+NODE_ENV=development
+'@ | Out-File -FilePath (Join-Path $appDir ".env.example") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+   7 |  '@ | Out-File -FilePath (Join-Path $appDir ".env.example") -Encoding  …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   OK "Core files written"
+OK  - Core files written
+PS C:\Windows\System32>   Step 5 7 "Writing TypeScript source files"
+STEP 5/7 - Writing TypeScript source files
+PS C:\Windows\System32>   @'
+import "dotenv/config";
+import { createBot } from "./bot.js";
+
+async function main() {
+  const bot = createBot();
+  console.log("[NASRIUM] Bot starting (long polling) ...");
+  await bot.start();
+}
+
+main().catch((err) => {
+  console.error("[NASRIUM] Fatal error:", err);
+  process.exit(1);
+});
+'@ | Out-File -FilePath (Join-Path $appDir "src\index.ts") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+  15 |  '@ | Out-File -FilePath (Join-Path $appDir "src\index.ts") -Encoding  …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   @'
+import { Bot } from "grammy";
+import { getEnv } from "./config/env.js";
+import { registerStartHandler } from "./handlers/start.js";
+import { registerTextHandler } from "./handlers/text.js";
+import { registerErrorHandler } from "./utils/errors.js";
+
+export function createBot() {
+  const env = getEnv();
+  const bot = new Bot(env.BOT_TOKEN);
+
+  registerStartHandler(bot);
+  registerTextHandler(bot);
+  registerErrorHandler(bot);
+
+  return bot;
+}
+'@ | Out-File -FilePath (Join-Path $appDir "src\bot.ts") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+  18 |  '@ | Out-File -FilePath (Join-Path $appDir "src\bot.ts") -Encoding UT …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   @'
+type Env = {
+  BOT_TOKEN: string;
+  NODE_ENV: "development" | "production" | string;
+};
+
+export function getEnv(): Env {
+  const BOT_TOKEN = process.env.BOT_TOKEN?.trim();
+  const NODE_ENV = process.env.NODE_ENV?.trim() || "development";
+
+  if (!BOT_TOKEN || BOT_TOKEN === "PASTE_YOUR_TOKEN_HERE") {
+    throw new Error("BOT_TOKEN is missing. Create .env file based on .env.example and set BOT_TOKEN.");
+  }
+
+  return { BOT_TOKEN, NODE_ENV };
+}
+'@ | Out-File -FilePath (Join-Path $appDir "src\config\env.ts") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+  17 |  '@ | Out-File -FilePath (Join-Path $appDir "src\config\env.ts") -Enco …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   @'
+import type { Bot, Context } from "grammy";
+
+export function registerStartHandler(bot: Bot<Context>) {
+  bot.command("start", async (ctx) => {
+    const name = ctx.from?.first_name ?? "دوست عزیز";
+    await ctx.reply(
+      `سلام ${name}!\n\nبه NASRIUM خوش آمدید.\n\nمرحله بعد: اتصال به بازی (Mini App) و سیستم امتیازدهی.`,
+    );
+  });
+}
+'@ | Out-File -FilePath (Join-Path $appDir "src\handlers\start.ts") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+  12 |  '@ | Out-File -FilePath (Join-Path $appDir "src\handlers\start.ts") - …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   @'
+import type { Bot, Context } from "grammy";
+
+export function registerTextHandler(bot: Bot<Context>) {
+  bot.on("message:text", async (ctx) => {
+    await ctx.reply("پیام شما دریافت شد. برای شروع /start را بزنید.");
+  });
+}
+'@ | Out-File -FilePath (Join-Path $appDir "src\handlers\text.ts") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+   9 |  '@ | Out-File -FilePath (Join-Path $appDir "src\handlers\text.ts") -E …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   @'
+import type { Bot, Context } from "grammy";
+
+export function registerErrorHandler(bot: Bot<Context>) {
+  bot.catch((err) => {
+    const ctx = err.ctx as Context | undefined;
+    const updateId = (ctx as any)?.update?.update_id;
+    console.error("[NASRIUM] Bot error", { updateId, error: err.error });
+  });
+}
+'@ | Out-File -FilePath (Join-Path $appDir "src\utils\errors.ts") -Encoding UTF8 -Force
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+>> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: 
+Line |
+  11 |  '@ | Out-File -FilePath (Join-Path $appDir "src\utils\errors.ts") -En …
+     |                                     ~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+PS C:\Windows\System32>   OK "Source files written"
+OK  - Source files written
+PS C:\Windows\System32>   Step 6 7 "Installing npm dependencies"
+STEP 6/7 - Installing npm dependencies
+PS C:\Windows\System32>   Push-Location $appDir
+PS C:\Windows\System32>   npm install
+npm error code ENOENT
+npm error syscall open
+npm error path C:\Windows\System32\package.json
+npm error errno -4058
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, o
+pen 'C:\Windows\System32\package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: C:\Users\nasr\AppData\Local\npm-cac
+he\_logs\2026-07-07T10_55_16_857Z-debug-0.log
+PS C:\Windows\System32>   Pop-Location
+PS C:\Windows\System32>   OK "Dependencies installed"
+OK  - Dependencies installed
+PS C:\Windows\System32>   Step 7 7 "Updating context + history"
+STEP 7/7 - Updating context + history
+PS C:\Windows\System32>   # archive context
+PS C:\Windows\System32>   New-Item -ItemType Directory -Path $archive -Force | Out-Null
+PS C:\Windows\System32>   Copy-Item $contextPath (Join-Path $archive "NASRIUM_CONTEXT_$ts.json") -Force
+PS C:\Windows\System32>   $ctx = Get-Content $contextPath -Raw -Encoding UTF8 | ConvertFrom-Json
+PS C:\Windows\System32>   $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+PS C:\Windows\System32>   $ctx.meta.last_update = $now
+PS C:\Windows\System32>   $ctx.state.last_stage_id = $stageId
+PS C:\Windows\System32>   $ctx.state.last_stage_time = $now
+PS C:\Windows\System32>   $ctx.state.last_action = "Created TypeScript Telegram bot scaffold (Apps\\telegram-bot)"
+PS C:\Windows\System32>   $ctx.state.next_action = "CMD_013 - Configure .env BOT_TOKEN and run bot locally (smoke test)"
+PS C:\Windows\System32>   ($ctx | ConvertTo-Json -Depth 50) | Out-File -FilePath $contextPath -Encoding UTF8 -Force
+PS C:\Windows\System32>   if(!(Test-Path $historyPath)){ New-Item -ItemType File -Path $historyPath -Force | Out-Null }
+PS C:\Windows\System32>   $hist = [ordered]@{
+    stage_id = $stageId
+    time = $now
+    result = "SUCCESS"
+    outputs = @{
+      app_dir = $appDir
+      context = $contextPath
+      transcript = $transcriptPath
+    }
+  }
+PS C:\Windows\System32>   ($hist | ConvertTo-Json -Depth 10 -Compress) | Out-File -FilePath $historyPath -Append -Encoding UTF8
+PS C:\Windows\System32>   "SUCCESS $stageId $now" | Out-File -FilePath $cmdLogPath -Encoding UTF8 -Force
+PS C:\Windows\System32>   Write-Host ""
+
+PS C:\Windows\System32>   Write-Host "===============================" -ForegroundColor Green
+===============================
+PS C:\Windows\System32>   Write-Host "DONE: CMD_012 completed SUCCESS" -ForegroundColor Green
+DONE: CMD_012 completed SUCCESS
+PS C:\Windows\System32>   Write-Host "App : D:\NASRIUM\Apps\telegram-bot" -ForegroundColor Gray
+App : D:\NASRIUM\Apps\telegram-bot
+PS C:\Windows\System32>   Write-Host "Next: CMD_013 - Set BOT_TOKEN in .env and run bot" -ForegroundColor Yellow
+Next: CMD_013 - Set BOT_TOKEN in .env and run bot
+PS C:\Windows\System32>   Write-Host "===============================" -ForegroundColor Green
+===============================
+PS C:\Windows\System32> }
+At line:1 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+ParserError: 
+Line |
+   1 |  }
+     |  ~
+     | Unexpected token '}' in expression or statement.
+
+PS C:\Windows\System32> catch {
+  "FAILED $stageId $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') $($_.Exception.Message)" | Out-File -FilePath $cmdLogPath -Encoding UTF8 -Force
+  throw
+}
+>> TerminatingError(): "The term 'catch' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again."
+The term 'catch' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+catch: The term 'catch' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+PS C:\Windows\System32> finally {
+  Stop-Transcript | Out-Null
+}
+>> TerminatingError(): "The term 'finally' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again."
+The term 'finally' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+finally: The term 'finally' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+**********************
+PowerShell transcript end
+End time: 20260707142812
+**********************

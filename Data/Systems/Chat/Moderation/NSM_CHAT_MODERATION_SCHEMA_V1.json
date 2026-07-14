@@ -1,0 +1,30 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_091",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 16:21:34"
+                 },
+    "Rules":  [
+                  {
+                      "Id":  "rule_001",
+                      "Name":  "BadWordFilter",
+                      "Type":  "Text",
+                      "Enabled":  true,
+                      "Action":  "Warning"
+                  },
+                  {
+                      "Id":  "rule_002",
+                      "Name":  "SpamProtection",
+                      "Type":  "Frequency",
+                      "Enabled":  true,
+                      "Action":  "Limit"
+                  }
+              ],
+    "Settings":  {
+                     "Enabled":  true,
+                     "AutoFilter":  true,
+                     "LogViolations":  true,
+                     "WarningLimit":  3,
+                     "BanAfterLimit":  false
+                 }
+}

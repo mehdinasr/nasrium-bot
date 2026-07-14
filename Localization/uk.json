@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "uk",
+    "name":  "Ukrainian",
+    "native":  "Українська",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Ласкаво просимо до екосистеми NASRIUM",
+                         "game.start":  "Почати гру",
+                         "menu.settings":  "Налаштування",
+                         "menu.language":  "Мова",
+                         "menu.profile":  "Профіль",
+                         "menu.village":  "Село",
+                         "menu.resources":  "Ресурси",
+                         "menu.buildings":  "Будівлі",
+                         "menu.upgrade":  "Покращити",
+                         "menu.battle":  "Битва",
+                         "menu.wallet":  "Гаманець",
+                         "menu.leaderboard":  "Рейтинг",
+                         "menu.missions":  "Місії",
+                         "menu.shop":  "Магазин",
+                         "menu.help":  "Допомога"
+                     }
+}

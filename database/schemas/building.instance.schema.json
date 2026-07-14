@@ -1,0 +1,101 @@
+﻿{
+    "schema_version":  "1.0",
+    "entity":  "BuildingInstance",
+    "created":  "2026-07-07 22:59:48",
+    "fields":  [
+                   {
+                       "name":  "building_id",
+                       "type":  "UUID",
+                       "required":  true
+                   },
+                   {
+                       "name":  "village_id",
+                       "type":  "UUID",
+                       "required":  true
+                   },
+                   {
+                       "name":  "template_id",
+                       "type":  "String",
+                       "required":  true
+                   },
+                   {
+                       "default":  1,
+                       "name":  "level",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  0,
+                       "name":  "pos_x",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  0,
+                       "name":  "pos_y",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  0,
+                       "name":  "rotation",
+                       "type":  "Integer"
+                   },
+                   {
+                       "default":  "Idle",
+                       "name":  "status",
+                       "type":  "String"
+                   },
+                   {
+                       "default":  true,
+                       "name":  "is_enabled",
+                       "type":  "Boolean"
+                   },
+                   {
+                       "name":  "upgrade_started_at",
+                       "type":  "DateTime"
+                   },
+                   {
+                       "name":  "upgrade_finish_at",
+                       "type":  "DateTime"
+                   },
+                   {
+                       "name":  "production_started_at",
+                       "type":  "DateTime"
+                   },
+                   {
+                       "name":  "last_collected_at",
+                       "type":  "DateTime"
+                   },
+                   {
+                       "name":  "created_at",
+                       "type":  "DateTime"
+                   },
+                   {
+                       "name":  "updated_at",
+                       "type":  "DateTime"
+                   },
+                   {
+                       "default":  1,
+                       "name":  "version",
+                       "type":  "Integer"
+                   }
+               ],
+    "status_values":  [
+                          "Idle",
+                          "Building",
+                          "Upgrading",
+                          "Producing",
+                          "Disabled",
+                          "Destroyed"
+                      ],
+    "relations":  [
+                      {
+                          "key":  "village_id",
+                          "entity":  "Village",
+                          "relation":  "belongs_to"
+                      },
+                      {
+                          "key":  "template_id",
+                          "entity":  "BuildingTemplate",
+                          "relation":  "uses_template"
+                      }
+                  ]
+}

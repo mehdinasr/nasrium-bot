@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_060",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 12:56:17",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Sockets\\NSM_SOCKET_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_SOCKET_SYSTEM_SCHEMA_20260708_125617.json",
+    "SHA256":  "8AA1014FCA1586EC7F2B9DA717DF1A52CE5CC9C34AFCB73D50BE87009E0C3824"
+}

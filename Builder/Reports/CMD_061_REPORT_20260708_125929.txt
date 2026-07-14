@@ -1,0 +1,26 @@
+﻿
+==================================================
+NASRIUM BUILD REPORT
+==================================================
+
+COMMAND : CMD_061
+STATUS  : SUCCESS
+
+FILE
+----
+D:\NASRIUM\Data\Systems\Guilds\NSM_GUILD_SCHEMA_V1.json
+
+BACKUP
+------
+D:\NASRIUM\Backups\NSM_GUILD_SCHEMA_20260708_125929.json
+
+SHA256
+------
+D2F44059C50C2CD7AEFDC14BAE67A9699327861F186968BDD0FE6A3DE06588E8
+
+TIME
+----
+2026-07-08 12:59:29
+
+==================================================
+

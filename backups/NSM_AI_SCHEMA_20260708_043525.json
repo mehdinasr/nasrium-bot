@@ -1,0 +1,53 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_039",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 04:35:25"
+                 },
+    "AIProfiles":  [
+                       {
+                           "Id":  "ai_001",
+                           "Name":  "Aggressive",
+                           "Priority":  "NearestEnemy",
+                           "AttackWeight":  90,
+                           "DefenseWeight":  20,
+                           "SkillUsage":  80,
+                           "RetreatThreshold":  10,
+                           "TargetSelection":  "LowestHP",
+                           "Description":  "Always attacks the weakest enemy."
+                       },
+                       {
+                           "Id":  "ai_002",
+                           "Name":  "Balanced",
+                           "Priority":  "OptimalTarget",
+                           "AttackWeight":  70,
+                           "DefenseWeight":  60,
+                           "SkillUsage":  65,
+                           "RetreatThreshold":  20,
+                           "TargetSelection":  "Nearest",
+                           "Description":  "Balanced offensive and defensive behavior."
+                       },
+                       {
+                           "Id":  "ai_003",
+                           "Name":  "Caster",
+                           "Priority":  "Backline",
+                           "AttackWeight":  85,
+                           "DefenseWeight":  30,
+                           "SkillUsage":  100,
+                           "RetreatThreshold":  15,
+                           "TargetSelection":  "HighestThreat",
+                           "Description":  "Prioritizes skill casting."
+                       },
+                       {
+                           "Id":  "ai_004",
+                           "Name":  "Boss",
+                           "Priority":  "AllTargets",
+                           "AttackWeight":  100,
+                           "DefenseWeight":  100,
+                           "SkillUsage":  100,
+                           "RetreatThreshold":  0,
+                           "TargetSelection":  "Random",
+                           "Description":  "Boss combat behavior."
+                       }
+                   ]
+}

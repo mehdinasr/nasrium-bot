@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_093",
+    "Action":  "HANDOFF",
+    "Module":  "NSM_ChatPipeline",
+    "Status":  "TRANSFERRED",
+    "NextCommand":  "CMD_094",
+    "Ready":  true,
+    "HandoffTime":  "2026-07-08 22:21:50"
+}

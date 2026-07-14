@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "ko",
+    "name":  "Korean",
+    "native":  "한국어",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "NASRIUM 생태계에 오신 것을 환영합니다",
+                         "game.start":  "게임 시작",
+                         "menu.settings":  "설정",
+                         "menu.language":  "언어",
+                         "menu.profile":  "프로필",
+                         "menu.village":  "마을",
+                         "menu.resources":  "자원",
+                         "menu.buildings":  "건물",
+                         "menu.upgrade":  "업그레이드",
+                         "menu.battle":  "전투",
+                         "menu.wallet":  "지갑",
+                         "menu.leaderboard":  "순위표",
+                         "menu.missions":  "미션",
+                         "menu.shop":  "상점",
+                         "menu.help":  "도움말"
+                     }
+}

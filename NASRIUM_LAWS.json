@@ -1,0 +1,13 @@
+﻿{
+    "project": "NASRIUM",
+    "commander": "Mehdi",
+    "standard": "NASRIUM SDPA v1.0",
+    "laws": [
+        "LAW 01: NSM Soft for game economy, NSM Hard for TON Network.",
+        "LAW 02: NAXUS AI is the mandatory guide for all citizens.",
+        "LAW 03: Raiding and actions consume Energy (Stamina).",
+        "LAW 04: Sentinel Shields trigger after defense failures.",
+        "LAW 05: All transactions must have a unique TX-ID for tracking.",
+        "LAW 22: Every command must display Metadata Header/Footer."
+    ]
+}

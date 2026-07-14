@@ -1,0 +1,28 @@
+{
+    "economy": {
+        "troop_train_cost_gold": 500,
+        "daily_reward_gold": 5000,
+        "daily_reward_nsm_soft": 50,
+        "daily_reward_troops": 2,
+        "transfer_fee_ton": 0.05
+    },
+    "combat": {
+        "loot_percentage": 0.2,
+        "shield_duration_hours": 12,
+        "shield_cost_nsm_hard": 10
+    },
+    "buildings": {
+        "gold_mine_production_rate": 10,
+        "gem_drill_production_rate": 1,
+        "max_storage_hours": 8
+    },
+    "upgrades": {
+        "nexus_upgrade_costs": {
+            "1": 1000,
+            "2": 5000,
+            "3": 25000,
+            "4": 100000,
+            "5": 500000
+        }
+    }
+}

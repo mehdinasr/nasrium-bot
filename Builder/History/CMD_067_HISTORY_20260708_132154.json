@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_067",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 13:21:54",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Achievements\\NSM_ACHIEVEMENT_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_ACHIEVEMENT_SCHEMA_20260708_132154.json",
+    "SHA256":  "FDE912D4C5F4DEE5D250EEEAD0317CC89D3B27F171A2C9D6BBF450EFD117D708"
+}

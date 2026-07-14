@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_050",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 12:17:03",
+    "Output":  "D:\\NASRIUM\\Data\\Balance\\Skills\\NSM_SKILL_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_SKILL_SCHEMA_20260708_121703.json",
+    "SHA256":  "C8B410C146857805155723371F572D65A66EB2CC4751379F3125FEA895B3B92E"
+}

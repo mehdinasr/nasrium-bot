@@ -1,0 +1,23 @@
+﻿{
+    "Id":  "TG_FULL_TEST_001",
+    "Username":  "TG_TG_FULL_TEST_001",
+    "Level":  1,
+    "Resources":  {
+                      "Gold":  500,
+                      "NSM_Soft":  450,
+                      "NSM_Withdraw":  95,
+                      "Energy":  100
+                  },
+    "Buildings":  [
+
+                  ],
+    "WalletAddress":  "EQTestFull",
+    "Shields":  1,
+    "Nfts":  [
+
+             ],
+    "ClanId":  "",
+    "VipTier":  "silver",
+    "VipExpiry":  "2026-08-08 19:11:02",
+    "CreatedAt":  "2026-07-09 19:11:02"
+}

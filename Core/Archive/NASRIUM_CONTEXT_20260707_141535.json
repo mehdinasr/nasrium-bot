@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "project_name": "NASRIUM",
+    "symbol": "NSM",
+    "slogan": "Empire of Digital Assets",
+    "version": "0.1.0",
+    "status": "Foundation_Phase",
+    "start_date": "2026-07-07",
+    "last_update": "2026-07-07 14:11:00"
+  },
+  "architecture": {
+    "backend_lang": "Node.js / TypeScript",
+    "framework": "grammY",
+    "database_engine": "PostgreSQL (Planned)",
+    "cache_layer": "Redis (Planned)",
+    "blockchain_target": "TON Network -> Custom Chain"
+  },
+  "team_roles": {
+    "owner": "User",
+    "ai_assistant": "Gemini (Architect/Tech Lead)"
+  },
+  "current_state": {
+    "last_stage_id": "CMD_009",
+    "last_action": "Created Project Context & Knowledge Base",
+    "next_planned_action": "Re-initialize Bot Environment with Clean Architecture"
+  },
+  "project_phases": [
+    {"id": "PHASE_0", "name": "Foundation", "status": "IN_PROGRESS"},
+    {"id": "PHASE_1", "name": "Bot Development", "status": "PENDING"},
+    {"id": "PHASE_2", "name": "Game Logic", "status": "PENDING"},
+    {"id": "PHASE_3", "name": "Tokenomics & Blockchain", "status": "PENDING"}
+  ],
+  "rules_active": [
+    "Quality > Speed",
+    "Auto-Documentation",
+    "Idempotent Scripts",
+    "Security First"
+  ]
+}

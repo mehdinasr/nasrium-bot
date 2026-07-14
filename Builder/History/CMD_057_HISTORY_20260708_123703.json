@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_057",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 12:37:03",
+    "Output":  "D:\\NASRIUM\\Data\\Balance\\DropRules\\NSM_DROP_RULE_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_DROP_RULE_SCHEMA_20260708_123703.json",
+    "SHA256":  "3AE4410F79FDA68D2033AECB70DE610E8921B0C4F69B61A6E6AEC1D3B82942AF"
+}

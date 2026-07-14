@@ -1,0 +1,10 @@
+﻿{
+    "Id":  "8201b366-792a-4f09-b699-9008ca70daad",
+    "Name":  "NASRIUM_Kings",
+    "LeaderId":  "fc17a470-841f-4ac2-b924-5baa6b0ec27b",
+    "Members":  [
+                    "fc17a470-841f-4ac2-b924-5baa6b0ec27b"
+                ],
+    "BankGold":  500,
+    "BankSoft":  100
+}

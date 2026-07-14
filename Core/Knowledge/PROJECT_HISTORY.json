@@ -1,0 +1,68 @@
+﻿{
+    "schema":  "1.0",
+    "created":  "2026-07-07 23:56:23",
+    "last_update":  "2026-07-07 23:56:23",
+    "project":  {
+                    "id":  "PRJ-000001",
+                    "name":  "NASRIUM",
+                    "symbol":  "NSM",
+                    "version":  "0.1.0-alpha",
+                    "phase":  "Foundation",
+                    "status":  "Active"
+                },
+    "statistics":  {
+                       "completed_commands":  0,
+                       "checkpoints":  1,
+                       "adr":  0,
+                       "gdd":  0,
+                       "schemas":  0,
+                       "created_files":  0,
+                       "modified_files":  0,
+                       "failed_commands":  0
+                   },
+    "timeline":  [
+
+                 ],
+    "commands":  [
+
+                 ],
+    "checkpoints":  [
+
+                    ],
+    "architecture_decisions":  [
+
+                               ],
+    "game_design":  [
+
+                    ],
+    "schemas":  [
+
+                ],
+    "created_files":  [
+
+                      ],
+    "modified_files":  [
+
+                       ],
+    "issues":  [
+
+               ],
+    "fixes":  [
+
+              ],
+    "rules":  [
+
+              ],
+    "milestones":  [
+
+                   ],
+    "sessions":  [
+
+                 ],
+    "notes":  [
+
+              ],
+    "next_actions":  [
+
+                     ]
+}

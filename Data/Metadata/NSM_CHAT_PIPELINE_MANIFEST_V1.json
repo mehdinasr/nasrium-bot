@@ -1,0 +1,15 @@
+﻿{
+    "Command":  "CMD_093",
+    "Component":  "NSM_ChatPipeline",
+    "Architecture":  "NASRIUM SDPA v1.0",
+    "Status":  "REGISTERED",
+    "Version":  "1.0.0",
+    "RegisteredFunctions":  [
+                                "Process-NSMChatMessage",
+                                "Route-NSMChatMessage",
+                                "Validate-NSMChatMessage",
+                                "Invoke-NSMChatModeration",
+                                "Send-NSMChatPipeline"
+                            ],
+    "RegistrationTime":  "2026-07-08 22:11:31"
+}

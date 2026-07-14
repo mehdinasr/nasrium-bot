@@ -1,0 +1,26 @@
+﻿{
+    "schema":  "1.0",
+    "code":  "ro",
+    "name":  "Romanian",
+    "native":  "Română",
+    "rtl":  false,
+    "version":  "1.0.0",
+    "translator":  "NASRIUM Team",
+    "translations":  {
+                         "welcome.title":  "Bine ați venit în ecosistemul NASRIUM",
+                         "game.start":  "Începe jocul",
+                         "menu.settings":  "Setări",
+                         "menu.language":  "Limbă",
+                         "menu.profile":  "Profil",
+                         "menu.village":  "Sat",
+                         "menu.resources":  "Resurse",
+                         "menu.buildings":  "Clădiri",
+                         "menu.upgrade":  "Îmbunătățește",
+                         "menu.battle":  "Luptă",
+                         "menu.wallet":  "Portofel",
+                         "menu.leaderboard":  "Clasament",
+                         "menu.missions":  "Misiuni",
+                         "menu.shop":  "Magazin",
+                         "menu.help":  "Ajutor"
+                     }
+}

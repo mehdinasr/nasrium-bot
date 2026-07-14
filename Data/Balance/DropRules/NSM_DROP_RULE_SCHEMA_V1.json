@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_057",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:37:03"
+                 },
+    "DropRules":  [
+                      {
+                          "Id":  "drop_rule_001",
+                          "Name":  "Standard Monster",
+                          "LootTableId":  "loot_001",
+                          "MinimumPlayerLevel":  1,
+                          "MaximumPlayerLevel":  999,
+                          "PartyEligible":  true,
+                          "RequiresQuest":  false,
+                          "DropMultiplier":  1
+                      },
+                      {
+                          "Id":  "drop_rule_002",
+                          "Name":  "Elite Monster",
+                          "LootTableId":  "loot_002",
+                          "MinimumPlayerLevel":  20,
+                          "MaximumPlayerLevel":  999,
+                          "PartyEligible":  true,
+                          "RequiresQuest":  false,
+                          "DropMultiplier":  1.5
+                      },
+                      {
+                          "Id":  "drop_rule_003",
+                          "Name":  "World Boss",
+                          "LootTableId":  "loot_003",
+                          "MinimumPlayerLevel":  50,
+                          "MaximumPlayerLevel":  999,
+                          "PartyEligible":  true,
+                          "RequiresQuest":  false,
+                          "DropMultiplier":  2
+                      },
+                      {
+                          "Id":  "drop_rule_004",
+                          "Name":  "Quest Reward",
+                          "LootTableId":  "loot_001",
+                          "MinimumPlayerLevel":  1,
+                          "MaximumPlayerLevel":  999,
+                          "PartyEligible":  false,
+                          "RequiresQuest":  true,
+                          "DropMultiplier":  1
+                      }
+                  ]
+}

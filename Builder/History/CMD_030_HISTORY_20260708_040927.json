@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_030",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 04:09:27",
+    "Output":  "D:\\NASRIUM\\Data\\Balance\\Items\\NSM_ITEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_ITEM_SCHEMA_20260708_040927.json",
+    "SHA256":  "129ACDE5DAACE7975320A947EA93FAB07F1B0C6EF4E706F729B9256AD343164D"
+}

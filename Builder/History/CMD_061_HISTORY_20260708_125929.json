@@ -1,0 +1,9 @@
+﻿{
+    "Command":  "CMD_061",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 12:59:29",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Guilds\\NSM_GUILD_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_GUILD_SCHEMA_20260708_125929.json",
+    "SHA256":  "D2F44059C50C2CD7AEFDC14BAE67A9699327861F186968BDD0FE6A3DE06588E8"
+}

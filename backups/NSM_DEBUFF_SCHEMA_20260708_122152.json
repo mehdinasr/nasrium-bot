@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_052",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:21:51"
+                 },
+    "Debuffs":  [
+                    {
+                        "Id":  "debuff_001",
+                        "Name":  "Burn",
+                        "Category":  "DamageOverTime",
+                        "TargetStat":  "Health",
+                        "ModifierType":  "DamagePerSecond",
+                        "Value":  35,
+                        "DurationSeconds":  10,
+                        "Stackable":  true
+                    },
+                    {
+                        "Id":  "debuff_002",
+                        "Name":  "Slow",
+                        "Category":  "Movement",
+                        "TargetStat":  "MoveSpeed",
+                        "ModifierType":  "Percent",
+                        "Value":  -40,
+                        "DurationSeconds":  8,
+                        "Stackable":  false
+                    },
+                    {
+                        "Id":  "debuff_003",
+                        "Name":  "Silence",
+                        "Category":  "Control",
+                        "TargetStat":  "SkillCast",
+                        "ModifierType":  "Disable",
+                        "Value":  100,
+                        "DurationSeconds":  5,
+                        "Stackable":  false
+                    },
+                    {
+                        "Id":  "debuff_004",
+                        "Name":  "Armor Break",
+                        "Category":  "Defense",
+                        "TargetStat":  "Defense",
+                        "ModifierType":  "Percent",
+                        "Value":  -25,
+                        "DurationSeconds":  15,
+                        "Stackable":  true
+                    }
+                ]
+}

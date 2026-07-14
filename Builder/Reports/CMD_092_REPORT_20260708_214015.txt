@@ -1,0 +1,26 @@
+﻿
+==================================================
+NASRIUM BUILD REPORT
+==================================================
+
+COMMAND : CMD_092
+STATUS  : SUCCESS
+
+MODULE
+------
+D:\NASRIUM\Core\Modules\Chat\NSM_ChatModerator.psm1
+
+BACKUP
+------
+D:\NASRIUM\Backups\NSM_CHAT_MODERATOR_20260708_214015.psm1
+
+SHA256
+------
+09F52B97A89E028EE218962C640FE130FCB57DF0498875EEC3917E451B4682D3
+
+TIME
+----
+2026-07-08 21:40:15
+
+==================================================
+

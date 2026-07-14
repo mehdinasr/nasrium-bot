@@ -1,0 +1,10 @@
+{
+  "Metadata": {
+    "Module": "CMD_101",
+    "Version": "1.0.0",
+    "Generated": "2026-07-08 19:27:26",
+    "Category": "Game Economy",
+    "Description": "Building balance sheet including levels, costs, HP, and production rates."
+  },
+  "Buildings": []
+}

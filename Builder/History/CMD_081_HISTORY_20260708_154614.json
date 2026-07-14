@@ -1,0 +1,10 @@
+﻿{
+    "Command":  "CMD_081",
+    "Module":  "TITLE_SYSTEM",
+    "Version":  "1.0.0",
+    "Status":  "SUCCESS",
+    "ExecutionTime":  "2026-07-08 15:46:14",
+    "Output":  "D:\\NASRIUM\\Data\\Systems\\Titles\\NSM_TITLE_SYSTEM_SCHEMA_V1.json",
+    "Backup":  "D:\\NASRIUM\\Backups\\NSM_TITLE_SYSTEM_SCHEMA_20260708_154614.json",
+    "SHA256":  "228FE6BD604FA81292D0424504C3BD678E635C114A6A84F84704E7F46BFF1BA0"
+}

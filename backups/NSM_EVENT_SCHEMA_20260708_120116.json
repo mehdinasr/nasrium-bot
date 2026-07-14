@@ -1,0 +1,71 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_046",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 12:01:16"
+                 },
+    "Events":  [
+                   {
+                       "Id":  "event_001",
+                       "Name":  "Daily Login",
+                       "Category":  "Daily",
+                       "DurationHours":  24,
+                       "Repeatable":  true,
+                       "Rewards":  {
+                                       "Gold":  500,
+                                       "Gems":  10,
+                                       "Items":  [
+
+                                                 ]
+                                   }
+                   },
+                   {
+                       "Id":  "event_002",
+                       "Name":  "Weekend Boost",
+                       "Category":  "Weekend",
+                       "DurationHours":  48,
+                       "Repeatable":  true,
+                       "Rewards":  {
+                                       "Gold":  5000,
+                                       "Gems":  50,
+                                       "Items":  [
+
+                                                 ]
+                                   }
+                   },
+                   {
+                       "Id":  "event_003",
+                       "Name":  "World Boss",
+                       "Category":  "Raid",
+                       "DurationHours":  12,
+                       "Repeatable":  true,
+                       "Rewards":  {
+                                       "Gold":  10000,
+                                       "Gems":  100,
+                                       "Items":  [
+                                                     {
+                                                         "ItemId":  "item_005",
+                                                         "Quantity":  1
+                                                     }
+                                                 ]
+                                   }
+                   },
+                   {
+                       "Id":  "event_004",
+                       "Name":  "Season Festival",
+                       "Category":  "Seasonal",
+                       "DurationHours":  168,
+                       "Repeatable":  false,
+                       "Rewards":  {
+                                       "Gold":  25000,
+                                       "Gems":  300,
+                                       "Items":  [
+                                                     {
+                                                         "ItemId":  "item_010",
+                                                         "Quantity":  3
+                                                     }
+                                                 ]
+                                   }
+                   }
+               ]
+}

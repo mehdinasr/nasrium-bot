@@ -1,0 +1,49 @@
+﻿{
+    "Metadata":  {
+                     "Module":  "CMD_068",
+                     "Version":  "1.0.0",
+                     "Generated":  "2026-07-08 13:27:00"
+                 },
+    "Titles":  [
+                   {
+                       "Id":  "title_001",
+                       "Name":  "Novice",
+                       "Category":  "Progression",
+                       "Description":  "Awarded for beginning the adventure.",
+                       "UnlockRequirement":  "Reach Level 1",
+                       "AttributeBonus":  "Health",
+                       "BonusValue":  50,
+                       "Permanent":  true
+                   },
+                   {
+                       "Id":  "title_002",
+                       "Name":  "Monster Slayer",
+                       "Category":  "Combat",
+                       "Description":  "Awarded for defeating 1,000 monsters.",
+                       "UnlockRequirement":  "Kill 1000 Monsters",
+                       "AttributeBonus":  "Attack",
+                       "BonusValue":  10,
+                       "Permanent":  true
+                   },
+                   {
+                       "Id":  "title_003",
+                       "Name":  "Master Explorer",
+                       "Category":  "Exploration",
+                       "Description":  "Awarded for discovering every region.",
+                       "UnlockRequirement":  "Explore All Regions",
+                       "AttributeBonus":  "MovementSpeed",
+                       "BonusValue":  5,
+                       "Permanent":  true
+                   },
+                   {
+                       "Id":  "title_004",
+                       "Name":  "Champion",
+                       "Category":  "PvP",
+                       "Description":  "Awarded to seasonal arena champions.",
+                       "UnlockRequirement":  "Rank #1 Arena Season",
+                       "AttributeBonus":  "CriticalChance",
+                       "BonusValue":  3,
+                       "Permanent":  false
+                   }
+               ]
+}
