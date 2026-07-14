@@ -655,3 +655,57 @@ initGame = async () => {
     await oldInit509();
     loadBondMarket();
 };
+async function loadDerivatives() {
+    try {
+        const res = await fetch('/api/economy/derivatives/market');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('economy-hub');
+            const marketHtml = Object.keys(data.market).map(id => {
+                const c = data.market[id];
+                return `
+                    <div style="background:#111; padding:8px; border-left:3px solid #ff4757; border-radius:5px; margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
+                        <div style="font-size:0.55em; color:#fff;">
+                            <b>${c.title}</b><br>
+                            <small style="color:#aaa">Pool: ${c.total_bets.toLocaleString()} NSM</small>
+                        </div>
+                        <button onclick="predictEvent('${id}')" style="background:#ff4757; color:#fff; border:none; font-size:0.7em; font-weight:bold; padding:5px 10px; border-radius:3px;">
+                            x${c.odds}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            if(!document.getElementById('derivatives-zone')) {
+                const div = document.createElement('div');
+                div.id = 'derivatives-zone';
+                div.className = "zone-card";
+                div.style.border = "2px solid #ff4757";
+                div.style.background = "rgba(255, 71, 87, 0.05)";
+                div.style.marginTop = "10px";
+                div.innerHTML = `<div class="zone-title" style="color:#ff4757;">📈 IMPERIAL ODDS</div><div style="padding:10px;">${marketHtml}</div>`;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function predictEvent(cid) {
+    const amt = prompt("Enter prediction amount (NSM):");
+    if(!amt) return;
+    const res = await fetch('/api/economy/derivatives/predict', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, contract_id: cid, amount: amt })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit510 = initGame;
+initGame = async () => {
+    await oldInit510();
+    loadDerivatives();
+};

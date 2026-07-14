@@ -1,3 +1,4 @@
+from Core.App.DerivativesEngine import DerivativesEngine
 from Core.App.BondEngine import BondEngine
 from Core.App.LendingEngine import LendingEngine
 from Core.App.UnificationEngine import UnificationEngine
