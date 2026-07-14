@@ -464,3 +464,33 @@ fetchComms = async () => {
         }
     } catch(e) {}
 };
+async function toggleAR(mode) {
+    console.log("SWITCHING AR MODE: " + mode);
+    try {
+        const res = await fetch('/api/visual/ar/overlay');
+        const data = await res.json();
+        if(data.success) {
+            const overlay = data.overlay;
+            // نمایش افکتی بصری بر روی صفحه
+            const app = document.getElementById('app-container');
+            app.style.boxShadow = mode === 'war' ? "inset 0 0 100px rgba(255,0,0,0.2)" : "inset 0 0 100px rgba(0,255,255,0.1)";
+            alert(`AR ACTIVE: ${mode.toUpperCase()} DENSITY SCANNED IN ${overlay.status} STATE.`);
+        }
+    } catch(e) {}
+}
+
+// اضافه کردن دکمه‌های کنترل AR به هدر
+const originalInit505 = initGame;
+initGame = async () => {
+    await originalInit505();
+    const header = document.querySelector('.flex.justify-between.items-center');
+    if(header && !document.getElementById('ar-controls')) {
+        const controls = document.createElement('div');
+        controls.id = 'ar-controls';
+        controls.innerHTML = `
+            <button onclick="toggleAR('wealth')" style="background:none; border:1px solid #00f3ff; color:#00f3ff; font-size:0.4em; padding:2px 5px; margin-right:5px;">AR:WEALTH</button>
+            <button onclick="toggleAR('war')" style="background:none; border:1px solid #ff4d4d; color:#ff4d4d; font-size:0.4em; padding:2px 5px;">AR:WAR</button>
+        `;
+        header.appendChild(controls);
+    }
+};

@@ -1,3 +1,4 @@
+from Core.App.AREngine import AREngine
 from Core.App.TranslationEngine import TranslationEngine
 from Core.App.DevPortalEngine import DevPortalEngine
 from Core.App.ShardEngine import ShardEngine
