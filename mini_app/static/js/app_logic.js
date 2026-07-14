@@ -3681,3 +3681,41 @@ function injectRewardButtons() {
     }
 }
 setInterval(injectRewardButtons, 2000);
+// --- CMD_975: Virtual Debit Card UI ---
+async function showVirtualCard() {
+    const res = await fetch(`/api/player/card?user_id=${userId}`);
+    const data = await res.json();
+    const c = data.card;
+
+    const cardOverlay = document.createElement('div');
+    cardOverlay.id = 'card-ui';
+    cardOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10025; padding:20px; box-sizing:border-box; color:white; font-family:monospace; display:flex; flex-direction:column; justify-content:center; align-items:center;";
+    
+    cardOverlay.innerHTML = `
+        <div style="width:320px; height:200px; background:linear-gradient(135deg, #111 0%, #333 100%); border-radius:15px; border:1px solid #00ff00; padding:20px; box-sizing:border-box; position:relative; box-shadow:0 0 20px #00ff00;">
+            <div style="font-size:0.6em; color:#00ff00;">NASRIUM SOVEREIGN CARD</div>
+            <div style="margin-top:40px; font-size:1.2em; letter-spacing:2px;">${c.card_number}</div>
+            <div style="margin-top:30px; display:flex; justify-content:space-between; font-size:0.7em;">
+                <span>${c.holder}</span>
+                <span>EXP: ${c.expiry}</span>
+            </div>
+            <div style="position:absolute; top:20px; right:20px; color:gold; font-weight:bold;">TON</div>
+        </div>
+        <p style="margin-top:20px; color:#00ff00; font-size:0.7em;">STATUS: ${c.status}</p>
+        <button onclick="document.getElementById('card-ui').remove()" style="margin-top:40px; background:none; border:1px solid #555; color:#555; padding:10px 20px; cursor:pointer;">BACK TO OPERATIONS</button>
+    `;
+    document.body.appendChild(cardOverlay);
+}
+
+function injectAdvancedBanking() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('card-btn')) {
+        const cBtn = document.createElement('button');
+        cBtn.id = 'card-btn';
+        cBtn.innerHTML = '💳 VIRTUAL CARD';
+        cBtn.onclick = showVirtualCard;
+        cBtn.style = "margin-top:10px; width:100%; background:#000; color:#00ff00; border:1px solid #00ff00; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(cBtn);
+    }
+}
+setInterval(injectAdvancedBanking, 2000);

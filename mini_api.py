@@ -1,3 +1,4 @@
+from Core.App.AdvancedBankingEngines import LendingEngine, InsuranceEngine, VirtualDebitCard
 from Core.App.RewardEngines import RewardEngine, YieldEngine
 from Core.App.FinancialEngines import NasriumSwap, OnChainStaking
 from Core.App.IntelligenceEngines import ImperialCCTV, VirusPurge, EncryptedComms
