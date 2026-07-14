@@ -1,3 +1,4 @@
+from Core.App.GalacticEngines import OrbitalEngine, TokenMintingEngine, DefenseMinigame
 from Core.App.LegacyMediaEngines import RebirthEngine, AmbassadorHall, NasriumRadio
 from Core.App.DynamicsEngines import WorldEvents, CyberShield, ArtifactEngine
 from Core.App.EvolutionEngines import ExchangeEngine, AIAwakening, GovernanceEngine

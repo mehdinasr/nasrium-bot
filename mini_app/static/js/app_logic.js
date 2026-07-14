@@ -3148,3 +3148,68 @@ function injectLegacyButtons() {
 
 initNasriumRadio();
 setInterval(injectLegacyButtons, 2000);
+// --- CMD_941: Tactical Orbital Map ---
+async function openOrbitalMap() {
+    const res = await fetch('/api/empire/orbital/status');
+    const data = await res.json();
+    
+    const mapOverlay = document.createElement('div');
+    mapOverlay.id = 'orbital-ui';
+    mapOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:url('static/assets/starfield.gif') black; z-index:10018; padding:20px; box-sizing:border-box; color:white; font-family:monospace; text-align:center;";
+    
+    let satHtml = '';
+    for (const [id, info] of Object.entries(data.satellites)) {
+        satHtml += `
+            <div style="border:1px solid #00f3ff; margin-bottom:20px; padding:15px; background:rgba(0,0,0,0.7);">
+                <div style="color:#00f3ff; font-weight:bold;">${id}</div>
+                <div style="font-size:0.6em;">Current Owner: <span style="color:gold;">${info.owner}</span></div>
+                <div style="font-size:0.6em;">Mining Boost: +${info.boost*100}%</div>
+                <div style="font-size:0.8em; margin:10px 0;">Min Bid: ${info.min_bid.toLocaleString()} IXP</div>
+                <button onclick="bidForSatellite('${id}')" style="background:#00f3ff; color:black; border:none; padding:5px 15px; font-weight:bold; cursor:pointer;">STRIKE & CAPTURE</button>
+            </div>
+        `;
+    }
+
+    mapOverlay.innerHTML = `
+        <h2 style="color:#00f3ff; text-shadow:0 0 10px #00f3ff;">ORBITAL TACTICAL MAP</h2>
+        <div style="margin-top:30px;">${satHtml}</div>
+        <button onclick="document.getElementById('orbital-ui').remove()" style="margin-top:30px; background:none; border:none; color:#555; cursor:pointer;">DESCEND TO SURFACE</button>
+    `;
+    document.body.appendChild(mapOverlay);
+}
+
+// --- CMD_942: Minting NSM Tokens ---
+async function openMintingAltar() {
+    const amt = prompt("Amount of IXP to burn for NSM Token Minting (1M IXP = 1 NSM):");
+    if(!amt) return;
+
+    const res = await fetch('/api/economy/mint', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, amount: parseInt(amt) })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) if(typeof initGame === 'function') initGame();
+}
+
+function injectGalacticButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('orbital-btn')) {
+        const oBtn = document.createElement('button');
+        oBtn.id = 'orbital-btn';
+        oBtn.innerHTML = '🚀 ORBITAL MAP';
+        oBtn.onclick = openOrbitalMap;
+        oBtn.style = "margin-top:10px; width:100%; background:#001a1a; color:#00f3ff; border:1px solid #00f3ff; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        
+        const mBtn = document.createElement('button');
+        mBtn.id = 'mint-btn';
+        mBtn.innerHTML = '💎 MINT NSM TOKENS';
+        mBtn.onclick = openMintingAltar;
+        mBtn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        
+        zone.appendChild(oBtn);
+        zone.appendChild(mBtn);
+    }
+}
+setInterval(injectGalacticButtons, 2000);
