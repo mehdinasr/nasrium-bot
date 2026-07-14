@@ -3586,3 +3586,55 @@ function injectIntelUI() {
     }
 }
 setInterval(injectIntelUI, 2000);
+// --- CMD_967: Swap Station UI ---
+async function openSwapStation() {
+    const res = await fetch(`/api/economy/nsm_balance?user_id=${userId}`);
+    const data = await res.json();
+    
+    const swapOverlay = document.createElement('div');
+    swapOverlay.id = 'swap-ui';
+    swapOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:radial-gradient(circle, #1a1a1a 0%, #000 100%); z-index:10024; padding:20px; box-sizing:border-box; color:gold; font-family:monospace; text-align:center;";
+    
+    swapOverlay.innerHTML = `
+        <h1 style="text-shadow: 0 0 15px gold;">NASRIUM SWAP STATION</h1>
+        <div style="margin-top:30px; border:1px solid gold; padding:20px; background:rgba(255,215,0,0.05);">
+            <div style="font-size:0.7em; color:#aaa;">CONVERT IXP TO NSM</div>
+            <div style="font-size:1.5em; margin:10px 0;">Rate: 1M : 1 NSM</div>
+            <input type="number" id="swap-amt" placeholder="Amount of IXP..." style="width:100%; padding:10px; background:#111; border:1px solid gold; color:white; margin-bottom:15px;">
+            <button onclick="executeSwap()" style="width:100%; padding:15px; background:gold; color:black; font-weight:bold; cursor:pointer; border:none;">CONVERT NOW</button>
+        </div>
+        <div style="margin-top:20px; text-align:left; font-size:0.8em;">
+            <p>💰 NSM BALANCE: <span style="color:white;">${data.nsm.toFixed(4)}</span></p>
+            <p>🔒 STAKED NSM: <span style="color:white;">${data.staked.toFixed(4)}</span></p>
+        </div>
+        <button onclick="document.getElementById('swap-ui').remove()" style="margin-top:40px; background:none; border:none; color:#555; cursor:pointer;">LEAVE STATION</button>
+    `;
+    document.body.appendChild(swapOverlay);
+}
+
+async function executeSwap() {
+    const amt = document.getElementById('swap-amt').value;
+    if(!amt) return;
+
+    const res = await fetch('/api/economy/swap', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, amount: parseInt(amt) })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('swap-ui').remove(); openSwapStation(); }
+}
+
+function injectFinanceButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('swap-btn')) {
+        const sBtn = document.createElement('button');
+        sBtn.id = 'swap-btn';
+        sBtn.innerHTML = '🔄 SWAP STATION';
+        sBtn.onclick = openSwapStation;
+        sBtn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        zone.appendChild(sBtn);
+    }
+}
+setInterval(injectFinanceButtons, 2000);

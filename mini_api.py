@@ -1,3 +1,4 @@
+from Core.App.FinancialEngines import NasriumSwap, OnChainStaking
 from Core.App.IntelligenceEngines import ImperialCCTV, VirusPurge, EncryptedComms
 from Core.App.CommsBridge import CommsBridge
 from Core.App.PowerEngines import SovereignCouncil, LegionFinanceV2, ZenithMarket
