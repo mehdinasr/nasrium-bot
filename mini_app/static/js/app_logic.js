@@ -989,3 +989,59 @@ initGame = async () => {
     await oldInit516();
     loadPersonaLab();
 };
+async function loadNetworkNodes() {
+    try {
+        const res = await fetch('/api/infrastructure/nodes/status');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('net-status');
+            if(!container) return;
+
+            const nodesCount = Object.keys(data.nodes).length;
+            const nodesHtml = Object.keys(data.nodes).map(id => {
+                const n = data.nodes[id];
+                return `<div title="${id}" style="width:6px; height:6px; background:#0f0; border-radius:50%; box-shadow:0 0 5px #0f0;"></div>`;
+            }).join('');
+
+            const nodeZone = `
+                <div id="node-map-subzone" class="zone-card" style="border: 1px solid #2ecc71; background: rgba(0,0,0,0.8); margin-top:10px;">
+                    <div class="zone-title" style="color: #2ecc71; font-size:0.6em;">🌐 GLOBAL NODE MAP</div>
+                    <div style="padding:10px;">
+                        <div style="display:flex; flex-wrap:wrap; gap:4px; justify-content:center; margin-bottom:10px;">
+                            ${nodesHtml}
+                        </div>
+                        <div style="font-size:0.5em; color:#fff; text-align:center;">
+                            Active Nodes: <b style="color:#2ecc71">${nodesCount}</b><br>
+                            <button onclick="activateHosting()" style="margin-top:5px; background:none; border:1px solid #2ecc71; color:#2ecc71; font-size:0.8em; padding:2px 10px; cursor:pointer;">ACTIVATE HOSTING</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            if(!document.getElementById('node-map-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'node-map-anchor';
+                div.innerHTML = nodeZone;
+                document.getElementById('app-container').appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function activateHosting() {
+    const res = await fetch('/api/infrastructure/nodes/activate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit517 = initGame;
+initGame = async () => {
+    await oldInit517();
+    loadNetworkNodes();
+};
