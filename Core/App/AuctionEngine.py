@@ -1,41 +1,39 @@
 ﻿import time
 
 class AuctionEngine:
-    # لیست مزایدات فعال {auc_id: {item_name, highest_bid, bidder_id, end_time}}
-    ACTIVE_AUCTIONS = {
-        "AUC_001": {
-            "name": "Sovereign Genesis Core",
-            "desc": "Legendary Catalyst: Reduces TH build time by 50% forever.",
-            "base_price": 50000,
-            "highest_bid": 50000,
-            "bidder_name": "Initial Reserve",
-            "end_time": time.time() + 86400 # ۲۴ ساعت
-        }
+    """
+    مدیریت مزایده‌های سلطنتی نصریوم.
+    """
+    CURRENT_AUCTION = {
+        "item_name": "Imperial Sovereign Core",
+        "item_desc": "A legendary core that grants 3x Mining Rate forever.",
+        "highest_bid": 100000,
+        "highest_bidder": "System",
+        "end_time": time.time() + 3600 # ۱ ساعت تا پایان
     }
 
     @staticmethod
-    def place_bid(player_data, auc_id, bid_amount):
-        auc = AuctionEngine.ACTIVE_AUCTIONS.get(auc_id)
-        if not auc: return False, "Auction ended or invalid ID."
-
-        if time.time() > auc["end_time"]:
-            return False, "This auction is sealed."
-
-        if bid_amount <= auc["highest_bid"]:
-            return False, "Your bid must be higher than the current top offer."
-
-        if player_data.get("nsm_soft", 0) < bid_amount:
-            return False, "Insufficient NSM Soft to support this bid."
-
-        # ثبت پیشنهاد جدید
-        auc["highest_bid"] = bid_amount
-        auc["bidder_id"] = player_data["user_id"]
-        auc["bidder_name"] = player_data.get("username", "Unknown")
-        
-        # نکته: در سیستم واقعی وجه در اینجا قفل می‌شود
-        return True, f"Bid Registered! You are now the leading contender for {auc['name']}."
+    def get_status():
+        return AuctionEngine.CURRENT_AUCTION
 
     @staticmethod
-    def resolve_auctions():
-        # بررسی و اهدای آیتم به برندگان (برای گام‌های بعد)
-        pass
+    def place_bid(u_id, bid_amount, player_ixp):
+        auction = AuctionEngine.CURRENT_AUCTION
+        
+        if bid_amount <= auction["highest_bid"]:
+            return False, f"Bid must be higher than {auction['highest_bid']}."
+        
+        if player_ixp < bid_amount:
+            return False, "You do not have enough IXP to back this bid."
+
+        if time.time() > auction["end_time"]:
+            return False, "The auction has already concluded."
+
+        # ثبت پیشنهاد جدید
+        auction["highest_bid"] = bid_amount
+        auction["highest_bidder"] = u_id
+        # تمدید زمان حراجی در صورت پیشنهاد در دقایق آخر (Anti-Sniping)
+        if (auction["end_time"] - time.time()) < 300:
+            auction["end_time"] += 300
+            
+        return True, "Your bid has been recorded by the Royal Court."

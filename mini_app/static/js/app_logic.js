@@ -2331,3 +2331,56 @@ function injectSpinButton() {
     }
 }
 injectSpinButton();
+async function openAuctionHouse() {
+    const res = await fetch('/api/empire/auction/status');
+    const data = await res.json();
+    const auc = data.auction;
+
+    const auctionOverlay = document.createElement('div');
+    auctionOverlay.id = 'auction-ui';
+    auctionOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg, #000 0%, #1a1a1a 100%); z-index:10009; padding:20px; box-sizing:border-box; color:gold; font-family:serif; text-align:center;";
+    
+    auctionOverlay.innerHTML = `
+        <h1 style="text-shadow: 0 0 10px gold; border-bottom: 2px solid gold; padding-bottom:10px;">ROYAL AUCTION</h1>
+        <div style="margin-top:30px; border:1px solid gold; padding:20px; background:rgba(255,215,0,0.05);">
+            <h3 style="color:#fff;">${auc.item_name}</h3>
+            <p style="font-size:0.7em; color:#aaa;">${auc.item_desc}</p>
+            <div style="margin:20px 0;">
+                <div style="font-size:0.6em; color:gold;">CURRENT HIGHEST BID</div>
+                <div style="font-size:2em; font-weight:bold;">${auc.highest_bid.toLocaleString()} IXP</div>
+                <div style="font-size:0.6em; color:#aaa;">By: ${auc.highest_bidder}</div>
+            </div>
+            <input type="number" id="bid-input" placeholder="Enter higher bid..." style="width:100%; padding:10px; background:#111; border:1px solid gold; color:white; margin-bottom:10px;">
+            <button onclick="placeBid()" style="width:100%; padding:15px; background:gold; color:black; font-weight:bold; cursor:pointer;">PLACE BID</button>
+        </div>
+        <button onclick="document.getElementById('auction-ui').remove()" style="margin-top:30px; background:none; border:none; color:#555; cursor:pointer;">LEAVE HALL</button>
+    `;
+    document.body.appendChild(auctionOverlay);
+}
+
+async function placeBid() {
+    const amt = document.getElementById('bid-input').value;
+    if(!amt) return;
+
+    const res = await fetch('/api/empire/auction/bid', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, amount: parseInt(amt) })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('auction-ui').remove(); openAuctionHouse(); }
+}
+
+function injectAuctionButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('auction-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'auction-btn';
+        btn.innerHTML = '🏛️ ROYAL AUCTION';
+        btn.onclick = openAuctionHouse;
+        btn.style = "margin-top:10px; width:100%; background:gold; color:black; border:none; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+injectAuctionButton();
