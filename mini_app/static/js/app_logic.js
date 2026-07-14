@@ -3351,3 +3351,53 @@ function injectLegacyButtons() {
 setInterval(startBigBangTicker, 60000);
 startBigBangTicker();
 setInterval(injectLegacyButtons, 2000);
+// --- CMD_956: World Boss Raid UI ---
+async function openWorldRaid() {
+    const res = await fetch('/api/empire/boss/status');
+    const data = await res.json();
+    const boss = data.boss;
+
+    const raidOverlay = document.createElement('div');
+    raidOverlay.id = 'raid-ui';
+    raidOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(20,0,0,0.9); z-index:10020; padding:20px; box-sizing:border-box; color:white; font-family:monospace; text-align:center;";
+    
+    raidOverlay.innerHTML = `
+        <h1 style="color:red; text-shadow:0 0 20px red; font-size:2em;">🚨 GLOBAL THREAT DETECTED</h1>
+        <div style="margin:20px 0; border:2px solid red; padding:20px; background:black;">
+            <h2 style="color:red;">${boss.name}</h2>
+            <div style="width:100%; height:30px; background:#333; border:1px solid red; margin:10px 0; position:relative;">
+                <div id="boss-hp-bar" style="width:${(boss.hp / 1000000000) * 100}%; height:100%; background:red; box-shadow:0 0 10px red;"></div>
+                <span style="position:absolute; width:100%; left:0; top:5px; font-size:0.8em;">HP: ${boss.hp.toLocaleString()}</span>
+            </div>
+            <button onclick="attackWorldBoss()" style="width:100%; padding:20px; background:red; color:white; font-weight:bold; border:none; cursor:pointer; font-size:1.2em;">ALL SECTORS: FIRE!</button>
+        </div>
+        <p style="font-size:0.7em; color:#aaa;">REWARD POOL: ${boss.reward_pool.toLocaleString()} IXP</p>
+        <button onclick="document.getElementById('raid-ui').remove()" style="margin-top:40px; background:none; border:none; color:#555; cursor:pointer;">RETREAT</button>
+    `;
+    document.body.appendChild(raidOverlay);
+}
+
+async function attackWorldBoss() {
+    const res = await fetch('/api/empire/boss/attack', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.defeated) document.getElementById('raid-ui').remove();
+    else openWorldRaid(); // Refresh status
+}
+
+function injectDomButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('raid-btn')) {
+        const rBtn = document.createElement('button');
+        rBtn.id = 'raid-btn';
+        rBtn.innerHTML = '⚔️ WORLD RAID';
+        rBtn.onclick = openWorldRaid;
+        rBtn.style = "margin-top:10px; width:100%; background:#600; color:white; border:1px solid red; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        zone.appendChild(rBtn);
+    }
+}
+setInterval(injectDomButtons, 2000);
