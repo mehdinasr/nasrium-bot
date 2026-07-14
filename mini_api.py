@@ -1,3 +1,4 @@
+from Core.App.LunarEngine import LunarEngine
 from Core.App.CyberCouncilEngine import CyberCouncilEngine
 from Core.App.AutonomousNodeEngine import AutonomousNodeEngine
 from Core.App.CustomizationEngine import CustomizationEngine

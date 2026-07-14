@@ -1082,3 +1082,52 @@ initGame = async () => {
     await oldInit518();
     loadCyberCouncil();
 };
+async function loadLunarCommand() {
+    try {
+        const res = await fetch(`/api/space/lunar/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('node-map-anchor');
+            if(!container) return;
+
+            const lunarHtml = `
+                <div id="lunar-subzone" class="zone-card" style="border: 2px solid #bdc3c7; background: linear-gradient(180deg, #111, #2c3e50); margin-top:10px;">
+                    <div class="zone-title" style="color: #bdc3c7;">🌕 LUNAR COMMAND</div>
+                    <div style="padding:15px; text-align:center;">
+                        ${data.is_active ? 
+                            `<div style="font-size:0.6em; color:#fff;">Outpost Level: <b style="color:#f1c40f">${data.level}</b></div>
+                             <div style="font-size:1.1em; color:#3498db; margin:5px 0;">${data.pending_he3} He-3</div>
+                             <small style="color:#aaa; font-size:0.45em;">Pending Extraction from Lunar Surface.</small>` :
+                            `<p style="font-size:0.5em; color:#aaa;">Establish a base on the Moon to mine Helium-3.</p>
+                             <button onclick="buildLunarOutpost()" style="width:100%; background:#bdc3c7; color:#000; border:none; padding:5px; font-weight:bold; font-size:0.6em; border-radius:3px;">LAUNCH LUNAR MISSION</button>`
+                        }
+                    </div>
+                </div>
+            `;
+            if(!document.getElementById('lunar-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'lunar-anchor';
+                div.innerHTML = lunarHtml;
+                container.parentNode.insertBefore(div, container);
+            }
+        }
+    } catch(e) {}
+}
+
+async function buildLunarOutpost() {
+    const res = await fetch('/api/space/lunar/build', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit519 = initGame;
+initGame = async () => {
+    await oldInit519();
+    loadLunarCommand();
+};
