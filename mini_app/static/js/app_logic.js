@@ -2157,3 +2157,50 @@ function injectBountyButton() {
     }
 }
 injectBountyButton();
+async function openAscensionAltar() {
+    const res = await fetch(`/api/empire/ascend/info?user_id=${userId}`);
+    const data = await res.json();
+    
+    const altarOverlay = document.createElement('div');
+    altarOverlay.id = 'ascend-ui';
+    altarOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d); z-index:10006; padding:20px; box-sizing:border-box; color:white; font-family:serif; text-align:center; display:flex; flex-direction:column; justify-content:center;";
+    
+    altarOverlay.innerHTML = `
+        <h1 style="text-shadow: 0 0 20px white; letter-spacing:5px;">ASCENSION ALTAR</h1>
+        <div style="background:rgba(0,0,0,0.7); padding:30px; border-radius:15px; border: 2px solid gold;">
+            <p style="font-size:1.2em;">Current Status: <span style="color:gold;">${data.current_rank} (Lvl ${data.current_level})</span></p>
+            <p style="margin-top:20px;">To reach the next level, you must sacrifice:</p>
+            <h2 style="color:gold;">${data.next_cost.toLocaleString()} IXP</h2>
+            <button onclick="performAscension()" style="margin-top:30px; width:100%; padding:20px; background:gold; color:black; border:none; font-weight:bold; font-size:1.1em; cursor:pointer; box-shadow:0 0 15px gold;">ASCEND NOW</button>
+        </div>
+        <button onclick="document.getElementById('ascend-ui').remove()" style="margin-top:40px; background:none; border:none; color:white; text-decoration:underline; cursor:pointer;">Not ready for the divine path</button>
+    `;
+    document.body.appendChild(altarOverlay);
+}
+
+async function performAscension() {
+    const res = await fetch('/api/empire/ascend/execute', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { 
+        document.getElementById('ascend-ui').remove(); 
+        if(typeof initGame === 'function') initGame(); 
+    }
+}
+
+function injectAscendButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('ascend-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'ascend-btn';
+        btn.innerHTML = '🏛️ ASCENSION ALTAR';
+        btn.onclick = openAscensionAltar;
+        btn.style = "margin-top:10px; width:100%; background:linear-gradient(to right, #fdbb2d, #b21f1f); color:white; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+injectAscendButton();
