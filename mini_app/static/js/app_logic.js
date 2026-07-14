@@ -1228,3 +1228,46 @@ initGame = async () => {
     await oldInit521();
     scanAsteroids();
 };
+async function loadOrbitalControls() {
+    const container = document.getElementById('war-room');
+    if(!container) return;
+
+    const strikeHtml = `
+        <div id="orbital-strike-zone" class="zone-card" style="border: 2px solid #ff4d4d; background: rgba(255, 77, 77, 0.05); margin-top:10px;">
+            <div class="zone-title" style="color: #ff4d4d;">☄️ ORBITAL STRIKE</div>
+            <div style="padding:10px; text-align:center;">
+                <p style="font-size:0.5em; color:#aaa;">Neutralize enemy defenses from the Stars.</p>
+                <input id="strike-target" type="text" placeholder="Target Commander ID" style="width:100%; background:#000; color:#ff4d4d; border:1px solid #ff4d4d; font-size:0.6em; padding:5px; margin-bottom:5px;">
+                <button onclick="fireOrbitalCannon()" style="width:100%; background:#ff4d4d; color:#fff; border:none; padding:8px; font-weight:bold; font-size:0.6em; border-radius:3px; cursor:pointer;">FIRE ORBITAL CANNON (50 He-3)</button>
+            </div>
+        </div>
+    `;
+    
+    if(!document.getElementById('orbital-strike-zone')) {
+        const div = document.createElement('div');
+        div.id = 'orbital-anchor';
+        div.innerHTML = strikeHtml;
+        container.appendChild(div);
+    }
+}
+
+async function fireOrbitalCannon() {
+    const tid = document.getElementById('strike-target').value;
+    if(!tid) return alert("Target coordinates required.");
+    
+    const res = await fetch('/api/space/orbital/fire', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, target_id: tid })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit522 = initGame;
+initGame = async () => {
+    await oldInit522();
+    loadOrbitalControls();
+};
