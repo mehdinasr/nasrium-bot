@@ -1978,3 +1978,69 @@ function injectMarketButton() {
     }
 }
 injectMarketButton();
+async function openLegionHub() {
+    const res = await fetch('/api/legion/list');
+    const data = await res.json();
+    
+    let legionList = '';
+    for (const [name, info] of Object.entries(data.legions)) {
+        legionList += `
+            <div style="background:#222; border-left:4px solid orange; margin-bottom:10px; padding:10px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <div style="color:orange; font-weight:bold;">${name}</div>
+                    <div style="font-size:0.5em; color:#aaa;">Members: ${info.members.length}</div>
+                </div>
+                <button onclick="joinLegion('${name}')" style="background:orange; border:none; padding:5px 10px; font-size:0.6em; cursor:pointer;">JOIN</button>
+            </div>
+        `;
+    }
+
+    const legionOverlay = document.createElement('div');
+    legionOverlay.id = 'legion-ui';
+    legionOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10003; padding:20px; box-sizing:border-box; color:white; font-family:sans-serif; overflow-y:auto;";
+    legionOverlay.innerHTML = `
+        <h2 style="text-align:center; color:orange;">IMPERIAL LEGIONS</h2>
+        <button onclick="createNewLegion()" style="width:100%; background:transparent; border:1px solid orange; color:orange; padding:10px; margin-bottom:20px; cursor:pointer;">+ FOUND NEW LEGION (50k IXP)</button>
+        <div style="margin-top:10px;">${legionList || '<p style="text-align:center; color:#555;">No Legions founded yet.</p>'}</div>
+        <button onclick="document.getElementById('legion-ui').remove()" style="width:100%; margin-top:30px; padding:15px; background:transparent; border:1px solid #555; color:#555; font-weight:bold; cursor:pointer;">EXIT HUB</button>
+    `;
+    document.body.appendChild(legionOverlay);
+}
+
+async function createNewLegion() {
+    const name = prompt("Enter Legion Name:");
+    if(!name) return;
+    const res = await fetch('/api/legion/create', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, name: name })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('legion-ui').remove(); openLegionHub(); }
+}
+
+async function joinLegion(name) {
+    const res = await fetch('/api/legion/join', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, name: name })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('legion-ui').remove(); openLegionHub(); }
+}
+
+// اضافه کردن دکمه لژیون به هاب
+function injectLegionButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('legion-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'legion-btn';
+        btn.innerHTML = '🛡️ IMPERIAL LEGIONS';
+        btn.onclick = openLegionHub;
+        btn.style = "margin-top:10px; width:100%; background:#331a00; color:orange; border:1px solid orange; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(btn);
+    }
+}
+injectLegionButton();

@@ -1,3 +1,4 @@
+from Core.App.LegionEngine import LegionEngine
 from Core.App.DuelEngine import DuelEngine
 from Core.App.PublicLaunchEngine import PublicLaunchEngine
 from Core.App.SovereignSeal import SovereignSeal
