@@ -1,3 +1,4 @@
+from Core.App.ShardEngine import ShardEngine
 from Core.App.MilestoneEngine import MilestoneEngine
 from Core.App.LegacyEngine import LegacyEngine
 from Core.App.GuardEngine import GuardEngine

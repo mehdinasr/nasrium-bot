@@ -373,3 +373,19 @@ initGame = async () => {
     await originalInit501();
     loadBridge();
 };
+async function checkShardHealth() {
+    try {
+        const res = await fetch(`/api/system/shard/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            document.getElementById('active-shard').innerText = data.assigned_shard;
+            document.getElementById('net-ping').innerText = data.latency_ms + "ms";
+        }
+    } catch(e) {}
+}
+
+const originalInit502 = initGame;
+initGame = async () => {
+    await originalInit502();
+    checkShardHealth();
+};
