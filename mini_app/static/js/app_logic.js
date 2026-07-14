@@ -796,3 +796,52 @@ initGame = async () => {
     await oldInit512();
     loadWelfare();
 };
+async function loadAIConsciousness() {
+    try {
+        const res = await fetch(`/api/ai/awakening/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('neural-hub-zone');
+            if(!container) return;
+
+            const btnColor = data.is_active ? '#e056fd' : '#333';
+            const statusText = data.is_active ? "AUTONOMY: ON" : "AUTONOMY: OFF";
+
+            const consciousnessHtml = `
+                <div id="ai-awake-subzone" style="margin-top:10px; border-top:1px solid #444; padding-top:10px;">
+                    <div style="font-size:0.5em; color:#aaa; margin-bottom:5px;">Consciousness Level: <b style="color:#e056fd">Tier ${data.level}</b></div>
+                    <button onclick="toggleAIAutonomy()" style="width:100%; background:${btnColor}; color:#fff; border:none; padding:5px; font-weight:bold; font-size:0.55em; border-radius:3px; box-shadow: 0 0 10px ${data.is_active ? '#e056fd' : 'transparent'};">
+                        ${statusText}
+                    </button>
+                    <p style="font-size:0.45em; color:#666; margin-top:5px;">Assists defense when you are offline.</p>
+                </div>
+            `;
+            if(!document.getElementById('ai-awake-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'ai-awake-anchor';
+                div.innerHTML = consciousnessHtml;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function toggleAIAutonomy() {
+    const res = await fetch('/api/ai/awakening/toggle', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    if(data.success) {
+        initGame();
+        loadAIConsciousness();
+    }
+}
+
+// توسعه اینیت
+const oldInit513 = initGame;
+initGame = async () => {
+    await oldInit513();
+    loadAIConsciousness();
+};

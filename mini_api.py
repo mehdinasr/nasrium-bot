@@ -1,3 +1,4 @@
+from Core.App.AwakeningEngine import AwakeningEngine
 from Core.App.WelfareEngine import WelfareEngine
 from Core.App.BurnEngine import BurnEngine
 from Core.App.DerivativesEngine import DerivativesEngine
