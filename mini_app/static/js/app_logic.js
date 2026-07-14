@@ -2850,3 +2850,70 @@ async function sendGlobalAlert() {
     });
     alert("Emergency signal broadcasted to all sectors.");
 }
+// --- CMD_925: Turbo Load Logic ---
+function initTurboLoad() {
+    console.log("🚀 TurboLoad: Optimizing Asset Pipelines...");
+    const start = performance.now();
+    // پیش‌بارگذاری دارایی‌های حیاتی
+    window.addEventListener('load', () => {
+        const end = performance.now();
+        console.log(`✅ Empire Loaded in ${(end - start).toFixed(2)}ms`);
+    });
+}
+
+// --- CMD_924: Theme Switcher ---
+async function applyTheme(themeId) {
+    const res = await fetch('/api/visual/themes');
+    const data = await res.json();
+    const theme = data.themes[themeId];
+    
+    document.body.style.backgroundColor = theme.bg;
+    document.documentElement.style.setProperty('--accent-color', theme.accent);
+    console.log(`🎨 Theme Switched to: ${theme.name}`);
+}
+
+// --- CMD_926: Interactive Tutorial ---
+function startImperialTour() {
+    if(localStorage.getItem('nasrium_tour_done')) return;
+
+    const steps = [
+        { el: 'mining-btn', text: 'This is your Lifeblood. Extract IXP here.' },
+        { el: 'arena-btn', text: 'Test your AI might against others here.' },
+        { el: 'profile-btn', text: 'Your Dossier contains your Imperial Identity.' }
+    ];
+
+    let currentStep = 0;
+
+    function showStep() {
+        if(currentStep >= steps.length) {
+            document.getElementById('tour-overlay').remove();
+            localStorage.setItem('nasrium_tour_done', 'true');
+            return;
+        }
+
+        const step = steps[currentStep];
+        const target = document.getElementById(step.el);
+        if(!target) { currentStep++; showStep(); return; }
+
+        const overlay = document.getElementById('tour-overlay') || document.createElement('div');
+        overlay.id = 'tour-overlay';
+        overlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:200001; color:white; pointer-events:none;";
+        
+        const rect = target.getBoundingClientRect();
+        overlay.innerHTML = `
+            <div style="position:absolute; top:${rect.bottom + 10}px; left:${rect.left}px; background:var(--accent-color, #00ff00); color:black; padding:10px; border-radius:5px; font-weight:bold; max-width:200px; pointer-events:auto;">
+                ${step.text}
+                <br><button onclick="nextTourStep()" style="margin-top:10px; border:none; background:black; color:white; padding:5px 10px; cursor:pointer;">NEXT</button>
+            </div>
+            <div style="position:absolute; top:${rect.top}px; left:${rect.left}px; width:${rect.width}px; height:${rect.height}px; border:2px solid white; box-shadow:0 0 0 9999px rgba(0,0,0,0.5);"></div>
+        `;
+        if(!document.getElementById('tour-overlay')) document.body.appendChild(overlay);
+    }
+
+    window.nextTourStep = () => { currentStep++; showStep(); };
+    showStep();
+}
+
+// اجرای اولیه
+initTurboLoad();
+setTimeout(startImperialTour, 3000);
