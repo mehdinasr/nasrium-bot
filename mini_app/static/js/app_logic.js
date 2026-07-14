@@ -1650,3 +1650,39 @@ initGame = async () => {
     await oldInit532();
     loadSingularityCore();
 };
+async function showEternalVault() {
+    const res = await fetch(`/api/vault/status/${userId}`);
+    const data = await res.json();
+    
+    if(data.success) {
+        const vaultOverlay = document.createElement('div');
+        vaultOverlay.id = 'eternal-vault-ui';
+        vaultOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:gold; font-family:monospace; border: 2px solid gold; margin: 5px; box-sizing: border-box;";
+        
+        vaultOverlay.innerHTML = `
+            <h2 style="text-shadow: 0 0 15px gold;">CHRONOS-VAULT: ETERNAL RECORDS</h2>
+            <div style="border:1px solid gold; padding:20px; text-align:center; background: #111;">
+                <p>CITIZEN ID: ${userId}</p>
+                <p>STATUS: <span style="color:#0f0;">IMMORTAL</span></p>
+                <p>LAST SYNC: ${data.status.last_sync}</p>
+                <div style="font-size:0.6em; color:gray; max-width:250px; word-wrap: break-word;">VAULT_HASH: ${Math.random().toString(36).substring(2, 15)}</div>
+            </div>
+            <button onclick="document.getElementById('eternal-vault-ui').remove()" style="margin-top:20px; background:gold; color:black; border:none; padding:10px 20px; font-weight:bold; cursor:pointer;">CLOSE ARCHIVE</button>
+        `;
+        document.body.appendChild(vaultOverlay);
+    }
+}
+
+// اضافه کردن دکمه به منوی اصلی
+function injectVaultButton() {
+    const menu = document.getElementById('main-menu-nav'); // فرض بر وجود این آیدی
+    if(menu && !document.getElementById('vault-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'vault-btn';
+        btn.innerHTML = '🏛️ VAULT';
+        btn.onclick = showEternalVault;
+        btn.style = "background:none; border:1px solid gold; color:gold; font-size:0.6em; margin-left:5px; cursor:pointer;";
+        menu.appendChild(btn);
+    }
+}
+injectVaultButton();
