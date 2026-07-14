@@ -1,3 +1,4 @@
+from Core.App.CyberCouncilEngine import CyberCouncilEngine
 from Core.App.AutonomousNodeEngine import AutonomousNodeEngine
 from Core.App.CustomizationEngine import CustomizationEngine
 from Core.App.AdvocateEngine import AdvocateEngine

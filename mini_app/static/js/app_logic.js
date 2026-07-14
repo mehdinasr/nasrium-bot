@@ -1045,3 +1045,40 @@ initGame = async () => {
     await oldInit517();
     loadNetworkNodes();
 };
+async function loadCyberCouncil() {
+    try {
+        const res = await fetch('/api/governance/council/status');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('court-zone');
+            if(!container) return;
+
+            const councilHtml = `
+                <div id="council-subzone" class="zone-card" style="border: 2px solid #e056fd; background: rgba(0,0,0,0.9); margin-top:10px;">
+                    <div class="zone-title" style="color: #e056fd;">🏛️ CYBER COUNCIL</div>
+                    <div style="padding:10px; text-align:center;">
+                        <p style="font-size:0.5em; color:#aaa;">Sentient AI Advisors in current session.</p>
+                        <div style="display:flex; justify-content:center; gap:3px; margin:10px 0;">
+                            ${Array(12).fill().map((_, i) => `<div style="width:10px; height:10px; background:${i < data.seats_filled ? '#e056fd' : '#222'}; border-radius:2px; box-shadow:0 0 5px ${i < data.seats_filled ? '#e056fd' : 'transparent'};"></div>`).join('')}
+                        </div>
+                        <div style="font-size:0.45em; color:#fff;">Active Seats: ${data.seats_filled} / 12</div>
+                    </div>
+                </div>
+            `;
+            
+            if(!document.getElementById('council-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'council-anchor';
+                div.innerHTML = councilHtml;
+                container.parentNode.insertBefore(div, container);
+            }
+        }
+    } catch(e) {}
+}
+
+// توسعه اینیت
+const oldInit518 = initGame;
+initGame = async () => {
+    await oldInit518();
+    loadCyberCouncil();
+};
