@@ -1424,3 +1424,65 @@ initGame = async () => {
     await oldInit526();
     loadNFTGallery();
 };
+async function loadHeraldry() {
+    try {
+        const res = await fetch('/api/identity/emblem/assets');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('id-card-zone');
+            if(!container) return;
+
+            const heraldryHtml = `
+                <div id="heraldry-subzone" style="margin-top:15px; border-top:1px solid #f1c40f; padding-top:10px;">
+                    <div style="font-size:0.6em; color:#f1c40f; font-weight:bold;">⚔️ HERALDRY HUB</div>
+                    <div style="display:flex; justify-content:center; margin:10px 0;">
+                        <div id="emblem-preview" style="width:50px; height:50px; border:2px solid #fff; display:flex; justify-content:center; align-items:center; font-size:1.5em; background:#000;">🛡️</div>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:5px;">
+                        <select id="emb-symbol" onchange="updatePreview()" style="background:#000; color:#fff; border:1px solid #444; font-size:0.5em; padding:3px;">
+                            ${data.assets.symbols.map(s => `<option value="${s}">${s}</option>`).join('')}
+                        </select>
+                        <select id="emb-color" onchange="updatePreview()" style="background:#000; color:#fff; border:1px solid #444; font-size:0.5em; padding:3px;">
+                            ${data.assets.colors.map(c => `<option value="${c}">${c}</option>`).join('')}
+                        </select>
+                    </div>
+                    <button onclick="saveEmblem()" style="width:100%; margin-top:10px; background:#f1c40f; color:#000; border:none; padding:5px; font-weight:bold; font-size:0.55em; border-radius:3px;">SEAL DYNASTY EMBLEM</button>
+                </div>
+            `;
+            
+            if(!document.getElementById('heraldry-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'heraldry-anchor';
+                div.innerHTML = heraldryHtml;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+function updatePreview() {
+    const sym = document.getElementById('emb-symbol').value;
+    const clr = document.getElementById('emb-color').value;
+    const preview = document.getElementById('emblem-preview');
+    preview.style.borderColor = clr;
+    preview.style.boxShadow = `0 0 10px ${clr}`;
+}
+
+async function saveEmblem() {
+    const sym = document.getElementById('emb-symbol').value;
+    const clr = document.getElementById('emb-color').value;
+    const res = await fetch('/api/identity/emblem/save', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, symbol: sym, border: 'Cyber', color: clr })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+// توسعه اینیت
+const oldInit527 = initGame;
+initGame = async () => {
+    await oldInit527();
+    loadHeraldry();
+};

@@ -1,3 +1,4 @@
+from Core.App.DynastyEngine import DynastyEngine
 from Core.App.NFTGalleryEngine import NFTGalleryEngine
 from Core.App.RadioEngine import RadioEngine
 from Core.App.ExoColonyEngine import ExoColonyEngine
