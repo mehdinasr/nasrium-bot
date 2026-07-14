@@ -1,27 +1,27 @@
 ﻿class TreasuryEngine:
-    # پارامترهای خزانه جهانی
-    GLOBAL_STATS = {
-        "total_shards_circulating": 542000, # شبیه‌سازی
-        "reserve_gold": 10000000,
-        "base_rate": 100 # ۱۰۰ شارد = ۱ توکن
-    }
+    """
+    مدیریت خزانه مرکزی نصریوم و توزیع رفاه.
+    """
+    IMPERIAL_VAULT = 0
+    TAX_RATE = 0.02  # 2% مالیات بر درآمدهای بزرگ
+    WELFARE_THRESHOLD = 1000  # شهروندان زیر این مقدار IXP واجد شرایط رفاه هستند
 
     @staticmethod
-    def get_dynamic_rate():
-        # منطق: هرچقدر شارد در گردش بیشتر باشد، نرخ تبدیل سخت‌تر می‌شود (تورم‌زدایی)
-        supply = TreasuryEngine.GLOBAL_STATS["total_shards_circulating"]
-        if supply > 1000000:
-            return 120 # ۱۲۰ شارد برای ۱ توکن
-        return 100
+    def collect_tax(amount):
+        tax = amount * TreasuryEngine.TAX_RATE
+        TreasuryEngine.IMPERIAL_VAULT += tax
+        return amount - tax
 
     @staticmethod
-    def refine_shards(player_data, amount_shards):
-        # هزینه تصفیه فوری: ۱۰۰۰ طلا به ازای هر ۱۰۰ شارد
-        refine_cost = int((amount_shards / 100) * 1000)
-        
-        if player_data.get("gold", 0) < refine_cost:
-            return False, f"Insufficient Gold. Need {refine_cost} to refine {amount_shards} shards."
-        
-        player_data["gold"] -= refine_cost
-        # در اینجا وضعیت شاردها در دیتابیس به "REFINED" تغییر می‌کند
-        return True, f"Successfully refined {amount_shards} shards. Ready for Instant Bridge."
+    def claim_welfare(player_data):
+        if player_data.get("intel_xp", 0) < TreasuryEngine.WELFARE_THRESHOLD:
+            grant = 200
+            if TreasuryEngine.IMPERIAL_VAULT >= grant:
+                TreasuryEngine.IMPERIAL_VAULT -= grant
+                player_data["intel_xp"] += grant
+                return True, f"Welfare Grant of {grant} IXP issued from the Treasury."
+        return False, "Not eligible for welfare or Treasury funds low."
+
+    @staticmethod
+    def get_vault_balance():
+        return TreasuryEngine.IMPERIAL_VAULT

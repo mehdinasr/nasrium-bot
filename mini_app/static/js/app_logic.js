@@ -1795,3 +1795,37 @@ async function triggerSovereignLaunch() {
 }
 // اجرای خودکار لانچ در اولین ورود
 setTimeout(triggerSovereignLaunch, 1000);
+async function updateEconomyUI() {
+    const res = await fetch('/api/economy/vault');
+    const data = await res.json();
+    
+    const vaultDiv = document.getElementById('imperial-vault-status');
+    if(vaultDiv) {
+        vaultDiv.innerHTML = `🏦 TREASURY: ${Math.floor(data.balance)} IXP`;
+    }
+}
+
+async function requestWelfare() {
+    const res = await fetch('/api/economy/welfare', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// اضافه کردن ویجت خزانه به هدر
+function injectTreasuryWidget() {
+    if(!document.getElementById('imperial-vault-status')) {
+        const header = document.querySelector('header') || document.body;
+        const widget = document.createElement('div');
+        widget.id = 'imperial-vault-status';
+        widget.style = "position:fixed; top:5px; right:5px; background:rgba(255,215,0,0.2); color:gold; border:1px solid gold; padding:2px 10px; font-size:0.5em; border-radius:10px; z-index:1000;";
+        header.appendChild(widget);
+    }
+}
+injectTreasuryWidget();
+updateEconomyUI();
+setInterval(updateEconomyUI, 30000);
