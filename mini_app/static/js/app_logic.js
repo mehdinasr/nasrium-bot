@@ -160,3 +160,22 @@ initGame = async () => {
     await oldInit495();
     checkHolidays();
 };
+async function updateProsperity() {
+    try {
+        const res = await fetch('/api/system/prosperity/status');
+        const data = await res.json();
+        if(data.success) {
+            document.getElementById('prosperity-fill').style.width = data.data.prosperity_score + "%";
+            if(data.data.is_active) {
+                document.body.style.boxShadow = "inset 0 0 50px rgba(241, 196, 15, 0.1)";
+                console.log("GOLDEN AGE ACTIVE");
+            }
+        }
+    } catch(e) {}
+}
+
+const oldInit496 = initGame;
+initGame = async () => {
+    await oldInit496();
+    updateProsperity();
+};

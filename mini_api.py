@@ -1,3 +1,4 @@
+from Core.App.GoldenAgeEngine import GoldenAgeEngine
 from Core.App.HolidayEngine import HolidayEngine
 from Core.App.StealthDroneEngine import StealthDroneEngine
 from Core.App.QuantumVaultEngine import QuantumVaultEngine
