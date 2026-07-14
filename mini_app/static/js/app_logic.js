@@ -2384,3 +2384,37 @@ function injectAuctionButton() {
     }
 }
 injectAuctionButton();
+let lastBroadcastId = 0;
+
+async function checkImperialBroadcasts() {
+    try {
+        const res = await fetch('/api/empire/broadcast/active');
+        const data = await res.json();
+        const b = data.broadcast;
+
+        if(b.active && b.id !== lastBroadcastId) {
+            lastBroadcastId = b.id;
+            showBroadcastOverlay(b);
+        }
+    } catch(e) {}
+}
+
+function showBroadcastOverlay(b) {
+    const bgColor = b.type === 'EMERGENCY' ? 'rgba(150,0,0,0.95)' : 'rgba(0,0,0,0.95)';
+    const borderColor = b.type === 'EMERGENCY' ? 'red' : 'gold';
+    
+    const overlay = document.createElement('div');
+    overlay.id = 'imperial-broadcast-overlay';
+    overlay.style = `position:fixed; top:0; left:0; width:100%; height:100%; background:${bgColor}; z-index:200000; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; padding:40px; box-sizing:border-box; text-align:center; border: 10px double ${borderColor};`;
+    
+    overlay.innerHTML = `
+        <div style="font-size:0.6em; letter-spacing:5px; color:${borderColor}; margin-bottom:20px;">INCOMING TRANSMISSION FROM SUPREME COMMANDER</div>
+        <div style="font-size:1.5em; font-weight:bold; line-height:1.4; text-shadow: 0 0 10px ${borderColor};">${b.content}</div>
+        <button onclick="document.getElementById('imperial-broadcast-overlay').remove()" style="margin-top:50px; background:${borderColor}; color:black; border:none; padding:10px 30px; font-weight:bold; cursor:pointer;">ACKNOWLEDGED</button>
+    `;
+    document.body.appendChild(overlay);
+}
+
+// چک کردن هر ۳۰ ثانیه برای پیام‌های جدید از طرف فرمانده
+setInterval(checkImperialBroadcasts, 30000);
+checkImperialBroadcasts();
