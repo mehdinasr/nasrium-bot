@@ -1829,3 +1829,26 @@ function injectTreasuryWidget() {
 injectTreasuryWidget();
 updateEconomyUI();
 setInterval(updateEconomyUI, 30000);
+async function checkPublicStatus() {
+    const res = await fetch('/api/launch/info');
+    const status = await res.json();
+    
+    if(status.success && status.data.status === "GLOBAL_LIVE") {
+        console.log("NASRIUM IS PUBLICLY LIVE.");
+        // اگر کاربر جدید است، بیدارش کن
+        if(!localStorage.getItem('nasrium_joined')) {
+            const awakenRes = await fetch('/api/launch/awaken', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ user_id: userId })
+            });
+            const data = await awakenRes.json();
+            if(data.success) {
+                alert("👑 NASRIUM: " + data.message);
+                localStorage.setItem('nasrium_joined', 'true');
+                if(typeof initGame === 'function') initGame();
+            }
+        }
+    }
+}
+checkPublicStatus();
