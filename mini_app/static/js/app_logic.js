@@ -2608,3 +2608,55 @@ function injectProfileButton() {
     }
 }
 injectProfileButton();
+async function openWalletBridge() {
+    const res = await fetch(`/api/wallet/status?user_id=${userId}`);
+    const data = await res.json();
+    
+    const walletOverlay = document.createElement('div');
+    walletOverlay.id = 'wallet-ui';
+    walletOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(180deg, #0088cc 0%, #000 100%); z-index:10013; padding:20px; box-sizing:border-box; color:white; font-family:sans-serif; text-align:center; display:flex; flex-direction:column; justify-content:center;";
+    
+    let content = data.linked 
+        ? `<div style="padding:20px; background:rgba(255,255,255,0.1); border-radius:10px;">
+            <p style="color:#00ff00;">✅ WALLET CONNECTED</p>
+            <p style="font-size:0.6em; word-break:break-all;">${data.address}</p>
+           </div>`
+        : `<button onclick="simulateWalletConnect()" style="width:100%; padding:20px; background:#0088cc; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">CONNECT TON WALLET</button>`;
+
+    walletOverlay.innerHTML = `
+        <h1 style="text-shadow: 0 0 10px #0088cc;">THE GOLDEN BRIDGE</h1>
+        <p style="font-size:0.8em; margin-bottom:30px;">Link your TON wallet to the Nasrium Empire to enable cross-dimensional trade.</p>
+        ${content}
+        <div style="margin-top:20px; font-size:0.6em; color:#aaa;">Exchange Rate: 1 TON = ${data.rate.toLocaleString()} IXP</div>
+        <button onclick="document.getElementById('wallet-ui').remove()" style="margin-top:40px; background:none; border:none; color:white; cursor:pointer; text-decoration:underline;">RETURN TO HUB</button>
+    `;
+    document.body.appendChild(walletOverlay);
+}
+
+async function simulateWalletConnect() {
+    // در نسخه نهایی اینجا TonConnect UI باز می‌شود
+    const fakeAddr = prompt("Enter your TON Wallet Address:");
+    if(!fakeAddr) return;
+
+    const res = await fetch('/api/wallet/link', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, address: fakeAddr })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('wallet-ui').remove(); openWalletBridge(); }
+}
+
+function injectWalletButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('wallet-bridge-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'wallet-bridge-btn';
+        btn.innerHTML = '💎 TON BRIDGE';
+        btn.onclick = openWalletBridge;
+        btn.style = "margin-top:10px; width:100%; background:#0088cc; color:white; border:none; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold; box-shadow:0 0 10px #0088cc;";
+        zone.appendChild(btn);
+    }
+}
+injectWalletButton();
