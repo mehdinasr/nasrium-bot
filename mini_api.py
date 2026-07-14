@@ -1,3 +1,4 @@
+from Core.App.NotifyEngine import NotifyEngine
 from Core.App.DossierEngine import DossierEngine
 from Core.App.UnionEngine import UnionEngine
 from Core.App.SupportEngine import SupportEngine

@@ -2660,3 +2660,43 @@ function injectWalletButton() {
     }
 }
 injectWalletButton();
+async function toggleNotifications(enabled) {
+    const res = await fetch('/api/empire/notify/toggle', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, enabled: enabled })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+// اضافه کردن سوییچ اعلان به شناسنامه شهروندی (Dossier)
+function injectNotifyToggle() {
+    const dossier = document.getElementById('dossier-ui');
+    if(dossier && !document.getElementById('notify-toggle-zone')) {
+        const div = document.createElement('div');
+        div.id = 'notify-toggle-zone';
+        div.style = "margin-top:20px; border-top:1px solid #333; padding-top:10px; width:100%; text-align:left;";
+        div.innerHTML = `
+            <span style="font-size:0.6em; color:#aaa;">NEURAL ALERTS</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
+                <span style="font-size:0.7em;">Enable Telegram Push</span>
+                <input type="checkbox" onchange="toggleNotifications(this.checked)" id="notify-check" style="cursor:pointer;">
+            </div>
+            <button onclick="testPush()" style="margin-top:10px; font-size:0.5em; background:none; border:1px solid #555; color:#555; padding:2px 5px; cursor:pointer;">TEST SIGNAL</button>
+        `;
+        dossier.querySelector('div').appendChild(div);
+    }
+}
+
+async function testPush() {
+    await fetch('/api/empire/notify/test', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    alert("Test Signal sent to your Telegram Bot.");
+}
+
+// اجرای مکرر برای اطمینان از وجود دکمه در پروفایل
+setInterval(injectNotifyToggle, 2000);
