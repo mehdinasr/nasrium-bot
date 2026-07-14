@@ -603,3 +603,55 @@ initGame = async () => {
     await oldInit508();
     loadLending();
 };
+async function loadBondMarket() {
+    try {
+        const res = await fetch('/api/social/bonds/market');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('federal-treasury-zone');
+            if(!container) return;
+
+            const bondHtml = Object.keys(data.bonds).map(id => {
+                const b = data.bonds[id];
+                const progress = (b.sold / b.volume) * 100;
+                return `
+                    <div style="background:#111; padding:8px; border:1px solid #2ecc71; border-radius:5px; margin-top:5px;">
+                        <div style="display:flex; justify-content:space-between; font-size:0.6em; color:#fff;">
+                            <b>${b.issuer} BOND</b>
+                            <span style="color:#2ecc71">+${b.interest*100}% Yield</span>
+                        </div>
+                        <div style="width:100%; height:4px; background:#222; margin:5px 0;">
+                            <div style="width:${progress}%; height:100%; background:#2ecc71;"></div>
+                        </div>
+                        <button onclick="buyBond('${id}')" style="width:100%; background:#2ecc71; color:#000; border:none; font-size:0.5em; font-weight:bold; padding:3px;">INVEST NSM</button>
+                    </div>
+                `;
+            }).join('');
+
+            const marketDiv = document.createElement('div');
+            marketDiv.id = 'bond-market-display';
+            marketDiv.innerHTML = `<h4 style="color:#2ecc71; font-size:0.6em; margin-top:10px;">ACTIVE BONDS</h4>` + bondHtml;
+            container.appendChild(marketDiv);
+        }
+    } catch(e) {}
+}
+
+async function buyBond(bid) {
+    const amt = prompt("Enter NSM amount to invest in this Federation:");
+    if(!amt) return;
+    const res = await fetch('/api/social/bonds/buy', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, bond_id: bid, amount: amt })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit509 = initGame;
+initGame = async () => {
+    await oldInit509();
+    loadBondMarket();
+};
