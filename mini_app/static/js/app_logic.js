@@ -2760,3 +2760,42 @@ function injectDecipherButton() {
     }
 }
 injectDecipherButton();
+async function syncEmpireState() {
+    const res = await fetch('/api/empire/sync', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    
+    // نمایش پاداش آفلاین (CMD_920)
+    if(data.offline_ixp > 0) {
+        showEpicNotification("WELCOME BACK", `Your AI earned ${data.offline_ixp} IXP while you were away.`, "cyan");
+    }
+    
+    // نمایش دستاوردهای جدید (CMD_921)
+    data.new_badges.forEach(badge => {
+        showEpicNotification("ACHIEVEMENT UNLOCKED", `Rank Up: ${badge}`, "gold");
+    });
+}
+
+// اجرای سینک در هر بار ورود
+syncEmpireState();
+setInterval(syncEmpireState, 60000); // سینک خودکار هر دقیقه
+
+// اضافه کردن دکمه دعوت به پروفایل (CMD_919)
+function injectReferralUI() {
+    const dossier = document.getElementById('dossier-ui');
+    if(dossier && !document.getElementById('ref-link-zone')) {
+        const div = document.createElement('div');
+        div.id = 'ref-link-zone';
+        div.style = "margin-top:15px; background:rgba(255,255,255,0.05); padding:10px; border-radius:5px;";
+        div.innerHTML = `
+            <div style="font-size:0.5em; color:#aaa;">EMPIRE REFERRAL LINK</div>
+            <div style="font-size:0.6em; color:cyan; word-break:break-all;">https://t.me/NasriumBot?start=${userId}</div>
+            <button onclick="navigator.clipboard.writeText('https://t.me/NasriumBot?start=${userId}'); alert('Link Copied!')" style="margin-top:5px; width:100%; background:cyan; color:black; border:none; padding:5px; font-size:0.5em; cursor:pointer; font-weight:bold;">COPY LINK</button>
+        `;
+        dossier.querySelector('div').appendChild(div);
+    }
+}
+setInterval(injectReferralUI, 2000);
