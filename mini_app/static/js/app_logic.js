@@ -89,3 +89,56 @@ initGame = async () => {
     await originalInit();
     loadVault();
 };
+async function loadStealthOps() {
+    try {
+        const res = await fetch(`/api/military/stealth/build`, { // در سیستم واقعی گت استتوس
+            method: 'POST', body: JSON.stringify({ user_id: userId, check_only: true }) 
+        }); // ساده سازی شده برای لود تعداد
+        document.getElementById('stealth-zone').innerHTML = `
+            <div class="zone-card" style="border: 2px solid #555; background: rgba(0,0,0,0.8); margin-top:10px;">
+                <div class="zone-title" style="color: #aaa;">🕶️ STEALTH OPS</div>
+                <div style="padding:10px; text-align:center;">
+                    <div style="font-size:0.5em; color:#888;">Active Stealth Drones: <b id="drone-count" style="color:#fff">0</b></div>
+                    <input id="recon-target" type="text" placeholder="TARGET_ID" style="width:100%; background:#000; color:#fff; border:1px solid #444; font-size:0.6em; padding:5px; margin:5px 0;">
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:5px;">
+                        <button onclick="buildDrone()" style="background:#333; color:#fff; border:none; padding:5px; font-size:0.55em;">BUILD (30k💰)</button>
+                        <button onclick="sendRecon()" style="background:#aaa; color:#000; border:none; padding:5px; font-weight:bold; font-size:0.55em;">DISPATCH</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    } catch(e) {}
+}
+
+async function buildDrone() {
+    const res = await fetch('/api/military/stealth/build', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { 
+        document.getElementById('drone-count').innerText = data.drones;
+        initGame(); 
+    }
+}
+
+async function sendRecon() {
+    const tid = document.getElementById('recon-target').value;
+    const res = await fetch('/api/military/stealth/recon', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, target_id: tid })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// بروزرسانی اینیت
+const oldInit494 = initGame;
+initGame = async () => {
+    await oldInit494();
+    loadStealthOps();
+};

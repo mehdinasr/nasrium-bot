@@ -1,3 +1,4 @@
+from Core.App.StealthDroneEngine import StealthDroneEngine
 from Core.App.QuantumVaultEngine import QuantumVaultEngine
 from Core.App.WormholeEngine import WormholeEngine
 from Core.App.BioEngine import BioEngine
