@@ -1486,3 +1486,45 @@ initGame = async () => {
     await oldInit527();
     loadHeraldry();
 };
+async function loadGamesHub() {
+    const container = document.getElementById('app-container');
+    const gamesHtml = `
+        <div id="games-zone" class="zone-card" style="border: 2px solid #f1c40f; background: rgba(241, 196, 15, 0.05); margin-top:10px; text-align:center;">
+            <div class="zone-title" style="color: #f1c40f;">🏆 IMPERIAL GAMES</div>
+            <div style="padding:15px;">
+                <p style="font-size:0.55em; color:#aaa;">Test your reflexes and earn NSM Soft rewards.</p>
+                <div id="game-preview" style="height:80px; background:#000; border:1px dashed #f1c40f; border-radius:10px; margin:10px 0; display:flex; justify-content:center; align-items:center; cursor:pointer;" onclick="playReflexGame()">
+                    <span style="font-size:0.8em; color:#f1c40f;">TAP TO START: GRID REFLEX</span>
+                </div>
+                <div id="game-status" style="font-size:0.45em; color:#888;">Daily Quota: 3/3 Runs Available</div>
+            </div>
+        </div>
+    `;
+    
+    if(!document.getElementById('games-zone')) {
+        const div = document.createElement('div');
+        div.id = 'games-anchor';
+        div.innerHTML = gamesHtml;
+        container.appendChild(div);
+    }
+}
+
+async function playReflexGame() {
+    // شبیه‌سازی یک مینی‌گیم سریع
+    const score = Math.floor(Math.random() * 100) + 1;
+    const res = await fetch('/api/games/submit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, game_id: 'grid_reflex', score: score })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit528 = initGame;
+initGame = async () => {
+    await oldInit528();
+    loadGamesHub();
+};

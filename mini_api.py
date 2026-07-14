@@ -1,3 +1,5 @@
+from Core.App.GamesEngine import GamesEngine
+from Core.App.QualificationEngine import GamesEngine
 from Core.App.DynastyEngine import DynastyEngine
 from Core.App.NFTGalleryEngine import NFTGalleryEngine
 from Core.App.RadioEngine import RadioEngine
