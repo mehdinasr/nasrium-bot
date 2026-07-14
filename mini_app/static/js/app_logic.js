@@ -1327,3 +1327,37 @@ initGame = async () => {
     await oldInit523();
     loadGalaxyMap();
 };
+async function loadGateways() {
+    try {
+        const res = await fetch(`/api/space/gateways/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            // نمایش وضعیت اتصال در نقشه کهکشانی
+            data.active_gateways.forEach(planetId => {
+                const planetEl = document.querySelector(`[onclick="foundColony('${planetId}')"]`);
+                if(planetEl) {
+                    planetEl.style.boxShadow = "0 0 20px #00f3ff";
+                    planetEl.innerHTML += `<div style="color:#0f0; font-size:0.4em; margin-top:2px;">LINK: ONLINE</div>`;
+                }
+            });
+        }
+    } catch(e) {}
+}
+
+async function activateGateway(pid) {
+    const res = await fetch('/api/space/gateways/activate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, planet_id: pid })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { initGame(); loadGateways(); }
+}
+
+// توسعه اینیت
+const oldInit524 = initGame;
+initGame = async () => {
+    await oldInit524();
+    loadGateways();
+};
