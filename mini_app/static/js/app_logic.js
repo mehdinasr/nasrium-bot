@@ -3461,3 +3461,64 @@ function injectSovereignButtons() {
     }
 }
 setInterval(injectSovereignButtons, 2000);
+// --- CMD_960: Council Registration ---
+async function registerForCouncil() {
+    const res = await fetch('/api/empire/council/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+// --- CMD_962: Zenith Market UI ---
+async function openZenithMarket() {
+    const res = await fetch('/api/empire/market/zenith');
+    const data = await res.json();
+    
+    const zenithOverlay = document.createElement('div');
+    zenithOverlay.id = 'zenith-ui';
+    zenithOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:radial-gradient(circle, #1a1a1a 0%, #000 100%); z-index:10023; padding:20px; box-sizing:border-box; color:gold; font-family:serif; text-align:center; border: 2px solid gold;";
+    
+    let itemsHtml = '';
+    for (const [id, item] of Object.entries(data.items)) {
+        itemsHtml += `
+            <div style="border:1px solid gold; margin-bottom:15px; padding:15px; background:rgba(255,215,0,0.05);">
+                <div style="font-size:1.2em; font-weight:bold;">${item.name}</div>
+                <div style="font-size:0.7em; color:#aaa;">${item.desc}</div>
+                <div style="margin-top:10px; color:gold;">${item.price.toLocaleString()} IXP</div>
+                <button onclick="buyZenith('${id}')" style="margin-top:10px; background:gold; color:black; border:none; padding:5px 15px; font-weight:bold; cursor:pointer;">ACQUIRE CODE</button>
+            </div>
+        `;
+    }
+
+    zenithOverlay.innerHTML = `
+        <h1 style="text-shadow: 0 0 20px gold;">THE ZENITH MARKET</h1>
+        <p style="font-size:0.8em; color:#aaa;">Hyper-Rare System Access Codes</p>
+        <div style="margin-top:30px;">${itemsHtml}</div>
+        <button onclick="document.getElementById('zenith-ui').remove()" style="margin-top:30px; background:none; border:none; color:#555; cursor:pointer;">EXIT ZENITH</button>
+    `;
+    document.body.appendChild(zenithOverlay);
+}
+
+function injectPowerButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('zenith-btn')) {
+        const zBtn = document.createElement('button');
+        zBtn.id = 'zenith-btn';
+        zBtn.innerHTML = '👑 ZENITH MARKET';
+        zBtn.onclick = openZenithMarket;
+        zBtn.style = "margin-top:10px; width:100%; background:linear-gradient(to right, #000, #444); color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        
+        const cBtn = document.createElement('button');
+        cBtn.id = 'council-btn';
+        cBtn.innerHTML = '🗳️ COUNCIL REGISTER';
+        cBtn.onclick = registerForCouncil;
+        cBtn.style = "margin-top:10px; width:100%; background:#111; color:#fff; border:1px solid #fff; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        
+        zone.appendChild(zBtn);
+        zone.appendChild(cBtn);
+    }
+}
+setInterval(injectPowerButtons, 2000);
