@@ -3104,3 +3104,47 @@ function injectScanner() {
     }
 }
 setInterval(injectScanner, 2000);
+// --- CMD_940: Nasrium Radio Widget ---
+async function initNasriumRadio() {
+    const res = await fetch('/api/media/radio');
+    const data = await res.json();
+    
+    const radioDiv = document.createElement('div');
+    radioDiv.id = 'nasrium-radio';
+    radioDiv.style = "position:fixed; bottom:10px; left:10px; background:rgba(0,0,0,0.8); border:1px solid #444; padding:5px 15px; border-radius:20px; color:#aaa; font-size:0.5em; z-index:10017; display:flex; align-items:center; gap:10px;";
+    radioDiv.innerHTML = `
+        <span id="radio-icon" style="color:red; animation: blink 1s infinite;">● RADIO</span>
+        <span id="radio-news">NEWS: ${data.current_news}</span>
+    `;
+    document.body.appendChild(radioDiv);
+}
+
+// --- CMD_938: Rebirth Function ---
+async function initiateRebirth() {
+    const confirm = window.confirm("By initiating REBIRTH, you will reset your Level and IXP to 1, but gain permanent 1.5x efficiency for the NEXT GENERATION. Proceed?");
+    if(!confirm) return;
+
+    const res = await fetch('/api/player/rebirth', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) location.reload();
+}
+
+function injectLegacyButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('rebirth-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'rebirth-btn';
+        btn.innerHTML = '♾️ REBIRTH ALTAR';
+        btn.onclick = initiateRebirth;
+        btn.style = "margin-top:10px; width:100%; background:linear-gradient(to right, #400, #900); color:white; border:none; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+
+initNasriumRadio();
+setInterval(injectLegacyButtons, 2000);
