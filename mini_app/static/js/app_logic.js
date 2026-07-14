@@ -2044,3 +2044,64 @@ function injectLegionButton() {
     }
 }
 injectLegionButton();
+async function openMiningStation() {
+    const res = await fetch(`/api/mining/status?user_id=${userId}`);
+    const data = await res.json();
+    
+    const stationOverlay = document.createElement('div');
+    stationOverlay.id = 'mining-ui';
+    stationOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10004; padding:20px; box-sizing:border-box; color:#00f3ff; font-family:monospace; text-align:center;";
+    
+    let actionBtn = data.is_mining 
+        ? `<button onclick="claimMining()" style="width:100%; padding:15px; background:#00f3ff; color:#000; border:none; font-weight:bold; cursor:pointer;">COLLECT IXP</button>`
+        : `<button onclick="startMining()" style="width:100%; padding:15px; background:transparent; border:2px solid #00f3ff; color:#00f3ff; font-weight:bold; cursor:pointer;">START EXTRACTION</button>`;
+
+    stationOverlay.innerHTML = `
+        <h2 style="text-shadow: 0 0 10px #00f3ff;">NEURAL MINING STATION</h2>
+        <div style="margin:40px 0; border:1px solid #333; padding:20px; background:#111;">
+            <p style="font-size:0.8em;">STATUS: ${data.is_mining ? 'EXTRACTING...' : 'IDLE'}</p>
+            <p style="font-size:0.8em;">RATE: ${data.rate} IXP/HOUR</p>
+            <div id="mining-progress-bar" style="width:100%; height:10px; background:#222; margin-top:10px; border-radius:5px; overflow:hidden;">
+                <div style="width:${data.is_mining ? '50%' : '0%'}; height:100%; background:#00f3ff; box-shadow: 0 0 10px #00f3ff;"></div>
+            </div>
+        </div>
+        ${actionBtn}
+        <button onclick="document.getElementById('mining-ui').remove()" style="margin-top:20px; background:none; border:none; color:#555; cursor:pointer;">CLOSE</button>
+    `;
+    document.body.appendChild(stationOverlay);
+}
+
+async function startMining() {
+    const res = await fetch('/api/mining/start', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('mining-ui').remove(); openMiningStation(); }
+}
+
+async function claimMining() {
+    const res = await fetch('/api/mining/claim', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('mining-ui').remove(); if(typeof initGame === 'function') initGame(); }
+}
+
+function injectMiningButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('mining-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'mining-btn';
+        btn.innerHTML = '⛏️ DEEP MINING';
+        btn.onclick = openMiningStation;
+        btn.style = "margin-top:10px; width:100%; background:#001a1a; color:#00f3ff; border:1px solid #00f3ff; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(btn);
+    }
+}
+injectMiningButton();

@@ -1,35 +1,35 @@
-﻿import random
+﻿import time
 
 class MiningEngine:
-    # تعریف اعماق و جوایز
-    DEPTHS = {
-        "sub": {"name": "Sub-Surface", "energy": 5, "reward_range": (1000, 5000), "crystal_chance": 0.05},
-        "core": {"name": "Core-Layer", "energy": 12, "reward_range": (5000, 15000), "crystal_chance": 0.20},
-        "abyssal": {"name": "Abyssal-Zone", "energy": 25, "reward_range": (15000, 50000), "crystal_chance": 0.50}
-    }
+    """
+    مدیریت فرآیند استخراج زمانی IXP.
+    """
+    MINING_RATE = 100 # IXP در هر ساعت
+    MAX_DURATION = 8 # حداکثر ۸ ساعت ذخیره‌سازی
 
     @staticmethod
-    def execute_drill(player_data, depth_id):
-        depth = MiningEngine.DEPTHS.get(depth_id)
-        if not depth: return False, "Invalid depth coordinates."
+    def start_mining(player_data):
+        if player_data.get("is_mining", False):
+            return False, "Extraction already in progress."
+        
+        player_data["is_mining"] = True
+        player_data["mining_start_time"] = time.time()
+        return True, "Neural Drones deployed to the core."
 
-        if player_data.get("energy", 0) < depth["energy"]:
-            return False, "Insufficient energy for deep core drilling."
+    @staticmethod
+    def claim_mining(player_data):
+        if not player_data.get("is_mining", False):
+            return False, "No active extraction found."
 
-        # مصرف انرژی
-        player_data["energy"] -= depth["energy"]
+        start_time = player_data.get("mining_start_time", time.time())
+        elapsed_hours = (time.time() - start_time) / 3600
         
-        # استخراج طلا
-        gold_gain = random.randint(*depth["reward_range"])
-        player_data["gold"] = player_data.get("gold", 0) + gold_gain
+        # محدودیت سقف استخراج
+        if elapsed_hours > MiningEngine.MAX_DURATION:
+            elapsed_hours = MiningEngine.MAX_DURATION
+            
+        reward = int(elapsed_hours * MiningEngine.MINING_RATE)
+        player_data["intel_xp"] += reward
+        player_data["is_mining"] = False
         
-        # شانس استخراج بلور اولیه (Primal Crystal)
-        crystal_gain = 0
-        if random.random() < depth["crystal_chance"]:
-            crystal_gain = random.randint(1, 5)
-            player_data["primal_crystals"] = player_data.get("primal_crystals", 0) + crystal_gain
-        
-        msg = f"Drill Complete: +{gold_gain} Gold"
-        if crystal_gain > 0: msg += f" and {crystal_gain} Primal Crystals extracted!"
-        
-        return True, msg
+        return True, f"Extracted {reward} IXP from the Deep Core."
