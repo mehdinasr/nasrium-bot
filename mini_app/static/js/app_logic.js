@@ -305,3 +305,25 @@ initGame = async () => {
         localStorage.setItem('m500_seen', 'true');
     }
 };
+async function triggerMilestoneCelebration() {
+    console.log("CELEBRATING MILESTONE 500");
+    const container = document.getElementById('app-container');
+    container.style.transition = "filter 0.5s";
+    container.style.filter = "brightness(1.5) contrast(1.2)";
+    
+    setTimeout(() => {
+        container.style.filter = "none";
+        alert("🎉 CONGRATULATIONS COMMANDER! THE 500TH MILESTONE IS REACHED.");
+    }, 1000);
+}
+
+// بروزرسانی اینیت نهایی برای فاز ۵۰۰
+const finalInit500 = initGame;
+initGame = async () => {
+    await finalInit500();
+    // نمایش اتوماتیک در اولین ورود به فاز ۵۰۰
+    if(!localStorage.getItem('m500_seen')) {
+        triggerMilestoneCelebration();
+        localStorage.setItem('m500_seen', 'true');
+    }
+};
