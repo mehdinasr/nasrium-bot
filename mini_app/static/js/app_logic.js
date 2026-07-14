@@ -1765,3 +1765,33 @@ async function peekIntoFuture() {
 // اجرای دوره‌ای رصدخانه
 setInterval(peekIntoFuture, 600000); // هر ۱۰ دقیقه آپدیت شود
 peekIntoFuture();
+async function triggerSovereignLaunch() {
+    const res = await fetch('/api/system/status');
+    const data = await res.json();
+    
+    if(data.success) {
+        const seal = data.seal;
+        const overlay = document.createElement('div');
+        overlay.id = 'launch-overlay';
+        overlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:100000; display:flex; flex-direction:column; align-items:center; justify-content:center; color:gold; text-align:center; transition: opacity 2s;";
+        
+        overlay.innerHTML = `
+            <div style="border: 5px double gold; padding: 40px; background: radial-gradient(circle, #222 0%, #000 100%);">
+                <h1 style="font-size:3em; margin:0; text-shadow: 0 0 20px gold;">NASRIUM</h1>
+                <h2 style="letter-spacing:5px;">EMPIRE ACTIVE</h2>
+                <hr style="border:1px solid gold;">
+                <p style="font-family:monospace; font-size:0.8em;">SEAL ID: ${seal.seal_id}</p>
+                <p style="font-size:1.2em; margin-top:20px;">COMMANDER: ${seal.authority}</p>
+                <div style="margin-top:30px; font-style:italic; color:#fff;">"The Future belongs to the Architects of Logic."</div>
+                <button onclick="document.getElementById('launch-overlay').style.opacity='0'; setTimeout(()=>document.getElementById('launch-overlay').remove(), 2000)" 
+                        style="margin-top:40px; background:gold; color:black; border:none; padding:15px 40px; font-weight:bold; cursor:pointer; box-shadow: 0 0 15px gold;">ENTER EMPIRE</button>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        
+        // پخش صدای نمادین (در صورت وجود فایل صوتی)
+        console.log("SYSTEM LIVE: Sovereign Seal Applied.");
+    }
+}
+// اجرای خودکار لانچ در اولین ورود
+setTimeout(triggerSovereignLaunch, 1000);

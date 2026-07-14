@@ -1,3 +1,4 @@
+from Core.App.SovereignSeal import SovereignSeal
 from Core.App.QuantumEngine import QuantumEngine
 from Core.App.DiplomaticCore import DiplomaticCore
 from Core.App.ChronosVault import ChronosVault
