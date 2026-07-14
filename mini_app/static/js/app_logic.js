@@ -1922,3 +1922,59 @@ function injectRankButton() {
     }
 }
 injectRankButton();
+async function openBlackMarket() {
+    const res = await fetch('/api/market/items');
+    const data = await res.json();
+    
+    let itemsHtml = '';
+    for (const [id, item] of Object.entries(data.items)) {
+        itemsHtml += `
+            <div style="background:#111; border:1px solid #e056fd; margin-bottom:10px; padding:10px; border-radius:5px;">
+                <div style="font-weight:bold; color:#e056fd;">${item.name}</div>
+                <div style="font-size:0.6em; color:#aaa;">${item.desc}</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                    <span style="color:gold; font-size:0.8em;">💰 ${item.price} IXP</span>
+                    <button onclick="buyMarketItem('${id}')" style="background:#e056fd; color:white; border:none; padding:5px 10px; font-size:0.6em; border-radius:3px; cursor:pointer;">BUY</button>
+                </div>
+            </div>
+        `;
+    }
+
+    const marketOverlay = document.createElement('div');
+    marketOverlay.id = 'market-ui';
+    marketOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10002; padding:20px; box-sizing:border-box; color:white; font-family:sans-serif; overflow-y:auto;";
+    marketOverlay.innerHTML = `
+        <h2 style="text-align:center; color:#e056fd; text-shadow:0 0 10px #e056fd;">BLACK MARKET</h2>
+        <div style="margin-top:20px;">${itemsHtml}</div>
+        <button onclick="document.getElementById('market-ui').remove()" style="width:100%; margin-top:30px; padding:15px; background:transparent; border:1px solid #e056fd; color:#e056fd; font-weight:bold; cursor:pointer;">LEAVE SHADOWS</button>
+    `;
+    document.body.appendChild(marketOverlay);
+}
+
+async function buyMarketItem(itemId) {
+    const res = await fetch('/api/market/buy', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, item_id: itemId })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { 
+        document.getElementById('market-ui').remove(); 
+        if(typeof initGame === 'function') initGame(); 
+    }
+}
+
+// اضافه کردن دکمه به بخش مدیریت
+function injectMarketButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('market-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'market-btn';
+        btn.innerHTML = '🌑 BLACK MARKET';
+        btn.onclick = openBlackMarket;
+        btn.style = "margin-top:10px; width:100%; background:#1a1a1a; color:#e056fd; border:1px solid #e056fd; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(btn);
+    }
+}
+injectMarketButton();

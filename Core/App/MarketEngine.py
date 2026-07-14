@@ -1,48 +1,29 @@
-﻿import time
-
-class MarketEngine:
-    # لیست کالاهای عرضه شده {listing_id: {seller_id, item_id, price, amount}}
-    ACTIVE_LISTINGS = {}
-
-    @staticmethod
-    def list_item(player_data, item_id, amount, price):
-        # بررسی موجودی کالا در اینونتوری بازیکن
-        inventory = player_data.get("consumables", {})
-        if inventory.get(item_id, 0) < amount:
-            return False, "Insufficient items in reserve."
-
-        listing_id = f"LIST-{int(time.time())}-{player_data['user_id']}"
-        MarketEngine.ACTIVE_LISTINGS[listing_id] = {
-            "seller_id": player_data["user_id"],
-            "seller_name": player_data.get("username", "Unknown"),
-            "item_id": item_id,
-            "amount": amount,
-            "price": price
-        }
-
-        # کسر موقت از اینونتوری فروشنده
-        inventory[item_id] -= amount
-        return True, f"Item listed on Shadow Exchange. ID: {listing_id}"
+﻿class MarketEngine:
+    """
+    مدیریت آیتم‌های بازار سیاه و منطق خرید.
+    """
+    ITEMS = {
+        "overclock_chip": {"name": "Overclock Chip", "price": 2000, "desc": "Increases Arena power by 15%"},
+        "stealth_cloak": {"name": "Stealth Cloak", "price": 5000, "desc": "Hides your rank from Leaderboard"},
+        "ixp_magnet": {"name": "IXP Magnet", "price": 10000, "desc": "2x production for 24 hours"}
+    }
 
     @staticmethod
-    def buy_item(buyer_data, listing_id, seller_data):
-        listing = MarketEngine.ACTIVE_LISTINGS.get(listing_id)
-        if not listing: return False, "Listing expired or removed."
+    def get_available_items():
+        return MarketEngine.ITEMS
 
-        if buyer_data["nsm_soft"] < listing["price"]:
-            return False, "Insufficient NSM Soft for this acquisition."
-
-        # انتقال وجه و کسر کارمزد ۱۰ درصدی امپراتوری
-        tax = int(listing["price"] * 0.10)
-        net_payment = listing["price"] - tax
+    @staticmethod
+    def purchase_item(player_data, item_id):
+        item = MarketEngine.ITEMS.get(item_id)
+        if not item:
+            return False, "Item vanished in the shadows."
         
-        buyer_data["nsm_soft"] -= listing["price"]
-        seller_data["nsm_soft"] = seller_data.get("nsm_soft", 0) + net_payment
+        if player_data.get("intel_xp", 0) < item["price"]:
+            return False, "Insufficient IXP. Come back when you're richer."
         
-        # انتقال کالا به خریدار
-        b_inv = buyer_data.get("consumables", {})
-        b_inv[listing["item_id"]] = b_inv.get(listing["item_id"], 0) + listing["amount"]
-        buyer_data["consumables"] = b_inv
-
-        del MarketEngine.ACTIVE_LISTINGS[listing_id]
-        return True, f"Transaction Secure. Item acquired. Imperial Tax: {tax} NSM."
+        # کسر هزینه و اضافه کردن آیتم به اینونتوری
+        player_data["intel_xp"] -= item["price"]
+        player_data["inventory"] = player_data.get("inventory", [])
+        player_data["inventory"].append(item_id)
+        
+        return True, f"Acquired: {item['name']}. Use it wisely."
