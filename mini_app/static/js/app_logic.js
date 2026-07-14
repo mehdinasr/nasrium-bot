@@ -142,3 +142,21 @@ initGame = async () => {
     await oldInit494();
     loadStealthOps();
 };
+async function checkHolidays() {
+    try {
+        const res = await fetch('/api/system/holiday/status');
+        const data = await res.json();
+        if(data.success && data.data.event) {
+            document.getElementById('holiday-banner').style.display = 'block';
+            document.getElementById('holiday-name').innerText = data.data.event.toUpperCase();
+            // تغییر استایل دکمه‌ها به طلایی در زمان جشن
+            document.body.classList.add('holiday-mode');
+        }
+    } catch(e) {}
+}
+
+const oldInit495 = initGame;
+initGame = async () => {
+    await oldInit495();
+    checkHolidays();
+};
