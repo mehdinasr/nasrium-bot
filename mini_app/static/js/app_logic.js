@@ -2418,3 +2418,79 @@ function showBroadcastOverlay(b) {
 // چک کردن هر ۳۰ ثانیه برای پیام‌های جدید از طرف فرمانده
 setInterval(checkImperialBroadcasts, 30000);
 checkImperialBroadcasts();
+async function openSupportBureau() {
+    const bureauOverlay = document.createElement('div');
+    bureauOverlay.id = 'support-ui';
+    bureauOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#1a1a1a; z-index:10010; padding:20px; box-sizing:border-box; color:white; font-family:sans-serif; overflow-y:auto;";
+    
+    bureauOverlay.innerHTML = `
+        <h2 style="text-align:center; color:#00d4ff; border-bottom:1px solid #333; padding-bottom:10px;">BUREAU OF PETITIONS</h2>
+        <div style="margin-top:20px;">
+            <label style="font-size:0.7em; color:#aaa;">CATEGORY</label>
+            <select id="support-cat" style="width:100%; padding:10px; background:#222; color:white; border:1px solid #444; margin-bottom:15px;">
+                <option value="TECH">Technical Issue</option>
+                <option value="ECONOMY">Economic Dispute</option>
+                <option value="REPORT">Report Citizen</option>
+                <option value="OTHER">Other Inquiry</option>
+            </select>
+            <label style="font-size:0.7em; color:#aaa;">YOUR MESSAGE</label>
+            <textarea id="support-msg" placeholder="Describe your issue..." style="width:100%; height:100px; background:#222; color:white; border:1px solid #444; padding:10px; box-sizing:border-box;"></textarea>
+            <button onclick="submitPetition()" style="width:100%; margin-top:15px; background:#00d4ff; color:black; border:none; padding:15px; font-weight:bold; cursor:pointer;">SUBMIT PETITION</button>
+        </div>
+        <div id="my-petitions" style="margin-top:30px; border-top:1px solid #333; padding-top:20px;">
+            <p style="font-size:0.8em; color:#aaa;">Loading your previous petitions...</p>
+        </div>
+        <button onclick="document.getElementById('support-ui').remove()" style="width:100%; margin-top:30px; background:none; border:1px solid #555; color:#555; cursor:pointer;">EXIT BUREAU</button>
+    `;
+    document.body.appendChild(bureauOverlay);
+    loadMyPetitions();
+}
+
+async function submitPetition() {
+    const cat = document.getElementById('support-cat').value;
+    const msg = document.getElementById('support-msg').value;
+    if(!msg) return;
+
+    const res = await fetch('/api/empire/support/submit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, category: cat, message: msg })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { document.getElementById('support-ui').remove(); }
+}
+
+async function loadMyPetitions() {
+    const res = await fetch(`/api/empire/support/my?user_id=${userId}`);
+    const data = await res.json();
+    const container = document.getElementById('my-petitions');
+    
+    if(data.petitions.length === 0) {
+        container.innerHTML = '<p style="font-size:0.7em; color:#555;">No petitions on record.</p>';
+        return;
+    }
+
+    container.innerHTML = '<h4>YOUR RECORDS</h4>' + data.petitions.map(p => `
+        <div style="background:#222; padding:10px; margin-bottom:10px; border-radius:5px; font-size:0.7em;">
+            <div style="display:flex; justify-content:space-between;">
+                <span style="color:#00d4ff;">#${p.id} [${p.category}]</span>
+                <span style="color:orange;">${p.status}</span>
+            </div>
+            <div style="margin-top:5px; color:#aaa;">${p.message}</div>
+        </div>
+    `).join('');
+}
+
+function injectSupportButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('support-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'support-btn';
+        btn.innerHTML = '🏛️ SUPPORT BUREAU';
+        btn.onclick = openSupportBureau;
+        btn.style = "margin-top:10px; width:100%; background:#222; color:#00d4ff; border:1px solid #00d4ff; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(btn);
+    }
+}
+injectSupportButton();

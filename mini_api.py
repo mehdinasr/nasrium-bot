@@ -1,3 +1,4 @@
+from Core.App.SupportEngine import SupportEngine
 from Core.App.BroadcastEngine import BroadcastEngine
 from Core.App.SpinEngine import SpinEngine
 from Core.App.AscensionEngine import AscensionEngine
