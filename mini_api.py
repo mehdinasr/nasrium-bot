@@ -1,3 +1,4 @@
+from Core.App.AdvocateEngine import AdvocateEngine
 from Core.App.NeuralExchangeEngine import NeuralExchangeEngine
 from Core.App.AwakeningEngine import AwakeningEngine
 from Core.App.WelfareEngine import WelfareEngine

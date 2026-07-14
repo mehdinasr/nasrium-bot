@@ -902,3 +902,36 @@ initGame = async () => {
     await oldInit514();
     loadNeuralExchange();
 };
+async function loadAIAdvocate() {
+    try {
+        const res = await fetch(`/api/governance/court/advocate/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('court-zone');
+            if(!container) return;
+
+            const advHtml = `
+                <div id="advocate-subzone" style="margin-top:10px; border:1px solid #bdc3c7; background:rgba(255,255,255,0.05); padding:8px; border-radius:5px; display:flex; align-items:center; gap:10px;">
+                    <div style="font-size:1.2em;">⚖️</div>
+                    <div style="font-size:0.5em; color:#fff;">
+                        ADVOCATE: <b style="color:#bdc3c7">${data.standing.title}</b><br>
+                        <small style="color:#0f0">Legal Fee Reduction: ${data.standing.fee_reduction * 100}%</small>
+                    </div>
+                </div>
+            `;
+            if(!document.getElementById('advocate-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'advocate-anchor';
+                div.innerHTML = advHtml;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+// توسعه اینیت
+const oldInit515 = initGame;
+initGame = async () => {
+    await oldInit515();
+    loadAIAdvocate();
+};
