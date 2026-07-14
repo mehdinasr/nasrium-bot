@@ -1,3 +1,4 @@
+from Core.App.CustomizationEngine import CustomizationEngine
 from Core.App.AdvocateEngine import AdvocateEngine
 from Core.App.NeuralExchangeEngine import NeuralExchangeEngine
 from Core.App.AwakeningEngine import AwakeningEngine

@@ -935,3 +935,57 @@ initGame = async () => {
     await oldInit515();
     loadAIAdvocate();
 };
+async function loadPersonaLab() {
+    try {
+        const res = await fetch('/api/ai/persona/themes');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('neural-hub-zone');
+            if(!container) return;
+
+            const themeHtml = Object.keys(data.themes).map(id => `
+                <div onclick="selectTheme('${id}')" id="theme-${id}" style="width:30px; height:30px; background:${data.themes[id].color}; border-radius:50%; cursor:pointer; border:2px solid #fff; box-shadow:0 0 10px ${data.themes[id].color};"></div>
+            `).join('');
+
+            const labHtml = `
+                <div id="persona-lab-subzone" style="margin-top:15px; border-top:1px solid #e056fd; padding-top:10px;">
+                    <div style="font-size:0.6em; color:#e056fd; font-weight:bold;">🎨 PERSONA LAB</div>
+                    <input id="ai-custom-name" type="text" placeholder="Assistant Name" style="width:100%; background:#000; color:#fff; border:1px solid #444; font-size:0.6em; padding:5px; margin:5px 0;">
+                    <div style="display:flex; justify-content:space-around; margin:10px 0;">${themeHtml}</div>
+                    <button onclick="applyPersona()" style="width:100%; background:#e056fd; color:#fff; border:none; padding:5px; font-weight:bold; font-size:0.55em; border-radius:3px;">EVOLVE IDENTITY</button>
+                </div>
+            `;
+            if(!document.getElementById('persona-lab-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'persona-lab-anchor';
+                div.innerHTML = labHtml;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+let selectedTheme = "default";
+function selectTheme(id) { 
+    selectedTheme = id;
+    alert("Theme " + id + " selected for neural sync.");
+}
+
+async function applyPersona() {
+    const name = document.getElementById('ai-custom-name').value;
+    const res = await fetch('/api/ai/persona/apply', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, theme_id: selectedTheme, name: name })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit516 = initGame;
+initGame = async () => {
+    await oldInit516();
+    loadPersonaLab();
+};
