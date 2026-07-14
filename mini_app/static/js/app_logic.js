@@ -3638,3 +3638,46 @@ function injectFinanceButtons() {
     }
 }
 setInterval(injectFinanceButtons, 2000);
+// --- CMD_970: Airdrop Claim UI ---
+async function claimSovereignAirdrop() {
+    const res = await fetch('/api/empire/airdrop/claim', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    if(data.success) {
+        showEpicNotification("🎁 AIRDROP SUCCESS", data.message, "gold");
+        if(typeof initGame === 'function') initGame();
+    } else {
+        alert(data.message);
+    }
+}
+
+// --- CMD_971: Yield Dashboard ---
+async function showYieldInfo() {
+    const res = await fetch(`/api/economy/yield?user_id=${userId}`);
+    const data = await res.json();
+    showEpicNotification("DAILY YIELD", `Your staked NSM generated ${data.yield.toFixed(4)} NSM today.`, "cyan");
+}
+
+function injectRewardButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('airdrop-btn')) {
+        const aBtn = document.createElement('button');
+        aBtn.id = 'airdrop-btn';
+        aBtn.innerHTML = '🎁 CLAIM AIRDROP';
+        aBtn.onclick = claimSovereignAirdrop;
+        aBtn.style = "margin-top:10px; width:100%; background:linear-gradient(to right, #ffd700, #ff8c00); color:black; border:none; padding:12px; font-size:0.8em; cursor:pointer; border-radius:5px; font-weight:bold; box-shadow:0 0 15px gold;";
+        
+        const yBtn = document.createElement('button');
+        yBtn.id = 'yield-btn';
+        yBtn.innerHTML = '💹 VIEW DAILY YIELD';
+        yBtn.onclick = showYieldInfo;
+        yBtn.style = "margin-top:10px; width:100%; background:#111; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        
+        zone.appendChild(aBtn);
+        zone.appendChild(yBtn);
+    }
+}
+setInterval(injectRewardButtons, 2000);
