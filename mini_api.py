@@ -1,3 +1,4 @@
+from Core.App.GuardEngine import GuardEngine
 from Core.App.RebellionEngine import RebellionEngine
 from Core.App.GoldenAgeEngine import GoldenAgeEngine
 from Core.App.HolidayEngine import HolidayEngine

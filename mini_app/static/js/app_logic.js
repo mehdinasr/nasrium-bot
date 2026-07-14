@@ -222,3 +222,33 @@ initGame = async () => {
     await oldInit497();
     loadGridAlerts();
 };
+async function loadSanctum() {
+    document.getElementById('sanctum-zone').innerHTML = `
+        <div class="zone-card" style="border: 2px solid #f1c40f; background: linear-gradient(180deg, #1a1a1a, #000); margin-top:10px;">
+            <div class="zone-title" style="color: #f1c40f;">🛡️ ROYAL SANCTUM</div>
+            <div style="padding:15px; text-align:center;">
+                <p style="font-size:0.55em; color:#aaa;">Elite protection for the Supreme Commander.</p>
+                <div style="display:grid; grid-template-columns: 1fr; gap:5px; margin-top:10px;">
+                    <button onclick="recruitGuard('praetorian')" style="background:#222; border:1px solid #f1c40f; color:#fff; font-size:0.6em; padding:8px;">RECRUIT PRAETORIAN (100 💎)</button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+async function recruitGuard(type) {
+    const res = await fetch('/api/military/guard/recruit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, guard_type: type })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+const oldInit498 = initGame;
+initGame = async () => {
+    await oldInit498();
+    loadSanctum();
+};
