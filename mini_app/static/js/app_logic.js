@@ -2700,3 +2700,63 @@ async function testPush() {
 
 // اجرای مکرر برای اطمینان از وجود دکمه در پروفایل
 setInterval(injectNotifyToggle, 2000);
+async function startDecipherGame() {
+    const res = await fetch(`/api/minigame/decipher/start?user_id=${userId}`);
+    const data = await res.json();
+    const puzzle = data.puzzle;
+
+    const gameOverlay = document.createElement('div');
+    gameOverlay.id = 'decipher-ui';
+    gameOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10014; padding:20px; box-sizing:border-box; color:#0f0; font-family:monospace; text-align:center; display:flex; flex-direction:column; justify-content:center;";
+    
+    gameOverlay.innerHTML = `
+        <h2 style="text-shadow:0 0 10px #0f0;">CORE DECIPHER</h2>
+        <p style="font-size:0.7em;">MEMORIZE THE SEQUENCE:</p>
+        <div id="sequence-display" style="font-size:2.5em; letter-spacing:10px; margin:20px 0; color:white;">${puzzle.sequence.join('')}</div>
+        <p id="game-timer" style="color:red;">Time: ${puzzle.timer}s</p>
+        <div id="input-zone" style="display:none; grid-template-columns: repeat(3, 1fr); gap:10px; max-width:200px; margin:auto;">
+            ${[1,2,3,4,5,6,7,8,9].map(n => `<button onclick="handleDecipherInput(${n})" style="padding:15px; background:#111; border:1px solid #0f0; color:#0f0; cursor:pointer;">${n}</button>`).join('')}
+        </div>
+        <p id="user-input-view" style="margin-top:20px; font-size:1.5em; color:gold;"></p>
+    `;
+    document.body.appendChild(gameOverlay);
+
+    // فاز نمایش توالی
+    setTimeout(() => {
+        document.getElementById('sequence-display').innerHTML = "****";
+        document.getElementById('input-zone').style.display = 'grid';
+    }, 2000);
+
+    window.targetSeq = puzzle.sequence;
+    window.userSeq = [];
+}
+
+async function handleDecipherInput(num) {
+    window.userSeq.push(num);
+    document.getElementById('user-input-view').innerHTML = window.userSeq.join('');
+    
+    if(window.userSeq.length === window.targetSeq.length) {
+        const res = await fetch('/api/minigame/decipher/verify', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ user_id: userId, sequence: window.userSeq, target: window.targetSeq, level: 1 })
+        });
+        const data = await res.json();
+        alert(data.message);
+        document.getElementById('decipher-ui').remove();
+        if(typeof initGame === 'function') initGame();
+    }
+}
+
+function injectDecipherButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('decipher-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'decipher-btn';
+        btn.innerHTML = '🧩 CORE DECIPHER';
+        btn.onclick = startDecipherGame;
+        btn.style = "margin-top:10px; width:100%; background:#002200; color:#0f0; border:1px solid #0f0; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+injectDecipherButton();
