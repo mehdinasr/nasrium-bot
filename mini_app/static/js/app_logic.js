@@ -2275,3 +2275,59 @@ function injectCommsButton() {
     }
 }
 injectCommsButton();
+async function openQuantumSpin() {
+    const res = await fetch(`/api/empire/spin/status?user_id=${userId}`);
+    const data = await res.json();
+    
+    const spinOverlay = document.createElement('div');
+    spinOverlay.id = 'spin-ui';
+    spinOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(20,0,40,0.95); z-index:10008; padding:20px; box-sizing:border-box; color:white; font-family:monospace; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center;";
+    
+    spinOverlay.innerHTML = `
+        <h2 style="text-shadow: 0 0 15px magenta; color:magenta;">QUANTUM SPIN</h2>
+        <div id="reactor-visual" style="width:150px; height:150px; border:5px dashed magenta; border-radius:50%; margin:30px; display:flex; align-items:center; justify-content:center; animation: spin-slow 4s infinite linear;">
+            <div style="width:20px; height:20px; background:white; border-radius:50%; box-shadow:0 0 20px white;"></div>
+        </div>
+        <p style="margin-bottom:20px;">${data.can_spin ? 'Reactor Stable. Ready for extraction.' : 'Reactor Cooling Down...'}</p>
+        <button id="spin-btn" onclick="executeSpin()" ${data.can_spin ? '' : 'disabled'} style="width:100%; padding:20px; background:magenta; color:white; border:none; font-weight:bold; cursor:pointer; box-shadow:0 0 15px magenta;">INITIATE SPIN</button>
+        <button onclick="document.getElementById('spin-ui').remove()" style="margin-top:30px; background:none; border:none; color:#aaa; cursor:pointer;">RETURN</button>
+        <style>
+            @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            @keyframes spin-fast { from { transform: rotate(0deg); } to { transform: rotate(1080deg); } }
+        </style>
+    `;
+    document.body.appendChild(spinOverlay);
+}
+
+async function executeSpin() {
+    const btn = document.getElementById('spin-btn');
+    const reactor = document.getElementById('reactor-visual');
+    btn.disabled = true;
+    reactor.style.animation = "spin-fast 2s cubic-bezier(0.4, 0, 0.2, 1) forwards";
+    
+    const res = await fetch('/api/empire/spin/execute', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    
+    setTimeout(() => {
+        alert("✨ QUANTUM REWARD: " + data.reward_label);
+        document.getElementById('spin-ui').remove();
+        if(typeof initGame === 'function') initGame();
+    }, 2000);
+}
+
+function injectSpinButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('spin-btn-main')) {
+        const btn = document.createElement('button');
+        btn.id = 'spin-btn-main';
+        btn.innerHTML = '🎡 QUANTUM SPIN';
+        btn.onclick = openQuantumSpin;
+        btn.style = "margin-top:10px; width:100%; background:#2c003e; color:magenta; border:1px solid magenta; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(btn);
+    }
+}
+injectSpinButton();

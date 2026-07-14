@@ -1,3 +1,4 @@
+from Core.App.SpinEngine import SpinEngine
 from Core.App.AscensionEngine import AscensionEngine
 from Core.App.LegionEngine import LegionEngine
 from Core.App.DuelEngine import DuelEngine
