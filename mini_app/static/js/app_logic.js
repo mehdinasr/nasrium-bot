@@ -1271,3 +1271,59 @@ initGame = async () => {
     await oldInit522();
     loadOrbitalControls();
 };
+async function loadGalaxyMap() {
+    try {
+        const res = await fetch('/api/space/exo/planets');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('asteroid-anchor');
+            if(!container) return;
+
+            const planetHtml = Object.keys(data.planets).map(id => {
+                const p = data.planets[id];
+                return `
+                    <div style="background:rgba(0,0,0,0.7); padding:10px; border:1px solid #00a8ff; border-radius:10px; text-align:center;">
+                        <div style="font-size:1.5em; margin-bottom:5px;">🪐</div>
+                        <b style="font-size:0.6em; color:#fff;">${p.name}</b><br>
+                        <small style="color:#0f0; font-size:0.5em;">YIELD: x${p.multiplier}</small><br>
+                        <button onclick="foundColony('${id}')" style="margin-top:5px; background:#00a8ff; color:#000; border:none; padding:4px 8px; font-weight:bold; font-size:0.5em; border-radius:3px;">COLONIZE (${p.cost_hard} 💎)</button>
+                    </div>
+                `;
+            }).join('');
+
+            const galaxyZone = `
+                <div id="galaxy-zone" class="zone-card" style="border: 2px solid #00a8ff; background: url('https://img.freepik.com/free-vector/space-background-with-stars-planets_1017-23652.jpg'); background-size:cover; margin-top:10px;">
+                    <div class="zone-title" style="color: #00a8ff; background:rgba(0,0,0,0.8);">🌌 DEEP SPACE MAP</div>
+                    <div style="padding:15px; display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                        ${planetHtml}
+                    </div>
+                </div>
+            `;
+            
+            if(!document.getElementById('galaxy-zone')) {
+                const div = document.createElement('div');
+                div.id = 'galaxy-anchor';
+                div.innerHTML = galaxyZone;
+                container.parentNode.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function foundColony(pid) {
+    const res = await fetch('/api/space/exo/found', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, planet_id: pid })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// توسعه اینیت
+const oldInit523 = initGame;
+initGame = async () => {
+    await oldInit523();
+    loadGalaxyMap();
+};

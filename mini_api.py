@@ -1,3 +1,4 @@
+from Core.App.ExoColonyEngine import ExoColonyEngine
 from Core.App.OrbitalCannonEngine import OrbitalCannonEngine
 from Core.App.AsteroidEngine import AsteroidEngine
 from Core.App.ElevatorEngine import ElevatorEngine
