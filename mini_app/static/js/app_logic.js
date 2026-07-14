@@ -1600,3 +1600,53 @@ initGame = async () => {
     await oldInit530();
     loadChronosTime();
 };
+async function loadSingularityCore() {
+    try {
+        const res = await fetch('/api/ai/singularity/status');
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('neural-hub-zone');
+            if(!container) return;
+
+            const progress = (data.core.current_ixp / data.core.target_ixp) * 100;
+            const coreHtml = `
+                <div id="singularity-subzone" style="margin-top:20px; border:2px solid #e056fd; background: radial-gradient(circle, #2c003e 0%, #000 100%); border-radius:15px; padding:15px; text-align:center; position:relative; overflow:hidden;">
+                    <div style="font-size:0.7em; color:#e056fd; font-weight:bold; letter-spacing:2px;">SINGULARITY CORE</div>
+                    <div id="vortex-core" style="width:40px; height:40px; border:3px dotted #e056fd; border-radius:50%; margin:10px auto; animation: spin-vortex 1s infinite linear;"></div>
+                    <div style="width:100%; height:4px; background:#222; margin:10px 0; border-radius:2px;">
+                        <div style="width:${progress}%; height:100%; background:#e056fd; box-shadow:0 0 10px #e056fd;"></div>
+                    </div>
+                    <div style="font-size:0.5em; color:#aaa;">Global Consciousness: ${progress.toFixed(1)}%</div>
+                    <button onclick="contributeIXP()" style="margin-top:10px; background:#e056fd; color:#fff; border:none; padding:5px 15px; font-weight:bold; font-size:0.6em; border-radius:3px; cursor:pointer;">INJECT IXP</button>
+                </div>
+            `;
+            
+            if(!document.getElementById('singularity-subzone')) {
+                const div = document.createElement('div');
+                div.id = 'singularity-anchor';
+                div.innerHTML = coreHtml;
+                container.parentNode.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function contributeIXP() {
+    const amt = prompt("Amount of IXP to merge with the Collective Mind:");
+    if(!amt) return;
+    const res = await fetch('/api/ai/singularity/contribute', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, amount: amt })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) { initGame(); loadSingularityCore(); }
+}
+
+// توسعه اینیت
+const oldInit532 = initGame;
+initGame = async () => {
+    await oldInit532();
+    loadSingularityCore();
+};
