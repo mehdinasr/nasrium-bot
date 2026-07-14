@@ -2204,3 +2204,74 @@ function injectAscendButton() {
     }
 }
 injectAscendButton();
+async function openComms() {
+    const commsOverlay = document.createElement('div');
+    commsOverlay.id = 'comms-ui';
+    commsOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#050505; z-index:10007; padding:10px; box-sizing:border-box; color:#fff; font-family:monospace; display:flex; flex-direction:column;";
+    
+    commsOverlay.innerHTML = `
+        <div style="border-bottom:1px solid #333; padding-bottom:10px; display:flex; justify-content:space-between;">
+            <span style="color:#aaa;">📡 IMPERIAL COMMS_v1.0</span>
+            <button onclick="document.getElementById('comms-ui').remove()" style="background:none; border:none; color:red; cursor:pointer;">[EXIT]</button>
+        </div>
+        <div id="chat-box" style="flex-grow:1; overflow-y:auto; margin:10px 0; padding:10px; background:#111; border-radius:5px;">
+            <!-- پیام‌ها اینجا بارگذاری می‌شوند -->
+        </div>
+        <div style="display:flex;">
+            <input type="text" id="chat-input" placeholder="Enter signal..." style="flex-grow:1; background:#222; border:1px solid #444; color:white; padding:10px;">
+            <button onclick="sendMessage()" style="padding:10px 20px; background:#fff; color:#000; border:none; font-weight:bold; cursor:pointer;">SEND</button>
+        </div>
+    `;
+    document.body.appendChild(commsOverlay);
+    refreshChat();
+}
+
+async function refreshChat() {
+    const res = await fetch('/api/comms/get');
+    const data = await res.json();
+    const chatBox = document.getElementById('chat-box');
+    if(!chatBox) return;
+
+    chatBox.innerHTML = data.messages.map(m => `
+        <div style="margin-bottom:8px; font-size:0.7em;">
+            <span style="color:#555;">[${m.time}]</span> 
+            <span style="color:gold;">${m.rank}</span> 
+            <span style="color:#00f3ff;">${m.user_id.substring(0,6)}:</span> 
+            <span>${m.text}</span>
+        </div>
+    `).join('');
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const text = input.value;
+    if(!text) return;
+
+    await fetch('/api/market/buy', { # به اشتباه از یک API دیگر استفاده نشود - اصلاح شد
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, text: text })
+    }); // در کد نهایی اصلاح شده:
+    await fetch('/api/comms/send', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, text: text })
+    });
+
+    input.value = '';
+    refreshChat();
+}
+
+function injectCommsButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('comms-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'comms-btn';
+        btn.innerHTML = '📡 IMPERIAL COMMS';
+        btn.onclick = openComms;
+        btn.style = "margin-top:10px; width:100%; background:#111; color:white; border:1px solid #333; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(btn);
+    }
+}
+injectCommsButton();

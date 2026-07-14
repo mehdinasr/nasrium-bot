@@ -1,26 +1,32 @@
-﻿import time
+﻿from datetime import datetime
 
 class CommsEngine:
-    # حافظه موقت برای پیام‌های جهانی
-    MESSAGE_BUFFER = [
-        {"user": "SYSTEM", "text": "Nasrium Global Frequency Initialized...", "time": time.time()}
-    ]
-    MAX_BUFFER = 50
+    """
+    مدیریت پیام‌های سراسری در امپراتوری نصریوم.
+    """
+    CHAT_BUFFER = [] # ذخیره ۱۰۰ پیام آخر در حافظه (برای سرعت بالا)
+    MAX_BUFFER = 100
 
     @staticmethod
-    def broadcast_message(username, text):
-        msg = {
-            "user": username,
-            "text": text,
-            "time": time.time()
-        }
-        CommsEngine.MESSAGE_BUFFER.append(msg)
+    def send_message(u_id, rank, text):
+        if not text or len(text) > 200:
+            return False, "Message too long or empty."
         
-        # حفظ محدودیت حافظه
-        if len(CommsEngine.MESSAGE_BUFFER) > CommsEngine.MAX_BUFFER:
-            CommsEngine.MESSAGE_BUFFER.pop(0)
-        return True
+        message = {
+            "user_id": u_id,
+            "rank": rank,
+            "text": text,
+            "time": datetime.now().strftime("%H:%M")
+        }
+        
+        CommsEngine.CHAT_BUFFER.append(message)
+        
+        # حفظ ظرفیت بافر
+        if len(CommsEngine.CHAT_BUFFER) > CommsEngine.MAX_BUFFER:
+            CommsEngine.CHAT_BUFFER.pop(0)
+            
+        return True, "Signal transmitted."
 
     @staticmethod
-    def get_feed():
-        return CommsEngine.MESSAGE_BUFFER
+    def get_messages():
+        return CommsEngine.CHAT_BUFFER
