@@ -1361,3 +1361,20 @@ initGame = async () => {
     await oldInit524();
     loadGateways();
 };
+async function loadRadio() {
+    try {
+        const res = await fetch('/api/media/radio/stream');
+        const data = await res.json();
+        if(data.success) {
+            document.getElementById('radio-marquee').innerText = data.broadcast;
+        }
+    } catch(e) {}
+}
+
+// توسعه اینیت
+const oldInit525 = initGame;
+initGame = async () => {
+    await oldInit525();
+    loadRadio();
+};
+setInterval(loadRadio, 60000); // به‌روزرسانی اخبار هر ۱ دقیقه
