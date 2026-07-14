@@ -1,22 +1,22 @@
 ﻿class LeaderboardEngine:
+    """
+    استخراج و مرتب‌سازی برترین شهروندان امپراتوری.
+    """
     @staticmethod
-    def get_rankings(all_players, category):
-        # سورت کردن بازیکنان بر اساس دسته انتخاب شده
-        if category == "power":
-            sorted_list = sorted(all_players, key=lambda x: x.get("troops", 0), reverse=True)
-        elif category == "wealth":
-            sorted_list = sorted(all_players, key=lambda x: x.get("nsm_soft", 0), reverse=True)
-        elif category == "influence":
-            sorted_list = sorted(all_players, key=lambda x: len(x.get("recruits", [])), reverse=True)
-        else:
-            return []
-
-        # بازگرداندن ۱۰ نفر اول با فرمت ساده
-        rankings = []
-        for i, p in enumerate(sorted_list[:10]):
-            rankings.append({
-                "rank": i + 1,
-                "username": p.get("username", "Unknown Citizen"),
-                "value": p.get("troops", 0) if category == "power" else (p.get("nsm_soft", 0) if category == "wealth" else len(p.get("recruits", [])))
+    def get_top_commanders(all_players, limit=10):
+        # مرتب‌سازی بر اساس IXP (و در صورت تساوی، بر اساس Honor Score)
+        sorted_players = sorted(
+            all_players, 
+            key=lambda x: (x.get('intel_xp', 0), x.get('honor_score', 0)), 
+            reverse=True
+        )
+        
+        top_list = []
+        for idx, p in enumerate(sorted_players[:limit]):
+            top_list.append({
+                "rank": idx + 1,
+                "user_id": p.get('user_id'),
+                "ixp": p.get('intel_xp', 0),
+                "title": p.get('rank', 'Citizen')
             })
-        return rankings
+        return top_list

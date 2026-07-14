@@ -1885,3 +1885,40 @@ function injectArenaButton() {
     }
 }
 injectArenaButton();
+async function showLeaderboard() {
+    const res = await fetch('/api/empire/leaderboard');
+    const data = await res.json();
+
+    if(data.success) {
+        const list = data.leaderboard.map(p => `
+            <div style="display:flex; justify-content:space-between; padding:8px; border-bottom:1px solid #333; font-size:0.7em; color:${p.rank <= 3 ? 'gold' : '#ccc'}">
+                <span>#${p.rank} ${p.user_id.substring(0,8)}...</span>
+                <span style="font-weight:bold;">${p.ixp.toLocaleString()} IXP</span>
+            </div>
+        `).join('');
+
+        const rankOverlay = document.createElement('div');
+        rankOverlay.id = 'rank-ui';
+        rankOverlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10001; padding:20px; box-sizing:border-box; color:gold; font-family:monospace;";
+        rankOverlay.innerHTML = `
+            <h2 style="text-align:center; border-bottom:2px solid gold; padding-bottom:10px;">SOVEREIGN 10</h2>
+            <div style="margin-top:20px; max-height:70vh; overflow-y:auto;">${list}</div>
+            <button onclick="document.getElementById('rank-ui').remove()" style="width:100%; margin-top:30px; padding:15px; background:gold; color:black; border:none; font-weight:bold; cursor:pointer;">CLOSE HALL</button>
+        `;
+        document.body.appendChild(rankOverlay);
+    }
+}
+
+// اضافه کردن دکمه لیدربورد به بخش AI
+function injectRankButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('rank-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'rank-btn';
+        btn.innerHTML = '🏆 HALL OF FAME';
+        btn.onclick = showLeaderboard;
+        btn.style = "margin-top:10px; width:100%; background:transparent; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; border-radius:5px;";
+        zone.appendChild(btn);
+    }
+}
+injectRankButton();
