@@ -558,3 +558,48 @@ initGame = async () => {
     await oldInit507();
     loadInsurance();
 };
+async function loadLending() {
+    try {
+        const res = await fetch(`/api/economy/lending/status?user_id=${userId}`);
+        const data = await res.json();
+        if(data.success) {
+            const container = document.getElementById('economy-hub');
+            const lendingCard = `
+                <div class="zone-card" style="border: 2px solid #f1c40f; background: rgba(241, 196, 15, 0.05); margin-top:10px;">
+                    <div class="zone-title" style="color: #f1c40f;">💰 IMPERIAL CREDIT</div>
+                    <div style="padding:10px; text-align:center;">
+                        <p style="font-size:0.5em; color:#aaa;">Instant Gold Liquidity based on TH Level.</p>
+                        <div style="font-size:0.6em; color:#fff; margin-bottom:5px;">Credit Limit: <b style="color:#f1c40f">${data.limit}</b></div>
+                        <input id="loan-amount" type="number" placeholder="Amount" style="width:80%; background:#000; color:#fff; border:1px solid #444; font-size:0.6em; padding:5px; margin-bottom:5px;">
+                        <button onclick="requestLoan()" style="width:100%; background:#f1c40f; color:#000; border:none; padding:5px; font-weight:bold; font-size:0.6em; border-radius:3px;">REQUEST LOAN</button>
+                    </div>
+                </div>
+            `;
+            if(!document.getElementById('lending-zone')) {
+                const div = document.createElement('div');
+                div.id = 'lending-zone';
+                div.innerHTML = lendingCard;
+                container.appendChild(div);
+            }
+        }
+    } catch(e) {}
+}
+
+async function requestLoan() {
+    const amt = document.getElementById('loan-amount').value;
+    const res = await fetch('/api/economy/lending/request', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, amount: amt })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) initGame();
+}
+
+// انتهای اینیت
+const oldInit508 = initGame;
+initGame = async () => {
+    await oldInit508();
+    loadLending();
+};

@@ -1,3 +1,4 @@
+from Core.App.LendingEngine import LendingEngine
 from Core.App.UnificationEngine import UnificationEngine
 from Core.App.AREngine import AREngine
 from Core.App.TranslationEngine import TranslationEngine
