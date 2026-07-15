@@ -5537,3 +5537,33 @@ function injectEternityV20UI() {
 }
 checkAwakeningV20();
 setInterval(injectEternityV20UI, 2000);
+// ID_1526-1540 Awakening XXI UI Integration
+async function checkAwakeningV21() {
+    const res = await fetch('/api/eternity/awakening/v21');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v21')) {
+            showEpicNotification("THE TWENTY-FIRST AWAKENING", "Version 3.4.0 is LIVE. High Peak Dominance achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v21', 'true');
+        }
+    }
+}
+
+function injectPeakUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('purity-scan-v4-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'purity-scan-v4-btn';
+        btn.innerHTML = 'RUN PURITY SCAN V4';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/purity/scan_v4');
+            const data = await res.json();
+            showEpicNotification("AUDIT", "Status: " + data.report, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV21();
+setInterval(injectPeakUI, 2000);
