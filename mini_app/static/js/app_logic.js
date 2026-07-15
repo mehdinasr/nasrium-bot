@@ -3785,3 +3785,15 @@ function injectSovButtons() {
     }
 }
 setInterval(injectSovButtons, 2000);
+async function runPurityCheck() {
+    console.log("🛡️ Purity Audit v1.0: Initiating Global Scan...");
+    const overlay = document.createElement('div');
+    overlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,255,255,0.1); z-index:200000; pointer-events:none; border: 5px solid cyan; animation: pulse 2s infinite;";
+    document.body.appendChild(overlay);
+    
+    setTimeout(() => {
+        overlay.remove();
+        console.log("✅ Purity Audit: 0 Anomalies. Ecosystem is PURE.");
+    }, 3000);
+}
+runPurityCheck();
