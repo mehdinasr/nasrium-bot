@@ -4168,3 +4168,21 @@ function injectPhase3Buttons() {
     }
 }
 setInterval(injectPhase3Buttons, 2000);
+async function triggerConquestEvent() {
+    const conquestBtn = document.createElement('button');
+    conquestBtn.id = 'conquest-event-btn';
+    conquestBtn.innerHTML = 'FORCE SURRENDER';
+    conquestBtn.onclick = async () => {
+        const res = await fetch('/api/empire/conquest/claim', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ user_id: userId })
+        });
+        const data = await res.json();
+        alert(data.message);
+        if(typeof initGame === 'function') initGame();
+    };
+    conquestBtn.style = "position:fixed; top:80px; width:90%; left:5%; background:linear-gradient(to right, #000, #400); color:red; border:1px solid red; padding:10px; font-weight:bold; z-index:10040;";
+    document.body.appendChild(conquestBtn);
+}
+setTimeout(triggerConquestEvent, 3000);
