@@ -6114,3 +6114,33 @@ function injectMilestone1795UI() {
 }
 checkAwakeningV38();
 setInterval(injectMilestone1795UI, 2000);
+// ID_1796-1810 Milestone 1800 UI Integration
+async function checkAwakeningV39() {
+    const res = await fetch('/api/eternity/awakening/v39');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v39')) {
+            showEpicNotification("THE THIRTY-NINTH AWAKENING", "Version 5.2.0 is LIVE. Milestone 1800 achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v39', 'true');
+        }
+    }
+}
+
+function injectMilestone1800UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('milestone-1800-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'milestone-1800-btn';
+        btn.innerHTML = 'CENTURY SEAL 1800';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/milestone/1800');
+            const data = await res.json();
+            showEpicNotification("MILESTONE", "Status: " + data.seal, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV39();
+setInterval(injectMilestone1800UI, 2000);
