@@ -6305,3 +6305,29 @@ function injectEternityV63UI() {
 }
 checkAwakeningV50();
 setInterval(injectEternityV63UI, 2000);
+// ID_1886-1900 Global Purity UI Integration
+async function checkAwakeningV51() {
+    const res = await fetch('/api/eternity/awakening/v51');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: 6.5.0");
+        if(!localStorage.getItem('nasrium_awakened_v51')) {
+            showEpicNotification("THE FIFTY-FIRST AWAKENING", "Version 6.5.0 is LIVE. Milestone 1900 achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v51', 'true');
+        }
+    }
+}
+
+function injectMilestone1900UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('milestone-1900-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'milestone-1900-btn';
+        btn.innerHTML = 'VERIFY MILESTONE 1900';
+        btn.onclick = () => showEpicNotification("SECURITY", "Milestone 1900 Integrity: 100 PERCENT PURE", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV51();
+setInterval(injectMilestone1900UI, 2000);
