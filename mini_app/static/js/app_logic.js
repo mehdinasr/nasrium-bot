@@ -6279,3 +6279,29 @@ function injectEternityV61UI() {
 }
 checkAwakeningV48();
 setInterval(injectEternityV61UI, 2000);
+// ID_1871-1885 Ultimate Purity UI Integration
+async function checkAwakeningV50() {
+    const res = await fetch('/api/eternity/awakening/v49');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: 6.3.0");
+        if(!localStorage.getItem('nasrium_awakened_v50')) {
+            showEpicNotification("THE FIFTIETH AWAKENING", "Version 6.3.0 is LIVE. Absolute Singularity achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v50', 'true');
+        }
+    }
+}
+
+function injectEternityV63UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('purity-scan-v26-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'purity-scan-v26-btn';
+        btn.innerHTML = 'VERIFY SINGULARITY';
+        btn.onclick = () => showEpicNotification("SECURITY", "Singularity Integrity: 100 PERCENT PURE", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV50();
+setInterval(injectEternityV63UI, 2000);
