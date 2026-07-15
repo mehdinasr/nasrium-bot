@@ -5260,3 +5260,33 @@ function injectTenthUI() {
 }
 checkAwakeningV10();
 setInterval(injectTenthUI, 2000);
+// ID_1391-1405 Eleventh Awakening UI Integration
+async function checkAwakeningV11() {
+    const res = await fetch('/api/eternity/awakening/v11');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v11')) {
+            showEpicNotification("THE ELEVENTH AWAKENING", "Version 2.4.0 is LIVE. Meta-Governance Active.", "gold");
+            localStorage.setItem('nasrium_awakened_v11', 'true');
+        }
+    }
+}
+
+function injectEleventhUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('purity-scan-v2-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'purity-scan-v2-btn';
+        btn.innerHTML = 'PURITY SCAN V2';
+        btn.onclick = async () => {
+            const res = await fetch('/api/intel/scan/purity');
+            const data = await res.json();
+            showEpicNotification("INTEL", data.report, "cyan");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV11();
+setInterval(injectEleventhUI, 2000);
