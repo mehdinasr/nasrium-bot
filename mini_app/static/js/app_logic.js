@@ -5194,3 +5194,36 @@ function injectCulminationUI() {
 }
 checkAwakeningV8();
 setInterval(injectCulminationUI, 2000);
+// ID_1361-1375 Supreme Goal UI Integration
+async function checkAwakeningV9() {
+    const res = await fetch('/api/eternity/awakening/v9');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION STATUS: " + data.data.era);
+        if(!localStorage.getItem('nasrium_awakened_v9')) {
+            showEpicNotification("THE NINTH AWAKENING", "Version 2.2.0 is LIVE. Supreme Integration.", "gold");
+            localStorage.setItem('nasrium_awakened_v9', 'true');
+        }
+    }
+}
+
+function injectSupremeUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('law-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'law-btn';
+        btn.innerHTML = 'ETERNAL LAWS';
+        btn.onclick = () => showEpicNotification("LAWS", "Accessing Immutable Sovereignty Ledger...", "cyan");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const eBtn = document.createElement('button');
+        eBtn.id = 'echo-btn';
+        eBtn.innerHTML = 'CREATORS ECHO';
+        eBtn.onclick = () => showEpicNotification("WILL", "Broadcasting Sovereign Directives...", "gold");
+        eBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(eBtn);
+    }
+}
+checkAwakeningV9();
+setInterval(injectSupremeUI, 2000);
