@@ -5567,3 +5567,33 @@ function injectPeakUI() {
 }
 checkAwakeningV21();
 setInterval(injectPeakUI, 2000);
+// ID_1541-1555 Awakening XXII UI Integration
+async function checkAwakeningV22() {
+    const res = await fetch('/api/eternity/awakening/v22');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v22')) {
+            showEpicNotification("THE TWENTY-SECOND AWAKENING", "Version 3.5.0 is LIVE. Post-Material Dominance achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v22', 'true');
+        }
+    }
+}
+
+function injectSovereignV22UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('credit-v2-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'credit-v2-btn';
+        btn.innerHTML = 'ADVANCED CREDIT SCORE';
+        btn.onclick = async () => {
+            const res = await fetch(`/api/economy/credit/score_v2?user_id=${userId}`);
+            const data = await res.json();
+            showEpicNotification("CREDIT V2", "Your Sovereign Credit: " + data.score, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV22();
+setInterval(injectSovereignV22UI, 2000);
