@@ -3985,3 +3985,36 @@ function injectPhase2Buttons() {
     }
 }
 setInterval(injectPhase2Buttons, 2000);
+// --- ID_1026: Lunar Colony UI ---
+async function openLunarMap() {
+    const res = await fetch('/api/lunar/plots');
+    const data = await res.json();
+    let plots = data.plots.map(p => `<button onclick="alert('Annexing ${p}...')">${p}</button>`).join('');
+    showEpicNotification("LUNAR COLONIZATION", `Available Plots: ${plots}`, "cyan");
+}
+
+// --- ID_1025: Legion Bonds UI ---
+async function openBondMarket() {
+    showEpicNotification("BOND MARKET", "Invest in Legion Growth to earn dividends.", "gold");
+}
+
+function injectPhase3Buttons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('lunar-btn')) {
+        const lBtn = document.createElement('button');
+        lBtn.id = 'lunar-btn';
+        lBtn.innerHTML = '🌙 LUNAR COLONY';
+        lBtn.onclick = openLunarMap;
+        lBtn.style = "margin-top:10px; width:100%; background:#111; color:white; border:1px solid white; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const bBtn = document.createElement('button');
+        bBtn.id = 'bond-btn';
+        bBtn.innerHTML = '📈 BOND MARKET';
+        bBtn.onclick = openBondMarket;
+        bBtn.style = "margin-top:10px; width:100%; background:#001a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(lBtn);
+        zone.appendChild(bBtn);
+    }
+}
+setInterval(injectPhase3Buttons, 2000);
