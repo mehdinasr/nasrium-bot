@@ -3805,3 +3805,11 @@ async function openBioLab() {
     console.log("🧬 Entering Bio-Digital Lab...");
     showEpicNotification("BIO-LAB", "Merge AI DNA to unlock superior intelligence.", "magenta");
 }
+function enforceManifesto() {
+    console.log("📜 PURE MANIFESTO ACTIVE: Rules are now immutable.");
+    const manifestoBanner = document.createElement('div');
+    manifestoBanner.style = "position:fixed; bottom:0; left:0; width:100%; background:gold; color:black; font-size:8px; text-align:center; font-weight:bold;";
+    manifestoBanner.innerText = "ACCORDING TO THE CREATOR: THE PURE ECOSYSTEM IS IMMUTABLE";
+    document.body.appendChild(manifestoBanner);
+}
+enforceManifesto();
