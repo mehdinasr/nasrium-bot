@@ -5320,3 +5320,40 @@ function injectTwelfthUI() {
 }
 checkAwakeningV12();
 setInterval(injectTwelfthUI, 2000);
+// ID_1421-1435 Universal Dominance UI Integration
+async function checkAwakeningV13() {
+    const res = await fetch('/api/eternity/awakening/v13');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v13')) {
+            showEpicNotification("THE THIRTEENTH AWAKENING", "Version 2.6.0 is LIVE. Universal Resonance achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v13', 'true');
+        }
+    }
+}
+
+function injectDominanceUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('rwa-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'rwa-btn';
+        btn.innerHTML = 'ASSET TOKENIZATION';
+        btn.onclick = () => showEpicNotification("FINANCE", "Syncing real-world assets with Nasrium Ledger...", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const sBtn = document.createElement('button');
+        sBtn.id = 'shield-v2-btn';
+        sBtn.innerHTML = 'SHIELD INTEGRITY';
+        sBtn.onclick = async () => {
+            const res = await fetch('/api/system/shield/integrity');
+            const data = await res.json();
+            showEpicNotification("DEFENSE", data.status, "cyan");
+        };
+        sBtn.style = "margin-top:5px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(sBtn);
+    }
+}
+checkAwakeningV13();
+setInterval(injectDominanceUI, 2000);
