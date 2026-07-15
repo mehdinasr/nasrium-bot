@@ -3797,3 +3797,11 @@ async function runPurityCheck() {
     }, 3000);
 }
 runPurityCheck();
+async function openGalacticMap() {
+    console.log("🌌 Navigating to Planetary Conquest Map...");
+    showEpicNotification("PLANETARY CONQUEST", "Select a planet to annex for your Legion.", "cyan");
+}
+async function openBioLab() {
+    console.log("🧬 Entering Bio-Digital Lab...");
+    showEpicNotification("BIO-LAB", "Merge AI DNA to unlock superior intelligence.", "magenta");
+}
