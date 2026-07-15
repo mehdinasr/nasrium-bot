@@ -5807,3 +5807,40 @@ function injectTwentyNineUI() {
 }
 checkAwakeningV29();
 setInterval(injectTwentyNineUI, 2000);
+// ID_1661-1675 Awakening XXX UI Integration
+async function checkAwakeningV30() {
+    const res = await fetch('/api/eternity/awakening/v30');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION ERA: " + data.data.era);
+        if(!localStorage.getItem('nasrium_awakened_v30')) {
+            showEpicNotification("THE THIRTIETH AWAKENING", "Version 4.3.0 is LIVE. Universal Wisdom achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v30', 'true');
+        }
+    }
+}
+
+function injectThirtyUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('wisdom-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'wisdom-btn';
+        btn.innerHTML = 'UNIVERSAL WISDOM';
+        btn.onclick = () => showEpicNotification("WISDOM", "Accessing Collective Intelligence Archives...", "cyan");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const aBtn = document.createElement('button');
+        aBtn.id = 'audit-v16-btn';
+        aBtn.innerHTML = 'RUN PURITY AUDIT V16';
+        aBtn.onclick = async () => {
+            const res = await fetch('/api/system/purity/audit_v16');
+            const data = await res.json();
+            showEpicNotification("SECURITY", "Status: " + data.report, "gold");
+        };
+        aBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(aBtn);
+    }
+}
+checkAwakeningV30();
+setInterval(injectThirtyUI, 2000);
