@@ -5227,3 +5227,36 @@ function injectSupremeUI() {
 }
 checkAwakeningV9();
 setInterval(injectSupremeUI, 2000);
+// ID_1376-1390 Tenth Awakening UI Integration
+async function checkAwakeningV10() {
+    const res = await fetch('/api/eternity/awakening/v10');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION EVOLUTION: " + data.data.era);
+        if(!localStorage.getItem('nasrium_awakened_v10')) {
+            showEpicNotification("THE TENTH AWAKENING", "Version 2.3.0 is LIVE. Ultimate Quantum Stability.", "gold");
+            localStorage.setItem('nasrium_awakened_v10', 'true');
+        }
+    }
+}
+
+function injectTenthUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('telepathy-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'telepathy-btn';
+        btn.innerHTML = 'ARTIFICIAL TELEPATHY';
+        btn.onclick = () => showEpicNotification("NEURAL LINK", "Establishing instant communication with Sovereign Council...", "cyan");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const vBtn = document.createElement('button');
+        vBtn.id = 'dim-vault-btn';
+        vBtn.innerHTML = 'DIMENSIONAL VAULT';
+        vBtn.onclick = () => showEpicNotification("VAULT", "Assets secured in Quantum Dimension.", "gold");
+        vBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(vBtn);
+    }
+}
+checkAwakeningV10();
+setInterval(injectTenthUI, 2000);
