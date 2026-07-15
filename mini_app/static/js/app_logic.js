@@ -5597,3 +5597,33 @@ function injectSovereignV22UI() {
 }
 checkAwakeningV22();
 setInterval(injectSovereignV22UI, 2000);
+// ID_1556-1570 Awakening XXIII UI Integration
+async function checkAwakeningV23() {
+    const res = await fetch('/api/eternity/awakening/v23');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v23')) {
+            showEpicNotification("THE TWENTY-THIRD AWAKENING", "Version 3.6.0 is LIVE. Cognitive Resonance achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v23', 'true');
+        }
+    }
+}
+
+function injectEternityV23UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('atomic-scan-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'atomic-scan-btn';
+        btn.innerHTML = 'ATOMIC PURITY SCAN';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/integrity/atomic');
+            const data = await res.json();
+            showEpicNotification("SECURITY", "Status: " + data.report, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV23();
+setInterval(injectEternityV23UI, 2000);
