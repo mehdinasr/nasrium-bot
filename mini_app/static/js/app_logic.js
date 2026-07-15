@@ -6440,3 +6440,20 @@ function injectLaunchBadge() {
 }
 checkLaunchReadiness();
 setInterval(injectLaunchBadge, 2000);
+// ID_2001-2005 Live Deployment UI Integration
+async function checkGlobalDeployment() {
+    const res = await fetch('/api/system/deployment/status');
+    const data = await res.json();
+    if(data.success) {
+        console.log("INFRASTRUCTURE STATUS: " + data.report.infrastructure);
+        const zone = document.getElementById('neural-hub-zone');
+        if(zone && !document.getElementById('deploy-status-badge')) {
+            const div = document.createElement('div');
+            div.id = 'deploy-status-badge';
+            div.style = "margin-top:10px; padding:5px; background:blue; color:white; font-size:0.5em; text-align:center; font-weight:bold;";
+            div.innerText = "SOVEREIGN CLOUD: ONLINE";
+            zone.appendChild(div);
+        }
+    }
+}
+setTimeout(checkGlobalDeployment, 2000);
