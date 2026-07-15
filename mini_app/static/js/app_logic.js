@@ -4051,3 +4051,45 @@ function injectPhase3Buttons() {
     }
 }
 setInterval(injectPhase3Buttons, 2000);
+// --- ID_1022: Cosmic Gambling Hall ---
+async function openGamblingHall() {
+    const amt = prompt("Bet NSM amount (Win 1.9x):");
+    if(!amt) return;
+    const res = await fetch('/api/empire/gamble/bet', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, amount: parseFloat(amt) })
+    });
+    const data = await res.json();
+    showEpicNotification(data.win ? "WINNER" : "DEFEATED", data.message, data.win ? "gold" : "red");
+}
+
+// --- ID_1023: Legion Ranks UI ---
+async function showLegionRanks() {
+    const res = await fetch('/api/legion/rankings');
+    const data = await res.json();
+    let list = data.ranks.map(r => `<div>${r.name}: ${r.power}</div>`).join('');
+    showEpicNotification("LEGION POWER RANKS", list, "cyan");
+}
+
+// اضافه کردن دکمه‌ها
+function injectPhase2Buttons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('gamble-btn')) {
+        const gBtn = document.createElement('button');
+        gBtn.id = 'gamble-btn';
+        gBtn.innerHTML = '🎰 GAMBLING HALL';
+        gBtn.onclick = openGamblingHall;
+        gBtn.style = "margin-top:10px; width:100%; background:#300; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const rBtn = document.createElement('button');
+        rBtn.id = 'rank-btn';
+        rBtn.innerHTML = '📊 LEGION RANKS';
+        rBtn.onclick = showLegionRanks;
+        rBtn.style = "margin-top:10px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(gBtn);
+        zone.appendChild(rBtn);
+    }
+}
+setInterval(injectPhase2Buttons, 2000);
