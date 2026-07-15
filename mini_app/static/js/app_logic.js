@@ -5964,3 +5964,33 @@ function injectThirtyFourUI() {
 }
 checkAwakeningV34();
 setInterval(injectThirtyFourUI, 2000);
+// ID_1736-1750 Awakening XXXV UI Integration
+async function checkAwakeningV35() {
+    const res = await fetch('/api/eternity/awakening/v35');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v35')) {
+            showEpicNotification("THE THIRTY-FIFTH AWAKENING", "Version 4.8.0 is LIVE. Milestone 1750 achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v35', 'true');
+        }
+    }
+}
+
+function injectThirtyFiveUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('audit-v18-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'audit-v18-btn';
+        btn.innerHTML = 'RUN PURITY AUDIT V18';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/purity/audit_v18');
+            const data = await res.json();
+            showEpicNotification("SECURITY", "Status: " + data.report, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV35();
+setInterval(injectThirtyFiveUI, 2000);
