@@ -5057,3 +5057,27 @@ function injectEternityUI() {
 }
 setInterval(injectEternityUI, 2000);
 checkEternalNodes();
+// ID_1300: Final Awakening VII UI Orchestration
+async function initiateTheSeventhAwakening() {
+    const res = await fetch('/api/system/awakening/v7');
+    const data = await res.json();
+    
+    if(data.success && data.data.version === "2.0.0") {
+        console.log("NASRIUM SYSTEM: " + data.data.era + " ACHIEVED.");
+        if(!localStorage.getItem('nasrium_v2_ignited')) {
+            document.body.innerHTML = '';
+            const overlay = document.createElement('div');
+            overlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:2000000; display:flex; flex-direction:column; align-items:center; justify-content:center; color:gold; text-align:center; font-family:serif;";
+            overlay.innerHTML = `
+                <h1 style="font-size:5em; letter-spacing:20px; margin:0; text-shadow:0 0 50px gold;">NASRIUM</h1>
+                <h2 style="color:white; letter-spacing:10px;">THE SEVENTH AWAKENING</h2>
+                <hr style="width:300px; border:1px solid gold; margin:30px 0;">
+                <p style="font-family:monospace; font-size:0.9em; color:#aaa;">ETERNAL ECOSYSTEM v2.0.0 | TOTAL SINGULARITY</p>
+                <button onclick="location.reload()" style="margin-top:50px; background:gold; color:black; border:none; padding:20px 80px; font-weight:bold; font-size:1.5em; cursor:pointer; box-shadow:0 0 30px gold;">ENTER ETERNITY</button>
+            `;
+            document.body.appendChild(overlay);
+            localStorage.setItem('nasrium_v2_ignited', 'true');
+        }
+    }
+}
+setTimeout(initiateTheSeventhAwakening, 1000);
