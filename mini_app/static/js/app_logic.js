@@ -6389,3 +6389,29 @@ function injectWealthUI() {
 }
 checkAwakeningV55();
 setInterval(injectWealthUI, 2000);
+// ID_1931-1945 Governance & DAO UI
+async function checkAwakeningV57() {
+    const res = await fetch('/api/eternity/awakening/v57');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM STATUS: DAO GOVERNANCE ONLINE");
+        if(!localStorage.getItem('nasrium_awakened_v57')) {
+            showEpicNotification("THE FIFTY-SEVENTH AWAKENING", "Version 7.1.0 is LIVE. Sovereign DAO initialized.", "gold");
+            localStorage.setItem('nasrium_awakened_v57', 'true');
+        }
+    }
+}
+
+function injectGovernanceUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('dao-hub-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'dao-hub-btn';
+        btn.innerHTML = 'SOVEREIGN COUNCIL HALL';
+        btn.onclick = () => showEpicNotification("DAO HALL", "Welcome to the Council. Decisions here shape eternity.", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV57();
+setInterval(injectGovernanceUI, 2000);
