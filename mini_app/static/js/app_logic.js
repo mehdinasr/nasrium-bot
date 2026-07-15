@@ -4815,3 +4815,24 @@ function injectFinalLaunchButtons() {
     }
 }
 setInterval(injectFinalLaunchButtons, 2000);
+// Integration of Phase 1181-1195 UI
+async function checkLaunchCountdown() {
+    const res = await fetch('/api/launch/countdown');
+    const data = await res.json();
+    if(data.success && data.seconds_remaining > 0) {
+        console.log("TIME_TO_GENESIS: " + data.seconds_remaining);
+    }
+}
+
+function injectLaunchVisuals() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('countdown-display')) {
+        const div = document.createElement('div');
+        div.id = 'countdown-display';
+        div.style = "margin-top:10px; font-size:0.5em; color:gold; text-align:center; border:1px dashed gold; padding:5px;";
+        div.innerText = "STATUS: AWAITING GRAND GENESIS";
+        zone.appendChild(div);
+    }
+}
+setInterval(injectLaunchVisuals, 2000);
+checkLaunchCountdown();
