@@ -4444,3 +4444,42 @@ function injectConquestButtons() {
     }
 }
 setInterval(injectConquestButtons, 2000);
+// --- ID_1054: Survival HUD ---
+async function updateSurvivalHUD() {
+    const res = await fetch(`/api/survival/status?user_id=${userId}`);
+    const data = await res.json();
+    
+    let oxBar = document.getElementById('oxygen-bar');
+    if(!oxBar) {
+        const hud = document.createElement('div');
+        hud.id = 'survival-hud';
+        hud.style = "position:fixed; top:120px; left:10px; font-family:monospace; font-size:0.6em; color:#0f0; z-index:1000;";
+        hud.innerHTML = `OXYGEN: <span id="oxygen-val">100</span>% <div id="oxygen-bar" style="width:100px; height:5px; background:#222; border:1px solid #0f0;"><div id="oxygen-fill" style="width:100%; height:100%; background:#0f0;"></div></div>`;
+        document.body.appendChild(hud);
+        oxBar = document.getElementById('oxygen-fill');
+    }
+    document.getElementById('oxygen-val').innerText = data.oxygen;
+    document.getElementById('oxygen-fill').style.width = data.oxygen + "%";
+    if(data.oxygen < 20) document.getElementById('oxygen-fill').style.background = "red";
+}
+
+// --- ID_1055: High Command Console ---
+function openHighCommand() {
+    showEpicNotification("HIGH COMMAND", "Awaiting Federation Directives. Priority: ALPHA.", "cyan");
+}
+
+function injectStrategyButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('high-command-btn')) {
+        const cBtn = document.createElement('button');
+        cBtn.id = 'high-command-btn';
+        cBtn.innerHTML = 'HIGH COMMAND';
+        cBtn.onclick = openHighCommand;
+        cBtn.style = "margin-top:10px; width:100%; background:#000; color:#00d4ff; border:1px solid #00d4ff; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(cBtn);
+    }
+}
+
+setInterval(updateSurvivalHUD, 30000);
+updateSurvivalHUD();
+setInterval(injectStrategyButtons, 2000);
