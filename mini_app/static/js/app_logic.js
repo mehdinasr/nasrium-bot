@@ -4862,3 +4862,35 @@ async function initiateTheBigBang() {
     }
 }
 setTimeout(initiateTheBigBang, 1000);
+// ID_1201-1215: Live Operation UI Integration
+async function showTreasuryData() {
+    const res = await fetch('/api/economy/treasury/status');
+    const data = await res.json();
+    showEpicNotification("NATIONAL TREASURY", "Current Assets: " + data.total_ton + " TON", "gold");
+}
+
+function injectLiveOpsUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('genesis-claim-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'genesis-claim-btn';
+        btn.innerHTML = 'CLAIM GENESIS GIFT';
+        btn.onclick = () => {
+            fetch('/api/growth/genesis/claim', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ user_id: userId })
+            }).then(r => r.json()).then(d => alert(d.message));
+        };
+        btn.style = "margin-top:10px; width:100%; background:gold; color:black; border:none; padding:12px; font-weight:bold; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const tBtn = document.createElement('button');
+        tBtn.id = 'treasury-view-btn';
+        tBtn.innerHTML = 'VIEW TREASURY';
+        tBtn.onclick = showTreasuryData;
+        tBtn.style = "margin-top:5px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(tBtn);
+    }
+}
+setInterval(injectLiveOpsUI, 2000);
