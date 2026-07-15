@@ -5387,3 +5387,33 @@ function injectCognitiveUI() {
 }
 checkAwakeningV14();
 setInterval(injectCognitiveUI, 2000);
+// ID_1451-1465 Awakening XV UI Integration
+async function checkAwakeningV15() {
+    const res = await fetch('/api/eternity/awakening/v15');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v15')) {
+            showEpicNotification("THE FIFTEENTH AWAKENING", "Version 2.8.0 is LIVE. Infinite Liquidity achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v15', 'true');
+        }
+    }
+}
+
+function injectFifteenthUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('purity-seal-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'purity-seal-btn';
+        btn.innerHTML = 'PURITY SEAL';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/purity/seal');
+            const data = await res.json();
+            showEpicNotification("SECURITY", "System Seal: " + data.seal, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV15();
+setInterval(injectFifteenthUI, 2000);
