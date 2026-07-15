@@ -5357,3 +5357,33 @@ function injectDominanceUI() {
 }
 checkAwakeningV13();
 setInterval(injectDominanceUI, 2000);
+// ID_1436-1450 Cognitive Dominance UI Integration
+async function checkAwakeningV14() {
+    const res = await fetch('/api/eternity/awakening/v14');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v14')) {
+            showEpicNotification("THE FOURTEENTH AWAKENING", "Version 2.7.0 is LIVE. Cognitive Dominance achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v14', 'true');
+        }
+    }
+}
+
+function injectCognitiveUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('purity-report-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'purity-report-btn';
+        btn.innerHTML = 'PURITY REPORT';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/purity/report');
+            const data = await res.json();
+            showEpicNotification("SYSTEM AUDIT", "Current Purity: " + data.purity_index, "cyan");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV14();
+setInterval(injectCognitiveUI, 2000);
