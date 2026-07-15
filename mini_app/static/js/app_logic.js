@@ -5447,3 +5447,33 @@ function injectApexUI() {
 }
 checkAwakeningV16();
 setInterval(injectApexUI, 2000);
+// ID_1481-1495 Awakening XVII UI Integration
+async function checkAwakeningV17() {
+    const res = await fetch('/api/eternity/awakening/v17');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION STATUS: " + data.data.era);
+        if(!localStorage.getItem('nasrium_awakened_v17')) {
+            showEpicNotification("THE SEVENTEENTH AWAKENING", "Version 3.0.0 is LIVE. Ultimate Existence achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v17', 'true');
+        }
+    }
+}
+
+function injectUltimateUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('nav-sync-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'nav-sync-btn';
+        btn.innerHTML = 'COSMOS NAVIGATION';
+        btn.onclick = async () => {
+            const res = await fetch('/api/cosmos/navigation/sync');
+            const data = await res.json();
+            showEpicNotification("NAVIGATION", data.sync, "cyan");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV17();
+setInterval(injectUltimateUI, 2000);
