@@ -4367,3 +4367,24 @@ function injectFinanceButtons() {
     }
 }
 setInterval(injectFinanceButtons, 2000);
+// --- ID_1049: DEX Connectivity UI ---
+async function openDexBridge() {
+    const res = await fetch(`/api/economy/listing/status?user_id=${userId}`);
+    const data = await res.json();
+    
+    const statusColor = data.success ? "green" : "red";
+    showEpicNotification("DEX CONNECTIVITY", `Status: ${data.message} (Min: ${data.min_req} NSM)`, statusColor);
+}
+
+function injectDexButton() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('dex-btn')) {
+        const dBtn = document.createElement('button');
+        dBtn.id = 'dex-btn';
+        dBtn.innerHTML = 'DEX BRIDGE';
+        dBtn.onclick = openDexBridge;
+        dBtn.style = "margin-top:10px; width:100%; background:#000; color:#0088cc; border:1px solid #0088cc; padding:10px; font-size:0.7em; cursor:pointer; font-weight:bold;";
+        zone.appendChild(dBtn);
+    }
+}
+setInterval(injectDexButton, 2000);
