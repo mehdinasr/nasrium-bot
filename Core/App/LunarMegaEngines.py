@@ -1,23 +1,20 @@
-﻿class LegionBonds:
-    """ID_1025: اوراق قرضه برای تامین مالی پروژه‌های لژیونی."""
-    BONDS = {} # {legion_name: {"available": int, "price": int}}
+﻿class LegionBondsEngine:
+    MARKET = {
+        "ALPHA_LEGION": {"available": 1000, "price": 5000, "dividend": 0.02},
+        "OMEGA_LEGION": {"available": 500, "price": 12000, "dividend": 0.05}
+    }
     @staticmethod
-    def issue_bond(l_name, amount, price):
-        LegionBonds.BONDS[l_name] = {"available": amount, "price": price}
-        return True
+    def purchase_bond(player_data, l_name, count):
+        bond = LegionBondsEngine.MARKET.get(l_name)
+        if not bond or bond["available"] < count: return False, "Market Shortage"
+        cost = bond["price"] * count
+        if player_data.get("intel_xp", 0) < cost: return False, "Low IXP"
+        player_data["intel_xp"] -= cost
+        bond["available"] -= count
+        invest = player_data.get("bond_investments", {})
+        invest[l_name] = invest.get(l_name, 0) + count
+        player_data["bond_investments"] = invest
+        return True, "Bond Acquired"
 
 class LunarRealEstate:
-    """ID_1026: فروش زمین‌های قمر NSM."""
     LAND_PLOTS = {f"PLOT_{i}": {"owner": "None", "price": 1000} for i in range(1, 11)}
-    @staticmethod
-    def buy_land(plot_id, u_id, price):
-        if LunarRealEstate.LAND_PLOTS[plot_id]["owner"] == "None":
-            LunarRealEstate.LAND_PLOTS[plot_id]["owner"] = u_id
-            return True, f"Plot {plot_id} annexed by Citizen {u_id}."
-        return False, "Already claimed."
-
-class FrequencyStabilizer:
-    """ID_1027: تثبیت فرکانس برای افزایش بوف استخراج."""
-    @staticmethod
-    def get_reward(accuracy):
-        return 1.0 + (accuracy / 100)
