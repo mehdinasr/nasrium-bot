@@ -4388,3 +4388,20 @@ function injectDexButton() {
     }
 }
 setInterval(injectDexButton, 2000);
+// --- ID_1050: Final Awakening UI Logic ---
+async function initiateAwakeningSequence() {
+    const res = await fetch('/api/system/awakening/status');
+    const data = await res.json();
+    
+    if(data.success) {
+        console.log("SYSTEM ERA: " + data.data.era);
+        document.title = "NASRIUM " + data.data.version + " | " + data.data.era;
+        
+        // اگر کاربر هنوز بیدار نشده، نوتیفیکیشن بیداری را نشان بده
+        if(!localStorage.getItem('nasrium_awakened_v2')) {
+            showEpicNotification("THE SECOND AWAKENING", "Welcome to Nasrium v1.1.0. Your core has been upgraded.", "gold");
+            localStorage.setItem('nasrium_awakened_v2', 'true');
+        }
+    }
+}
+setTimeout(initiateAwakeningSequence, 1000);
