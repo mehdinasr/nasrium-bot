@@ -4293,3 +4293,23 @@ function injectMassiveUI() {
     }
 }
 setInterval(injectMassiveUI, 2000);
+// Integration of Phase 1040-1048 UI Components
+async function showImperialStatus() {
+    const res = await fetch('/api/economy/index');
+    const data = await res.json();
+    console.log("NSM INDEX: " + data.price);
+    showEpicNotification("MARKET DATA", "NSM Index established at " + data.price.toFixed(4), "gold");
+}
+
+function injectMassiveControl() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('massive-ctrl-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'massive-ctrl-btn';
+        btn.innerHTML = 'IMPERIAL INDEX';
+        btn.onclick = showImperialStatus;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+setInterval(injectMassiveControl, 2000);
