@@ -3904,3 +3904,42 @@ function injectPatronStatus(isPatron) {
         header.appendChild(badge);
     }
 }
+// --- ID_1013: Elite Market UI ---
+async function openEliteMarket() {
+    const res = await fetch('/api/empire/elite/buy', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, item_id: 'SYSTEM_ROOT_KEY' })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+// --- ID_1015: Pension UI ---
+async function claimMyPension() {
+    const res = await fetch(`/api/empire/pension/claim?user_id=${userId}`);
+    const data = await res.json();
+    showEpicNotification("PENSION RECEIVED", `+${data.amount} IXP added to your account.`, "gold");
+}
+
+// اضافه کردن دکمه‌ها به UI
+function injectDeepButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('pension-btn')) {
+        const pBtn = document.createElement('button');
+        pBtn.id = 'pension-btn';
+        pBtn.innerHTML = '💰 DAILY PENSION';
+        pBtn.onclick = claimMyPension;
+        pBtn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const eBtn = document.createElement('button');
+        eBtn.id = 'elite-btn';
+        eBtn.innerHTML = '🌟 ELITE MARKET';
+        eBtn.onclick = openEliteMarket;
+        eBtn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(pBtn);
+        zone.appendChild(eBtn);
+    }
+}
+setInterval(injectDeepButtons, 2000);
