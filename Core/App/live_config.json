@@ -1,0 +1,6 @@
+﻿{
+    "BOT_TOKEN": "RESERVED_FOR_CREATOR",
+    "WEBHOOK_URL": "https://api.nasrium.io/webhook",
+    "MAX_CONNECTIONS": 100000,
+    "MAINTENANCE_MODE": false
+}

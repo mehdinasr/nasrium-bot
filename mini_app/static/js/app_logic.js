@@ -3821,3 +3821,34 @@ function activateEternalSecurity() {
     document.body.appendChild(shieldIcon);
 }
 activateEternalSecurity();
+function initCreatorRadar() {
+    const radar = document.createElement('div');
+    radar.id = 'creator-radar';
+    radar.style = "position:fixed; top:10px; right:10px; background:rgba(255,0,0,0.8); color:white; padding:10px; border-radius:5px; font-family:monospace; font-size:10px; z-index:999999; border:1px solid gold;";
+    radar.innerHTML = `
+        <div style="font-weight:bold; border-bottom:1px solid gold; margin-bottom:5px;">SOVEREIGN RADAR</div>
+        <div>POPULATION: <span id="radar-pop">SCANNING...</span></div>
+        <div>TOTAL IXP: <span id="radar-ixp">CALCULATING...</span></div>
+        <div style="color:gold;">MODE: SOVEREIGN LIVE</div>
+    `;
+    document.body.appendChild(radar);
+}
+initCreatorRadar();
+// --- ID_1005: Viral Influence Dashboard ---
+async function updateInfluenceUI() {
+    console.log("📈 Calibrating Influence Metrics...");
+    const bonus = (userId.length % 10) * 5; // شبیه‌سازی محاسبات نفوذ
+    showEpicNotification("INFLUENCE ACTIVE", `Your current network influence grants you +${bonus}% Power.`, "cyan");
+}
+
+// --- ID_1006: Ministry Call ---
+function checkMinistryEligibility() {
+    console.log("⚖️ Scanning for potential Ministers...");
+    // پیامی که فقط به نخبگان نشان داده می‌شود
+}
+
+// اجرای پروتکل تسخیر در لحظه ورود
+window.onload = () => {
+    if(typeof launchNasriumOne === 'function') launchNasriumOne();
+    setTimeout(updateInfluenceUI, 5000);
+};
