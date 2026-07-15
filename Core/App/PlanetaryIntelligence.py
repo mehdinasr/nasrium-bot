@@ -1,17 +1,16 @@
 ﻿class NeuralFestival:
-    """ID_1043: رویدادهای دوره ای با بوف های جهانی."""
-    IS_FESTIVAL_ACTIVE = False
+    """ID_1043: مدیریت جشنواره های عصبی جهانی."""
+    IS_ACTIVE = False
     @staticmethod
-    def toggle_festival(status):
-        NeuralFestival.IS_FESTIVAL_ACTIVE = status
-        return f"Global Festival: {status}"
+    def status():
+        return "FESTIVAL_STANDBY"
 
 class PlanetaryRealEstate:
-    """ID_1044: مدیریت فروش قطعات زمین در سیارات تسخیر شده."""
+    """ID_1044: مدیریت املاک سیاره ای."""
     CATALOG = {"CENTAURI_A1": {"price_nsm": 5000, "status": "Available"}}
 
 class IntelligenceBureau:
-    """ID_1045: اداره اطلاعات برای شناسایی ناهنجاری های رفتاری."""
+    """ID_1045: شناسایی تهدیدات و حفظ خلوص شبکه."""
     @staticmethod
-    def scan_for_threats(player_list):
-        return "No external infiltration detected. Ecosystem remains PURE."
+    def get_audit():
+        return "SCAN_COMPLETE: 100 PERCENT PURE"

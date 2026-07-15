@@ -4313,3 +4313,23 @@ function injectMassiveControl() {
     }
 }
 setInterval(injectMassiveControl, 2000);
+// --- ID_1044: Planetary Real Estate UI ---
+async function openPlanetaryMarket() {
+    const res = await fetch('/api/galaxy/realestate/list');
+    const data = await res.json();
+    console.log("Planetary Catalog Loaded");
+    showEpicNotification("PLANETARY LAND", "Centauri A1 available for 5000 NSM", "cyan");
+}
+
+function injectPlanetaryButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('planetary-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'planetary-btn';
+        btn.innerHTML = 'PLANETARY MARKET';
+        btn.onclick = openPlanetaryMarket;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+setInterval(injectPlanetaryButtons, 2000);
