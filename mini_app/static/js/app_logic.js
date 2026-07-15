@@ -4836,3 +4836,29 @@ function injectLaunchVisuals() {
 }
 setInterval(injectLaunchVisuals, 2000);
 checkLaunchCountdown();
+// ID_1200: Grand Genesis Final UI Orchestration
+async function initiateTheBigBang() {
+    const res = await fetch('/api/system/genesis/status');
+    const data = await res.json();
+    
+    if(data.success && data.data.status === "LIVE") {
+        console.log("NASRIUM SYSTEM: " + data.data.message);
+        if(!localStorage.getItem('nasrium_genesis_ignited')) {
+            // ایجاد افکت بصری پیدایش
+            document.body.style.backgroundColor = "#000";
+            const bigBang = document.createElement('div');
+            bigBang.id = 'big-bang-overlay';
+            bigBang.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:1000000; display:flex; flex-direction:column; align-items:center; justify-content:center; color:gold; text-align:center; transition: opacity 5s;";
+            bigBang.innerHTML = `
+                <h1 style="font-size:4em; letter-spacing:15px; margin:0; text-shadow:0 0 30px gold;">NASRIUM</h1>
+                <h2 style="color:white; letter-spacing:5px;">THE GRAND GENESIS</h2>
+                <hr style="width:200px; border:1px solid gold; margin:20px 0;">
+                <p style="font-family:monospace; font-size:0.8em; color:#aaa;">SOVEREIGN ECOSYSTEM v1.5.0 LIVE</p>
+                <button onclick="document.getElementById('big-bang-overlay').style.opacity='0'; setTimeout(()=>document.getElementById('big-bang-overlay').remove(), 5000)" style="margin-top:50px; background:gold; color:black; border:none; padding:15px 40px; font-weight:bold; cursor:pointer; box-shadow:0 0 20px gold;">CLAIM ETERNITY</button>
+            `;
+            document.body.appendChild(bigBang);
+            localStorage.setItem('nasrium_genesis_ignited', 'true');
+        }
+    }
+}
+setTimeout(initiateTheBigBang, 1000);
