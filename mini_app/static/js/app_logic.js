@@ -6331,3 +6331,29 @@ function injectMilestone1900UI() {
 }
 checkAwakeningV51();
 setInterval(injectMilestone1900UI, 2000);
+// ID_1901-1915 Finance & DEX UI
+async function checkAwakeningV53() {
+    const res = await fetch('/api/eternity/awakening/v53');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: 6.7.0");
+        if(!localStorage.getItem('nasrium_awakened_v53')) {
+            showEpicNotification("THE FIFTY-THIRD AWAKENING", "Version 6.7.0 is LIVE. Financial Revolution active.", "gold");
+            localStorage.setItem('nasrium_awakened_v53', 'true');
+        }
+    }
+}
+
+function injectFinanceV2UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('dex-v2-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'dex-v2-btn';
+        btn.innerHTML = 'NASRIUM DEX V2';
+        btn.onclick = () => showEpicNotification("EXCHANGE", "Market Depth: OPTIMAL. All pairs active.", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV53();
+setInterval(injectFinanceV2UI, 2000);
