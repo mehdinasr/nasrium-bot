@@ -4186,3 +4186,30 @@ async function triggerConquestEvent() {
     document.body.appendChild(conquestBtn);
 }
 setTimeout(triggerConquestEvent, 3000);
+async function openGalacticMap() {
+    const res = await fetch('/api/galaxy/map');
+    const data = await res.json();
+    let list = Object.keys(data.planets).join(', ');
+    showEpicNotification("STAR-MAP ONLINE", `Targets Detected: ${list}`, "cyan");
+}
+
+function injectGalacticUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('star-map-btn')) {
+        const smBtn = document.createElement('button');
+        smBtn.id = 'star-map-btn';
+        smBtn.innerHTML = 'STAR-MAP';
+        smBtn.onclick = openGalacticMap;
+        smBtn.style = "margin-top:10px; width:100%; background:#001a1a; color:#00f3ff; border:1px solid #00f3ff; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const exBtn = document.createElement('button');
+        exBtn.id = 'p2p-ex-btn';
+        exBtn.innerHTML = 'P2P EXCHANGE';
+        exBtn.onclick = () => showEpicNotification("EXCHANGE", "Accessing NSM P2P Market...", "gold");
+        exBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(smBtn);
+        zone.appendChild(exBtn);
+    }
+}
+setInterval(injectGalacticUI, 2000);
