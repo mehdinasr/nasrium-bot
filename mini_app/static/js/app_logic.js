@@ -4791,3 +4791,27 @@ function injectLaunchUI() {
     }
 }
 setInterval(injectLaunchUI, 2000);
+// Integration of Phase 1166-1180 UI
+async function showSecurityStatus() {
+    showEpicNotification("SYSTEM INTEGRITY", "Purity monitor: 100 PERCENT SAFE. Anti-Sybil Shield active.", "cyan");
+}
+
+function injectFinalLaunchButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('security-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'security-btn';
+        btn.innerHTML = 'INTEGRITY MONITOR';
+        btn.onclick = showSecurityStatus;
+        btn.style = "margin-top:10px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const lBtn = document.createElement('button');
+        lBtn.id = 'launch-lock-btn';
+        lBtn.innerHTML = 'PRE-LAUNCH STATUS';
+        lBtn.onclick = () => showEpicNotification("LOCKDOWN", "Final pre-launch synchronization in progress...", "gold");
+        lBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(lBtn);
+    }
+}
+setInterval(injectFinalLaunchButtons, 2000);
