@@ -1,0 +1,7 @@
+﻿{
+    "STATUS": "LIVE",
+    "VERSION": "10.0.0",
+    "NETWORK": "TON_MAINNET",
+    "DB_MODE": "DISTRIBUTED_CLOUD",
+    "ACCESS": "PUBLIC"
+}
