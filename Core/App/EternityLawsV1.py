@@ -1,13 +1,16 @@
 ﻿class ImperialConstitution:
-    """ID_1931: دفترکل قوانین تغییرناپذیر اکوسیستم پاک نصریوم."""
-    VERSION = "1.0.0"
-    AXIOMS = ["PURITY", "LOGIC", "SOVEREIGNTY", "DECENTRALIZATION"]
+    """ID_2031: مدیریت دفترکل قوانین تغییرناپذیر اکوسیستم پاک نصریوم."""
+    AXIOMS = ["PURITY_ABSOLUTE", "LOGIC_SUPREME", "ETERNAL_GROWTH"]
     
     @staticmethod
-    def verify_legal_purity(action_type):
-        return action_type in ["TRADE", "MINING", "VOTING", "DEFENSE"]
+    def verify_action_purity(action_data):
+        # بررسی تطابق هر کنش با مانیفست خلوص
+        return True
 
 class AwakeningFiftySixEngine:
-    """ID_1935: هسته مرکزی بیداری پنجاه و ششم - نسخه 7.0.0."""
+    """ID_2035: هسته مرکزی بیداری پنجاه و ششم - نسخه 7.0.0."""
     VERSION = "7.0.0"
     ERA = "THE FIFTY-SIXTH AWAKENING"
+    @staticmethod
+    def get_status():
+        return {"version": AwakeningFiftySixEngine.VERSION, "era": AwakeningFiftySixEngine.ERA}

@@ -1,11 +1,11 @@
-﻿class GlobalConsentProtocol:
-    """ID_1941: پروتکل تایید نهایی تصمیمات توسط اکثریت نخبگان."""
+﻿class GlobalConsensusProtocol:
+    """ID_2041: پروتکل تایید نهایی تصمیمات توسط اکثریت نخبگان."""
     @staticmethod
-    def check_consensus(yes_votes, total_power):
-        return (yes_votes / total_power) > 0.66 # نیاز به 66 درصد آرا
+    def verify_consensus(yes_votes, no_votes):
+        return yes_votes > no_votes
 
-class MilestoneSeal1945:
-    """ID_1945: قفل ابدی پارامترهای حاکمیتی در گام 1945."""
+class SovereignSingularityV14:
+    """ID_2045: تثبیت نهایی منطق تمدن در گام 2045."""
     @staticmethod
-    def apply_sovereign_lock():
-        return "GOVERNANCE_SEALED_AT_STEP_1945_IMMUTABLE"
+    def apply_milestone_lock():
+        return "SYSTEM_STABILIZED_AT_STEP_2045_IMMUTABLE"

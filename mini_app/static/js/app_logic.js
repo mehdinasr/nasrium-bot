@@ -6480,3 +6480,28 @@ async function checkEternityStatus() {
     }
 }
 setTimeout(checkEternityStatus, 2000);
+// ID_2031-2045 Governance UI Integration
+async function checkAwakeningV57() {
+    const res = await fetch('/api/eternity/awakening/v57');
+    const data = await res.json();
+    if(data.success) {
+        if(!localStorage.getItem('nasrium_awakened_v57')) {
+            showEpicNotification("THE FIFTY-SEVENTH AWAKENING", "Version 7.1.0 is LIVE. Sovereign DAO initialized.", "gold");
+            localStorage.setItem('nasrium_awakened_v57', 'true');
+        }
+    }
+}
+
+function injectGovernanceUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('dao-hall-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'dao-hall-btn';
+        btn.innerHTML = 'SOVEREIGN COUNCIL';
+        btn.onclick = () => showEpicNotification("DAO HALL", "Accessing Decentralized Governance Chamber...", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV57();
+setInterval(injectGovernanceUI, 2000);
