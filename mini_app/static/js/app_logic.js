@@ -5107,3 +5107,29 @@ function injectEternityOpsUI() {
     }
 }
 setInterval(injectEternityOpsUI, 2000);
+// ID_1316-1330 Eternity Expansion UI Integration
+async function showEconomicPulse() {
+    const res = await fetch('/api/eternity/economy/pulse');
+    const data = await res.json();
+    showEpicNotification("ECONOMIC PULSE", "Market Stability: " + (data.vitals.stability_index * 100) + "%", "cyan");
+}
+
+function injectExpansionOpsUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('pulse-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'pulse-btn';
+        btn.innerHTML = 'ECONOMIC PULSE';
+        btn.onclick = showEconomicPulse;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const mBtn = document.createElement('button');
+        mBtn.id = 'monument-btn';
+        mBtn.innerHTML = 'SOVEREIGN MONUMENT';
+        mBtn.onclick = () => showEpicNotification("SOVEREIGN MONUMENT", "Status: ETERNAL PRESENCE CONFIRMED", "gold");
+        mBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(mBtn);
+    }
+}
+setInterval(injectExpansionOpsUI, 2000);
