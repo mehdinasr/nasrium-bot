@@ -4333,3 +4333,37 @@ function injectPlanetaryButtons() {
     }
 }
 setInterval(injectPlanetaryButtons, 2000);
+// --- ID_1046: Financial Index UI ---
+async function showNsmIndex() {
+    const res = await fetch('/api/economy/index');
+    const data = await res.json();
+    showEpicNotification("MARKET INDEX", `NSM PRICE: ${data.price.toFixed(4)} TON`, "gold");
+}
+
+// --- ID_1048: Credit Profile UI ---
+async function showCreditProfile() {
+    const res = await fetch(`/api/player/credit?user_id=${userId}`);
+    const data = await res.json();
+    showEpicNotification("CREDIT SCORE", `Your Purity Credit: ${data.credit_score}/1000`, "cyan");
+}
+
+function injectFinanceButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('index-btn')) {
+        const iBtn = document.createElement('button');
+        iBtn.id = 'index-btn';
+        iBtn.innerHTML = 'MARKET INDEX';
+        iBtn.onclick = showNsmIndex;
+        iBtn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const cBtn = document.createElement('button');
+        cBtn.id = 'credit-btn';
+        cBtn.innerHTML = 'CREDIT PROFILE';
+        cBtn.onclick = showCreditProfile;
+        cBtn.style = "margin-top:5px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(iBtn);
+        zone.appendChild(cBtn);
+    }
+}
+setInterval(injectFinanceButtons, 2000);
