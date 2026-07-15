@@ -4093,3 +4093,45 @@ function injectPhase2Buttons() {
     }
 }
 setInterval(injectPhase2Buttons, 2000);
+async function openBondMarket() {
+    const res = await fetch('/api/empire/bonds/market');
+    const data = await res.json();
+    
+    let marketHtml = '';
+    for (const [name, info] of Object.entries(data.market)) {
+        marketHtml += `
+            <div style="border:1px solid gold; margin-bottom:10px; padding:10px; background:rgba(0,0,0,0.5);">
+                <div style="color:gold; font-weight:bold;">${name}</div>
+                <div style="font-size:0.7em;">Price: ${info.price} IXP | Dividend: ${info.dividend * 100}%</div>
+                <div style="font-size:0.7em;">Available: ${info.available}</div>
+                <button onclick="purchaseBonds('${name}')" style="margin-top:5px; background:gold; color:black; border:none; padding:5px; cursor:pointer; font-weight:bold; width:100%;">PURCHASE BONDS</button>
+            </div>
+        `;
+    }
+
+    const overlay = document.createElement('div');
+    overlay.id = 'bond-market-ui';
+    overlay.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10035; padding:20px; box-sizing:border-box; color:white; font-family:monospace; text-align:center; overflow-y:auto;";
+    overlay.innerHTML = `
+        <h2 style="border-bottom:1px solid gold; padding-bottom:10px;">LEGION BOND MARKET</h2>
+        <div style="margin-top:20px;">${marketHtml}</div>
+        <button onclick="document.getElementById('bond-market-ui').remove()" style="margin-top:30px; background:none; border:1px solid #555; color:#555; cursor:pointer;">EXIT MARKET</button>
+    `;
+    document.body.appendChild(overlay);
+}
+
+async function purchaseBonds(legionName) {
+    const count = prompt(`How many bonds of ${legionName} do you wish to acquire?`);
+    if(!count) return;
+    const res = await fetch('/api/empire/bonds/purchase', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, legion_name: legionName, count: parseInt(count) })
+    });
+    const data = await res.json();
+    alert(data.message);
+    if(data.success) {
+        document.getElementById('bond-market-ui').remove();
+        openBondMarket();
+    }
+}
