@@ -4519,3 +4519,21 @@ function injectSpaceButtons() {
     }
 }
 setInterval(injectSpaceButtons, 2000);
+// Integration of Phase 1060-1068 UI
+async function openWorldRaidV2() {
+    console.log("Accessing World Boss Level 2...");
+    showEpicNotification("WORLD RAID II", "Singularity Virus detected. HP: 5B", "red");
+}
+
+function injectZetaButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('raid-v2-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'raid-v2-btn';
+        btn.innerHTML = 'WORLD RAID II';
+        btn.onclick = openWorldRaidV2;
+        btn.style = "margin-top:10px; width:100%; background:#400; color:white; border:1px solid red; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+setInterval(injectZetaButtons, 2000);
