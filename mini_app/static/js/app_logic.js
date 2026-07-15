@@ -6357,3 +6357,35 @@ function injectFinanceV2UI() {
 }
 checkAwakeningV53();
 setInterval(injectFinanceV2UI, 2000);
+// ID_1916-1930 Eternal Wealth UI
+async function checkAwakeningV55() {
+    const res = await fetch('/api/eternity/awakening/v55');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM STATUS: SOVEREIGN RECOGNITION ACTIVE");
+        if(!localStorage.getItem('nasrium_awakened_v55')) {
+            showEpicNotification("THE FIFTY-FIFTH AWAKENING", "Version 6.9.0 is LIVE. Eternal Wealth Seal active.", "gold");
+            localStorage.setItem('nasrium_awakened_v55', 'true');
+        }
+    }
+}
+
+function injectWealthUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('card-issue-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'card-issue-btn';
+        btn.innerHTML = 'ISSUE SOVEREIGN CARD';
+        btn.onclick = () => {
+            fetch('/api/economy/card/issue', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ user_id: userId })
+            }).then(r => r.json()).then(d => alert("YOUR CARD: " + d.card_id));
+        };
+        btn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV55();
+setInterval(injectWealthUI, 2000);
