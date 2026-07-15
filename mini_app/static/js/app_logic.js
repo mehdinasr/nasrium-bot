@@ -4945,3 +4945,29 @@ function injectFinalDominanceUI() {
     }
 }
 setInterval(injectFinalDominanceUI, 2000);
+// ID_1246-1260: Meta-Governance UI Integration
+async function checkAwakeningV6() {
+    const res = await fetch('/api/system/awakening/v6');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v6')) {
+            showEpicNotification("THE SIXTH AWAKENING", "Version 1.6.0 is LIVE. Meta-Consciousness achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v6', 'true');
+        }
+    }
+}
+
+function injectMetaControlUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('meta-v6-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'meta-v6-btn';
+        btn.innerHTML = 'REAL ASSET BRIDGE';
+        btn.onclick = () => showEpicNotification("ASSET BRIDGE", "Syncing digital assets with TON blockchain...", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV6();
+setInterval(injectMetaControlUI, 2000);
