@@ -4483,3 +4483,39 @@ function injectStrategyButtons() {
 setInterval(updateSurvivalHUD, 30000);
 updateSurvivalHUD();
 setInterval(injectStrategyButtons, 2000);
+// --- ID_1057: Orbital Station Management ---
+async function buildStation(planetName) {
+    const res = await fetch('/api/galaxy/station/build', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ planet: planetName })
+    });
+    const data = await res.json();
+    showEpicNotification("ORBITAL CONSTRUCTION", data.message, "cyan");
+}
+
+// --- ID_1058: Wormhole Navigation ---
+async function initWormholeJump() {
+    showEpicNotification("WORMHOLE TECH", "Calibrating Singularity for Instant Travel...", "magenta");
+}
+
+function injectSpaceButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('station-build-btn')) {
+        const sBtn = document.createElement('button');
+        sBtn.id = 'station-build-btn';
+        sBtn.innerHTML = 'BUILD STATION';
+        sBtn.onclick = () => buildStation('CENTAURI_PRIME');
+        sBtn.style = "margin-top:10px; width:100%; background:#001a1a; color:#00f3ff; border:1px solid #00f3ff; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const wBtn = document.createElement('button');
+        wBtn.id = 'wormhole-btn';
+        wBtn.innerHTML = 'WORMHOLE JUMP';
+        wBtn.onclick = initWormholeJump;
+        wBtn.style = "margin-top:5px; width:100%; background:#1a001a; color:magenta; border:1px solid magenta; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(sBtn);
+        zone.appendChild(wBtn);
+    }
+}
+setInterval(injectSpaceButtons, 2000);
