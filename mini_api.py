@@ -1,3 +1,5 @@
+import os
+os.environ['NASRIUM_MODE'] = 'MAINNET'
 from Core.App.SovereigntyEngines import QuantumNodes, DAOGovernance, AssetBridge
 from Core.App.AdvancedBankingEngines import LendingEngine, InsuranceEngine, VirtualDebitCard
 from Core.App.RewardEngines import RewardEngine, YieldEngine
