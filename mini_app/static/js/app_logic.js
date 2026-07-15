@@ -6174,3 +6174,33 @@ function injectMilestone1825UI() {
 }
 checkAwakeningV40();
 setInterval(injectMilestone1825UI, 2000);
+// ID_1826-1855 Final Integration UI
+async function checkAwakeningV45() {
+    const res = await fetch('/api/eternity/awakening/v43'); // تایید پچ اولیه
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM REPAIRED. CURRENT VERSION: 5.8.0");
+        if(!localStorage.getItem('nasrium_awakened_v45')) {
+            showEpicNotification("SYSTEM RECOVERY & UPGRADE", "Version 5.8.0 is LIVE. Milestone 1850 secured.", "gold");
+            localStorage.setItem('nasrium_awakened_v45', 'true');
+        }
+    }
+}
+
+function injectFinalHarmonyUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('milestone-1850-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'milestone-1850-btn';
+        btn.innerHTML = 'SOVEREIGN SEAL 1850';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/milestone/1850');
+            const data = await res.json();
+            showEpicNotification("MILESTONE", "Status: " + data.seal, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV45();
+setInterval(injectFinalHarmonyUI, 2000);
