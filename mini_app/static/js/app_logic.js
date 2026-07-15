@@ -6234,3 +6234,22 @@ function injectFinalHarmonyUI() {
 }
 checkAwakeningV45();
 setInterval(injectFinalHarmonyUI, 2000);
+// ID_1841-1855 Standard UI Integration
+async function showMeritV2() {
+    const res = await fetch('/api/economy/welfare/balance');
+    const data = await res.json();
+    showEpicNotification("SYSTEM HARMONY", "Welfare Pool: " + data.pool_ton + " TON", "gold");
+}
+
+function injectEternityV45UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('merit-v2-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'merit-v2-btn';
+        btn.innerHTML = 'SYSTEM HARMONY';
+        btn.onclick = showMeritV2;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+setInterval(injectEternityV45UI, 2000);
