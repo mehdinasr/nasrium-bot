@@ -4919,3 +4919,29 @@ function injectAdvancedOpsUI() {
     }
 }
 setInterval(injectAdvancedOpsUI, 2000);
+// ID_1231-1245: Final Dominance UI Integration
+async function showSovereigntyIndex() {
+    const res = await fetch('/api/player/sovereignty/index');
+    const data = await res.json();
+    showEpicNotification("SOVEREIGNTY INDEX", "Your standing in the Pure Ecosystem: " + data.index_value, "gold");
+}
+
+function injectFinalDominanceUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('sov-index-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'sov-index-btn';
+        btn.innerHTML = 'SOVEREIGNTY INDEX';
+        btn.onclick = showSovereigntyIndex;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const dBtn = document.createElement('button');
+        dBtn.id = 'cognitive-btn';
+        dBtn.innerHTML = 'COGNITIVE MINING';
+        dBtn.onclick = () => showEpicNotification("NEURAL MINING", "Analyzing cognitive patterns for resource extraction...", "cyan");
+        dBtn.style = "margin-top:5px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(dBtn);
+    }
+}
+setInterval(injectFinalDominanceUI, 2000);
