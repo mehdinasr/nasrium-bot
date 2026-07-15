@@ -6024,3 +6024,33 @@ function injectThirtySixUI() {
 }
 checkAwakeningV36();
 setInterval(injectThirtySixUI, 2000);
+// ID_1751-1765 Awakening XXXVI UI Integration
+async function checkAwakeningV36() {
+    const res = await fetch('/api/eternity/awakening/v36');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v36')) {
+            showEpicNotification("THE THIRTY-SIXTH AWAKENING", "Version 4.9.0 is LIVE. Database Sharding achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v36', 'true');
+        }
+    }
+}
+
+function injectThirtySixUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('audit-v20-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'audit-v20-btn';
+        btn.innerHTML = 'RUN PURITY AUDIT V20';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/purity/audit_v20');
+            const data = await res.json();
+            showEpicNotification("SECURITY", "Status: " + data.report, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV36();
+setInterval(injectThirtySixUI, 2000);
