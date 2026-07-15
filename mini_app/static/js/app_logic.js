@@ -5627,3 +5627,33 @@ function injectEternityV23UI() {
 }
 checkAwakeningV23();
 setInterval(injectEternityV23UI, 2000);
+// ID_1571-1585 Public Era UI Integration
+async function checkPublicLaunchStatus() {
+    const res = await fetch('/api/eternity/awakening/v24');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v24')) {
+            showEpicNotification("THE TWENTY-FOURTH AWAKENING", "Version 3.7.0 is LIVE. Public Bridge Active.", "gold");
+            localStorage.setItem('nasrium_awakened_v24', 'true');
+        }
+    }
+}
+
+function injectLaunchHubUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('launch-signal-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'launch-signal-btn';
+        btn.innerHTML = 'PUBLIC LAUNCH SIGNAL';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/launch/signal');
+            const data = await res.json();
+            showEpicNotification("SYSTEM", data.signal, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkPublicLaunchStatus();
+setInterval(injectLaunchHubUI, 2000);
