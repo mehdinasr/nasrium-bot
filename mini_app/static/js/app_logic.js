@@ -4727,3 +4727,26 @@ function injectSynthesisUI() {
     }
 }
 setInterval(injectSynthesisUI, 2000);
+// Final Pre-Awakening UI Effects
+function triggerEventHorizon() {
+    console.log("EVENT HORIZON ACTIVE: Preparing for Fifth Awakening...");
+    const horizonStatus = document.createElement('div');
+    horizonStatus.id = 'horizon-status';
+    horizonStatus.style = "position:fixed; top:5px; left:50%; transform:translateX(-50%); font-size:0.4em; color:gold; letter-spacing:2px;";
+    horizonStatus.innerText = "THRESHOLD_REACHED: STANDING BY FOR 1.5.0";
+    document.body.appendChild(horizonStatus);
+}
+
+function injectFinalControlUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('purity-scan-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'purity-scan-btn';
+        btn.innerHTML = 'PURITY SCAN';
+        btn.onclick = () => showEpicNotification("SYSTEM AUDIT", "Zero-Error Protocol: ACTIVE", "cyan");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+triggerEventHorizon();
+setInterval(injectFinalControlUI, 2000);
