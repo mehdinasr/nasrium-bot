@@ -4996,3 +4996,35 @@ function injectClusterButtons() {
     }
 }
 setInterval(injectClusterButtons, 2000);
+// ID_1266-1280 UI Integration
+async function checkGoldenAirdrop() {
+    const res = await fetch('/api/galaxy/economy/airdrop/golden', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId })
+    });
+    const data = await res.json();
+    if(data.success) {
+        showEpicNotification("GOLDEN AIRDROP", "Legacy rewards detected. 1000 NSM added.", "gold");
+    }
+}
+
+function injectTriplePhaseUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('dex-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'dex-btn';
+        btn.innerHTML = 'NASRIUM DEX';
+        btn.onclick = () => showEpicNotification("DEX", "Connecting to NSM/TON Liquidity Pools...", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const aBtn = document.createElement('button');
+        aBtn.id = 'golden-airdrop-btn';
+        aBtn.innerHTML = 'CLAIM GOLDEN AIRDROP';
+        aBtn.onclick = checkGoldenAirdrop;
+        aBtn.style = "margin-top:5px; width:100%; background:#000; color:white; border:1px solid white; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(aBtn);
+    }
+}
+setInterval(injectTriplePhaseUI, 2000);
