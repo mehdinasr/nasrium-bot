@@ -5477,3 +5477,33 @@ function injectUltimateUI() {
 }
 checkAwakeningV17();
 setInterval(injectUltimateUI, 2000);
+// ID_1496-1510 Awakening XIX UI Integration
+async function checkAwakeningV19() {
+    const res = await fetch('/api/eternity/awakening/v19');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM APEX: " + data.data.era);
+        if(!localStorage.getItem('nasrium_awakened_v19')) {
+            showEpicNotification("THE NINETEENTH AWAKENING", "Version 3.2.0 is LIVE. The Infinite Dawn begins.", "gold");
+            localStorage.setItem('nasrium_awakened_v19', 'true');
+        }
+    }
+}
+
+function injectApexControlUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('purity-verify-v4-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'purity-verify-v4-btn';
+        btn.innerHTML = 'VERIFY GOD-PROTOCOL';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/purity/verify_v4');
+            const data = await res.json();
+            showEpicNotification("PURITY", data.report, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV19();
+setInterval(injectApexControlUI, 2000);
