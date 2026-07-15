@@ -4703,3 +4703,27 @@ function injectFinalColonialUI() {
     }
 }
 setInterval(injectFinalColonialUI, 2000);
+// Integration of Phase 1132-1140 UI
+async function openNasriumPay() {
+    showEpicNotification("NASRIUM PAY", "Internal Sovereign Gateway: SECURE", "gold");
+}
+
+function injectSynthesisUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('nasrium-pay-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'nasrium-pay-btn';
+        btn.innerHTML = 'NASRIUM PAY';
+        btn.onclick = openNasriumPay;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const dBtn = document.createElement('button');
+        dBtn.id = 'ion-defense-btn';
+        dBtn.innerHTML = 'ION DEFENSE';
+        dBtn.onclick = () => showEpicNotification("PLANETARY DEFENSE", "Ion Cannons Status: OPTIMAL", "cyan");
+        dBtn.style = "margin-top:5px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(dBtn);
+    }
+}
+setInterval(injectSynthesisUI, 2000);
