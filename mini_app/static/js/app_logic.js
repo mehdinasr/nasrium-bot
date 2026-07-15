@@ -4679,3 +4679,27 @@ function injectAdvancedUI() {
     }
 }
 setInterval(injectAdvancedUI, 2000);
+// Integration of Phase 1123-1131 UI
+async function openColonialHall() {
+    showEpicNotification("COLONIAL HALL", "Accessing Planetary Governor Database...", "cyan");
+}
+
+function injectFinalColonialUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('colonial-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'colonial-btn';
+        btn.innerHTML = 'COLONIAL HALL';
+        btn.onclick = openColonialHall;
+        btn.style = "margin-top:10px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const bBtn = document.createElement('button');
+        bBtn.id = 'bio-lab-btn';
+        bBtn.innerHTML = 'GENETIC LAB';
+        bBtn.onclick = () => showEpicNotification("GENETIC LAB", "Calibrating Bio-Digital AI DNA...", "magenta");
+        bBtn.style = "margin-top:5px; width:100%; background:#1a001a; color:magenta; border:1px solid magenta; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(bBtn);
+    }
+}
+setInterval(injectFinalColonialUI, 2000);
