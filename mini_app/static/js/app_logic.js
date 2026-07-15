@@ -5028,3 +5028,32 @@ function injectTriplePhaseUI() {
     }
 }
 setInterval(injectTriplePhaseUI, 2000);
+// ID_1281-1295 UI Integration
+async function checkEternalNodes() {
+    const res = await fetch('/api/system/nodes/eternal');
+    const data = await res.json();
+    if(data.success) {
+        console.log("ETERNAL NODES ONLINE: " + data.node_count);
+    }
+}
+
+function injectEternityUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('card-hub-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'card-hub-btn';
+        btn.innerHTML = 'SOVEREIGN CARD';
+        btn.onclick = () => showEpicNotification("FINANCIAL HUB", "Debit Card Bridge: CONNECTED", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const cBtn = document.createElement('button');
+        cBtn.id = 'supreme-court-btn';
+        cBtn.innerHTML = 'SUPREME COURT';
+        cBtn.onclick = () => showEpicNotification("JUDICIARY", "Accessing Sovereign Justice System...", "cyan");
+        cBtn.style = "margin-top:5px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(cBtn);
+    }
+}
+setInterval(injectEternityUI, 2000);
+checkEternalNodes();
