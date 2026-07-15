@@ -5417,3 +5417,33 @@ function injectFifteenthUI() {
 }
 checkAwakeningV15();
 setInterval(injectFifteenthUI, 2000);
+// ID_1466-1480 Awakening XVI UI Integration
+async function checkAwakeningV16() {
+    const res = await fetch('/api/eternity/awakening/v16');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v16')) {
+            showEpicNotification("THE SIXTEENTH AWAKENING", "Version 2.9.0 is LIVE. Universal Harmony achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v16', 'true');
+        }
+    }
+}
+
+function injectApexUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('apex-seal-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'apex-seal-btn';
+        btn.innerHTML = 'APEX SOVEREIGNTY';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/apex/seal');
+            const data = await res.json();
+            showEpicNotification("GOVERNANCE", "Apex Status: " + data.seal, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV16();
+setInterval(injectApexUI, 2000);
