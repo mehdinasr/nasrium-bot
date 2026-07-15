@@ -6457,3 +6457,26 @@ async function checkGlobalDeployment() {
     }
 }
 setTimeout(checkGlobalDeployment, 2000);
+async function checkEternityStatus() {
+    const res = await fetch('/api/v10/tournament/status');
+    const data = await res.json();
+    if(data.success) {
+        const zone = document.getElementById('neural-hub-zone');
+        if(zone && !document.getElementById('tournament-btn')) {
+            const btn = document.createElement('button');
+            btn.id = 'tournament-btn';
+            btn.innerHTML = 'JOIN GENESIS WAR';
+            btn.onclick = () => showEpicNotification("WAR ROOM", "Prize Pool: " + data.data.prize_pool, "red");
+            btn.style = "margin-top:10px; width:100%; background:red; color:white; border:none; padding:15px; font-weight:bold; cursor:pointer; box-shadow:0 0 15px red;";
+            zone.appendChild(btn);
+            
+            const dBtn = document.createElement('button');
+            dBtn.id = 'dividend-claim-btn';
+            dBtn.innerHTML = 'CLAIM SOVEREIGN DIVIDENDS';
+            dBtn.onclick = () => showEpicNotification("FINANCE", "Payout verified. Check your TON wallet.", "gold");
+            dBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+            zone.appendChild(dBtn);
+        }
+    }
+}
+setTimeout(checkEternityStatus, 2000);
