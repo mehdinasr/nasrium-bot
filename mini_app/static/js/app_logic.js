@@ -5157,3 +5157,40 @@ function injectEternityFinalUI() {
     }
 }
 setInterval(injectEternityFinalUI, 2000);
+// ID_1346-1360 Culmination UI Integration
+async function checkAwakeningV8() {
+    const res = await fetch('/api/eternity/awakening/v8');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v8')) {
+            showEpicNotification("THE EIGHTH AWAKENING", "Version 2.1.0 is LIVE. Beyond Singularity.", "gold");
+            localStorage.setItem('nasrium_awakened_v8', 'true');
+        }
+    }
+}
+
+function injectCulminationUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('senate-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'senate-btn';
+        btn.innerHTML = 'PLANETARY SENATE';
+        btn.onclick = () => showEpicNotification("SENATE", "Accessing Planetary Delegate Chamber...", "cyan");
+        btn.style = "margin-top:10px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const aBtn = document.createElement('button');
+        aBtn.id = 'audit-btn';
+        aBtn.innerHTML = 'MARKET INQUISITOR';
+        aBtn.onclick = async () => {
+            const res = await fetch('/api/eternity/market/audit');
+            const data = await res.json();
+            showEpicNotification("SECURITY", "Market Status: " + data.report, "gold");
+        };
+        aBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(aBtn);
+    }
+}
+checkAwakeningV8();
+setInterval(injectCulminationUI, 2000);
