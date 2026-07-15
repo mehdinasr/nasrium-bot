@@ -4635,3 +4635,22 @@ function injectAwakeningUI() {
 }
 checkAwakeningV4();
 setInterval(injectAwakeningUI, 2000);
+// Integration of Phase 1105-1113 UI
+async function showMarketSentiment() {
+    const res = await fetch('/api/intel/market/sentiment');
+    const data = await res.json();
+    showEpicNotification("MARKET ORACLE", "Current Sentiment: " + data.sentiment, "cyan");
+}
+
+function injectDiplomacyUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('sentiment-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'sentiment-btn';
+        btn.innerHTML = 'MARKET SENTIMENT';
+        btn.onclick = showMarketSentiment;
+        btn.style = "margin-top:10px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+setInterval(injectDiplomacyUI, 2000);
