@@ -5874,3 +5874,33 @@ function injectThirtyOneUI() {
 }
 checkAwakeningV31();
 setInterval(injectThirtyOneUI, 2000);
+// ID_1691-1705 Milestone 1700 UI Integration
+async function checkAwakeningV32() {
+    const res = await fetch('/api/eternity/awakening/v32');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v32')) {
+            showEpicNotification("THE THIRTY-SECOND AWAKENING", "Version 4.5.0 is LIVE. Milestone 1700 achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v32', 'true');
+        }
+    }
+}
+
+function injectMilestone1700UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('milestone-1700-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'milestone-1700-btn';
+        btn.innerHTML = 'SINGULARITY SEAL 1700';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/milestone/1700');
+            const data = await res.json();
+            showEpicNotification("MILESTONE", "Status: " + data.seal, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV32();
+setInterval(injectMilestone1700UI, 2000);
