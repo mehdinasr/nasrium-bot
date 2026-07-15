@@ -4562,3 +4562,26 @@ function injectSentinelStatus() {
 }
 checkAwakeningV3();
 setInterval(injectSentinelStatus, 2000);
+// Integration of Phase 1078-1086 UI
+async function showEthicsPortal() {
+    showEpicNotification("ETHICS COURT", "Accessing Purity Audit Logs...", "cyan");
+}
+
+function injectSovereignUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('ethics-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'ethics-btn';
+        btn.innerHTML = 'ETHICS COURT';
+        btn.onclick = showEthicsPortal;
+        btn.style = "margin-top:10px; width:100%; background:#1a0000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const sBtn = document.createElement('div');
+        sBtn.id = 'sovereign-status';
+        sBtn.style = "margin-top:5px; font-size:0.5em; color:gold; text-align:center;";
+        sBtn.innerText = "SYSTEM_INTEGRITY: QUANTUM_ENCRYPTED";
+        zone.appendChild(sBtn);
+    }
+}
+setInterval(injectSovereignUI, 2000);
