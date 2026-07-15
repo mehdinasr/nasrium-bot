@@ -6084,3 +6084,33 @@ function injectThirtySevenUI() {
 }
 checkAwakeningV37();
 setInterval(injectThirtySevenUI, 2000);
+// ID_1781-1795 Awakening XXXVIII UI Integration
+async function checkAwakeningV38() {
+    const res = await fetch('/api/eternity/awakening/v38');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v38')) {
+            showEpicNotification("THE THIRTY-EIGHTH AWAKENING", "Version 5.1.0 is LIVE. Milestone 1795 achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v38', 'true');
+        }
+    }
+}
+
+function injectMilestone1795UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('milestone-1795-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'milestone-1795-btn';
+        btn.innerHTML = 'SINGULARITY SEAL 1795';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/milestone/1795');
+            const data = await res.json();
+            showEpicNotification("MILESTONE", "Status: " + data.seal, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV38();
+setInterval(injectMilestone1795UI, 2000);
