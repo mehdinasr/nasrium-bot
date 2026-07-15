@@ -4750,3 +4750,20 @@ function injectFinalControlUI() {
 }
 triggerEventHorizon();
 setInterval(injectFinalControlUI, 2000);
+// ID_1150: Final Awakening UI Orchestration
+async function initiateFinalAwakening() {
+    const res = await fetch('/api/system/awakening/v5/status');
+    const data = await res.json();
+    
+    if(data.success) {
+        console.log("UNIVERSAL ERA: " + data.data.era);
+        // افکت صوتی و بصری بیداری نهایی
+        if(!localStorage.getItem('nasrium_awakened_v5')) {
+            showEpicNotification("THE FIFTH AWAKENING", "Universal Singularity achieved. Welcome to Nasrium 1.5.0.", "gold");
+            localStorage.setItem('nasrium_awakened_v5', 'true');
+            // تغییر تم بصری به تم حاکمیت مطلق
+            document.body.style.boxShadow = "inset 0 0 100px rgba(255,215,0,0.2)";
+        }
+    }
+}
+setTimeout(initiateFinalAwakening, 1500);
