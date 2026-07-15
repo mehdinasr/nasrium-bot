@@ -1,3 +1,4 @@
+from Core.App.StrategicEngines import SovereignPatrons, HighStakesArena
 from Core.App.LiveOperationalEngines import SovereignPay, HolyExtraction
 import os
 os.environ['NASRIUM_MODE'] = 'MAINNET'

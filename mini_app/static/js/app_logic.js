@@ -3881,3 +3881,26 @@ function openRealPayment() {
 
 setInterval(checkHolyExtraction, 30000);
 checkHolyExtraction();
+// --- ID_1011: NSM Arena Duel UI ---
+async function startNSMDuel() {
+    const bet = prompt("Enter NSM amount to bet in the High-Stakes Arena:");
+    if(!bet) return;
+    const res = await fetch('/api/arena/nsm_duel', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, bet: parseFloat(bet) })
+    });
+    const data = await res.json();
+    alert(data.message);
+}
+
+// --- ID_1010: Patron Visuals ---
+function injectPatronStatus(isPatron) {
+    if(isPatron) {
+        const header = document.querySelector('header');
+        const badge = document.createElement('span');
+        badge.innerHTML = "🌟 SOVEREIGN PATRON";
+        badge.style = "color:gold; font-size:10px; margin-left:10px; text-shadow:0 0 5px gold;";
+        header.appendChild(badge);
+    }
+}
