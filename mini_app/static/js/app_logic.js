@@ -4971,3 +4971,28 @@ function injectMetaControlUI() {
 }
 checkAwakeningV6();
 setInterval(injectMetaControlUI, 2000);
+// ID_1261-1265: Inter-Cluster Tactical UI
+async function openInterClusterMap() {
+    console.log("Opening Inter-Cluster Navigation...");
+    showEpicNotification("CLUSTER SCAN", "Detecting life signs in Andromeda Sector.", "cyan");
+}
+
+function injectClusterButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('cluster-map-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'cluster-map-btn';
+        btn.innerHTML = 'INTER-CLUSTER MAP';
+        btn.onclick = openInterClusterMap;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer; font-weight:bold;";
+        zone.appendChild(btn);
+        
+        const dBtn = document.createElement('button');
+        dBtn.id = 'darkmatter-btn';
+        dBtn.innerHTML = 'DARK MATTER STATUS';
+        dBtn.onclick = () => showEpicNotification("ENERGY CORE", "Dark Matter Reactor: STABLE", "magenta");
+        dBtn.style = "margin-top:5px; width:100%; background:#1a001a; color:magenta; border:1px solid magenta; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(dBtn);
+    }
+}
+setInterval(injectClusterButtons, 2000);
