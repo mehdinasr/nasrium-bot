@@ -3852,3 +3852,32 @@ window.onload = () => {
     if(typeof launchNasriumOne === 'function') launchNasriumOne();
     setTimeout(updateInfluenceUI, 5000);
 };
+// --- ID_1008: Holy Extraction UI ---
+async function checkHolyExtraction() {
+    const res = await fetch('/api/empire/celebration/status');
+    const data = await res.json();
+    if(data.active) {
+        let timer = document.getElementById('holy-timer');
+        if(!timer) {
+            timer = document.createElement('div');
+            timer.id = 'holy-timer';
+            timer.style = "position:fixed; top:45px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg, gold, white); color:black; padding:5px 20px; font-weight:bold; border-radius:20px; z-index:200004; box-shadow:0 0 20px gold;";
+            document.body.appendChild(timer);
+        }
+        timer.innerHTML = `🔥 HOLY EXTRACTION: 10X POWER ACTIVE!`;
+    }
+}
+
+// --- ID_1007: Real TON Purchase UI ---
+function openRealPayment() {
+    const tx = prompt("Please provide your TON Transaction Hash after sending 1 TON to the Imperial Address:");
+    if(!tx) return;
+    fetch('/api/economy/ton/purchase', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, tx_hash: tx })
+    }).then(r => r.json()).then(d => alert(d.message));
+}
+
+setInterval(checkHolyExtraction, 30000);
+checkHolyExtraction();
