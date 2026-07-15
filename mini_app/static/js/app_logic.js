@@ -5133,3 +5133,27 @@ function injectExpansionOpsUI() {
     }
 }
 setInterval(injectExpansionOpsUI, 2000);
+// ID_1331-1345 Eternity Operational UI Integration
+async function startNeuralUpload() {
+    showEpicNotification("NEURAL MATRIX", "Initiating Consciousness Upload to Sovereign Core...", "gold");
+}
+
+function injectEternityFinalUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('neural-upload-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'neural-upload-btn';
+        btn.innerHTML = 'NEURAL MATRIX UPLOAD';
+        btn.onclick = startNeuralUpload;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const sBtn = document.createElement('button');
+        sBtn.id = 'synth-asset-btn';
+        sBtn.innerHTML = 'SYNTHETIC ASSETS';
+        sBtn.onclick = () => showEpicNotification("FINANCE", "Accessing Synthetic Real-Estate Markets...", "gold");
+        sBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(sBtn);
+    }
+}
+setInterval(injectEternityFinalUI, 2000);
