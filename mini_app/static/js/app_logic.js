@@ -4767,3 +4767,27 @@ async function initiateFinalAwakening() {
     }
 }
 setTimeout(initiateFinalAwakening, 1500);
+// Integration of Phase 1151-1165 UI Components
+async function showGrowthDashboard() {
+    showEpicNotification("GROWTH HUB", "Viral engine is operating at maximum capacity.", "cyan");
+}
+
+function injectLaunchUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('growth-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'growth-btn';
+        btn.innerHTML = 'GROWTH CENTER';
+        btn.onclick = showGrowthDashboard;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const mBtn = document.createElement('button');
+        mBtn.id = 'merchant-btn';
+        mBtn.innerHTML = 'MERCHANT HUB';
+        mBtn.onclick = () => showEpicNotification("COMMERCE", "Accessing P2P Marketplace...", "gold");
+        mBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(mBtn);
+    }
+}
+setInterval(injectLaunchUI, 2000);
