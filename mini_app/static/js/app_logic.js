@@ -4654,3 +4654,28 @@ function injectDiplomacyUI() {
     }
 }
 setInterval(injectDiplomacyUI, 2000);
+// Integration of Phase 1114-1122 UI
+async function showVeteranBadge() {
+    console.log("Veteran Status Check...");
+    showEpicNotification("VETERAN STATUS", "Your loyalty to the Pure Ecosystem is recognized.", "gold");
+}
+
+function injectAdvancedUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('asteroid-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'asteroid-btn';
+        btn.innerHTML = 'ASTEROID MINING';
+        btn.onclick = () => showEpicNotification("MINING", "Scanning belt for IXP-Rich asteroids...", "cyan");
+        btn.style = "margin-top:10px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const vBtn = document.createElement('button');
+        vBtn.id = 'vet-btn';
+        vBtn.innerHTML = 'VETERAN BADGE';
+        vBtn.onclick = showVeteranBadge;
+        vBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(vBtn);
+    }
+}
+setInterval(injectAdvancedUI, 2000);
