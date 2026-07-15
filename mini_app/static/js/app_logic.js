@@ -5657,3 +5657,33 @@ function injectLaunchHubUI() {
 }
 checkPublicLaunchStatus();
 setInterval(injectLaunchHubUI, 2000);
+// ID_1586-1600 Milestone UI Integration
+async function checkAwakeningV25() {
+    const res = await fetch('/api/eternity/awakening/v25');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v25')) {
+            showEpicNotification("THE TWENTY-FIFTH AWAKENING", "Version 3.8.0 is LIVE. Milestone 1600 achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v25', 'true');
+        }
+    }
+}
+
+function injectMilestoneUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('heartbeat-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'heartbeat-btn';
+        btn.innerHTML = 'UNIVERSAL HEARTBEAT';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/heartbeat');
+            const data = await res.json();
+            showEpicNotification("SYSTEM", "Pulse Status: " + data.status, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV25();
+setInterval(injectMilestoneUI, 2000);
