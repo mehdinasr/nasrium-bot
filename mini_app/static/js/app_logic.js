@@ -5687,3 +5687,33 @@ function injectMilestoneUI() {
 }
 checkAwakeningV25();
 setInterval(injectMilestoneUI, 2000);
+// ID_1601-1615 Awakening XXVI UI Integration
+async function checkAwakeningV26() {
+    const res = await fetch('/api/eternity/awakening/v26');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v26')) {
+            showEpicNotification("THE TWENTY-SIXTH AWAKENING", "Version 3.9.0 is LIVE. Interstellar Supremacy achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v26', 'true');
+        }
+    }
+}
+
+function injectTwentySixUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('audit-v12-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'audit-v12-btn';
+        btn.innerHTML = 'RUN PURITY AUDIT V12';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/audit/v12');
+            const data = await res.json();
+            showEpicNotification("SECURITY", "Status: " + data.report, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV26();
+setInterval(injectTwentySixUI, 2000);
