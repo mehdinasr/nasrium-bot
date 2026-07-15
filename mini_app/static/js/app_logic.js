@@ -5290,3 +5290,33 @@ function injectEleventhUI() {
 }
 checkAwakeningV11();
 setInterval(injectEleventhUI, 2000);
+// ID_1406-1420 Twelfth Awakening UI Integration
+async function checkAwakeningV12() {
+    const res = await fetch('/api/eternity/awakening/v12');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v12')) {
+            showEpicNotification("THE TWELFTH AWAKENING", "Version 2.5.0 is LIVE. Financial Singularity achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v12', 'true');
+        }
+    }
+}
+
+function injectTwelfthUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('asset-proof-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'asset-proof-btn';
+        btn.innerHTML = 'PROOF OF ASSETS';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/proof/assets');
+            const data = await res.json();
+            showEpicNotification("TRANSPARENCY", data.proof, "cyan");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV12();
+setInterval(injectTwelfthUI, 2000);
