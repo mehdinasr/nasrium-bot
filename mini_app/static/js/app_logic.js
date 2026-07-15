@@ -5747,3 +5747,33 @@ function injectTwentySevenUI() {
 }
 checkAwakeningV27();
 setInterval(injectTwentySevenUI, 2000);
+// ID_1631-1645 Awakening XXVIII UI Integration
+async function checkAwakeningV28() {
+    const res = await fetch('/api/eternity/awakening/v28');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v28')) {
+            showEpicNotification("THE TWENTY-EIGHTH AWAKENING", "Version 4.1.0 is LIVE. Interstellar Resonance achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v28', 'true');
+        }
+    }
+}
+
+function injectTwentyEightUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('audit-v14-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'audit-v14-btn';
+        btn.innerHTML = 'RUN PURITY AUDIT V14';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/purity/audit_v14');
+            const data = await res.json();
+            showEpicNotification("SECURITY", "Status: " + data.report, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV28();
+setInterval(injectTwentyEightUI, 2000);
