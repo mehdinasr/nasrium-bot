@@ -4213,3 +4213,30 @@ function injectGalacticUI() {
     }
 }
 setInterval(injectGalacticUI, 2000);
+async function showFleetStatus() {
+    const res = await fetch('/api/galaxy/fleet/dreadnoughts');
+    const data = await res.json();
+    let fleetHtml = Object.entries(data.fleet).map(([id, info]) => `<div>${id}: Power ${info.power}</div>`).join('');
+    showEpicNotification("DREADNOUGHT FLEET", fleetHtml, "red");
+}
+
+function injectWarfareUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('fleet-btn')) {
+        const fBtn = document.createElement('button');
+        fBtn.id = 'fleet-btn';
+        fBtn.innerHTML = 'WAR FLEET';
+        fBtn.onclick = showFleetStatus;
+        fBtn.style = "margin-top:10px; width:100%; background:#300; color:white; border:1px solid red; padding:10px; font-size:0.7em; cursor:pointer; font-weight:bold;";
+        
+        const fedBtn = document.createElement('button');
+        fedBtn.id = 'fed-btn';
+        fedBtn.innerHTML = 'FEDERATIONS';
+        fedBtn.onclick = () => showEpicNotification("FEDERATION COUNCIL", "Accessing Universal Federation Database...", "cyan");
+        fedBtn.style = "margin-top:5px; width:100%; background:#001f3f; color:#00d4ff; border:1px solid #00d4ff; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(fBtn);
+        zone.appendChild(fedBtn);
+    }
+}
+setInterval(injectWarfareUI, 2000);
