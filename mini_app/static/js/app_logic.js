@@ -4240,3 +4240,32 @@ function injectWarfareUI() {
     }
 }
 setInterval(injectWarfareUI, 2000);
+async function openBountyBoard() {
+    const res = await fetch('/api/guild/bounty/list');
+    const data = await res.json();
+    let list = data.contracts.length > 0 
+        ? data.contracts.map(c => `Target: ${c.target_id} | Reward: ${c.reward_nsm} NSM`).join('<br>')
+        : "No active contracts.";
+    showEpicNotification("BOUNTY GUILD", list, "red");
+}
+
+function injectHighTechUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('bounty-guild-btn')) {
+        const bBtn = document.createElement('button');
+        bBtn.id = 'bounty-guild-btn';
+        bBtn.innerHTML = 'BOUNTY GUILD';
+        bBtn.onclick = openBountyBoard;
+        bBtn.style = "margin-top:10px; width:100%; background:#1a0000; color:red; border:1px solid red; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const dBtn = document.createElement('button');
+        dBtn.id = 'defense-gen-btn';
+        dBtn.innerHTML = 'DEFENSE STATUS';
+        dBtn.onclick = () => showEpicNotification("DEFENSE CORE", "Black Hole Generator: ACTIVE", "magenta");
+        dBtn.style = "margin-top:5px; width:100%; background:#1a001a; color:magenta; border:1px solid magenta; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(bBtn);
+        zone.appendChild(dBtn);
+    }
+}
+setInterval(injectHighTechUI, 2000);
