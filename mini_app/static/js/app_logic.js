@@ -4537,3 +4537,28 @@ function injectZetaButtons() {
     }
 }
 setInterval(injectZetaButtons, 2000);
+// Integration of Phase 1069-1077 UI
+async function checkAwakeningV3() {
+    const res = await fetch('/api/system/awakening/v3');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM UPDATE: " + data.data.era);
+        if(!localStorage.getItem('nasrium_awakened_v3')) {
+            showEpicNotification("THE THIRD AWAKENING", "Version 1.2.0 is LIVE. Interstellar connectivity achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v3', 'true');
+        }
+    }
+}
+
+function injectSentinelStatus() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('sentinel-status')) {
+        const div = document.createElement('div');
+        div.id = 'sentinel-status';
+        div.style = "margin-top:10px; font-size:0.5em; color:cyan; text-align:center; border:1px solid cyan; padding:5px;";
+        div.innerText = "SOVEREIGN SENTINEL: MONITORING MARKET PURITY";
+        zone.appendChild(div);
+    }
+}
+checkAwakeningV3();
+setInterval(injectSentinelStatus, 2000);
