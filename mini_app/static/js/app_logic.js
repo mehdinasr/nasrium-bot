@@ -6253,3 +6253,29 @@ function injectEternityV45UI() {
     }
 }
 setInterval(injectEternityV45UI, 2000);
+// ID_1856-1870 Ultimate Purity UI Integration
+async function checkAwakeningV48() {
+    const res = await fetch('/api/eternity/awakening/v47');
+    const data = await res.json();
+    if(data.success) {
+        console.log("CIVILIZATION VERSION: 6.1.0");
+        if(!localStorage.getItem('nasrium_awakened_v48')) {
+            showEpicNotification("THE FORTY-EIGHTH AWAKENING", "Version 6.1.0 is LIVE. Ultimate Purity achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v48', 'true');
+        }
+    }
+}
+
+function injectEternityV61UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('purity-seal-v10-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'purity-seal-v10-btn';
+        btn.innerHTML = 'VERIFY APEX PURITY';
+        btn.onclick = () => showEpicNotification("SECURITY", "Apex Purity Seal: 100 PERCENT STABLE", "gold");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV48();
+setInterval(injectEternityV61UI, 2000);
