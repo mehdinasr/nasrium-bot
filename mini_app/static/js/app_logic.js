@@ -4269,3 +4269,27 @@ function injectHighTechUI() {
     }
 }
 setInterval(injectHighTechUI, 2000);
+function injectMassiveUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('constitution-btn')) {
+        const cBtn = document.createElement('button');
+        cBtn.id = 'constitution-btn';
+        cBtn.innerHTML = 'IMPERIAL CONSTITUTION';
+        cBtn.onclick = () => showEpicNotification("CONSTITUTION", "Opening Eternal Laws...", "gold");
+        cBtn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const iBtn = document.createElement('button');
+        iBtn.id = 'index-btn';
+        iBtn.innerHTML = 'NSM INDEX';
+        iBtn.onclick = async () => {
+            const res = await fetch('/api/economy/index');
+            const data = await res.json();
+            showEpicNotification("MARKET INDEX", `NSM Price: ${data.price.toFixed(4)} TON`, "cyan");
+        };
+        iBtn.style = "margin-top:5px; width:100%; background:#111; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(cBtn);
+        zone.appendChild(iBtn);
+    }
+}
+setInterval(injectMassiveUI, 2000);
