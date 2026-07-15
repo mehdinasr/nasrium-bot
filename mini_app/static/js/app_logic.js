@@ -5081,3 +5081,29 @@ async function initiateTheSeventhAwakening() {
     }
 }
 setTimeout(initiateTheSeventhAwakening, 1000);
+// ID_1301-1315 Eternity UI Orchestration
+async function showEternityStatus() {
+    const res = await fetch('/api/eternity/nexus/status');
+    const data = await res.json();
+    showEpicNotification("ETERNITY CORE", "Nexus Liquidity: " + data.depth, "gold");
+}
+
+function injectEternityOpsUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('nexus-hub-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'nexus-hub-btn';
+        btn.innerHTML = 'NEXUS TRADE HUB';
+        btn.onclick = showEternityStatus;
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const dBtn = document.createElement('button');
+        dBtn.id = 'dividend-pool-btn';
+        dBtn.innerHTML = 'UNIVERSAL DIVIDENDS';
+        dBtn.onclick = () => showEpicNotification("DIVIDEND POOL", "Total Pool: 50,000,000 NSM", "gold");
+        dBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(dBtn);
+    }
+}
+setInterval(injectEternityOpsUI, 2000);
