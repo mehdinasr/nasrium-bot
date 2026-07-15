@@ -6144,3 +6144,33 @@ function injectMilestone1800UI() {
 }
 checkAwakeningV39();
 setInterval(injectMilestone1800UI, 2000);
+// ID_1811-1825 Awakening XL UI Integration
+async function checkAwakeningV40() {
+    const res = await fetch('/api/eternity/awakening/v40');
+    const data = await res.json();
+    if(data.success) {
+        console.log("SYSTEM VERSION: " + data.data.version);
+        if(!localStorage.getItem('nasrium_awakened_v40')) {
+            showEpicNotification("THE FORTIETH AWAKENING", "Version 5.3.0 is LIVE. Milestone 1825 achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v40', 'true');
+        }
+    }
+}
+
+function injectMilestone1825UI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('milestone-1825-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'milestone-1825-btn';
+        btn.innerHTML = 'SINGULARITY SEAL 1825';
+        btn.onclick = async () => {
+            const res = await fetch('/api/system/milestone/1825');
+            const data = await res.json();
+            showEpicNotification("MILESTONE", "Status: " + data.seal, "gold");
+        };
+        btn.style = "margin-top:10px; width:100%; background:#000; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer; font-weight:bold;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV40();
+setInterval(injectMilestone1825UI, 2000);
