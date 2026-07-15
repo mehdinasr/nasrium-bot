@@ -4585,3 +4585,27 @@ function injectSovereignUI() {
     }
 }
 setInterval(injectSovereignUI, 2000);
+// Integration of Phase 1087-1095 UI
+async function showGalaxyHubs() {
+    showEpicNotification("GALACTIC HUBS", "Active trade routes detected in Sector 4.", "cyan");
+}
+
+function injectExpansionUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('research-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'research-btn';
+        btn.innerHTML = 'RESEARCH LAB';
+        btn.onclick = () => showEpicNotification("QUANTUM LAB", "Scientific progress: OPTIMAL", "magenta");
+        btn.style = "margin-top:10px; width:100%; background:#000; color:magenta; border:1px solid magenta; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const hBtn = document.createElement('button');
+        hBtn.id = 'hubs-btn';
+        hBtn.innerHTML = 'GALACTIC HUBS';
+        hBtn.onclick = showGalaxyHubs;
+        hBtn.style = "margin-top:5px; width:100%; background:#111; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(hBtn);
+    }
+}
+setInterval(injectExpansionUI, 2000);
