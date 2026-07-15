@@ -4609,3 +4609,29 @@ function injectExpansionUI() {
     }
 }
 setInterval(injectExpansionUI, 2000);
+// Integration of Phase 1096-1104 UI
+async function checkAwakeningV4() {
+    const res = await fetch('/api/system/awakening/v4');
+    const data = await res.json();
+    if(data.success) {
+        console.log("ERA: " + data.data.era);
+        if(!localStorage.getItem('nasrium_awakened_v4')) {
+            showEpicNotification("THE FOURTH AWAKENING", "Version 1.3.0 is LIVE. Sovereign expansion achieved.", "gold");
+            localStorage.setItem('nasrium_awakened_v4', 'true');
+        }
+    }
+}
+
+function injectAwakeningUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('guild-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'guild-btn';
+        btn.innerHTML = 'GALACTIC GUILDS';
+        btn.onclick = () => showEpicNotification("GUILDS", "Connecting to Interstellar Guild Networks...", "cyan");
+        btn.style = "margin-top:10px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+    }
+}
+checkAwakeningV4();
+setInterval(injectAwakeningUI, 2000);
