@@ -4894,3 +4894,28 @@ function injectLiveOpsUI() {
     }
 }
 setInterval(injectLiveOpsUI, 2000);
+// ID_1216-1230: Advanced Authority UI Integration
+async function showGalacticMap() {
+    console.log("Loading Tactical Star-Map...");
+    showEpicNotification("STAR-MAP", "Scanning interstellar sectors for resources.", "cyan");
+}
+
+function injectAdvancedOpsUI() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('galactic-map-btn')) {
+        const btn = document.createElement('button');
+        btn.id = 'galactic-map-btn';
+        btn.innerHTML = 'GALACTIC STAR-MAP';
+        btn.onclick = showGalacticMap;
+        btn.style = "margin-top:10px; width:100%; background:#001a1a; color:cyan; border:1px solid cyan; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(btn);
+        
+        const fBtn = document.createElement('button');
+        fBtn.id = 'sovereign-fund-btn';
+        fBtn.innerHTML = 'WEALTH RESERVE';
+        fBtn.onclick = () => showEpicNotification("SOVEREIGN FUND", "Assets secured in the Imperial Vault.", "gold");
+        fBtn.style = "margin-top:5px; width:100%; background:#1a1a00; color:gold; border:1px solid gold; padding:10px; font-size:0.7em; cursor:pointer;";
+        zone.appendChild(fBtn);
+    }
+}
+setInterval(injectAdvancedOpsUI, 2000);
