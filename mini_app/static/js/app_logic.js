@@ -4405,3 +4405,42 @@ async function initiateAwakeningSequence() {
     }
 }
 setTimeout(initiateAwakeningSequence, 1000);
+// --- ID_1051: Fleet Command UI ---
+async function deployFleet(planetName) {
+    const res = await fetch('/api/galaxy/fleet/deploy', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, planet: planetName })
+    });
+    const data = await res.json();
+    showEpicNotification("FLEET COMMAND", data.message, "cyan");
+}
+
+// --- ID_1053: Space Market UI ---
+async function openSpaceMarket() {
+    const res = await fetch('/api/galaxy/market/items');
+    const data = await res.json();
+    console.log("Space Market Data Loaded");
+    showEpicNotification("SPACE MARKET", "Warp Cores and Dark Matter detected in sector.", "magenta");
+}
+
+function injectConquestButtons() {
+    const zone = document.getElementById('neural-hub-zone');
+    if(zone && !document.getElementById('fleet-deploy-btn')) {
+        const fBtn = document.createElement('button');
+        fBtn.id = 'fleet-deploy-btn';
+        fBtn.innerHTML = 'FLEET COMMAND';
+        fBtn.onclick = () => deployFleet('CENTAURI_PRIME');
+        fBtn.style = "margin-top:10px; width:100%; background:#001a1a; color:#00f3ff; border:1px solid #00f3ff; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        const sBtn = document.createElement('button');
+        sBtn.id = 'space-market-btn';
+        sBtn.innerHTML = 'SPACE MARKET';
+        sBtn.onclick = openSpaceMarket;
+        sBtn.style = "margin-top:5px; width:100%; background:#1a001a; color:magenta; border:1px solid magenta; padding:10px; font-size:0.7em; cursor:pointer;";
+        
+        zone.appendChild(fBtn);
+        zone.appendChild(sBtn);
+    }
+}
+setInterval(injectConquestButtons, 2000);
