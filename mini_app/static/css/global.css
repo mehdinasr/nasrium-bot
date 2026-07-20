@@ -1,0 +1,16 @@
+﻿* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #000; color: #fff; font-family: 'Orbitron', sans-serif; }
+.bg-black { background: #000; }
+.text-white { color: #fff; }
+.font-sans { font-family: sans-serif; }
+.overflow-x-hidden { overflow-x: hidden; }
+.p-4 { padding: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.flex { display: flex; }
+.justify-between { justify-content: space-between; }
+.items-center { align-items: center; }
+.text-xl { font-size: 1.25rem; }
+.brand-text { font-weight: 700; color: #0ff; text-shadow: 0 0 10px #0ff; }
+#ignition-overlay { position: fixed; inset: 0; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; }
+#ignition-bar { width: 200px; height: 4px; background: #222; margin-top: 20px; border-radius: 2px; overflow: hidden; }
+#ignition-fill { width: 0%; height: 100%; background: #0ff; transition: width 0.3s; }

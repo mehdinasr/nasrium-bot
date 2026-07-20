@@ -1,63 +1,50 @@
 ﻿import { Bot, InlineKeyboard } from "grammy";
 import dotenv from "dotenv";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
-// بارگذاری تنظیمات محیطی
 dotenv.config();
 
 const token = process.env.BOT_TOKEN;
-
 if (!token || token === "" || token.includes("YOUR_")) {
-    console.error("❌ خطا: توکن ربات تلگرام در فایل .env به درستی تنظیم نشده است!");
+    console.error("خطا: توکن ربات در فایل .env تنظیم نشده است!");
     process.exit(1);
 }
 
-// مقداردهی اولیه ربات با فریمورک استاندارد gramY
-const bot = new Bot(token);
+// تنظیم پروکسی برای ارتباط با سرورهای تلگرام در صورت نیاز
+const agent = new HttpsProxyAgent("http://127.0.0.1:8080");
+const bot = new Bot(token, {
+    client: {
+        baseFetchConfig: {
+            agent: agent,
+        },
+    },
+});
 
-// هندلر دستور /start (اولین تعامل کاربر با اکوسیستم NASRIUM)
 bot.command("start", async (ctx) => {
-    const username = ctx.from?.first_name || "کاربر گرامی";
+    const username = ctx.from?.first_name || "فرمانده";
     
-    // طراحی کیبورد شیشه‌ای مدرن برای ورود به بازی (در آینده به WebApp متصل می‌شود)
+    // متصل کردن دکمه وب‌اپ به آدرس پروداکشن سرور شما در Railway
     const keyboard = new InlineKeyboard()
-        .webApp("🎮 ورود به بازی NASRIUM", "https://nasrium.ir") // لینک تستی، بعداً با وب‌اپ جایگزین می‌شود
+        .webApp("🚀 ورود به پلتفرم مالی NASRIUM", "https://nasrium-bot-production.up.railway.app/")
         .row()
-        .url("📢 عضویت در کانال رسمی", "https://t.me/nasrium")
-        .url("👥 گروه گفتگو", "https://t.me/nasrium_chat");
+        .url("📢 کانال رسمی", "https://t.me/nasrium")
+        .url("💬 اتاق جنگ (گفتگو)", "https://t.me/nasrium_chat");
 
-    const welcomeMessage = 
-🌟 **به اکوسیستم جهانی NASRIUM خوش آمدید!** 🌟
-
-سلام \ عزیز! به دنیای بازی‌های استراتژیک و نسل جدید ارزهای دیجیتال قدم گذاشتید.
-
-**NASRIUM (NSM)** فقط یک توکن معمولی نیست؛ یک اکوسیستم و امپراتوری دیجیتال است که قدرت آن با بازی و فعالیت شما شکل می‌گیرد.
-
-**قابلیت‌های فعلی:**
-⚔️ ساخت قلمرو و تدارک ارتش (به‌زودی)
-💎 استخراج توکن‌های NSM از طریق مینی‌گیم
-🏆 رتبه‌بندی جهانی و ایردراپ بر اساس شایستگی
-
-برای شروع بازی و استخراج اولین توکن‌های خود، روی دکمه زیر کلیک کنید:
-;
+    const welcomeMessage = `سلام ${username}! به ستاد فرماندهی و اکوسیستم مالی نصریوم خوش آمدید.\n\n<b>NASRIUM (NSM)</b>\nسیستم یکپارچه مالی، خزانه‌داری ملی و مدیریت گره‌های شبکه فعال است. تمام موتورهای تسویه و برداشت در وضعیت آماده‌باش قرار دارند.\n\n🔹 از دکمه زیر برای ورود به پلتفرم و مدیریت ولت خود استفاده کنید:`;
 
     await ctx.reply(welcomeMessage, {
-        parse_mode: "Markdown",
+        parse_mode: "HTML",
         reply_markup: keyboard
     });
 });
 
-// هندلر پیام‌های متنی ساده
 bot.on("message", async (ctx) => {
-    await ctx.reply("پیام شما دریافت شد. لطفاً برای شروع تعامل با اکوسیستم، دستور /start را ارسال کنید یا دکمه بازی را فشار دهید.");
+    await ctx.reply("درخواست دریافت شد. برای دسترسی به پنل مالی، دستور /start را ارسال کنید.");
 });
 
-// ثبت خطاها به صورت کاملاً حرفه‌ای و پایدار
 bot.catch((err) => {
-    const ctx = err.ctx;
-    console.error(❌ خطا در حین پردازش آپدیت \:);
-    console.error(err.error);
+    console.error("خطا در پردازش پیام ربات:", err.error);
 });
 
-// راه‌اندازی ربات
-console.log("🚀 [NASRIUM] ربات با موفقیت فعال شد و در حال گوش دادن به پیام‌ها است...");
+console.log("🚀 [NASRIUM BOT] ربات تلگرام در حال راه‌اندازی و اتصال به مینی‌اپ است...");
 bot.start();
