@@ -22,7 +22,7 @@ bot.command("start", async (ctx) => {
     
     // متصل کردن دکمه وب‌اپ به آدرس پروداکشن سرور شما در Railway
     const keyboard = new InlineKeyboard()
-        .webApp("🚀 ورود به پلتفرم مالی NASRIUM", "https://nasrium-bot-production.up.railway.app/")
+        .webApp("🚀 ورود به پلتفرم مالی NASRIUM", "https://nasrium-miniapp.onrender.com")
         .row()
         .url("📢 کانال رسمی", "https://t.me/nasrium")
         .url("💬 اتاق جنگ (گفتگو)", "https://t.me/nasrium_chat");
