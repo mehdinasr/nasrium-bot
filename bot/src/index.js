@@ -1,6 +1,5 @@
 ﻿import { Bot, InlineKeyboard } from "grammy";
 import dotenv from "dotenv";
-import { HttpsProxyAgent } from "https-proxy-agent";
 
 dotenv.config();
 
@@ -10,15 +9,7 @@ if (!token || token === "" || token.includes("YOUR_")) {
     process.exit(1);
 }
 
-// تنظیم پروکسی برای ارتباط با سرورهای تلگرام در صورت نیاز
-const agent = new HttpsProxyAgent("http://127.0.0.1:8080");
-const bot = new Bot(token, {
-    client: {
-        baseFetchConfig: {
-            agent: agent,
-        },
-    },
-});
+const bot = new Bot(token);
 
 bot.command("start", async (ctx) => {
     const username = ctx.from?.first_name || "فرمانده";
