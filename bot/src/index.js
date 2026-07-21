@@ -1,7 +1,13 @@
 ﻿import { Bot, InlineKeyboard } from "grammy";
 import dotenv from "dotenv";
+import http from "http";
 
 dotenv.config();
+
+const port = process.env.PORT || 3000;
+http.createServer((req, res) => { res.writeHead(200); res.end("Bot is running"); }).listen(port, () => {
+    console.log("Health check server listening on port " + port);
+});
 
 const token = process.env.BOT_TOKEN;
 if (!token || token === "" || token.includes("YOUR_")) {
