@@ -24,8 +24,8 @@ bot.command("start", async (ctx) => {
     const keyboard = new InlineKeyboard()
         .webApp("🚀 ورود به پلتفرم مالی NASRIUM", "https://nasrium-miniapp.onrender.com")
         .row()
-        .url("📢 کانال رسمی", "https://t.me/nasrium")
-        .url("💬 اتاق جنگ (گفتگو)", "https://t.me/nasrium_chat");
+        .url("📢 کانال رسمی", "https://t.me/NasriumOfficial")
+        .url("💬 اتاق جنگ (گفتگو)", "https://t.me/+MoDICv3piIFhNGFk");
 
     const welcomeMessage = `سلام ${username}! به ستاد فرماندهی و اکوسیستم مالی نصریوم خوش آمدید.\n\n<b>NASRIUM (NSM)</b>\nسیستم یکپارچه مالی، خزانه‌داری ملی و مدیریت گره‌های شبکه فعال است. تمام موتورهای تسویه و برداشت در وضعیت آماده‌باش قرار دارند.\n\n🔹 از دکمه زیر برای ورود به پلتفرم و مدیریت ولت خود استفاده کنید:`;
 
