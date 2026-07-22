@@ -1,4 +1,4 @@
-﻿import json
+import json
 import random
 from typing import Dict, List
 from dataclasses import dataclass, asdict

@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 html_content = """<!DOCTYPE html>
 <html lang="fa" dir="rtl">

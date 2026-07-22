@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Enforcing Database Indexes for query performance...')
 api_file = 'mini_api.py'

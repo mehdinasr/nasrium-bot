@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Creating TransferEngine.py...')
 transfer_code = """class TransferEngine:

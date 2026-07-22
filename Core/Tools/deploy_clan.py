@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Upgrading ResourceEngine with Multiplier logic...')
 resource_code = """import time

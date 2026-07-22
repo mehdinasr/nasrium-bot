@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Creating AdminEngine.py...')
 admin_code = """class AdminEngine:

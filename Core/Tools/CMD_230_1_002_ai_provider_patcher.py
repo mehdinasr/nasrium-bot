@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Creating AIProvider.py...')
 ai_code = """import os

@@ -1,4 +1,4 @@
-﻿with open("index.js", "r", encoding="utf-8") as f:
+with open("index.js", "r", encoding="utf-8") as f:
     lines = f.readlines()
 
 # اضافه کردن import پروکسی بعد از خط 2 (import dotenv)

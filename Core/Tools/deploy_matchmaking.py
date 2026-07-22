@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Creating TargetFinderEngine & LeaderboardEngine...')
 finder_code = """import time

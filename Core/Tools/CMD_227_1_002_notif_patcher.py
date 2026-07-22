@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Creating NotificationEngine.py...')
 notif_code = """import time

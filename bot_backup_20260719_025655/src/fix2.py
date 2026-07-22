@@ -1,4 +1,4 @@
-﻿with open("index.js", "r", encoding="utf-8") as f:
+with open("index.js", "r", encoding="utf-8") as f:
     lines = f.readlines()
 
 # خط 28 (ایندکس 27) رو مستقیم جایگزین می‌کنیم

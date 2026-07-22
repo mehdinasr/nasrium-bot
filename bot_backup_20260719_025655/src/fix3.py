@@ -1,4 +1,4 @@
-﻿with open("index.js", "r", encoding="utf-8") as f:
+with open("index.js", "r", encoding="utf-8") as f:
     content = f.read()
 
 old_import = "import { SocksProxyAgent } from " + chr(34) + "socks-proxy-agent" + chr(34) + ";"

@@ -1,4 +1,4 @@
-﻿path = 'mini_api.py'
+path = 'mini_api.py'
 with open(path, 'r', encoding='utf-8') as f:
     content = f.read()
 

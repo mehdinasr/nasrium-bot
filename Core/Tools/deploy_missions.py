@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Creating MissionEngine.py...')
 mission_code = """import time

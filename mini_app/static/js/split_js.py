@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 with open("app_logic.js", "r", encoding="utf-8") as f:
     content = f.read()

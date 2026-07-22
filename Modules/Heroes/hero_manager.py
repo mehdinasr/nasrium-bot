@@ -1,4 +1,4 @@
-﻿import json
+import json
 from typing import Dict, List, Optional
 from dataclasses import dataclass, field, asdict
 

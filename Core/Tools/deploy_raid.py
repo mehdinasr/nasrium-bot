@@ -1,4 +1,4 @@
-﻿import os, time
+import os, time
 
 print('[STEP 1] Creating RaidEngine.py...')
 raid_code = """import time

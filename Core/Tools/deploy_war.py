@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Upgrading GameEngine with Clash-style Max Rule...')
 game_code = """class GameEngine:

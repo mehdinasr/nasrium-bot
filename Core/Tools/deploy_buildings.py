@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Creating BuildingEngine.py...')
 building_code = """class BuildingEngine:

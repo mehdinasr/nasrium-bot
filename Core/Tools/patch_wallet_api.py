@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 file_path = 'mini_api.py'
 

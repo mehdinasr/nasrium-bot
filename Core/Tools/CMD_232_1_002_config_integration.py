@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Upgrading ResourceEngine with Dynamic Config...')
 resource_code = """import time

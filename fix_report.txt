@@ -1,0 +1,5 @@
+Fixed (mojibake/BOM repaired): 495
+Unchanged (already clean): 11
+Read failures: 0
+Compile errors remaining: 0
+

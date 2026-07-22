@@ -1,4 +1,4 @@
-﻿with open("index.html", "r", encoding="utf-8") as f:
+with open("index.html", "r", encoding="utf-8") as f:
     content = f.read()
 
 old_script = '<script src="static/js/app_logic.min.js"></script>'

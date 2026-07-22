@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 print('[STEP 1] Upgrading GameConfigEngine with Cache Clear...')
 config_engine_code = """import json

@@ -1,4 +1,4 @@
-﻿import os, time
+import os, time
 
 print('[STEP 1] Creating TroopEngine.py...')
 troop_code = """import time
