@@ -1,12 +1,12 @@
-from Core.App.TroopEngine import TroopEngine
-import time
-from Core.App.RaidEngine import RaidEngine
-from Core.App.BuildingEngine import BuildingEngine
-from Core.App.SyndicateEngine import SyndicateEngine
-from Core.App.ResourceEngine import ResourceEngine
-from flask import Flask, jsonify, send_from_directory, request
+﻿from flask import Flask, jsonify, send_from_directory, request
 import os
+import time
 from pymongo import MongoClient
+from Core.App.GameEngine import GameEngine
+from Core.App.ResourceEngine import ResourceEngine
+from Core.App.SyndicateEngine import SyndicateEngine
+from Core.App.RaidEngine import RaidEngine
+from Core.App.TroopEngine import TroopEngine
 
 BASE_DIR = os.path.dirname(__file__)
 app = Flask(__name__, static_folder=os.path.join(BASE_DIR, "mini_app", "static"), static_url_path="/static")
@@ -35,12 +35,31 @@ def health_check():
 def webhook():
     return jsonify(status="ok")
 
-# ==== PATCHES WILL BE INSERTED BELOW THIS LINE ====
+# ---- Player registration ----
+@app.route("/api/user/register", methods=["POST"])
+def register_user():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        upline_id = data.get("upline_id")
+        if not uid: return jsonify({"error": "User ID required"}), 400
+        existing_user = players_collection.find_one({"user_id": uid})
+        if not existing_user:
+            default_data = {
+                "user_id": uid,
+                "upline_id": upline_id if upline_id else None,
+                "gold": 1000, "gems": 10, "nsm_soft": 5, "nsm_hard": 0,
+                "town_hall_level": 1, "is_nexus_maxed": False, "is_banned": False,
+                "buildings": {"gold_mine": 1, "gem_drill": 0}, "troops": 0
+            }
+            players_collection.insert_one(default_data)
+            return jsonify({"success": True, "message": "User registered with Upline"})
+        else:
+            return jsonify({"success": True, "message": "User already exists"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
-    
+# ---- Resource collection ----
 @app.route("/api/collect", methods=["POST"])
 def collect_resources():
     try:
@@ -48,14 +67,10 @@ def collect_resources():
         uid = data.get("user_id")
         if not uid:
             return jsonify({"error": "User ID required"}), 400
-
         p = players_collection.find_one({"user_id": uid})
         if not p:
             return jsonify({"error": "Player not found"}), 404
-
         result = ResourceEngine.calculate_collection(p)
-
-        # آپدیت دیتابیس با منابع جدید و زمان فعلی
         players_collection.update_one(
             {"user_id": uid},
             {"$set": {
@@ -65,89 +80,38 @@ def collect_resources():
             }}
         )
         return jsonify(result)
-
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-@app.route("/api/user/register", methods=["POST"])
-def register_user():
-    try:
-        data = request.json
-        uid = data.get("user_id")
-        upline_id = data.get("upline_id")
-        if not uid: return jsonify({"error": "User ID required"}), 400
-
-        # ثبت کاربر جدید و ثبت سرگروه او
-        existing_user = players_collection.find_one({"user_id": uid})
-        if not existing_user:
-            default_data = {
-                "user_id": uid,
-                "upline_id": upline_id if upline_id else None,
-                "gold": 1000, "gems": 10, "nsm_soft": 5, "nsm_hard": 0,
-                "town_hall_level": 1, "is_nexus_maxed": False, "is_banned": False,
-                "buildings": {"gold_mine": 1, "gem_drill": 0}
-            }
-            players_collection.insert_one(default_data)
-            return jsonify({"success": True, "message": "User registered with Upline"})
-        else:
-            return jsonify({"success": True, "message": "User already exists"})
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
+# ---- Nexus upgrade (GameEngine, nsm_soft-based) ----
 @app.route("/api/upgrade/nexus", methods=["POST"])
 def upgrade_nexus():
     try:
         data = request.json
         uid = data.get("user_id")
-        if not uid: return jsonify({"error": "User ID required"}), 400
+        if not uid:
+            return jsonify({"error": "User ID required"}), 400
         p = players_collection.find_one({"user_id": uid})
-        if not p: return jsonify({"error": "Player not found"}), 404
-        if p.get("is_building", False):
-            return jsonify({"success": False, "message": "Already under construction."}), 400
-        success, updated = BuildingEngine.start_upgrade(p)
-        if success:
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        result = GameEngine.attempt_nexus_upgrade(p)
+        if result["success"]:
             players_collection.update_one(
                 {"user_id": uid},
                 {"$set": {
-                    "gold": updated["gold"],
-                    "construction_until": updated["construction_until"],
-                    "is_building": updated["is_building"]
+                    "gold": result["new_gold"],
+                    "nsm_soft": result["new_nsm_soft"],
+                    "town_hall_level": result["new_level"],
+                    "is_nexus_maxed": result["is_nexus_maxed"]
                 }}
             )
-            return jsonify({"success": True, "message": "Nexus upgrade started!", "construction_until": updated["construction_until"]})
+            return jsonify(result)
         else:
-            return jsonify({"success": False, "message": "Insufficient Gold."}), 400
+            return jsonify(result), 400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/api/upgrade/nexus/finalize", methods=["POST"])
-def finalize_nexus_upgrade():
-    try:
-        data = request.json
-        uid = data.get("user_id")
-        if not uid: return jsonify({"error": "User ID required"}), 400
-        p = players_collection.find_one({"user_id": uid})
-        if not p: return jsonify({"error": "Player not found"}), 404
-        success, updated = BuildingEngine.finalize_upgrade(p)
-        if success:
-            players_collection.update_one(
-                {"user_id": uid},
-                {"$set": {
-                    "town_hall_level": updated["town_hall_level"],
-                    "is_building": updated["is_building"],
-                    "construction_until": updated["construction_until"]
-                }}
-            )
-            return jsonify({"success": True, "message": "Nexus upgraded!", "new_level": updated["town_hall_level"]})
-        else:
-            return jsonify({"success": False, "message": "Construction not finished yet."})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
+# ---- Raid attack ----
 @app.route("/api/raid/attack", methods=["POST"])
 def execute_raid():
     try:
@@ -187,6 +151,7 @@ def execute_raid():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# ---- Raid shield ----
 @app.route("/api/raid/shield", methods=["POST"])
 def buy_shield():
     try:
@@ -212,22 +177,22 @@ def buy_shield():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
+# ---- Train troops ----
 @app.route("/api/troops/train", methods=["POST"])
 def train_troops():
     try:
         data = request.json
         uid = data.get("user_id")
-        unit_type = data.get("unit_type", "warrior")
+        u_type = data.get("unit_type", "warrior")
         count = data.get("count", 1)
         if not uid:
             return jsonify({"error": "Missing ID"}), 400
-        if unit_type not in TroopEngine.UNIT_TYPES:
+        if u_type not in TroopEngine.UNIT_TYPES:
             return jsonify({"error": "Invalid unit type"}), 400
         p = players_collection.find_one({"user_id": uid})
         if not p:
             return jsonify({"error": "Player not found"}), 404
-        can_afford, total_cost = TroopEngine.can_train(p, unit_type, count)
+        can_afford, total_cost = TroopEngine.can_train(p, u_type, count)
         if not can_afford:
             return jsonify({"success": False, "message": f"Insufficient Gold. {total_cost} required."}), 400
         players_collection.update_one(
@@ -236,11 +201,14 @@ def train_troops():
         )
         return jsonify({
             "success": True,
-            "unit_type": unit_type,
+            "unit_type": u_type,
             "count": count,
             "cost": total_cost,
-            "message": f"{count} {TroopEngine.UNIT_TYPES[unit_type]["label"]} trained!"
+            "message": f"{count} {TroopEngine.UNIT_TYPES[u_type]['label']} trained!"
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
