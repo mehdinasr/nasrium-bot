@@ -39,6 +39,7 @@ def webhook():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
     
 @app.route("/api/collect", methods=["POST"])
 def collect_resources():
@@ -243,4 +244,3 @@ def train_troops():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-app.run(host="0.0.0.0", port=port)
