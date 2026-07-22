@@ -1,5 +1,5 @@
 from Core.App.MilitaryTechEngine import MilitaryTechEngine
-﻿class TroopEngine:
+class TroopEngine:
     # تعریف انواع نیروها و مشخصات فنی
     UNIT_TYPES = {
         "scout": {"label": "Cyber Scout", "cost": 300, "power": 5, "desc": "Fast & Cheap"},
