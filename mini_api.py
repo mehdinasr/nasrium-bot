@@ -7,6 +7,7 @@ from pymongo import MongoClient
 from Core.App.GameEngine import GameEngine
 from Core.App.ResourceEngine import ResourceEngine
 from Core.App.SyndicateEngine import SyndicateEngine
+from Core.App.WarEngine import WarEngine
 from Core.App.RaidEngine import RaidEngine
 from Core.App.TroopEngine import TroopEngine
 
@@ -19,6 +20,7 @@ mongo_client = MongoClient(MONGO_URL, serverSelectionTimeoutMS=5000)
 db = mongo_client["nasrium_db"]
 players_collection = db["players"]
 syndicates_collection = db["syndicates"]
+wars_collection = db["wars"]
 
 # ---- Base routes ----
 @app.route("/")
@@ -151,6 +153,7 @@ def execute_raid():
                     }
                 )
                 attacker_syn = attacker.get("syndicate")
+                defender_syn = defender.get("syndicate")
                 if attacker_syn and attacker_syn != "None":
                     tax = SyndicateEngine.get_tax_contribution(result.get("loot_gold", 0))
                     if tax > 0:
@@ -158,6 +161,7 @@ def execute_raid():
                             {"name": attacker_syn},
                             {"$inc": {"vault_gold": tax}}
                         )
+                WarEngine.record_attack_score(attacker_syn, defender_syn, wars_collection)
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -361,6 +365,50 @@ def join_syndicate_route():
             {"$set": {"syndicate": syn_name}}
         )
         return jsonify({"success": True, "syndicate": syn_name})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/war/declare", methods=["POST"])
+def declare_war_route():
+    try:
+        data = request.json
+        syn_a = data.get("syndicate_a")
+        syn_b = data.get("syndicate_b")
+        if not syn_a or not syn_b:
+            return jsonify({"error": "Both syndicate names required"}), 400
+        success, result = WarEngine.declare_war(syn_a, syn_b, wars_collection)
+        if not success:
+            return jsonify({"success": False, "message": result}), 400
+        return jsonify({"success": True, "war": {
+            "syndicate_a": result["syndicate_a"],
+            "syndicate_b": result["syndicate_b"],
+            "ends_at": result["ends_at"]
+        }})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/war/status", methods=["POST"])
+def war_status_route():
+    try:
+        data = request.json
+        syn_name = data.get("syndicate_name")
+        war = wars_collection.find_one({
+            "status": "active",
+            "$or": [{"syndicate_a": syn_name}, {"syndicate_b": syn_name}]
+        })
+        if not war:
+            return jsonify({"success": True, "active_war": None})
+        war = WarEngine.finalize_if_expired(war, syndicates_collection, wars_collection)
+        return jsonify({"success": True, "active_war": {
+            "syndicate_a": war["syndicate_a"],
+            "syndicate_b": war["syndicate_b"],
+            "score_a": war["score_a"],
+            "score_b": war["score_b"],
+            "status": war["status"],
+            "winner": war.get("winner"),
+            "ends_at": war["ends_at"]
+        }})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
