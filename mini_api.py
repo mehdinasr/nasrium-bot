@@ -1,3 +1,4 @@
+from Core.App.TargetFinderEngine import TargetFinderEngine
 from Core.App.WalletEngine import WalletEngine
 from Core.App.SimpleBuildingEngine import SimpleBuildingEngine
 from flask import Flask, jsonify, send_from_directory, request
@@ -409,6 +410,22 @@ def war_status_route():
             "winner": war.get("winner"),
             "ends_at": war["ends_at"]
         }})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/raid/find_targets", methods=["POST"])
+def find_targets():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        if not uid:
+            return jsonify({"error": "User ID required"}), 400
+        p = players_collection.find_one({"user_id": uid})
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        targets = TargetFinderEngine.find_targets(uid, p, players_collection, limit=5)
+        return jsonify({"success": True, "targets": targets})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
