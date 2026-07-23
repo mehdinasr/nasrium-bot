@@ -18,6 +18,7 @@ MONGO_URL = os.environ.get("MONGO_URL", "mongodb://localhost:27017")
 mongo_client = MongoClient(MONGO_URL, serverSelectionTimeoutMS=5000)
 db = mongo_client["nasrium_db"]
 players_collection = db["players"]
+syndicates_collection = db["syndicates"]
 
 # ---- Base routes ----
 @app.route("/")
@@ -301,9 +302,57 @@ def withdraw_ton():
                 {"user_id": uid},
                 {"$set": {"nsm_hard": result["new_nsm_hard"]}}
             )
+            SyndicateEngine.process_upline_commission(uid, amount, players_collection)
             return jsonify(result)
         else:
             return jsonify(result), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/syndicate/create", methods=["POST"])
+def create_syndicate_route():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        syn_name = data.get("syndicate_name")
+        p = players_collection.find_one({"user_id": uid})
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        success, result = SyndicateEngine.create_syndicate(p, syn_name)
+        if not success:
+            return jsonify({"success": False, "message": result}), 400
+        syndicates_collection.insert_one(result)
+        players_collection.update_one(
+            {"user_id": uid},
+            {"$set": {"gold": p["gold"], "syndicate": p["syndicate"]}}
+        )
+        return jsonify({"success": True, "syndicate": result["name"]})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/syndicate/join", methods=["POST"])
+def join_syndicate_route():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        syn_name = data.get("syndicate_name")
+        p = players_collection.find_one({"user_id": uid})
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        syn_doc = syndicates_collection.find_one({"name": syn_name})
+        success, result = SyndicateEngine.join_syndicate(p, syn_doc)
+        if not success:
+            return jsonify({"success": False, "message": result}), 400
+        syndicates_collection.update_one(
+            {"name": syn_name},
+            {"$push": {"members": uid}}
+        )
+        players_collection.update_one(
+            {"user_id": uid},
+            {"$set": {"syndicate": syn_name}}
+        )
+        return jsonify({"success": True, "syndicate": syn_name})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
