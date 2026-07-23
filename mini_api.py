@@ -1,4 +1,5 @@
-﻿from flask import Flask, jsonify, send_from_directory, request
+from Core.App.SimpleBuildingEngine import SimpleBuildingEngine
+from flask import Flask, jsonify, send_from_directory, request
 import os
 import time
 from pymongo import MongoClient
@@ -206,6 +207,34 @@ def train_troops():
             "cost": total_cost,
             "message": f"{count} {TroopEngine.UNIT_TYPES[u_type]['label']} trained!"
         })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/upgrade/building", methods=["POST"])
+def upgrade_building():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        b_type = data.get("building_type")
+        if not uid or not b_type:
+            return jsonify({"error": "Missing data"}), 400
+        p = players_collection.find_one({"user_id": uid})
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        result = SimpleBuildingEngine.attempt_upgrade(b_type, p)
+        if result["success"]:
+            update_fields = {
+                "gold": result["new_gold"],
+                f"buildings.{b_type}": result["new_level"]
+            }
+            players_collection.update_one(
+                {"user_id": uid},
+                {"$set": update_fields}
+            )
+            return jsonify(result)
+        else:
+            return jsonify(result), 400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
