@@ -150,6 +150,14 @@ def execute_raid():
                         "$set": {"shield_active_until": time.time() + (12 * 3600)}
                     }
                 )
+                attacker_syn = attacker.get("syndicate")
+                if attacker_syn and attacker_syn != "None":
+                    tax = SyndicateEngine.get_tax_contribution(result.get("loot_gold", 0))
+                    if tax > 0:
+                        syndicates_collection.update_one(
+                            {"name": attacker_syn},
+                            {"$inc": {"vault_gold": tax}}
+                        )
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
