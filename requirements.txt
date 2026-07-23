@@ -3,3 +3,4 @@ gunicorn==21.2.0
 pymongo==4.9.2
 tonsdk
 requests
+requests
