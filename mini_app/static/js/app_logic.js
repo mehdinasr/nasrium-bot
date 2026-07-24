@@ -1,25 +1,7 @@
-// --- Auto-injected missing functions ---
-if (typeof loadEmpirePulse !== 'function') {
-    async function loadEmpirePulse() {
-        console.log('[Fallback] loadEmpirePulse executed.');
-        try {
-            // در صورت وجود API، اطلاعات امپراتوری را می‌گیرد
-            const res = await fetch('/api/world/empire/pulse');
-            if(res.ok) return await res.json();
-        } catch(e) { console.warn('Empire Pulse API not found, skipping.'); }
-    }
-}
-if (typeof fetchComms === 'undefined') {
-    var fetchComms = async () => {
-        console.log('[Fallback] fetchComms executed.');
-        try {
-            // در صورت وجود API، سیستم ارتباطات را می‌گیرد
-            const res = await fetch('/api/comms');
-            if(res.ok) return await res.json();
-        } catch(e) { console.warn('Comms API not found, skipping.'); }
-    };
-}
-// ---------------------------------------
+// --- Global Fallbacks ---
+window.loadEmpirePulse = window.loadEmpirePulse || async function() { console.log('Empire Pulse fallback'); return null; };
+window.fetchComms = window.fetchComms || async function() { console.log('Comms fallback'); return null; };
+// ------------------------
 // Nasrium CORE LOGIC - v1.1.0
 const userId = "COMMANDER_MEHDI_ID"; // Temporary holder
 
@@ -2761,7 +2743,7 @@ function injectDecipherButton() {
     }
 }
 injectDecipherButton();
-async function syncEmpireState() {
+async function syncEmpireState() { if(! || typeof  !== 'object') return; try {
     const res = await fetch('/api/empire/sync', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -3060,7 +3042,7 @@ function injectEvolutionButtons() {
 }
 injectEvolutionButtons();
 // --- CMD_935: World Event Banner ---
-async function updateWorldEvent() {
+async function updateWorldEvent() { if(! || !.name) return; try {
     const res = await fetch('/api/world/status');
     const data = await res.json();
     const event = data.current_event;
@@ -3294,7 +3276,7 @@ async function showAIEvolution() {
 setInterval(updateEnergyUI, 30000);
 updateEnergyUI();
 // --- CMD_951: Big Bang Ticker ---
-async function startBigBangTicker() {
+async function startBigBangTicker() { if(! || typeof .is_active === 'undefined') return; try {
     const res = await fetch('/api/empire/event/bigbang');
     const data = await res.json();
     const event = data.event;
