@@ -1,3 +1,5 @@
+from Core.App.MissionsEngine import MissionsEngine
+from Core.App.QuestEngine import QuestEngine
 from Core.App.TargetFinderEngine import TargetFinderEngine
 from Core.App.WalletEngine import WalletEngine
 from Core.App.SimpleBuildingEngine import SimpleBuildingEngine
@@ -77,12 +79,15 @@ def collect_resources():
         if not p:
             return jsonify({"error": "Player not found"}), 404
         result = ResourceEngine.calculate_collection(p)
+        MissionsEngine.record_progress(p, "gold_mined", result.get("earned_gold", 0))
         players_collection.update_one(
             {"user_id": uid},
             {"$set": {
                 "gold": result["new_gold"],
                 "gems": result["new_gems"],
-                "last_collect_time": result["new_collect_time"]
+                "last_collect_time": result["new_collect_time"],
+                "daily_mission_date": p.get("daily_mission_date"),
+                "daily_counters": p.get("daily_counters")
             }}
         )
         return jsonify(result)
@@ -163,6 +168,17 @@ def execute_raid():
                             {"$inc": {"vault_gold": tax}}
                         )
                 WarEngine.record_attack_score(attacker_syn, defender_syn, wars_collection)
+                MissionsEngine.record_progress(attacker, "raids", 1)
+                players_collection.update_one(
+                    {"user_id": attacker_uid},
+                    {
+                        "$inc": {"raid_wins": 1},
+                        "$set": {
+                            "daily_mission_date": attacker.get("daily_mission_date"),
+                            "daily_counters": attacker.get("daily_counters")
+                        }
+                    }
+                )
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -267,9 +283,15 @@ def link_wallet():
             return jsonify({"error": "Player not found"}), 404
         success, message = WalletEngine.link_wallet(p, wallet_address)
         if success:
+            MissionsEngine.record_progress(p, "sync_ops", 1)
             players_collection.update_one(
                 {"user_id": uid},
-                {"$set": {"ton_wallet": p["ton_wallet"], "is_verified_holder": p["is_verified_holder"]}}
+                {"$set": {
+                    "ton_wallet": p["ton_wallet"],
+                    "is_verified_holder": p["is_verified_holder"],
+                    "daily_mission_date": p.get("daily_mission_date"),
+                    "daily_counters": p.get("daily_counters")
+                }}
             )
             return jsonify({"success": True, "message": message})
         else:
@@ -426,6 +448,101 @@ def find_targets():
             return jsonify({"error": "Player not found"}), 404
         targets = TargetFinderEngine.find_targets(uid, p, players_collection, limit=5)
         return jsonify({"success": True, "targets": targets})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/quests/status", methods=["POST"])
+def quest_status():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        if not uid:
+            return jsonify({"error": "User ID required"}), 400
+        p = players_collection.find_one({"user_id": uid})
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        quests = QuestEngine.get_quest_status(p)
+        return jsonify({"success": True, "quests": quests})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/quests/claim", methods=["POST"])
+def quest_claim():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        quest_id = data.get("quest_id")
+        if not uid or not quest_id:
+            return jsonify({"error": "Missing data"}), 400
+        p = players_collection.find_one({"user_id": uid})
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        success, message = QuestEngine.claim_quest(p, quest_id)
+        if success:
+            players_collection.update_one(
+                {"user_id": uid},
+                {"$set": {
+                    "completed_airdrop_quests": p["completed_airdrop_quests"],
+                    "airdrop_bonus_points": p["airdrop_bonus_points"]
+                }}
+            )
+            return jsonify({"success": True, "message": message})
+        else:
+            return jsonify({"success": False, "message": message}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/missions/status", methods=["POST"])
+def missions_status():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        if not uid:
+            return jsonify({"error": "User ID required"}), 400
+        p = players_collection.find_one({"user_id": uid})
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        missions = MissionsEngine.get_daily_missions(p)
+        players_collection.update_one(
+            {"user_id": uid},
+            {"$set": {
+                "daily_mission_date": p.get("daily_mission_date"),
+                "daily_counters": p.get("daily_counters"),
+                "claimed_daily_missions": p.get("claimed_daily_missions", [])
+            }}
+        )
+        return jsonify({"success": True, "missions": missions})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/api/missions/claim", methods=["POST"])
+def missions_claim():
+    try:
+        data = request.json
+        uid = data.get("user_id")
+        mission_id = data.get("mission_id")
+        if not uid or not mission_id:
+            return jsonify({"error": "Missing data"}), 400
+        p = players_collection.find_one({"user_id": uid})
+        if not p:
+            return jsonify({"error": "Player not found"}), 404
+        success, message = MissionsEngine.claim_mission(p, mission_id)
+        if success:
+            players_collection.update_one(
+                {"user_id": uid},
+                {"$set": {
+                    "gold": p["gold"],
+                    "power_score": p.get("power_score", 0),
+                    "claimed_daily_missions": p["claimed_daily_missions"],
+                    "daily_mission_date": p.get("daily_mission_date"),
+                    "daily_counters": p.get("daily_counters")
+                }}
+            )
+            return jsonify({"success": True, "message": message})
+        else:
+            return jsonify({"success": False, "message": message}), 400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
