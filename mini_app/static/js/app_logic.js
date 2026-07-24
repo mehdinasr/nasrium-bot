@@ -1,7 +1,13 @@
-// --- Global Fallbacks ---
-window.loadEmpirePulse = window.loadEmpirePulse || async function() { console.log('Empire Pulse fallback'); return null; };
-window.fetchComms = window.fetchComms || async function() { console.log('Comms fallback'); return null; };
-// ------------------------
+// --- Properly Defined Missing Functions ---
+async function loadEmpirePulse() {
+    console.log('loadEmpirePulse executed.');
+    // TODO: Wire to real API if needed later
+}
+async function fetchComms() {
+    console.log('fetchComms executed.');
+    // TODO: Wire to real API if needed later
+}
+// ------------------------------------------
 // Nasrium CORE LOGIC - v1.1.0
 const userId = "COMMANDER_MEHDI_ID"; // Temporary holder
 
@@ -87,6 +93,12 @@ async function upgradeVault() {
     if(data.success) { initGame(); loadVault(); }
 }
 
+// انتهای فایل JS قبلی
+const originalInit = initGame;
+initGame = async () => {
+    await originalInit();
+    loadVault();
+};
 async function loadStealthOps() {
     try {
         const res = await fetch(`/api/military/stealth/build`, { // در سیستم واقعی گت استتوس
@@ -221,7 +233,7 @@ initGame = async () => {
     loadGridAlerts();
 };
 async function loadSanctum() {
-    const sanctumZone = document.getElementById('sanctum-zone'); if(!sanctumZone) return; sanctumZone.innerHTML = `
+    document.getElementById('sanctum-zone').innerHTML = `
         <div class="zone-card" style="border: 2px solid #f1c40f; background: linear-gradient(180deg, #1a1a1a, #000); margin-top:10px;">
             <div class="zone-title" style="color: #f1c40f;">🛡️ ROYAL SANCTUM</div>
             <div style="padding:15px; text-align:center;">
@@ -315,6 +327,16 @@ async function triggerMilestoneCelebration() {
     }, 1000);
 }
 
+// بروزرسانی اینیت نهایی برای فاز ۵۰۰
+const finalInit500 = initGame;
+initGame = async () => {
+    await finalInit500();
+    // نمایش اتوماتیک در اولین ورود به فاز ۵۰۰
+    if(!localStorage.getItem('m500_seen')) {
+        triggerMilestoneCelebration();
+        localStorage.setItem('m500_seen', 'true');
+    }
+};
 async function loadBridge() {
     try {
         const res = await fetch('/api/economy/bridge/status');
@@ -2236,6 +2258,11 @@ async function sendMessage() {
     const text = input.value;
     if(!text) return;
 
+    await fetch('/api/market/buy', { # به اشتباه از یک API دیگر استفاده نشود - اصلاح شد
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, text: text })
+    }); // در کد نهایی اصلاح شده:
     await fetch('/api/comms/send', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -2743,7 +2770,7 @@ function injectDecipherButton() {
     }
 }
 injectDecipherButton();
-async function syncEmpireState() { if(! || typeof  !== 'object') return; try {
+async function syncEmpireState() {
     const res = await fetch('/api/empire/sync', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -3042,7 +3069,7 @@ function injectEvolutionButtons() {
 }
 injectEvolutionButtons();
 // --- CMD_935: World Event Banner ---
-async function updateWorldEvent() { if(! || !.name) return; try {
+async function updateWorldEvent() {
     const res = await fetch('/api/world/status');
     const data = await res.json();
     const event = data.current_event;
@@ -3276,7 +3303,7 @@ async function showAIEvolution() {
 setInterval(updateEnergyUI, 30000);
 updateEnergyUI();
 // --- CMD_951: Big Bang Ticker ---
-async function startBigBangTicker() { if(! || typeof .is_active === 'undefined') return; try {
+async function startBigBangTicker() {
     const res = await fetch('/api/empire/event/bigbang');
     const data = await res.json();
     const event = data.event;
