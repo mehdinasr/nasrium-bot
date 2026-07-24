@@ -36,6 +36,7 @@ window.addEventListener('unhandledrejection', function(e) {
         <div id="dev-zone"></div>
         <div id="commander-dashboard"></div>
         <div id="resource-hub"></div>
+        <div id="sanctum-zone"></div>
         <div id="war-room">
         <div id="rebellion-zone"></div>
         <div id="stealth-zone"></div>
@@ -45,7 +46,6 @@ window.addEventListener('unhandledrejection', function(e) {
         </div>
         <div id="economy-hub">
         <div id="bridge-zone"></div>
-        <div id="vault-zone"></div>
         <div id="vault-zone"></div>
             <div id="bank-zone"></div>
             <div id="shop-zone"></div>
@@ -60,22 +60,21 @@ window.addEventListener('unhandledrejection', function(e) {
     <script src="static/js/i18n_loader.js"></script>    <div id="net-status" style="position:fixed; bottom:10px; left:10px; font-size:0.45em; color:#888; font-family:monospace; z-index:1001;">SHARD: <span id="active-shard" style="color:#0f0">---</span> | PING: <span id="net-ping" style="color:#0f0">--ms</span></div>
 
 <script>
-(async function loadSequentially() {
+(async function loadUnified() {
     await window.NASRIUM_I18N.init();
-    const parts = [];
-    for (let i = 1; i <= 15; i++) {
-        parts.push(`static/js/app_logic_part${i}.js`);
+    await new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.src = "static/js/app_logic.js?v=" + Date.now();
+        s.onload = resolve;
+        s.onerror = reject;
+        document.body.appendChild(s);
+    });
+    console.log("Unified app_logic.js loaded");
+    if (typeof initGame === 'function') {
+        initGame();
+    } else {
+        console.error("initGame is not defined!");
     }
-    for (const src of parts) {
-        await new Promise((resolve, reject) => {
-            const s = document.createElement("script");
-            s.src = src;
-            s.onload = resolve;
-            s.onerror = reject;
-            document.body.appendChild(s);
-        });
-    }
-    console.log("All parts loaded sequentially"); initGame();
 })();
 </script>
 <script>
