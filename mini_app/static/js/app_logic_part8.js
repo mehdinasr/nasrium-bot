@@ -177,6 +177,7 @@ async function startBigBangTicker() {
     const res = await fetch('/api/empire/event/bigbang');
     const data = await res.json();
     const event = data.event;
+    if(!event) return;
 
     if(event.is_active) {
         let ticker = document.getElementById('big-bang-ticker');

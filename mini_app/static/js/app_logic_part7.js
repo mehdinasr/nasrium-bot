@@ -84,7 +84,7 @@ async function syncEmpireState() {
     }
     
     // نمایش دستاوردهای جدید (CMD_921)
-    data.new_badges.forEach(badge => {
+    (data.new_badges || []).forEach(badge => {
         showEpicNotification("ACHIEVEMENT UNLOCKED", `Rank Up: ${badge}`, "gold");
     });
 }
@@ -373,6 +373,7 @@ async function updateWorldEvent() {
     const res = await fetch('/api/world/status');
     const data = await res.json();
     const event = data.current_event;
+    if(!event) return;
 
     let banner = document.getElementById('world-event-banner');
     if(!banner) {
