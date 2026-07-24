@@ -1,13 +1,3 @@
-// --- Properly Defined Missing Functions ---
-async function loadEmpirePulse() {
-    console.log('loadEmpirePulse executed.');
-    // TODO: Wire to real API if needed later
-}
-async function fetchComms() {
-    console.log('fetchComms executed.');
-    // TODO: Wire to real API if needed later
-}
-// ------------------------------------------
 // Nasrium CORE LOGIC - v1.1.0
 const userId = "COMMANDER_MEHDI_ID"; // Temporary holder
 
@@ -58,9 +48,9 @@ async function upgradeVault() {
 }
 
 // انتهای فایل JS قبلی
-var originalInit_1 = initGame;
+var originalInit = initGame;
 initGame = async () => {
-    await originalInit_1();
+    await originalInit();
     loadVault();
 };
 async function loadVault() {
@@ -94,9 +84,9 @@ async function upgradeVault() {
 }
 
 // انتهای فایل JS قبلی
-var originalInit_2 = initGame;
+var originalInit = initGame;
 initGame = async () => {
-    await originalInit_2();
+    await originalInit();
     loadVault();
 };
 async function loadStealthOps() {
@@ -2258,7 +2248,7 @@ async function sendMessage() {
     const text = input.value;
     if(!text) return;
 
-    await fetch('/api/market/buy', { # به اشتباه از یک API دیگر استفاده نشود - اصلاح شد
+    await fetch('/api/market/buy', { // به اشتباه از یک API دیگر استفاده نشود - اصلاح شد
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ user_id: userId, text: text })
@@ -6547,5 +6537,5 @@ checkAwakeningV59();
 setInterval(injectSecurityUI, 2000);
 
 
-// Ensure initGame is globally accessible
+// Global binding
 if (typeof initGame === 'function') { window.initGame = initGame; }
