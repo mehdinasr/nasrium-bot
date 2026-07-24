@@ -58,7 +58,7 @@ async function upgradeVault() {
 }
 
 // انتهای فایل JS قبلی
-const originalInit_1 = initGame;
+var originalInit_1 = initGame;
 initGame = async () => {
     await originalInit_1();
     loadVault();
@@ -94,7 +94,7 @@ async function upgradeVault() {
 }
 
 // انتهای فایل JS قبلی
-const originalInit_2 = initGame;
+var originalInit_2 = initGame;
 initGame = async () => {
     await originalInit_2();
     loadVault();
@@ -147,7 +147,7 @@ async function sendRecon() {
 }
 
 // بروزرسانی اینیت
-const oldInit494 = initGame;
+var oldInit494 = initGame;
 initGame = async () => {
     await oldInit494();
     loadStealthOps();
@@ -165,7 +165,7 @@ async function checkHolidays() {
     } catch(e) {}
 }
 
-const oldInit495 = initGame;
+var oldInit495 = initGame;
 initGame = async () => {
     await oldInit495();
     checkHolidays();
@@ -184,7 +184,7 @@ async function updateProsperity() {
     } catch(e) {}
 }
 
-const oldInit496 = initGame;
+var oldInit496 = initGame;
 initGame = async () => {
     await oldInit496();
     updateProsperity();
@@ -227,7 +227,7 @@ async function fightRebel(sid) {
     if(data.success) { initGame(); loadGridAlerts(); }
 }
 
-const oldInit497 = initGame;
+var oldInit497 = initGame;
 initGame = async () => {
     await oldInit497();
     loadGridAlerts();
@@ -257,7 +257,7 @@ async function recruitGuard(type) {
     if(data.success) initGame();
 }
 
-const oldInit498 = initGame;
+var oldInit498 = initGame;
 initGame = async () => {
     await oldInit498();
     loadSanctum();
@@ -288,7 +288,7 @@ async function loadLegacy() {
     } catch(e) {}
 }
 
-const oldInit499 = initGame;
+var oldInit499 = initGame;
 initGame = async () => {
     await oldInit499();
     loadLegacy();
@@ -306,7 +306,7 @@ async function triggerMilestoneCelebration() {
 }
 
 // بروزرسانی اینیت نهایی برای فاز ۵۰۰
-const finalInit500 = initGame;
+var finalInit500 = initGame;
 initGame = async () => {
     await finalInit500();
     // نمایش اتوماتیک در اولین ورود به فاز ۵۰۰
@@ -328,7 +328,7 @@ async function triggerMilestoneCelebration() {
 }
 
 // بروزرسانی اینیت نهایی برای فاز ۵۰۰
-const finalInit500 = initGame;
+var finalInit500 = initGame;
 initGame = async () => {
     await finalInit500();
     // نمایش اتوماتیک در اولین ورود به فاز ۵۰۰
@@ -378,7 +378,7 @@ async function executeBridge() {
 }
 
 // توسعه اینیت برای لود پل
-const originalInit501 = initGame;
+var originalInit501 = initGame;
 initGame = async () => {
     await originalInit501();
     loadBridge();
@@ -394,7 +394,7 @@ async function checkShardHealth() {
     } catch(e) {}
 }
 
-const originalInit502 = initGame;
+var originalInit502 = initGame;
 initGame = async () => {
     await originalInit502();
     checkShardHealth();
@@ -436,7 +436,7 @@ async function registerAsDev() {
     if(data.success) initGame();
 }
 
-const originalInit503 = initGame;
+var originalInit503 = initGame;
 initGame = async () => {
     await originalInit503();
     loadDevPortal();
@@ -490,7 +490,7 @@ async function toggleAR(mode) {
 }
 
 // اضافه کردن دکمه‌های کنترل AR به هدر
-const originalInit505 = initGame;
+var originalInit505 = initGame;
 initGame = async () => {
     await originalInit505();
     const header = document.querySelector('.flex.justify-between.items-center');
@@ -514,7 +514,7 @@ async function applyUnificationSeal() {
 }
 
 // انیمیشن مهر نهایی در لود اولیه
-const originalInit506 = initGame;
+var originalInit506 = initGame;
 initGame = async () => {
     await originalInit506();
     applyUnificationSeal();
@@ -563,7 +563,7 @@ async function buyInsurance(pid) {
 }
 
 // انتهای اینیت
-const oldInit507 = initGame;
+var oldInit507 = initGame;
 initGame = async () => {
     await oldInit507();
     loadInsurance();
@@ -608,7 +608,7 @@ async function requestLoan() {
 }
 
 // انتهای اینیت
-const oldInit508 = initGame;
+var oldInit508 = initGame;
 initGame = async () => {
     await oldInit508();
     loadLending();
@@ -660,7 +660,7 @@ async function buyBond(bid) {
 }
 
 // توسعه اینیت
-const oldInit509 = initGame;
+var oldInit509 = initGame;
 initGame = async () => {
     await oldInit509();
     loadBondMarket();
@@ -714,7 +714,7 @@ async function predictEvent(cid) {
 }
 
 // توسعه اینیت
-const oldInit510 = initGame;
+var oldInit510 = initGame;
 initGame = async () => {
     await oldInit510();
     loadDerivatives();
@@ -751,7 +751,7 @@ async function loadBurnTracker() {
 }
 
 // توسعه اینیت
-const oldInit511 = initGame;
+var oldInit511 = initGame;
 initGame = async () => {
     await oldInit511();
     loadBurnTracker();
@@ -801,7 +801,7 @@ async function claimWelfare() {
 }
 
 // توسعه اینیت
-const oldInit512 = initGame;
+var oldInit512 = initGame;
 initGame = async () => {
     await oldInit512();
     loadWelfare();
@@ -850,7 +850,7 @@ async function toggleAIAutonomy() {
 }
 
 // توسعه اینیت
-const oldInit513 = initGame;
+var oldInit513 = initGame;
 initGame = async () => {
     await oldInit513();
     loadAIConsciousness();
@@ -907,7 +907,7 @@ async function rentSkill(sid) {
 }
 
 // توسعه اینیت
-const oldInit514 = initGame;
+var oldInit514 = initGame;
 initGame = async () => {
     await oldInit514();
     loadNeuralExchange();
@@ -940,7 +940,7 @@ async function loadAIAdvocate() {
 }
 
 // توسعه اینیت
-const oldInit515 = initGame;
+var oldInit515 = initGame;
 initGame = async () => {
     await oldInit515();
     loadAIAdvocate();
@@ -994,7 +994,7 @@ async function applyPersona() {
 }
 
 // توسعه اینیت
-const oldInit516 = initGame;
+var oldInit516 = initGame;
 initGame = async () => {
     await oldInit516();
     loadPersonaLab();
@@ -1050,7 +1050,7 @@ async function activateHosting() {
 }
 
 // توسعه اینیت
-const oldInit517 = initGame;
+var oldInit517 = initGame;
 initGame = async () => {
     await oldInit517();
     loadNetworkNodes();
@@ -1087,7 +1087,7 @@ async function loadCyberCouncil() {
 }
 
 // توسعه اینیت
-const oldInit518 = initGame;
+var oldInit518 = initGame;
 initGame = async () => {
     await oldInit518();
     loadCyberCouncil();
@@ -1136,7 +1136,7 @@ async function buildLunarOutpost() {
 }
 
 // توسعه اینیت
-const oldInit519 = initGame;
+var oldInit519 = initGame;
 initGame = async () => {
     await oldInit519();
     loadLunarCommand();
@@ -1180,7 +1180,7 @@ async function buildElevator() {
 }
 
 // توسعه اینیت
-const oldInit520 = initGame;
+var oldInit520 = initGame;
 initGame = async () => {
     await oldInit520();
     loadSpaceElevator();
@@ -1233,7 +1233,7 @@ async function mineAsteroid(aid) {
 }
 
 // توسعه اینیت
-const oldInit521 = initGame;
+var oldInit521 = initGame;
 initGame = async () => {
     await oldInit521();
     scanAsteroids();
@@ -1276,7 +1276,7 @@ async function fireOrbitalCannon() {
 }
 
 // توسعه اینیت
-const oldInit522 = initGame;
+var oldInit522 = initGame;
 initGame = async () => {
     await oldInit522();
     loadOrbitalControls();
@@ -1332,7 +1332,7 @@ async function foundColony(pid) {
 }
 
 // توسعه اینیت
-const oldInit523 = initGame;
+var oldInit523 = initGame;
 initGame = async () => {
     await oldInit523();
     loadGalaxyMap();
@@ -1366,7 +1366,7 @@ async function activateGateway(pid) {
 }
 
 // توسعه اینیت
-const oldInit524 = initGame;
+var oldInit524 = initGame;
 initGame = async () => {
     await oldInit524();
     loadGateways();
@@ -1382,7 +1382,7 @@ async function loadRadio() {
 }
 
 // توسعه اینیت
-const oldInit525 = initGame;
+var oldInit525 = initGame;
 initGame = async () => {
     await oldInit525();
     loadRadio();
@@ -1429,7 +1429,7 @@ async function mintArt() {
 }
 
 // توسعه اینیت
-const oldInit526 = initGame;
+var oldInit526 = initGame;
 initGame = async () => {
     await oldInit526();
     loadNFTGallery();
@@ -1491,7 +1491,7 @@ async function saveEmblem() {
 }
 
 // توسعه اینیت
-const oldInit527 = initGame;
+var oldInit527 = initGame;
 initGame = async () => {
     await oldInit527();
     loadHeraldry();
@@ -1533,7 +1533,7 @@ async function playReflexGame() {
 }
 
 // توسعه اینیت
-const oldInit528 = initGame;
+var oldInit528 = initGame;
 initGame = async () => {
     await oldInit528();
     loadGamesHub();
@@ -1573,7 +1573,7 @@ async function loadHallOfFame() {
 }
 
 // توسعه اینیت
-const oldInit529 = initGame;
+var oldInit529 = initGame;
 initGame = async () => {
     await oldInit529();
     loadHallOfFame();
@@ -1605,7 +1605,7 @@ async function loadChronosTime() {
 }
 
 // توسعه اینیت
-const oldInit530 = initGame;
+var oldInit530 = initGame;
 initGame = async () => {
     await oldInit530();
     loadChronosTime();
@@ -1655,7 +1655,7 @@ async function contributeIXP() {
 }
 
 // توسعه اینیت
-const oldInit532 = initGame;
+var oldInit532 = initGame;
 initGame = async () => {
     await oldInit532();
     loadSingularityCore();
@@ -6545,3 +6545,7 @@ function injectSecurityUI() {
 }
 checkAwakeningV59();
 setInterval(injectSecurityUI, 2000);
+
+
+// Ensure initGame is globally accessible
+if (typeof initGame === 'function') { window.initGame = initGame; }
