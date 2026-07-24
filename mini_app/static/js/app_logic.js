@@ -84,9 +84,9 @@ async function upgradeVault() {
 }
 
 // انتهای فایل JS قبلی
-var originalInit = initGame;
+var originalInit_dup2 = initGame;
 initGame = async () => {
-    await originalInit();
+    await originalInit_dup2();
     loadVault();
 };
 async function loadStealthOps() {
@@ -318,9 +318,9 @@ async function triggerMilestoneCelebration() {
 }
 
 // بروزرسانی اینیت نهایی برای فاز ۵۰۰
-var finalInit500 = initGame;
+var finalInit500_dup2 = initGame;
 initGame = async () => {
-    await finalInit500();
+    await finalInit500_dup2();
     // نمایش اتوماتیک در اولین ورود به فاز ۵۰۰
     if(!localStorage.getItem('m500_seen')) {
         triggerMilestoneCelebration();
