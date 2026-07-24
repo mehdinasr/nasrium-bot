@@ -1,3 +1,4 @@
+async function loadEmpirePulse() { /* stub - no backend endpoint yet */ }
 // Nasrium CORE LOGIC - v1.1.0
 const userId = (function() {
     try {

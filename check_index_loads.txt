@@ -1,0 +1,3 @@
+
+mini_app\index.html:67:        parts.push(`static/js/app_logic_part${i}.js`);
+

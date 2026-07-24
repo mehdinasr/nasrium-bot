@@ -1,0 +1,200 @@
+===== ALL routes defined ANYWHERE under D:\nasrium (*.py) =====
+D:\NASRIUM\inject_building.py: /api/upgrade/building
+D:\NASRIUM\inject_catchall.py: /api/<path:unimplemented_path>
+D:\NASRIUM\inject_findtargets.py: /api/raid/find_targets
+D:\NASRIUM\inject_leaderboard.py: /api/leaderboard/top
+D:\NASRIUM\inject_missions.py: /api/missions/status
+D:\NASRIUM\inject_missions.py: /api/missions/claim
+D:\NASRIUM\inject_nexus.py: /api/upgrade/nexus
+D:\NASRIUM\inject_nexus.py: /api/upgrade/nexus/finalize
+D:\NASRIUM\inject_quests.py: /api/quests/status
+D:\NASRIUM\inject_quests.py: /api/quests/claim
+D:\NASRIUM\inject_raid.py: /api/raid/attack
+D:\NASRIUM\inject_raid.py: /api/raid/shield
+D:\NASRIUM\inject_train.py: /api/troops/train
+D:\NASRIUM\inject_wallet.py: /api/wallet/link
+D:\NASRIUM\inject_wallet.py: /api/wallet/check_deposit
+D:\NASRIUM\inject_wallet.py: /api/wallet/withdraw
+D:\NASRIUM\mini_api_backup_before_building_route.py: /
+D:\NASRIUM\mini_api_backup_before_building_route.py: /health
+D:\NASRIUM\mini_api_backup_before_building_route.py: /webhook
+D:\NASRIUM\mini_api_backup_before_building_route.py: /api/user/register
+D:\NASRIUM\mini_api_backup_before_building_route.py: /api/collect
+D:\NASRIUM\mini_api_backup_before_building_route.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_backup_before_building_route.py: /api/raid/attack
+D:\NASRIUM\mini_api_backup_before_building_route.py: /api/raid/shield
+D:\NASRIUM\mini_api_backup_before_building_route.py: /api/troops/train
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /health
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /webhook
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/user/register
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/collect
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/raid/attack
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/raid/shield
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/troops/train
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/upgrade/building
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/wallet/link
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/wallet/check_deposit
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/wallet/withdraw
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/syndicate/create
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/syndicate/join
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/war/declare
+D:\NASRIUM\mini_api_backup_before_findtargets.py: /api/war/status
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /health
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /webhook
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/user/register
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/collect
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/raid/attack
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/raid/shield
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/troops/train
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/upgrade/building
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/wallet/link
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/wallet/check_deposit
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/wallet/withdraw
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/syndicate/create
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/syndicate/join
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/war/declare
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/war/status
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/raid/find_targets
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/quests/status
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/quests/claim
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/missions/status
+D:\NASRIUM\mini_api_backup_before_leaderboard.py: /api/missions/claim
+D:\NASRIUM\mini_api_backup_before_missions.py: /
+D:\NASRIUM\mini_api_backup_before_missions.py: /health
+D:\NASRIUM\mini_api_backup_before_missions.py: /webhook
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/user/register
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/collect
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/raid/attack
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/raid/shield
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/troops/train
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/upgrade/building
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/wallet/link
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/wallet/check_deposit
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/wallet/withdraw
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/syndicate/create
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/syndicate/join
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/war/declare
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/war/status
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/raid/find_targets
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/quests/status
+D:\NASRIUM\mini_api_backup_before_missions.py: /api/quests/claim
+D:\NASRIUM\mini_api_backup_before_quests.py: /
+D:\NASRIUM\mini_api_backup_before_quests.py: /health
+D:\NASRIUM\mini_api_backup_before_quests.py: /webhook
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/user/register
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/collect
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/raid/attack
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/raid/shield
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/troops/train
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/upgrade/building
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/wallet/link
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/wallet/check_deposit
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/wallet/withdraw
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/syndicate/create
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/syndicate/join
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/war/declare
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/war/status
+D:\NASRIUM\mini_api_backup_before_quests.py: /api/raid/find_targets
+D:\NASRIUM\mini_api_backup_before_wallet.py: /
+D:\NASRIUM\mini_api_backup_before_wallet.py: /health
+D:\NASRIUM\mini_api_backup_before_wallet.py: /webhook
+D:\NASRIUM\mini_api_backup_before_wallet.py: /api/user/register
+D:\NASRIUM\mini_api_backup_before_wallet.py: /api/collect
+D:\NASRIUM\mini_api_backup_before_wallet.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_backup_before_wallet.py: /api/raid/attack
+D:\NASRIUM\mini_api_backup_before_wallet.py: /api/raid/shield
+D:\NASRIUM\mini_api_backup_before_wallet.py: /api/troops/train
+D:\NASRIUM\mini_api_backup_before_wallet.py: /api/upgrade/building
+D:\NASRIUM\mini_api_before_raid_backup.py: /
+D:\NASRIUM\mini_api_before_raid_backup.py: /health
+D:\NASRIUM\mini_api_before_raid_backup.py: /webhook
+D:\NASRIUM\mini_api_before_raid_backup.py: /api/user/register
+D:\NASRIUM\mini_api_before_raid_backup.py: /api/collect
+D:\NASRIUM\mini_api_before_raid_backup.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_before_wiring_backup.py: /
+D:\NASRIUM\mini_api_before_wiring_backup.py: /health
+D:\NASRIUM\mini_api_before_wiring_backup.py: /webhook
+D:\NASRIUM\mini_api_messy_backup.py: /
+D:\NASRIUM\mini_api_messy_backup.py: /health
+D:\NASRIUM\mini_api_messy_backup.py: /webhook
+D:\NASRIUM\mini_api_messy_backup.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_messy_backup.py: /api/collect
+D:\NASRIUM\mini_api_messy_backup.py: /api/user/register
+D:\NASRIUM\mini_api_messy_backup.py: /api/collect
+D:\NASRIUM\mini_api_messy_backup.py: /api/user/register
+D:\NASRIUM\mini_api_messy_backup.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api_messy_backup.py: /api/upgrade/nexus/finalize
+D:\NASRIUM\mini_api_messy_backup.py: /api/raid/attack
+D:\NASRIUM\mini_api_messy_backup.py: /api/raid/shield
+D:\NASRIUM\mini_api_messy_backup.py: /api/troops/train
+D:\NASRIUM\mini_api.py: /
+D:\NASRIUM\mini_api.py: /health
+D:\NASRIUM\mini_api.py: /webhook
+D:\NASRIUM\mini_api.py: /api/user/register
+D:\NASRIUM\mini_api.py: /api/collect
+D:\NASRIUM\mini_api.py: /api/upgrade/nexus
+D:\NASRIUM\mini_api.py: /api/raid/attack
+D:\NASRIUM\mini_api.py: /api/raid/shield
+D:\NASRIUM\mini_api.py: /api/troops/train
+D:\NASRIUM\mini_api.py: /api/upgrade/building
+D:\NASRIUM\mini_api.py: /api/wallet/link
+D:\NASRIUM\mini_api.py: /api/wallet/check_deposit
+D:\NASRIUM\mini_api.py: /api/wallet/withdraw
+D:\NASRIUM\mini_api.py: /api/syndicate/create
+D:\NASRIUM\mini_api.py: /api/syndicate/join
+D:\NASRIUM\mini_api.py: /api/war/declare
+D:\NASRIUM\mini_api.py: /api/war/status
+D:\NASRIUM\mini_api.py: /api/raid/find_targets
+D:\NASRIUM\mini_api.py: /api/quests/status
+D:\NASRIUM\mini_api.py: /api/quests/claim
+D:\NASRIUM\mini_api.py: /api/missions/status
+D:\NASRIUM\mini_api.py: /api/missions/claim
+D:\NASRIUM\mini_api.py: /api/leaderboard/top
+D:\NASRIUM\mini_api.py: /api/<path:unimplemented_path>
+D:\NASRIUM\replace_nexus.py: /api/upgrade/nexus
+D:\NASRIUM\replace_nexus.py: /api/upgrade/nexus
+D:\NASRIUM\Core\Tools\patch_collect_api.py: /api/collect
+D:\NASRIUM\Core\Tools\patch_nexus_api.py: /api/nexus/ask
+D:\NASRIUM\Core\Tools\patch_raid_api.py: /api/raid/attack
+D:\NASRIUM\Core\Tools\patch_raid_api.py: /api/raid/shield
+D:\NASRIUM\Core\Tools\patch_security_api.py: /api/security/ban
+D:\NASRIUM\Core\Tools\patch_shop_api.py: /api/shop/buy
+D:\NASRIUM\Core\Tools\patch_sub_api.py: /api/subscribe/activate
+D:\NASRIUM\Core\Tools\patch_syndicate_api.py: /api/user/register
+D:\NASRIUM\Core\Tools\patch_ton_api.py: /tonconnect-manifest.json
+D:\NASRIUM\Core\Tools\patch_ton_api.py: /api/wallet/link
+D:\NASRIUM\Core\Tools\patch_upgrade_api.py: /api/upgrade/nexus
+D:\NASRIUM\Core\Tools\patch_wallet_api.py: /api/wallet/buy
+D:\NASRIUM\Core\Tools\patch_wallet_api.py: /api/wallet/withdraw
+
+===== Routes ALREADY wired into mini_api.py =====
+/
+/health
+/webhook
+/api/user/register
+/api/collect
+/api/upgrade/nexus
+/api/raid/attack
+/api/raid/shield
+/api/troops/train
+/api/upgrade/building
+/api/wallet/link
+/api/wallet/check_deposit
+/api/wallet/withdraw
+/api/syndicate/create
+/api/syndicate/join
+/api/war/declare
+/api/war/status
+/api/raid/find_targets
+/api/quests/status
+/api/quests/claim
+/api/missions/status
+/api/missions/claim
+/api/leaderboard/top
+/api/<path:unimplemented_path>

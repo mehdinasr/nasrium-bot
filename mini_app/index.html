@@ -78,5 +78,22 @@ window.addEventListener('unhandledrejection', function(e) {
     console.log("All parts loaded sequentially"); initGame();
 })();
 </script>
-</body>
+<script>
+    async function initSingularity() {
+        try {
+            const res = await fetch('/api/world/singularity/sync', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ user_id: userId })
+            });
+            const data = await res.json();
+            if(data.success) {
+                const o = data.overview;
+                document.getElementById('hub-honor').innerText = o.global_honor.toLocaleString();
+                document.getElementById('hub-tier').innerText = o.prestige_tier.toUpperCase();
+                console.log("Purified Modules:", data.purified_modules);
+            }
+        } catch(e) {}
+    }
+</script></body>
 </html>

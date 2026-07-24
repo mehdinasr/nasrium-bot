@@ -1,13 +1,9 @@
-from Core.App.SingularityEngine import SingularityEngine
-from Core.App.LeaderboardEngine import LeaderboardEngine
-from Core.App.MissionsEngine import MissionsEngine
 from Core.App.QuestEngine import QuestEngine
 from Core.App.TargetFinderEngine import TargetFinderEngine
 from Core.App.WalletEngine import WalletEngine
 from Core.App.SimpleBuildingEngine import SimpleBuildingEngine
 from flask import Flask, jsonify, send_from_directory, request
 import os
-import json
 import time
 from pymongo import MongoClient
 from Core.App.GameEngine import GameEngine
@@ -82,15 +78,12 @@ def collect_resources():
         if not p:
             return jsonify({"error": "Player not found"}), 404
         result = ResourceEngine.calculate_collection(p)
-        MissionsEngine.record_progress(p, "gold_mined", result.get("earned_gold", 0))
         players_collection.update_one(
             {"user_id": uid},
             {"$set": {
                 "gold": result["new_gold"],
                 "gems": result["new_gems"],
-                "last_collect_time": result["new_collect_time"],
-                "daily_mission_date": p.get("daily_mission_date"),
-                "daily_counters": p.get("daily_counters")
+                "last_collect_time": result["new_collect_time"]
             }}
         )
         return jsonify(result)
@@ -171,16 +164,9 @@ def execute_raid():
                             {"$inc": {"vault_gold": tax}}
                         )
                 WarEngine.record_attack_score(attacker_syn, defender_syn, wars_collection)
-                MissionsEngine.record_progress(attacker, "raids", 1)
                 players_collection.update_one(
                     {"user_id": attacker_uid},
-                    {
-                        "$inc": {"raid_wins": 1},
-                        "$set": {
-                            "daily_mission_date": attacker.get("daily_mission_date"),
-                            "daily_counters": attacker.get("daily_counters")
-                        }
-                    }
+                    {"$inc": {"raid_wins": 1}}
                 )
         return jsonify(result)
     except Exception as e:
@@ -286,15 +272,9 @@ def link_wallet():
             return jsonify({"error": "Player not found"}), 404
         success, message = WalletEngine.link_wallet(p, wallet_address)
         if success:
-            MissionsEngine.record_progress(p, "sync_ops", 1)
             players_collection.update_one(
                 {"user_id": uid},
-                {"$set": {
-                    "ton_wallet": p["ton_wallet"],
-                    "is_verified_holder": p["is_verified_holder"],
-                    "daily_mission_date": p.get("daily_mission_date"),
-                    "daily_counters": p.get("daily_counters")
-                }}
+                {"$set": {"ton_wallet": p["ton_wallet"], "is_verified_holder": p["is_verified_holder"]}}
             )
             return jsonify({"success": True, "message": message})
         else:
@@ -493,91 +473,6 @@ def quest_claim():
             return jsonify({"success": True, "message": message})
         else:
             return jsonify({"success": False, "message": message}), 400
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/api/missions/status", methods=["POST"])
-def missions_status():
-    try:
-        data = request.json
-        uid = data.get("user_id")
-        if not uid:
-            return jsonify({"error": "User ID required"}), 400
-        p = players_collection.find_one({"user_id": uid})
-        if not p:
-            return jsonify({"error": "Player not found"}), 404
-        missions = MissionsEngine.get_daily_missions(p)
-        players_collection.update_one(
-            {"user_id": uid},
-            {"$set": {
-                "daily_mission_date": p.get("daily_mission_date"),
-                "daily_counters": p.get("daily_counters"),
-                "claimed_daily_missions": p.get("claimed_daily_missions", [])
-            }}
-        )
-        return jsonify({"success": True, "missions": missions})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-@app.route("/api/missions/claim", methods=["POST"])
-def missions_claim():
-    try:
-        data = request.json
-        uid = data.get("user_id")
-        mission_id = data.get("mission_id")
-        if not uid or not mission_id:
-            return jsonify({"error": "Missing data"}), 400
-        p = players_collection.find_one({"user_id": uid})
-        if not p:
-            return jsonify({"error": "Player not found"}), 404
-        success, message = MissionsEngine.claim_mission(p, mission_id)
-        if success:
-            players_collection.update_one(
-                {"user_id": uid},
-                {"$set": {
-                    "gold": p["gold"],
-                    "power_score": p.get("power_score", 0),
-                    "claimed_daily_missions": p["claimed_daily_missions"],
-                    "daily_mission_date": p.get("daily_mission_date"),
-                    "daily_counters": p.get("daily_counters")
-                }}
-            )
-            return jsonify({"success": True, "message": message})
-        else:
-            return jsonify({"success": False, "message": message}), 400
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/api/leaderboard/top", methods=["GET"])
-def leaderboard_top():
-    try:
-        top_players = LeaderboardEngine.get_top_players(players_collection, limit=10)
-        return jsonify({"success": True, "leaderboard": top_players})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/api/<path:unimplemented_path>", methods=["GET", "POST"])
-def api_catch_all(unimplemented_path):
-    return jsonify({}), 200
-
-
-# ---- Localization ----
-LOCALIZATION_DIR = os.path.join(BASE_DIR, "Localization")
-SUPPORTED_LANG_CODES = {"ar","az","de","el","en","es","fa","fr","hi","id","it","ja","ko","nl","pl","pt","ro","ru","th","tr","uk","ur","vi","zh-CN","zh-TW"}
-
-@app.route("/api/localization/<lang_code>", methods=["GET"])
-def get_localization(lang_code):
-    safe_code = lang_code if lang_code in SUPPORTED_LANG_CODES else "en"
-    file_path = os.path.join(LOCALIZATION_DIR, f"{safe_code}.json")
-    if not os.path.isfile(file_path):
-        file_path = os.path.join(LOCALIZATION_DIR, "en.json")
-    try:
-        with open(file_path, "r", encoding="utf-8-sig") as f:
-            data = json.load(f)
-        return jsonify(data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

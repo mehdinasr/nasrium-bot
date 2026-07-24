@@ -1,5 +1,3 @@
-from Core.App.SingularityEngine import SingularityEngine
-from Core.App.LeaderboardEngine import LeaderboardEngine
 from Core.App.MissionsEngine import MissionsEngine
 from Core.App.QuestEngine import QuestEngine
 from Core.App.TargetFinderEngine import TargetFinderEngine
@@ -7,7 +5,6 @@ from Core.App.WalletEngine import WalletEngine
 from Core.App.SimpleBuildingEngine import SimpleBuildingEngine
 from flask import Flask, jsonify, send_from_directory, request
 import os
-import json
 import time
 from pymongo import MongoClient
 from Core.App.GameEngine import GameEngine
@@ -546,38 +543,6 @@ def missions_claim():
             return jsonify({"success": True, "message": message})
         else:
             return jsonify({"success": False, "message": message}), 400
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/api/leaderboard/top", methods=["GET"])
-def leaderboard_top():
-    try:
-        top_players = LeaderboardEngine.get_top_players(players_collection, limit=10)
-        return jsonify({"success": True, "leaderboard": top_players})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/api/<path:unimplemented_path>", methods=["GET", "POST"])
-def api_catch_all(unimplemented_path):
-    return jsonify({}), 200
-
-
-# ---- Localization ----
-LOCALIZATION_DIR = os.path.join(BASE_DIR, "Localization")
-SUPPORTED_LANG_CODES = {"ar","az","de","el","en","es","fa","fr","hi","id","it","ja","ko","nl","pl","pt","ro","ru","th","tr","uk","ur","vi","zh-CN","zh-TW"}
-
-@app.route("/api/localization/<lang_code>", methods=["GET"])
-def get_localization(lang_code):
-    safe_code = lang_code if lang_code in SUPPORTED_LANG_CODES else "en"
-    file_path = os.path.join(LOCALIZATION_DIR, f"{safe_code}.json")
-    if not os.path.isfile(file_path):
-        file_path = os.path.join(LOCALIZATION_DIR, "en.json")
-    try:
-        with open(file_path, "r", encoding="utf-8-sig") as f:
-            data = json.load(f)
-        return jsonify(data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
