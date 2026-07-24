@@ -6,6 +6,7 @@ from Core.App.WalletEngine import WalletEngine
 from Core.App.SimpleBuildingEngine import SimpleBuildingEngine
 from flask import Flask, jsonify, send_from_directory, request
 import os
+import json
 import time
 from pymongo import MongoClient
 from Core.App.GameEngine import GameEngine
@@ -560,6 +561,24 @@ def leaderboard_top():
 @app.route("/api/<path:unimplemented_path>", methods=["GET", "POST"])
 def api_catch_all(unimplemented_path):
     return jsonify({}), 200
+
+
+# ---- Localization ----
+LOCALIZATION_DIR = os.path.join(BASE_DIR, "Localization")
+SUPPORTED_LANG_CODES = {"ar","az","de","el","en","es","fa","fr","hi","id","it","ja","ko","nl","pl","pt","ro","ru","th","tr","uk","ur","vi","zh-CN","zh-TW"}
+
+@app.route("/api/localization/<lang_code>", methods=["GET"])
+def get_localization(lang_code):
+    safe_code = lang_code if lang_code in SUPPORTED_LANG_CODES else "en"
+    file_path = os.path.join(LOCALIZATION_DIR, f"{safe_code}.json")
+    if not os.path.isfile(file_path):
+        file_path = os.path.join(LOCALIZATION_DIR, "en.json")
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
