@@ -31,7 +31,6 @@ async function loadWeather() { /* Logic from CMD_463 */ }
 async function loadWarp() { /* Logic from CMD_477 */ }
 async function igniteWormhole() { /* Logic from CMD_492 */ }
 
-initGame();
 setTimeout(() => { document.getElementById('ignition-overlay').style.opacity = '0'; }, 2000);
 async function loadVault() {
     try {
@@ -130,7 +129,6 @@ async function buildDrone() {
     alert(data.message);
     if(data.success) { 
         document.getElementById('drone-count').innerText = data.drones;
-        initGame(); 
     }
 }
 
