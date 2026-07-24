@@ -1,3 +1,25 @@
+// --- Auto-injected missing functions ---
+if (typeof loadEmpirePulse !== 'function') {
+    async function loadEmpirePulse() {
+        console.log('[Fallback] loadEmpirePulse executed.');
+        try {
+            // در صورت وجود API، اطلاعات امپراتوری را می‌گیرد
+            const res = await fetch('/api/world/empire/pulse');
+            if(res.ok) return await res.json();
+        } catch(e) { console.warn('Empire Pulse API not found, skipping.'); }
+    }
+}
+if (typeof fetchComms === 'undefined') {
+    var fetchComms = async () => {
+        console.log('[Fallback] fetchComms executed.');
+        try {
+            // در صورت وجود API، سیستم ارتباطات را می‌گیرد
+            const res = await fetch('/api/comms');
+            if(res.ok) return await res.json();
+        } catch(e) { console.warn('Comms API not found, skipping.'); }
+    };
+}
+// ---------------------------------------
 // Nasrium CORE LOGIC - v1.1.0
 const userId = "COMMANDER_MEHDI_ID"; // Temporary holder
 
