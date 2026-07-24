@@ -1,3 +1,4 @@
+from Core.App.LeaderboardEngine import LeaderboardEngine
 from Core.App.MissionsEngine import MissionsEngine
 from Core.App.QuestEngine import QuestEngine
 from Core.App.TargetFinderEngine import TargetFinderEngine
@@ -543,6 +544,15 @@ def missions_claim():
             return jsonify({"success": True, "message": message})
         else:
             return jsonify({"success": False, "message": message}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/leaderboard/top", methods=["GET"])
+def leaderboard_top():
+    try:
+        top_players = LeaderboardEngine.get_top_players(players_collection, limit=10)
+        return jsonify({"success": True, "leaderboard": top_players})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
