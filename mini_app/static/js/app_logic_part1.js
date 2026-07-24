@@ -1,8 +1,27 @@
 // Nasrium CORE LOGIC - v1.1.0
-const userId = "COMMANDER_MEHDI_ID"; // Temporary holder
+const userId = (function() {
+    try {
+        const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+        if (tgUser && tgUser.id) {
+            return String(tgUser.id);
+        }
+    } catch (e) {
+        console.warn("[userId] Could not read Telegram user id, using fallback.");
+    }
+    return "COMMANDER_MEHDI_ID"; // Fallback for testing outside Telegram
+})();
 
 async function initGame() {
     console.log("Nasrium Sovereign Core Resynced.");
+    try {
+        await fetch("/api/user/register", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ user_id: userId })
+        });
+    } catch (e) {
+        console.error("[initGame] Failed to register user:", e);
+    }
     loadWeather();
     loadEmpirePulse();
     loadWarp();
