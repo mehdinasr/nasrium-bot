@@ -1,4 +1,4 @@
-﻿// Nasrium CORE LOGIC - v1.1.0
+// Nasrium CORE LOGIC - v1.1.0
 const userId = "COMMANDER_MEHDI_ID"; // Temporary holder
 
 async function initGame() {
@@ -429,8 +429,7 @@ async function translateMsg(msgId, text) {
 }
 
 // بروزرسانی رندرینگ چت برای اضافه کردن دکمه ترجمه
-const oldFetchComms = fetchComms;
-fetchComms = async () => {
+async function fetchComms() {
     try {
         const res = await fetch('/api/social/comms/fetch');
         const data = await res.json();
