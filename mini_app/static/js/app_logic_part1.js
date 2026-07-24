@@ -232,7 +232,7 @@ initGame = async () => {
     loadGridAlerts();
 };
 async function loadSanctum() {
-    document.getElementById('sanctum-zone').innerHTML = `
+    const sanctumZone = document.getElementById('sanctum-zone'); if(!sanctumZone) return; sanctumZone.innerHTML = `
         <div class="zone-card" style="border: 2px solid #f1c40f; background: linear-gradient(180deg, #1a1a1a, #000); margin-top:10px;">
             <div class="zone-title" style="color: #f1c40f;">🛡️ ROYAL SANCTUM</div>
             <div style="padding:15px; text-align:center;">
