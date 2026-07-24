@@ -574,7 +574,7 @@ def get_localization(lang_code):
     if not os.path.isfile(file_path):
         file_path = os.path.join(LOCALIZATION_DIR, "en.json")
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, "r", encoding="utf-8-sig") as f:
             data = json.load(f)
         return jsonify(data)
     except Exception as e:
