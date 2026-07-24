@@ -58,9 +58,9 @@ async function upgradeVault() {
 }
 
 // انتهای فایل JS قبلی
-const originalInit = initGame;
+const originalInit_1 = initGame;
 initGame = async () => {
-    await originalInit();
+    await originalInit_1();
     loadVault();
 };
 async function loadVault() {
@@ -94,9 +94,9 @@ async function upgradeVault() {
 }
 
 // انتهای فایل JS قبلی
-const originalInit = initGame;
+const originalInit_2 = initGame;
 initGame = async () => {
-    await originalInit();
+    await originalInit_2();
     loadVault();
 };
 async function loadStealthOps() {
